@@ -89,14 +89,13 @@ class StatistikNordHarvester(HarvesterBase):
 
         if len(ids) > 0:
             log.info(
-                "finished %s IDs of %s IDs successfully gathered xxx" % (len(used_identifiers), len(documents)))
+                "finished %s IDs of %s IDs successfully gathered" % (len(used_identifiers), len(documents)))
             log.debug("List of gathered IDs: %s" % ids)
             log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
             return ids
         else:
             log.error("No records received")
-            self._save_gather_error("Couldn't find any metadata files %s" %
-                                    harvest_job)
+            self._save_gather_error("Couldn't find any metadata files", harvest_job)
             return None
 
     @staticmethod
@@ -123,18 +122,19 @@ class StatistikNordHarvester(HarvesterBase):
             package_dict.update({'resources': [], 'tags': []})
             package_dict.update({'title': values['Titel']})
             package_dict.update({'notes': values['Beschreibung']})
-            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz']})
+            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]})
             package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]})
             package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
 
-            extras = dict()
-            extras.update({'metadata_original_id': self._create_inforeg_id(values)})
+            extras = list()
+            extras.append({'key': 'metadata_original_id', 'value': self._create_inforeg_id(values)})
+            package_dict['extras'] = extras
 
             if values['Ansprechpartner']:
                 package_dict.update({'maintainer': values['Ansprechpartner']['Name'],
                                      'maintainer_email': values['Ansprechpartner']['EMailAdresse']})
             try:
-                package_dict['url'] = values['WeitereInformationen']['URLZumDownload']
+                package_dict['url'] = values['WeitereInformationen']['URL']
             except KeyError:
                 package_dict['url'] = ""
 
@@ -229,7 +229,7 @@ class StatistikNordHarvester(HarvesterBase):
     @staticmethod
     def get_all_groups():
         result_groups = []
-        groups_in_database = Session.query(model.Group.name).filter(model.Group.state == 'active')
+        groups_in_database = model.Session.query(model.Group.name).filter(model.Group.state == 'active')
         for group_in_database in groups_in_database.all():
             result_groups.append(group_in_database.name)
 
