@@ -1,2 +1,4 @@
+ckan
 ckanext-harvest
 ckanext-spatial
+lxml
