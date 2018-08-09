@@ -127,7 +127,7 @@ class StatistikNordHarvester(HarvesterBase):
             package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
 
             extras = list()
-            extras.append({'key': 'metadata_original_id', 'value': self._create_inforeg_id(values)})
+            extras.append({'key': 'identifier', 'value': self._create_inforeg_id(values)})
             package_dict['extras'] = extras
 
             if values['Ansprechpartner']:
@@ -154,6 +154,13 @@ class StatistikNordHarvester(HarvesterBase):
                     file_size = int(round(float(resource['Dateigroesse']) * 1000000))
                     resource_dict['file_size'] = file_size
                 package_dict['resources'].append(resource_dict)
+
+            tags = values['Schlagwoerter']['Schlagwort']
+            for tag in tags:
+                seperated_tags = tag.split(',')
+                for seperated_tag in seperated_tags:
+                    if seperated_tag != '' and len(seperated_tag) < 100:
+                        package_dict['tags'].append({'name': seperated_tag.strip()})
 
             source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
