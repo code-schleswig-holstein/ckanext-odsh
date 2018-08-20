@@ -108,7 +108,7 @@ class StatistikNordHarvester(HarvesterBase):
             'session': model.Session,
             'user': self._get_user_name(),
         }
-        log.debug("user: " + self._get_user_name())
+        #log.debug("user: " + self._get_user_name())
         if not harvest_object:
             log.error('Statistik-Nord-Harvester: No harvest object received')
             return False
@@ -117,13 +117,17 @@ class StatistikNordHarvester(HarvesterBase):
             self._save_object_error('Empty content for object %s' % harvest_object.id, harvest_object, u'Import')
             return False
         else:
+            # Als Referenz wurden die Beispieldateien (JSON) von https://www.dcat-ap.de/def/dcatde/1.0.1/examples.zip genommen.
+            # Siehe auch https://www.dcat-ap.de/def/dcatde/1.0.1/spec/specification.pdf
+            # Einige Felder gibt es nicht, oder werden anders geschrieben.
+            # Soll nach dem mapping der Schleswig-Holstein -> DCAT-AP.de noch ein Mapping erfolgen?
             values = json.loads(harvest_object.content)
             package_dict = dict()
             package_dict.update({'resources': [], 'tags': []})
             package_dict.update({'title': values['Titel']})
-            package_dict.update({'notes': values['Beschreibung']})
-            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]})
-            package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]})
+            package_dict.update({'notes': values['Beschreibung']}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld:  nicht vorhanden
+            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld:  "licenseAttributionByText" oder "license"
+            package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld: nicht vorhanden: Statt dessen:Creator, contributor, originator, maintainer, publisher, contactPoint <--
             package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
 
             extras = list()
@@ -162,12 +166,13 @@ class StatistikNordHarvester(HarvesterBase):
                     if seperated_tag != '' and len(seperated_tag) < 100:
                         package_dict['tags'].append({'name': seperated_tag.strip()})
 
+
             source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
 
             package_dict['id'] = str(uuid.uuid4())
 
-            log.debug(json.dumps(package_dict))
+            #log.debug(json.dumps(package_dict))
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
                 return result
