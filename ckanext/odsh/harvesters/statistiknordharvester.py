@@ -6,6 +6,7 @@ import socket
 import traceback
 from lxml import etree
 import uuid
+#import json
 
 from ckan import model, logic
 from ckan.logic import ValidationError, NotFound, get_action
@@ -117,17 +118,15 @@ class StatistikNordHarvester(HarvesterBase):
             self._save_object_error('Empty content for object %s' % harvest_object.id, harvest_object, u'Import')
             return False
         else:
-            # Als Referenz wurden die Beispieldateien (JSON) von https://www.dcat-ap.de/def/dcatde/1.0.1/examples.zip genommen.
-            # Siehe auch https://www.dcat-ap.de/def/dcatde/1.0.1/spec/specification.pdf
-            # Einige Felder gibt es nicht, oder werden anders geschrieben.
-            # Soll nach dem mapping der Schleswig-Holstein -> DCAT-AP.de noch ein Mapping erfolgen?
+
             values = json.loads(harvest_object.content)
+
             package_dict = dict()
-            package_dict.update({'resources': [], 'tags': []})
+            package_dict.update({'resources': [], 'tags': [], 'groups':[]})
             package_dict.update({'title': values['Titel']})
-            package_dict.update({'notes': values['Beschreibung']}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld:  nicht vorhanden
-            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld:  "licenseAttributionByText" oder "license"
-            package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]}) # in dcat_ap_de-RefImp_JSONLD_MAX_V1.0.1.jsonld: nicht vorhanden: Statt dessen:Creator, contributor, originator, maintainer, publisher, contactPoint <--
+            package_dict.update({'notes': values['Beschreibung']})
+            package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]})
+            package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]})
             package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
 
             extras = list()
@@ -166,6 +165,7 @@ class StatistikNordHarvester(HarvesterBase):
                     if seperated_tag != '' and len(seperated_tag) < 100:
                         package_dict['tags'].append({'name': seperated_tag.strip()})
 
+            self.map_to_group(package_dict, values)
 
             source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
@@ -179,6 +179,21 @@ class StatistikNordHarvester(HarvesterBase):
             except toolkit.ValidationError, e:
                 self._save_object_error('Validation Error: %s' % str(e.error_summary), harvest_object, 'Import')
                 return False
+
+    def map_to_group(self, package_dict, values):
+        # open file with the mapping from numbers to DCAT-DE vocabulary:
+        with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/number_dcat_de.json') as f:
+            dcat_theme = json.load(f)
+        # get the code
+        code = values['StANKategorie']
+        # if possible map it to a group
+        if dcat_theme.has_key(str(code)):
+            for item in dcat_theme[str(code)]:
+                package_dict['groups'].append({'name': item})
+                log.debug("DEBUG: DCAT-DE Code Mapping from %s to %s", str(code), item)
+        else:
+            # no valid group found.
+            package_dict['groups'].append({'name': "na"})
 
     @staticmethod
     def _get_content(url):
