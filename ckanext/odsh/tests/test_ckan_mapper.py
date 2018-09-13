@@ -5,6 +5,9 @@ import unittest
 from ckanext.odsh.harvesters import ckan_mapper as mapper
 
 
+def value_error():
+    raise ValueError('Config string can not be empty.')
+
 class TestMappingMethodsStatistikamtNord(unittest.TestCase):
 
     # Files to load
@@ -16,6 +19,24 @@ class TestMappingMethodsStatistikamtNord(unittest.TestCase):
     # Loads statistikamt nord specific configurations
     config_filter = mapper.sta_amt_nord.config_filter
     numbers = mapper.sta_amt_nord.numbers
+
+
+    # Test pyjq mapper with invalid StANKategorie
+    def test_pyjq_mapper_with_invalid_config_string(self):
+
+        # Save the data for generating new input for the test
+        test_dict = self.input_data
+
+        # Arrange
+        self.config_filter = ""
+        # Act
+
+        # Assert
+        with self.assertRaises(ValueError):
+            mapper.pyjq_mapper(self.config_filter, test_dict, self.numbers)
+            value_error
+
+
 
     # Test pyjq mapper with invalid StANKategorie
     def test_pyjq_mapper_with_invalid_StANKategorie(self):
