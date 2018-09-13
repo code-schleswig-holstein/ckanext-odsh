@@ -1,7 +1,13 @@
 import urllib2
 import traceback
 
+# config filter defines mapping for statistikamt nord - to ckan fields as a string
+from config_stat_amt_nord import config_filter
+# Number mapper for mapping form statistikamt nord number to MDR data-theme authority codes
+from config_stat_amt_nord import numbers
+
 from ckanext.odsh.harvesters.ckan_mapper import pyjq_mapper
+
 from lxml import etree
 import uuid
 
@@ -124,7 +130,7 @@ class StatistikNordHarvester(HarvesterBase):
         values = json.loads(harvest_object.content)
 
         # use the pyjq lib for the default field mapping
-        package = pyjq_mapper(values)
+        package = pyjq_mapper(config_filter, values, numbers)
 
         # add some meta data that is not part of the harvested_object
         source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
