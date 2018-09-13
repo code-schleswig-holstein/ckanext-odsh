@@ -18,8 +18,11 @@ def pyjq_mapper(config_filter, value, numbers):
     :param numbers: delivery system specific mapping from numbers to MDR - authority codes
     :return: valid ckan formatted value
     """
-    # print "value: " + str(value)
-    tmp = pyjq.all(config_filter, value, vars={"numbers": numbers})
+
+    if config_filter == "":
+        raise ValueError('Config string can not be empty.')
+    else:
+        tmp = pyjq.all(config_filter, value, vars={"numbers": numbers})
 
     # print "tmp cm: " + str(tmp)
     return dict(tmp[0])
@@ -29,9 +32,11 @@ def pyjq_mapper(config_filter, value, numbers):
 test_config_filter = sta_amt_nord.config_filter
 test_numbers = sta_amt_nord.numbers
 
-with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/statistik-nord-example_2.json') as f:
-    input = json.load(f)
-    print "Input: " + str(input)
-    result = dict(pyjq_mapper(test_config_filter, input, test_numbers))
-print "Result: " + str(result)
+#with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/statistik-nord-example_2.json') as f:
+#    input = json.load(f)
+#    print "Input: " + str(input)
+#    result = dict(pyjq_mapper(test_config_filter, input, test_numbers))
+#print "Result: " + str(result)
+
+
 
