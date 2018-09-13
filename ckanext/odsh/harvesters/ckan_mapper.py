@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Mapper, that loads all necessary mapping files, calls the pyjq method and returns the value.
+Mapper, that loads all necessary mapping files, calls the pyjq method and returns valid ckan-formatted values
 """
 import json
 import pyjq as pyjq
@@ -12,6 +12,12 @@ import config_stat_amt_nord as sta_amt_nord
 
 
 def pyjq_mapper(config_filter, value, numbers):
+    """
+    :param config_filter:  delivery system specific configuration string
+    :param value: input, to map onto the ckan format
+    :param numbers: delivery system specific mapping from numbers to MDR - authority codes
+    :return: valid ckan formatted value
+    """
     # print "value: " + str(value)
     tmp = pyjq.all(config_filter, value, vars={"numbers": numbers})
 
