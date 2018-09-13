@@ -14,6 +14,7 @@ def odsh_main_groups():
 class OdshPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IRoutes, inherit=True)
 
     # IConfigurer
 
@@ -27,3 +28,7 @@ class OdshPlugin(plugins.SingletonPlugin):
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {'odsh_main_groups': odsh_main_groups}
+
+    def before_map(self, map):
+        map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+        return map
