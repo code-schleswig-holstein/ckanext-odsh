@@ -1,15 +1,9 @@
 import urllib2
 import traceback
 
-# config filter defines mapping for statistikamt nord - to ckan fields as a string
-from config_stat_amt_nord import config_filter
-# Number mapper for mapping form statistikamt nord number to MDR data-theme authority codes
-from config_stat_amt_nord import numbers
-
-from ckanext.odsh.harvesters.ckan_mapper import pyjq_mapper
-
 from lxml import etree
 import uuid
+import logging
 
 from ckan import model
 from ckan.logic import get_action
@@ -21,15 +15,21 @@ from ckanext.harvest.model import HarvestObject
 from ckanext.harvest.harvesters.base import HarvesterBase
 
 from ckanext.odsh.model.statistiknord import *
-import logging
+
+# Config filter defines mapping for statistikamt nord - to ckan fields as a string
+from config_stat_amt_nord import config_filter
+# Number mapper for mapping form statistikamt nord number to MDR data-theme authority codes
+from config_stat_amt_nord import numbers
+
+from ckanext.odsh.harvesters.ckan_mapper import pyjq_mapper
 
 log = logging.getLogger(__name__)
 
 
 class StatistikNordHarvester(HarvesterBase):
-    '''
+    """
     A Harvester for Statistikamt Nord
-    '''
+    """
 
     def info(self):
         return {
@@ -47,7 +47,7 @@ class StatistikNordHarvester(HarvesterBase):
             documents_list = self.get_documents_from_content(fetched_documents)
             documents = documents_list['RegistereintragsListe']
         except Exception, e:
-            #log.error('traceback while reading model: %s' % traceback.format_exc())
+            # log.error('traceback while reading model: %s' % traceback.format_exc())
             self._save_gather_error('Statistik-Nord-Harvester: Error while reading model [%r]' % e, harvest_job)
             return False
 
@@ -58,7 +58,7 @@ class StatistikNordHarvester(HarvesterBase):
                 try:
                     fetched_values = self.get_values_from_content(document)
                     identifier = self._create_inforeg_id(fetched_values)
-                    #log.info('identifier: %s' % identifier)
+                    # log.info('identifier: %s' % identifier)
 
                     if identifier in used_identifiers:
                         continue
@@ -94,8 +94,8 @@ class StatistikNordHarvester(HarvesterBase):
         if len(ids) > 0:
             log.info(
                 "finished %s IDs of %s IDs successfully gathered" % (len(used_identifiers), len(documents)))
-            #log.debug("List of gathered IDs: %s" % ids)
-            #log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
+            # log.debug("List of gathered IDs: %s" % ids)
+            # log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
             return ids
         else:
             log.error("No records received")
@@ -113,7 +113,7 @@ class StatistikNordHarvester(HarvesterBase):
             'user': self._get_user_name(),
         }
 
-        #log.debug("user: " + self._get_user_name())
+        # log.debug("user: " + self._get_user_name())
         if not harvest_object:
             log.error('Statistik-Nord-Harvester: No harvest object received')
             return False
@@ -129,10 +129,10 @@ class StatistikNordHarvester(HarvesterBase):
     def dcat_mapper(self, context, harvest_object):
         values = json.loads(harvest_object.content)
 
-        # use the pyjq lib for the default field mapping
+        # Use the pyjq lib for the default field mapping
         package = pyjq_mapper(config_filter, values, numbers)
 
-        # add some meta data that is not part of the harvested_object
+        # Add some meta data that is not part of the harvested_object
         source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
         package['owner_org'] = source_dataset.get('owner_org')
         package['id'] = str(uuid.uuid4())
@@ -147,7 +147,7 @@ class StatistikNordHarvester(HarvesterBase):
     @staticmethod
     def _get_content(url):
         url = url.replace(' ', '%20')
-        #log.debug("get_content StatistikNord harvester: %s" % url)
+        # log.debug("get_content StatistikNord harvester: %s" % url)
         try:
             http_response = urllib2.urlopen(url, timeout=100000)
             content = http_response.read()
@@ -182,7 +182,6 @@ class StatistikNordHarvester(HarvesterBase):
             return guid.strip()
         else:
             return quelle + ':' + guid.strip()
-
 
     @staticmethod
     def get_all_groups():
