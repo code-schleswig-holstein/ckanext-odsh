@@ -83,7 +83,10 @@ setup(
         odsh=ckanext.odsh.plugin:OdshPlugin
         statistiknord_harvester=ckanext.odsh.harvesters:StatistikNordHarvester
         kiel_harvester=ckanext.odsh.harvesters:KielHarvester
-
+        
+        [paste.paster_command]
+        odsh_initialization = ckanext.odsh.commands.initialization:Initialization
+        
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
     ''',

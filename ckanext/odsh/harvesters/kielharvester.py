@@ -44,7 +44,7 @@ class KielHarvester(HarvesterBase):
                 used_identifiers.append(guid)
                 ids.append(obj.id)
 
-        except Exception, e:
+        except Exception as e:
             self._save_gather_error(
                 'Statistik-Nord-Harvester: Error gathering the identifiers from the source server [%s]' % str(e),
                 harvest_job)
@@ -110,6 +110,6 @@ class KielHarvester(HarvesterBase):
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
                 return result
-            except toolkit.ValidationError, e:
+            except toolkit.ValidationError as e:
                 self._save_object_error('Validation Error: %s' % str(e.error_summary), harvest_object, 'Import')
                 return False
