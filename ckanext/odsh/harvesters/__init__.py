@@ -6,5 +6,5 @@ except ImportError:
     import pkgutil
     __path__ = pkgutil.extend_path(__path__, __name__)
 
-from ckanext.odsh.harvesters.statistiknordharvester import StatistikNordHarvester
+from ckanext.odsh.harvesters.statistiknordharvester import StatistikamtNordHarvester
 from ckanext.odsh.harvesters.kielharvester import KielHarvester
