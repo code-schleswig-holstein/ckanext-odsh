@@ -88,7 +88,7 @@ class KielHarvester(HarvesterBase):
             for date in package_dict['extras']['dates']:
                 if date['role'] == 'veroeffentlicht':
                     published = date['date']
-            package_dict['metadata_modified'] = datetime.datetime.strptime(published, "%d.%m.%Y")
+            package_dict['metadata_modified'] = datetime.datetime.strptime(published, "%d.%m.%Y").isoformat()
             source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
 
