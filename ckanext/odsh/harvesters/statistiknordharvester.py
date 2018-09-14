@@ -26,15 +26,15 @@ from ckanext.odsh.harvesters.ckan_mapper import pyjq_mapper
 log = logging.getLogger(__name__)
 
 
-class StatistikNordHarvester(HarvesterBase):
+class StatistikamtNordHarvester(HarvesterBase):
     """
     A Harvester for Statistikamt Nord
     """
 
     def info(self):
         return {
-            'name': 'statistik-nord',
-            'title': 'Statistik Nord',
+            'name': 'statistikamt-nord',
+            'title': 'Statistikamt Nord',
             'description': 'Harvests Statistikamt Nord',
             'form_config_interface': 'Text'
         }
