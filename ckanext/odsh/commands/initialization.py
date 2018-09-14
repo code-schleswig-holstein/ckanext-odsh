@@ -90,7 +90,7 @@ class Initialization(CkanCommand):
 
         odsh_harvesters = {
             "Kiel": {
-                'name': "Kiel",
+                'name': "kiel",
                 'url': "https://www.kiel.de/de/kiel_zukunft/statistik_kieler_zahlen/open_data/Kiel_open_data.json",
                 'source_type': "kiel",
                 'title': "Kiel",
@@ -99,12 +99,12 @@ class Initialization(CkanCommand):
                 'frequency': "MANUAL"
             },
             "Statistikamt-Nord": {
-                'name': "Statistikamt-Nord",
+                'name': "statistikamt-nord",
                 'url': "file:///usr/lib/ckan/default/src/statistik-nord-stripped.xml",
                 'source_type': "statistikamt-nord",
                 'title': "Statistik-Nord",
                 'active': True,
-                'owner_org': "statistikamt",
+                'owner_org': "statistikamt-nord",
                 'frequency': "MANUAL"
             }
         }
@@ -117,7 +117,7 @@ class Initialization(CkanCommand):
                 print(add_message)
                 harvester_dict = odsh_harvesters[harvester_key]
 
-                get_action('harvester_source_create')(self.create_context_with_user(), harvester_dict)
+                get_action('harvest_source_create')(self.create_context_with_user(), harvester_dict)
             else:
                 skip_message = 'Skipping creation of harvester '
                 skip_message = skip_message + "{harvester_key}, as it's already present."
