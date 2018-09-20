@@ -5,7 +5,7 @@ import ckanext
 from mock import patch
 
 #from ckanext.harvest.model import HarvestObject
-from ckanext.odsh.harvesters.statistiknordharvester import StatistikNordHarvester as harvester
+from ckanext.odsh.harvesters.statistikamtnordharvester import StatistikNordHarvester as harvester
 from ckan import model
 
 
