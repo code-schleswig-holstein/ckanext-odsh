@@ -100,7 +100,7 @@ class Initialization(CkanCommand):
             },
             "Statistikamt-Nord": {
                 'name': "statistikamt-nord",
-                'url': "file:///usr/lib/ckan/default/src/statistik-nord-stripped.xml",
+                'url': "http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
                 'source_type': "statistikamt-nord",
                 'title': "Statistik-Nord",
                 'active': True,
