@@ -1,8 +1,11 @@
+import json
 import urllib2
 import traceback
 
 from lxml import etree
 from ckan import model
+
+from ckan.logic import get_action
 
 from ckanext.harvest.model import HarvestObject
 from ckanext.harvest.harvesters.base import HarvesterBase
@@ -28,8 +31,8 @@ class StatistikamtNordHarvester(HarvesterBase):
     @staticmethod
     def info():
         return {
-            'name': 'statistik-nord',
-            'title': 'Statistik Nord',
+            'name': 'statistikamt-nord',
+            'title': 'Statistikamt Nord',
             'description': 'Harvests Statistikamt Nord',
             'form_config_interface': 'Text'
         }
@@ -206,17 +209,17 @@ class StatistikamtNordHarvester(HarvesterBase):
     @staticmethod
     def map_to_group(package_dict, values):
         # open file with the mapping from numbers to DCAT-DE vocabulary:
-        with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/number_dcat_de.json') as f:
+        with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/number_dcat_de_hamburg.json') as f:
             dcat_theme = json.load(f)
         # get the code
         code = values['StANKategorie']
 
-        authority_codes = ['agri', 'educ', 'envi', 'ener', 'tran', 'tech',
+        all_authority_codes = ['agri', 'educ', 'envi', 'ener', 'tran', 'tech',
                            'econ', 'soci', 'heal', 'gove', 'regi', 'just', 'intr']
 
         # check, if StANProdukte has id 4
         if '4' in values['StANProdukte']:
-            for item in authority_codes:
+            for item in all_authority_codes:
                 package_dict['groups'].append({'name' : item})
 
         # or if possible map it to a group
@@ -224,6 +227,7 @@ class StatistikamtNordHarvester(HarvesterBase):
                 for item in dcat_theme[str(code)]:
                     package_dict['groups'].append({'name': item})
         else:
+            # put it in the na-group
             package_dict['groups'].append({'name': 'na'})
             log.error('Statistik-Nord-Harvester: No valid group code received: %s', code)
 

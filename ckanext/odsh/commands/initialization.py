@@ -102,7 +102,7 @@ class Initialization(CkanCommand):
                 'name': "statistikamt-nord",
                 'url': "http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
                 'source_type': "statistikamt-nord",
-                'title': "Statistik-Nord",
+                'title': "Statistikamt Nord",
                 'active': True,
                 'owner_org': "statistikamt-nord",
                 'frequency': "MANUAL"
