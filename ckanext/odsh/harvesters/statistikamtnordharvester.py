@@ -20,7 +20,8 @@ def map_general_fields(package_dict, values):
     package_dict.update({'notes': values['Beschreibung']})
     package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]})
 
-class StatistikNordHarvester(HarvesterBase):
+
+class StatistikamtNordHarvester(HarvesterBase):
     """
     A Harvester for Statistikamt Nord
     """
