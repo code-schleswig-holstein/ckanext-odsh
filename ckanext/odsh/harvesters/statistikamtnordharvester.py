@@ -8,7 +8,6 @@ from ckanext.harvest.model import HarvestObject
 from ckanext.harvest.harvesters.base import HarvesterBase
 
 from ckanext.odsh.model.statistiknord import *
-from ckanext.odsh.harvesters.mapper import *
 import logging
 
 log = logging.getLogger(__name__)
