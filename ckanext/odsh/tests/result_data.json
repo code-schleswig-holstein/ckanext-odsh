@@ -1,0 +1,61 @@
+{
+  "title": "Unfälle beim Umgang mit wassergefährdenden Stoffen und bei der Beförderung wassergefährdender Stoffe in Hamburg 2002",
+  "url": "http://www.statistik-nord.de",
+  "notes": "",
+  "author": "Statistisches Amt für Hamburg und Schleswig-Holstein",
+  "author_email": "info@statistik-nord.de",
+  "extras": [
+    {
+      "key": "identifier",
+      "value": "StaNord_CMS:50625"
+    },
+    {
+      "key": "issued",
+      "value": null
+    },
+    {
+      "key": "modified",
+      "value": null
+    },
+    {
+      "key" : "temporal_start",
+      "value" : ""
+    },
+    {
+      "key" : "temporal_end",
+      "value" : ""
+    },
+        {
+      "key" : "theme",
+      "value" :[]
+    }
+
+  ],
+  "groups": [
+    {
+      "name": "tran"
+    },
+    {
+      "name": "envi"
+    },
+    {
+      "name": "ener"
+    }
+  ],
+  "license_id":"dl-by-de/2.0",
+  "tags": [
+    {
+      "name": "Umwelt "
+    }
+  ],
+  "type": "dataset",
+  "resources": [
+    {
+      "url": "https://www.statistik-nord.de/fileadmin/Dokumente/Statistische_Berichte/verkehr_umwelt_und_energie/Q_I_3_j_H/Q_I_3_j02_H.pdf",
+      "format": "pdf",
+      "name": "Unfälle beim Umgang mit wassergefährdenden Stoffen und bei der Beförderung wassergefährdender Stoffe in Hamburg 2002",
+      "size": 46903,
+      "license" : "dl-by-de/2.0"
+    }
+  ]
+}
