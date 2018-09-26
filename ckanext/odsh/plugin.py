@@ -1,5 +1,9 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.plugins import DefaultTranslation
+from ckan.common import OrderedDict
+
+_ = toolkit._
 
 def odsh_main_groups():
     '''Return a list of the groups to be shown on the start page.'''
@@ -11,10 +15,12 @@ def odsh_main_groups():
 
     return groups
 
-class OdshPlugin(plugins.SingletonPlugin):
+class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.ITranslation)
+    plugins.implements(plugins.IFacets)
 
     # IConfigurer
 
@@ -32,3 +38,9 @@ class OdshPlugin(plugins.SingletonPlugin):
     def before_map(self, map):
         map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
         return map
+
+    def dataset_facets(self, facets_dict, package_type):
+        return OrderedDict({'groups': _('Groups')})
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        return facets_dict
