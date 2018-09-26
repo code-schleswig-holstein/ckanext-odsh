@@ -1,0 +1,64 @@
+# German translations for ckanext-odsh.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the ckanext-odsh
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-odsh 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-09-15 00:23+0000\n"
+"PO-Revision-Date: 2018-09-15 00:24+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ckanext/odsh/templates/header.html:10
+msgid "Start"
+msgstr "Startseite"
+
+#: ckanext/odsh/templates/header.html:11
+msgid "Datasets"
+msgstr "Daten"
+
+#: ckanext/odsh/templates/header.html:12
+msgid "Organizations"
+msgstr "Herausgeber"
+
+#: ckanext/odsh/templates/header.html:13
+msgid "Info"
+msgstr "Infos"
+
+#: ckan/templates/header.html:117 ckan/templates/home/snippets/search.html:11
+#: ckan/templates/snippets/simple_search.html:5
+#: ckan/templates/user/snippets/user_search.html:6
+msgid "Search"
+msgstr "Suchbegriff"
+
+#: ckan/templates/snippets/search_result_text.html:15
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "{number} Ergebnis für \"{query}\""
+msgstr[1] "{number} Ergebnisse für \"{query}\""
+
+#: ckan/templates/snippets/search_result_text.html:16
+msgid "No datasets found for \"{query}\""
+msgstr "Keine Ergebnisse für \"{query}\""
+
+#: ckan/templates/snippets/search_result_text.html:17
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "{number} Ergebnis"
+msgstr[1] "{number} Ergebnisse"
+
+#: ckan/templates/snippets/search_result_text.html:18
+msgid "No datasets found"
+msgstr "Keine Ergebnisse"
+
+
