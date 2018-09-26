@@ -1,0 +1,59 @@
+# Translations template for ckanext-odsh.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the ckanext-odsh project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-odsh 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-09-15 00:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ckanext/odsh/templates/header.html:10
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:11
+msgid "Organizations"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:12
+msgid "Groups"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:13
+msgid "About"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:14
+msgid "Info"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:31
+msgid "Private"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:40
+msgid "Draft"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:42
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:50
+msgid "Popular"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:57
+msgid "This dataset has no description"
+msgstr ""
+
