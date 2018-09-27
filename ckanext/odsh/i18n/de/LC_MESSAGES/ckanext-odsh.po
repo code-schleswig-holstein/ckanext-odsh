@@ -20,45 +20,64 @@ msgstr ""
 "Generated-By: Babel 2.3.4\n"
 
 #: ckanext/odsh/templates/header.html:10
-msgid "Start"
-msgstr "Startseite"
-
-#: ckanext/odsh/templates/header.html:11
 msgid "Datasets"
 msgstr "Daten"
 
-#: ckanext/odsh/templates/header.html:12
+#: ckanext/odsh/templates/header.html:11
 msgid "Organizations"
 msgstr "Herausgeber"
 
+#: ckanext/odsh/templates/header.html:12
+msgid "Groups"
+msgstr ""
+
 #: ckanext/odsh/templates/header.html:13
+msgid "About"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:14
 msgid "Info"
 msgstr "Infos"
 
-#: ckan/templates/header.html:117 ckan/templates/home/snippets/search.html:11
-#: ckan/templates/snippets/simple_search.html:5
-#: ckan/templates/user/snippets/user_search.html:6
-msgid "Search"
-msgstr "Suchbegriff"
+#: ckanext/odsh/templates/snippets/package_item.html:31
+msgid "Private"
+msgstr ""
 
-#: ckan/templates/snippets/search_result_text.html:15
-msgid "{number} dataset found for \"{query}\""
-msgid_plural "{number} datasets found for \"{query}\""
-msgstr[0] "{number} Ergebnis für \"{query}\""
-msgstr[1] "{number} Ergebnisse für \"{query}\""
+#: ckanext/odsh/templates/snippets/package_item.html:40
+msgid "Draft"
+msgstr ""
 
-#: ckan/templates/snippets/search_result_text.html:16
-msgid "No datasets found for \"{query}\""
-msgstr "Keine Ergebnisse für \"{query}\""
+#: ckanext/odsh/templates/snippets/package_item.html:42
+msgid "Deleted"
+msgstr ""
 
-#: ckan/templates/snippets/search_result_text.html:17
-msgid "{number} dataset found"
-msgid_plural "{number} datasets found"
-msgstr[0] "{number} Ergebnis"
-msgstr[1] "{number} Ergebnisse"
+#: ckanext/odsh/templates/snippets/package_item.html:50
+msgid "Popular"
+msgstr ""
 
-#: ckan/templates/snippets/search_result_text.html:18
-msgid "No datasets found"
-msgstr "Keine Ergebnisse"
+#: ckanext/odsh/templates/snippets/package_item.html:57
+msgid "This dataset has no description"
+msgstr ""
 
+#~ msgid "Start"
+#~ msgstr "Startseite"
+
+#~ msgid "Search"
+#~ msgstr "Suchbegriff"
+
+#~ msgid "{number} dataset found for \"{query}\""
+#~ msgid_plural "{number} datasets found for \"{query}\""
+#~ msgstr[0] "{number} Ergebnis für \"{query}\""
+#~ msgstr[1] "{number} Ergebnisse für \"{query}\""
+
+#~ msgid "No datasets found for \"{query}\""
+#~ msgstr "Keine Ergebnisse für \"{query}\""
+
+#~ msgid "{number} dataset found"
+#~ msgid_plural "{number} datasets found"
+#~ msgstr[0] "{number} Ergebnis"
+#~ msgstr[1] "{number} Ergebnisse"
+
+#~ msgid "No datasets found"
+#~ msgstr "Keine Ergebnisse"
 
