@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-odsh 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-15 00:23+0000\n"
+"POT-Creation-Date: 2018-09-28 13:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,43 +17,151 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/odsh/templates/header.html:10
-msgid "Datasets"
-msgstr ""
-
-#: ckanext/odsh/templates/header.html:11
-msgid "Organizations"
-msgstr ""
-
-#: ckanext/odsh/templates/header.html:12
+#: ckanext/odsh/plugin.py:52
 msgid "Groups"
 msgstr ""
 
-#: ckanext/odsh/templates/header.html:13
-msgid "About"
+#: ckanext/odsh/templates/header.html:43
+msgid "Search Datasets"
 msgstr ""
 
-#: ckanext/odsh/templates/header.html:14
+#: ckanext/odsh/templates/header.html:46
+msgid "Search"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:65
+msgid "Start"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:66
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:67
+#: ckanext/odsh/templates/snippets/package_item.html:82
+msgid "Organizations"
+msgstr ""
+
+#: ckanext/odsh/templates/header.html:68
 msgid "Info"
 msgstr ""
 
-#: ckanext/odsh/templates/snippets/package_item.html:31
-msgid "Private"
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:5
+msgid "Title"
 msgstr ""
 
-#: ckanext/odsh/templates/snippets/package_item.html:40
-msgid "Draft"
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:17
+msgid "URL"
 msgstr ""
 
-#: ckanext/odsh/templates/snippets/package_item.html:42
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:23
+msgid "Description"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:33
+#: ckanext/odsh/templates/package/snippets/package_metadata_fields.html:18
+msgid "This field is required"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:34
+#: ckanext/odsh/templates/snippets/package_item.html:83
+msgid "License"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:93
+msgid "Organization"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:97
+msgid "No organization"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:113
+msgid "State"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:117
+msgid "Active"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_basic_fields.html:119
+#: ckanext/odsh/templates/snippets/package_item.html:49
 msgid "Deleted"
 msgstr ""
 
-#: ckanext/odsh/templates/snippets/package_item.html:50
+#: ckanext/odsh/templates/package/snippets/package_metadata_fields.html:47
+msgid "Visibility"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_metadata_fields.html:50
+#: ckanext/odsh/templates/snippets/package_item.html:37
+msgid "Private"
+msgstr ""
+
+#: ckanext/odsh/templates/package/snippets/package_metadata_fields.html:50
+msgid "Public"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/facet_list.html:26
+msgid "Show More {facet_type}"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/facet_list.html:30
+msgid "Show Only Popular {facet_type}"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/facet_list.html:34
+msgid "There are no {facet_type} that match this search"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/language_selector.html:13
+#: ckanext/odsh/templates/snippets/search_form.html:34
+msgid "Go"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:47
+msgid "Draft"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/package_item.html:58
 msgid "Popular"
 msgstr ""
 
-#: ckanext/odsh/templates/snippets/package_item.html:57
+#: ckanext/odsh/templates/snippets/package_item.html:65
 msgid "This dataset has no description"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:3
+msgid "Search datasets..."
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:4
+msgid "Order by"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:5
+msgid "Name Ascending"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:5
+msgid "Name Descending"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:60
+msgid "Remove"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:65
+msgid "Filter Results"
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:72
+msgid " <p class=\"extra\">Please try another search.</p> "
+msgstr ""
+
+#: ckanext/odsh/templates/snippets/search_form.html:78
+msgid ""
+" <p id=\"search-error\"><strong>There was an error while searching.</strong> "
+"Please try again.</p> "
 msgstr ""
 
