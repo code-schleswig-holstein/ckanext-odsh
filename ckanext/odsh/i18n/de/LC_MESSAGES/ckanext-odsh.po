@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-odsh 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-15 00:23+0000\n"
-"PO-Revision-Date: 2018-09-15 00:24+0000\n"
+"POT-Creation-Date: 2018-09-28 13:50+0000\n"
+"PO-Revision-Date: 2018-09-28 13:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -19,65 +19,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/odsh/templates/header.html:10
-msgid "Datasets"
-msgstr "Daten"
-
-#: ckanext/odsh/templates/header.html:11
-msgid "Organizations"
-msgstr "Herausgeber"
-
-#: ckanext/odsh/templates/header.html:12
 msgid "Groups"
-msgstr ""
+msgstr "Kategorien"
 
-#: ckanext/odsh/templates/header.html:13
-msgid "About"
-msgstr ""
+msgid "Title"
+msgstr "Titel"
 
-#: ckanext/odsh/templates/header.html:14
-msgid "Info"
-msgstr "Infos"
+msgid "Temporal end"
+msgstr "Ende des Zeitraumes"
 
-#: ckanext/odsh/templates/snippets/package_item.html:31
-msgid "Private"
-msgstr ""
+msgid "Temporal start"
+msgstr "Beginn des Zeitraumes"
 
-#: ckanext/odsh/templates/snippets/package_item.html:40
-msgid "Draft"
-msgstr ""
+msgid "odsh_temporal_start_label"
+msgstr "Beginn des Zeitraumes"
+ 
+msgid "Access constraints"
+msgstr "Namensnennung"
 
-#: ckanext/odsh/templates/snippets/package_item.html:42
-msgid "Deleted"
-msgstr ""
-
-#: ckanext/odsh/templates/snippets/package_item.html:50
-msgid "Popular"
-msgstr ""
-
-#: ckanext/odsh/templates/snippets/package_item.html:57
-msgid "This dataset has no description"
-msgstr ""
-
-#~ msgid "Start"
-#~ msgstr "Startseite"
-
-#~ msgid "Search"
-#~ msgstr "Suchbegriff"
-
-#~ msgid "{number} dataset found for \"{query}\""
-#~ msgid_plural "{number} datasets found for \"{query}\""
-#~ msgstr[0] "{number} Ergebnis für \"{query}\""
-#~ msgstr[1] "{number} Ergebnisse für \"{query}\""
-
-#~ msgid "No datasets found for \"{query}\""
-#~ msgstr "Keine Ergebnisse für \"{query}\""
-
-#~ msgid "{number} dataset found"
-#~ msgid_plural "{number} datasets found"
-#~ msgstr[0] "{number} Ergebnis"
-#~ msgstr[1] "{number} Ergebnisse"
-
-#~ msgid "No datasets found"
-#~ msgstr "Keine Ergebnisse"
-
+msgid "Spatial extension"
+msgstr "räumliche Ausdehnung"
