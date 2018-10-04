@@ -76,6 +76,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def dataset_facets(self, facets_dict, package_type):
         return OrderedDict({'groups': _('Groups')})
 
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        return facets_dict
+
     def group_facets(self, facets_dict, group_type, package_type):
         return facets_dict
 
