@@ -98,7 +98,7 @@ class Initialization(CkanCommand):
                 'owner_org': "kiel",
                 'frequency': "MANUAL"
             },
-            "Statistikamt-Nord": {
+            "Statistikamt Nord": {
                 'name': "statistikamt-nord",
                 'url': "http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
                 'source_type': "statistikamt-nord",
