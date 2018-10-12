@@ -3,6 +3,7 @@
 {{ super() }}
 <script type="text/javascript" src="bootstrap-multiselect.js"></script>
 {% resource 'odsh/odsh.js' %}
-<link rel="stylesheet" href="/odsh.css" />
+<link rel="stylesheet" href="/odsh.css?refresh={{ range(1,10000) | random }}" />
+<link rel="stylesheet" href="/odsh_header.css?refresh={{ range(1,10000) | random }}" />
 <link rel="stylesheet" href="/bootstrap-multiselect.css" />
 {% endblock %}

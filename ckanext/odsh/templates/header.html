@@ -1,9 +1,5 @@
 {% block header_wrapper %}
 {% block header_account %}
-<header class="account-masthead">
-    <div class="container">
-    </div>
-</header>
 <header class="navbar navbar-static-top masthead">
     {% block header_debug %}
     {% if g.debug and not g.debug_supress_header %}
@@ -11,69 +7,70 @@
     {% endif %}
     {% endblock %}
     <div class="container">
-        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
-            <span class="fa fa-bars"></span>
-        </button>
-        {# The .header-image class hides the main text and uses image replacement for the title #}
-        <div class='row'>
+      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+        <span class="fa fa-bars"></span>
+      </button>
+      {# The .header-image class hides the main text and uses image replacement for the title #}
+      <div class='row'>
 
-            <div class='span4'>
-                <hgroup class="{{ g.header_class }} pull-left">
+        <div class='span4'>
+          <hgroup class="{{ g.header_class }} pull-left">
 
-                    {% block header_logo %}
-                    {% if g.site_logo %}
-                    <a class="logo" href="{{ h.url_for('home') }}"><img src="{{ h.url_for_static_or_external(g.site_logo) }}"
-                            alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
-                    {% else %}
-                    <h1>
-                        <a href="{{ h.url_for('home') }}">{{ g.site_title }}</a>
-                    </h1>
-                    {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
-                    {% endif %}
-                    {% endblock %}
-                </hgroup>
-            </div>
+            {% block header_logo %}
+            {% if g.site_logo %}
+            <a class="logo" href="{{ h.url_for('home') }}"><img src="{{ h.url_for_static_or_external(g.site_logo) }}"
+								alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+            {% else %}
+            <h1>
+              <a href="{{ h.url_for('home') }}">{{ g.site_title }}</a>
+            </h1>
+            {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
+            {% endif %}
+            {% endblock %}
+          </hgroup>
+        </div>
 
+        <div class="span3">
+        </div>
 
-            {% block header_site_search %}
-            <div class="span4">
-                <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
+        <div class='span5'>
+          {% snippet "snippets/language_selector.html" %}
+
+          {% block header_site_search %}
+	    <div class='top-search-form'>
+              <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
                     method="get">
-                    <div class="field">
-                        <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets')
-                            }}{%
-                            endblock %}</label>
-                        <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
-                        <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                </form>
-            </div>
-            {% endblock %}
-
-            <div class='span4'>
-                {% snippet "snippets/language_selector.html" %}
-            </div>
-
+		<div class="field">
+		    <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Suchbegriff') }}" />
+		    <button class="btn-search" type="submit">
+		</div>
+              </form>
+	    </div>
+          {% endblock %}
         </div>
 
-        <div class="nav-collapse collapse">
-
-            <nav class="section navigation">
-                <ul class="nav nav-pills">
-                    {% block header_site_navigation_tabs %}
-                    {{ h.build_nav_main(
-                    ('home', _('Start')),
-                    ('search', _('Datasets')),
-                    ('organizations_index', _('Organizations')),
-                    ('info_page', _('Info'))
-                    ) }}
-                    {% endblock %}
-                </ul>
-            </nav>
-            {% endblock %}
-
-
-        </div>
+      </div>
     </div>
+    
+    <div class="container navigation-container">
+      <div class='row navigation-row'>
+        <div class="nav-collapse collapse">
+          <nav class="section navigation">
+	    <ul class="nav nav-pills">
+              {% block header_site_navigation_tabs %}
+              {{ h.build_nav_main(
+              ('home', _('Startseite')),
+              ('search', _('Daten')),
+              ('organizations_index', _('Herausgeber')),
+              ('info_page', _('Infos'))
+              ) }}
+              {% endblock %}
+	    </ul>
+          </nav>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+</div>
 </header>
 {% endblock %}
