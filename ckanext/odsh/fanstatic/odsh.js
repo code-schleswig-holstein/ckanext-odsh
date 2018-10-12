@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    $('.filter_checkbox').change(function() {
-	window.location = $(this).siblings().first().attr('href');
+    $('.mylabel').click(function() {
+	console.log($(this).siblings());
+	window.location = $(this).siblings('a').attr('href');
     });
 });
 
