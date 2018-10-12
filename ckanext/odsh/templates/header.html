@@ -13,7 +13,7 @@
       {# The .header-image class hides the main text and uses image replacement for the title #}
       <div class='row'>
 
-        <div class='span4'>
+        <div class='span3 span-navigation'>
           <hgroup class="{{ g.header_class }} pull-left">
 
             {% block header_logo %}
@@ -30,10 +30,7 @@
           </hgroup>
         </div>
 
-        <div class="span3">
-        </div>
-
-        <div class='span5'>
+        <div class='span9 span-navigation pull-right'>
           {% snippet "snippets/language_selector.html" %}
 
           {% block header_site_search %}
