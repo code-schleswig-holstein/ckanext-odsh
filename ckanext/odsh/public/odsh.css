@@ -73,13 +73,17 @@ input, button, select, textarea {
     padding-top: 0px;
 }
 
+.module-content {
+    padding: 0;
+}
+
 input[type=radio], input[type=checkbox] {
     top: 0px;
 }
 
 .nav-simple>li {
     border-bottom: 0px;
-    padding: 14px 18px;
+    padding: 15px 0px 15px 8px;
 }
 
 @media (min-width: 768px){
@@ -98,7 +102,8 @@ input[type=radio], input[type=checkbox] {
 }
 
 .secondary.span3 {
-    width: 240px;
+    width: 210px;
+    padding: 20px 16px 0px;
 }
 
 .primary {
@@ -106,7 +111,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .primary.span9 {
-    width: 760px;
+    width: 780px;
 }
 
 .wrapper {
@@ -114,6 +119,41 @@ input[type=radio], input[type=checkbox] {
     -moz-box-shadow: none !important;
     box-shadow: none !important;
     border: none;
+}
+
+.karte_inner {
+    background-color: lightgrey;
+    height: 220px;
+    margin-bottom: 20px;
+}
+
+.filter-reset {
+    padding: 0px 0px 10px 0px;
+}
+
+.filter-reset-label {
+    float: left;
+}
+
+.filter-reset-box {
+    float: right;
+    background-color: white;
+    padding: 0px 10px 0px 10px;
+}
+
+.filter-reset-box a {
+    color: black;
+    font-size: 12px;
+}
+
+.filters section nav {
+    border-top: 2px solid #DBDBDB;
+}
+
+.filters section nav .nav-title {
+    padding: 15px 0px 0px 8px;
+    font-size: 12px;
+    color: black;
 }
 
 .nav-item .facet_label {
@@ -129,10 +169,52 @@ input[type=radio], input[type=checkbox] {
     display: block;
     float: right;
     background-color: white;
+    padding: 0px 2px 0px 2px;
+}
+
+.filter-checkbox {
+    
 }
 
 
+/* checkbox customize trick, see: https://stackoverflow.com/questions/24322599/css-why-cannot-change-checkbox-color-whatever-i-do */
+input[type=checkbox] {
+    display:none;
+}
 
+input[type=checkbox] + label.mylabel {
+    background: #fff;
+    border: 1px solid white;
+    height: 8px;
+    width: 8px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+}
+
+input[type=checkbox]:checked + label.mylabel {
+    background: url(/base/images/checked.png);
+    background-color: #fff;
+    background-size: 8px 8px;
+    border: 1px solid black;
+    height: 8px;
+    width: 8px;
+    display:inline-block;
+    padding: 0 0px 0 0px;
+
+}
+
+label.mylabel  {
+    margin-right: 3px;
+    margin-bottom: 0px;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+label.mylabel::after {
+    content: "";
+}
 
 /* following makes the secondary span (left side, facets etc.) the same height as the primary span */
 /* see: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height */
