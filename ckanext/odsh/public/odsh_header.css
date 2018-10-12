@@ -96,10 +96,10 @@
 }
 
 #field-sitewide-search {
-    font-size: 87%
+    font-size: 87%;
     font-weight: 300;
     padding-left: .5em;
-    width: 97%;
+    width: 167px;
     line-height: 1.1;
     border-bottom: 2px solid #c2cbd6 !important;
     background: #f2f2f2;
