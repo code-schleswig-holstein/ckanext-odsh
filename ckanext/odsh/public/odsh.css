@@ -53,11 +53,24 @@ input, button, select, textarea {
 
 
 
-
 /* css for searchresults */
+
+/* same width as schleswig-holstein.de */
+.container {
+    width: 1000px;
+}
+
 .search-form .control-order-by select {
     width: 225px;
     margin: 0;
+}
+
+.search-form h2 {
+    margin-top: 0px;
+}
+
+.module-content:first-child {
+    padding-top: 0px;
 }
 
 input[type=radio], input[type=checkbox] {
@@ -65,6 +78,70 @@ input[type=radio], input[type=checkbox] {
 }
 
 .nav-simple>li {
-    border-bottom: 0px; 
+    border-bottom: 0px;
+    padding: 14px 18px;
 }
 
+@media (min-width: 768px){
+    [role=main], .main {
+	background: white;
+    }
+
+    .wrapper {
+	background-image: none;
+	background-repeat: no-repeat;
+    }
+}
+
+.secondary {
+    background-color: #f2f2f2;
+}
+
+.secondary.span3 {
+    width: 240px;
+}
+
+.primary {
+    padding-left: 10px;
+}
+
+.primary.span9 {
+    width: 760px;
+}
+
+.wrapper {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+}
+
+.nav-item .facet_label {
+    display: block;
+    float: left;
+}
+
+.nav-item .facet_label a{
+    color: black;
+}
+
+.nav-item .facet_count {
+    display: block;
+    float: right;
+    background-color: white;
+}
+
+
+
+
+/* following makes the secondary span (left side, facets etc.) the same height as the primary span */
+/* see: https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height */
+.is-table-row {
+    display: table;
+}
+
+.is-table-row [class*="span"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}

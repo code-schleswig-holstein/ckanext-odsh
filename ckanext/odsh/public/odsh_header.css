@@ -1,5 +1,27 @@
 /* css for header */
 
+/* same width as schleswig-holstein.de */
+.navbar-static-top .container {
+    width: 1000px;
+}
+
+[class*="span"] {
+    margin-left: 0px;
+}
+
+.row {
+    margin-left: 0px;
+}
+
+.span3.span-navigation {
+    width: auto;
+}
+
+.span9.span-navigation {
+    width: auto;
+    margin-right: 15px;
+}
+
 .header-image {
     padding-right: 0;
     position: relative;
@@ -105,7 +127,8 @@
 }
 
 .navigation-row {
-    width: 940px;
+    width: 1000px;
+    padding-left: 33px;
     margin-left: auto;
     margin-right: auto;
 }
