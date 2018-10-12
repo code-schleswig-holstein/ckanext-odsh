@@ -60,13 +60,24 @@ input, button, select, textarea {
     width: 1000px;
 }
 
+.search-form {
+    border-bottom: 4px solid #dbdbdb;
+    padding-bottom: 5px;
+}
+
 .search-form .control-order-by select {
     width: 225px;
     margin: 0;
+    border: 1px;
+    background-color: #f2f2f2;
+    color: black;
 }
 
 .search-form h2 {
     margin-top: 0px;
+    font-size: 25px;
+    color: #003064;
+    font-weight: 300;
 }
 
 .module-content:first-child {
@@ -226,4 +237,81 @@ label.mylabel::after {
     float: none;
     display: table-cell;
     vertical-align: top;
+}
+
+.pill {
+    background-color: #F6F7F9;
+    border-radius: 0px;
+    color:black;
+    font-size: 12px;
+    margin-right: 2px;
+}
+
+.pill a.remove {
+    color: black;
+    font-size: 10px;
+    position: relative;
+    top: -8px;
+    right: -8px;    
+}
+
+.container-fluid.odsh-dataset-item {
+    padding: 20px 0px 20px 0px;
+    border-bottom: 2px solid #DBDBDB;
+}
+
+.dataset-content {
+    float:left;
+    width: 70%;
+}
+
+.dataset-heading {
+    margin-right: 30px;
+}
+
+.dataset-empty {
+    margin-right: 30px;
+    color: darkgrey;
+}
+
+.dataset-meta {
+    float:right;
+    width: 30%;
+}
+
+ul.dataset-resources {
+    margin: 0px 0px 10px 0px;
+}
+
+.dataformat-label {
+    background-color: #1c355e !important;
+    padding: 3px 3px 1px 3px;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.dataset-stars {
+    margin-bottom: 10px;
+}
+
+.odsh-star {
+    margin-right: 5px;
+    font-size: 20px;
+    color: #1c355e;    
+}
+
+.dataformat-label:hover {
+    background-color: #d7004d !important;
+}
+
+.dataset-info p {
+    font-size: 12px;
+    margin-bottom: 1px;
+    color: black;
+}
+
+.breadcrumb>li a {
+    font-weight: normal !important;
+    font-size: 15px;
+    color: #003064 !important;
 }
