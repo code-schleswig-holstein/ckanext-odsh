@@ -1,0 +1,163 @@
+/* css for header */
+
+.header-image {
+    padding-right: 0;
+    position: relative;
+    top: 0;
+    padding: 1em 0;
+}
+
+.language-switch {
+    float: right;
+    background-color: #f2f2f2;
+    padding: 6px 10px;
+    margin-left: 20px;
+    height: 44px; /* dirty fix to make it the same height as schleswig-holstein.de */
+}
+
+.language-switch ul {
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.language-switch li {
+    display: block;
+    padding: 7px;
+    float: left;
+    line-height: 1.5;
+}
+
+.language-switch li a {
+    color: #003064;
+    padding: 5px;
+    display: block;
+}
+
+.language-switch li a:hover {
+    color: white;
+    background: #011e5a;
+}
+
+.language-switch .navLeichteSprache {
+    background: url(/base/images/sprite.png) no-repeat 6px -5557px;
+    font: 0/0 serif;
+    display: block;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+}
+
+.language-switch .navLeichteSprache:hover {
+    background: #011e5a url(/base/images/sprite.png) no-repeat 6px -5334px;
+
+}
+
+.masthead .top-search-form {
+    float:right;
+    background: #f2f2f2;
+    width: 15em;
+    height: 56px; /* dirty fix to make it the same height as schleswig-holstein.de */    
+}
+
+.masthead .top-search-form .site-search {
+    margin: 0;
+    padding: 14px 15px 10px;
+}
+
+.masthead .site-search input {
+    padding: 5px 8px 0;
+}
+
+.masthead {
+    background: white;
+}
+
+#field-sitewide-search {
+    font-size: 87%
+    font-weight: 300;
+    padding-left: .5em;
+    width: 97%;
+    line-height: 1.1;
+    border-bottom: 2px solid #c2cbd6 !important;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    box-shadow: none !important;
+    height: 20px;
+}
+
+#field-sitewide-search:focus {
+    outline: 1px solid rgba(82,168,236,0.8);
+    border-color: rgba(82,168,236,0.8);    
+}
+
+.simple-input .field .btn-search {
+    height: 32px;
+    width: 32px;
+    background: url(/base/images/search_submit.png);
+    right: -47px;
+    top: 36%;
+}
+
+.navigation-container {
+    background: #f2f2f2;
+    width: 100% !important;
+}
+
+.navigation-row {
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.masthead .nav-collapse {
+    float: left;
+    padding-top: 0px;
+}
+
+.nav-pills li a:hover, .nav-pills li:hover {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    background-color: #011e4a !important;
+}
+
+.masthead .navigation .nav-pills li:not(:first-child) {
+    margin-left: 22px;
+}
+
+/* Default border to align font vertically to active navigation tab */
+.masthead .navigation .nav-pills li {
+    border-top: 2px solid #f2f2f2;
+}
+
+/* Change default border color on hover to background color (align font vertically to active navigation tab) */
+.masthead .navigation .nav-pills li:hover {
+    border-top: 2px solid #011e4a;
+}
+
+/* The active navigation tab gets a differently coloured top-border */
+.masthead .navigation .nav-pills li.active {
+    border-top: 2px solid #003064;
+}
+
+/* Remove borders and get background color from parent (.navigation-container) */
+.masthead .navigation .nav-pills li.active a {
+    background-color: inherit;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    text-decoration: none;
+}
+
+/* Font color of navigation links (default) */
+.masthead .nav>li>a, .masthead .nav>.active>a {
+    padding: 16px 10px 19px;
+    color: #003064;
+    font-size: 1.125rem;
+}
+
+/* Font color of navigation links (hover) */
+.masthead .nav>li:hover a {
+    color: #ffffff;
+    text-decoration: underline;
+}
