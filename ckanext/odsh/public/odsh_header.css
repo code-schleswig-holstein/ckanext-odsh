@@ -124,6 +124,7 @@
 .navigation-container {
     background: #f2f2f2;
     width: 100% !important;
+    border-bottom: 15px solid #1c355e;
 }
 
 .navigation-row {
