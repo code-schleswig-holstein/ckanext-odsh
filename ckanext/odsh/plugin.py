@@ -92,6 +92,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         for field in self._extraFields():
             schema.update({ field: [
                 # toolkit.get_converter('not_empty'),
+                toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_extras')] })
         for field in self._fields():
             schema.update({ field: [toolkit.get_converter('not_empty')] })
