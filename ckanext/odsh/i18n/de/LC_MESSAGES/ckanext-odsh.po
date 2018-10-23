@@ -39,3 +39,13 @@ msgstr "Namensnennung"
 
 msgid "Spatial extension"
 msgstr "räumliche Ausdehnung"
+
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "{number} Datensatz gefunden X"
+msgstr[1] "{number} Datensätze gefunden X"
+
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "{number} Ergebnis für \"{query}\""
+msgstr[1] "{number} Ergebnisse für \"{query}\""

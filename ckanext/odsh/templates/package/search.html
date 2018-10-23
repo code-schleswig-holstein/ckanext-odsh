@@ -11,7 +11,18 @@
 ##
 ## tools on left side, ie filter
 {% block secondary_content %}
+<div class="karte_outer">
+  <p>Karte:</p>
+  <div class="karte_inner">
+    
+  </div>
+</div>
 <div class="filters">
+  <div class="container-fluid filter-reset">
+    <div class="filter-reset-label"><span>Filter:</span></div>
+    <div class="filter-reset-box"><a href="#">zurücksetzen</a></button></div>
+  </div>
+
     <div>
         {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
