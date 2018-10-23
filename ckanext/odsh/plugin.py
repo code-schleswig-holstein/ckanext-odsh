@@ -6,7 +6,21 @@ from ckan.lib.plugins import DefaultDatasetForm
 from ckan.common import OrderedDict
 import ckan.lib.helpers as helpers
 
+import logging
+
+log = logging.getLogger(__name__)
+
 _ = toolkit._
+
+def odsh_get_facet_items_dict(name, limit=None):
+    ''' 
+    Gets all facets like 'get_facet_items_dict' but sorted alphabetically
+    instead by count.
+    '''
+    facets = helpers.get_facet_items_dict(name, limit)
+    facets.sort(key=lambda it: (it['display_name'].lower(), -it['count']))
+    log.info(facets)
+    return facets
 
 def odsh_main_groups():
     '''Return a list of the groups to be shown on the start page.'''
@@ -66,15 +80,19 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {'odsh_main_groups': odsh_main_groups,
-        'odsh_now':odsh_now,
-        'odsh_group_id_selected':odsh_group_id_selected}
+                'odsh_now': odsh_now,
+                'odsh_group_id_selected': odsh_group_id_selected,
+                'odsh_get_facet_items_dict': odsh_get_facet_items_dict,
+        }
 
     def before_map(self, map):
         map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
         return map
 
     def dataset_facets(self, facets_dict, package_type):
-        return OrderedDict({'groups': _('Groups')})
+        # TODO: Frage von Pascal 12.10.2018: warum ist die Ordnung hier genau umgekehrt (von hinten nach vorne?)
+        return OrderedDict({'res_format': _('Dateiformat'),
+                            'groups': _('Kategorie')})
 
     def organization_facets(self, facets_dict, organization_type, package_type):
         return facets_dict
