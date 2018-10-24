@@ -19,6 +19,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+msgid "odsh Create Dataset"
+msgstr "Datensatz-Upload"
+
+msgid "Enter title"
+msgstr "Titel eingeben"
+
+msgid "Enter description"
+msgstr "Beschreibung eingeben"
+
+msgid "Enter tags"
+msgstr "Stichwörter eingeben"
+
+msgid "Enter spatial extension"
+msgstr "Orte eingeben"
+
+msgid "Enter data"
+msgstr "Informationen eingeben"
+
+msgid "Add dataset"
+msgstr "Datensatz hinzufügen"
+
+msgid "next"
+msgstr "weiter"
+
+msgid "enter name"
+msgstr "Name eingeben"
+
+msgid "odsh tags placeholder"
+msgstr "z.B. Energie; Politik; Umwelt; Alle; ..."
+
+msgid "from"
+msgstr "von"
+
+msgid "to"
+msgstr "bis"
+
+msgid "timerange"
+msgstr "Zeitraum"
+
 msgid "Groups"
 msgstr "Kategorien"
 
