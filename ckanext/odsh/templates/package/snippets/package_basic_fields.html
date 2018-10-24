@@ -62,6 +62,27 @@ is_required=true,placeholder=_('Enter title')) }}
 
     {% endblock %}
 
+    <!-- timerange -->
+    <div class='row'>
+        <label for="start-end" class="control-label">{{ _('timerange') }}:
+            <span title="{{ _("This field is required") }}" class="control-required">*</span>
+        </label>
+        <div id='start-end' class='span5'>
+            <!-- field temporal_start -->
+            {% set temporal_start_label=_('odsh_temporal_start_label') %}
+            {{ form.input('temporal_start', id='field-temporal-start', value=data.temporal_start,
+            error=errors.temporal_start, classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
+            }}
+        </div>
+        <div class='span1'></div>
+        <div class='span5'>
+            <!-- field temporal_end -->
+            {% set temporal_end_label='Ende des Zeitraumes' %}
+            {{ form.input('temporal_end', id='field-temporal-end', value=data.temporal_end,
+            error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to')) }}
+        </div>
+    </div>
+
     <!-- field publish date -->
     {% set publish_date_value=h.odsh_now() %}
     <!-- if form_style != 'edit' && !%} -->
@@ -119,27 +140,6 @@ is_required=true,placeholder=_('Enter title')) }}
     value=data.spatial_extension,
     error=errors.spatial_extension, classes=['control-full'],type='text',is_required=true,
     placeholder=_('Enter spatial extension')) }}
-
-    <div class='row'>
-        <label for="start-end" class="control-label">{{ _('timerange') }}:
-            <span title="{{ _("This field is required") }}" class="control-required">*</span>
-        </label>
-        <div id='start-end' class='span5'>
-            <!-- field temporal_start -->
-            {% set temporal_start_label=_('odsh_temporal_start_label') %}
-            {{ form.input('temporal_start', id='field-temporal-start', value=data.temporal_start,
-            error=errors.temporal_start, classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
-            }}
-        </div>
-        <div class='span1'></div>
-        <div class='span5'>
-            <!-- field temporal_end -->
-            {% set temporal_end_label='Ende des Zeitraumes' %}
-            {{ form.input('temporal_end', id='field-temporal-end', value=data.temporal_end,
-            error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to')) }}
-        </div>
-
-    </div>
     <!-- field private -->
     <div class="control-group">
         <label for="field-private" class="control-label">{{ _('Visibility') }}:
