@@ -315,3 +315,146 @@ ul.dataset-resources {
     font-size: 15px;
     color: #003064 !important;
 }
+.control-required {
+    color: black;
+}
+
+label{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+label:after {
+    content: "";
+}
+.controls input,
+.controls select,
+.controls ul.select2-choices,
+.controls textarea{
+    background-color:  #F6F7F9;
+    background-image: none;
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid;
+    border-color: #77879f;
+    border-radius: 0;
+    font-size: 1em;
+    color:  #657592;
+    font-style: italic
+}
+
+.controls input[disabled]
+{
+    background-color:  #fdfdfd;
+    border-color: #e7e9ee;
+    color:  #e7e9ee;
+}
+
+.select2-default {
+    color:  #657592!important;
+}
+.select2-container-multi .select2-choices .select2-search-choice{
+    color:  #657592!important;
+}
+
+/* placeholders cannot be combined... */
+.controls input::-webkit-input-placeholder {
+    color:  #657592!important
+}
+
+.controls input::-webkit-input-placeholder {
+    color:  #657592!important
+}
+
+.controls input::-moz-placeholder {
+    color:  #657592!important
+}
+
+.controls input::-ms-placeholder {
+    color:  #657592!important
+}
+
+.controls input::placeholder {
+    color:  #657592!important
+}
+
+.controls textarea::-webkit-input-placeholder {
+    color:  #657592!important
+}
+
+.controls textarea::-webkit-input-placeholder {
+    color:  #657592!important
+}
+
+.controls textarea::-moz-placeholder {
+    color:  #657592!important
+}
+
+.controls textarea::-ms-placeholder {
+    color:  #657592!important
+}
+
+.controls textarea::placeholder {
+    color:  #657592!important
+}
+
+.btn-primary{
+    background-image: none;
+    background-color: #0089ca;
+    border: none;
+    border-radius: 0;
+    font-size:18px;
+    text-shadow: none;
+    font-weight: normal;
+    height: 40px;
+    padding-left: 28px;
+    padding-right: 28px;
+}
+
+.stages{
+    margin: -15px 0px 20px 0px
+}
+
+.stages li{
+    line-height: 20pt;
+    padding: 0;
+}
+
+/* simple removing content destroys layout */
+.stages li:before{
+    content:'';
+    background: none;
+    background-color: transparent;
+    width: 0px;
+}
+
+.stages li .highlight{
+    padding: 10px 10px;
+    font-size: 9pt;
+    line-height: 12pt;
+}
+
+.stages li.active .highlight {
+    color: #ffffff;
+    background: #bbc1cf;
+}
+
+.stages li.uncomplete .highlight{
+    color: #bbc1cf;
+}
+
+.toolbar .breadcrumb li:after {
+    content: "\f054";
+    font-family: FontAwesome;
+    padding: 0 0 0 5px;
+    color: darkgray;
+    font-size: 12pt;
+    transform: scale(1, 1.5);
+    display: inline-block;
+ -webkit-transform: scale(0.6, 0.9); /* Safari and Chrome */
+  -moz-transform: scale(1, 1.5); /* Firefox */
+  -ms-transform: scale(1, 1.5); /* IE 9+ */
+  -o-transform: scale(1, 1.5); /* Opera 
+}
+
