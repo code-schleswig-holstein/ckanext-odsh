@@ -430,7 +430,7 @@ label:after {
 }
 
 .stages li .highlight{
-    padding: 10px 10px;
+    padding: 10px 10px;   
     font-size: 9pt;
     line-height: 12pt;
 }
@@ -444,6 +444,42 @@ label:after {
     color: #bbc1cf;
 }
 
+.footer{
+    background: #d4004b;
+    height: 570px;
+    color:white;
+}
+.footer-content{
+    width: 960px;
+    padding-top: 445px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    font-weight: 500;
+}
+.footer-right{
+    float: right;
+}
+.footer-icon{
+    float: left;
+    margin-right: 40px;
+}
+
+.footer-icon.last{
+    float: right;
+    margin-right: 0px;
+}
+
+.footer-first-row{
+    height: 20px;
+}
+
+.footer-line{
+    border-top: 1px dotted #e14c81;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
 .toolbar .breadcrumb li:after {
     content: "\f054";
     font-family: FontAwesome;
@@ -455,6 +491,5 @@ label:after {
  -webkit-transform: scale(0.6, 0.9); /* Safari and Chrome */
   -moz-transform: scale(1, 1.5); /* Firefox */
   -ms-transform: scale(1, 1.5); /* IE 9+ */
-  -o-transform: scale(1, 1.5); /* Opera 
+  -o-transform: scale(1, 1.5); /* Opera */
 }
-
