@@ -55,6 +55,27 @@ msgstr "von"
 msgid "to"
 msgstr "bis"
 
+msgid "Data-Upload"
+msgstr "Daten-Upload"
+
+msgid "Enter name of the dataset"
+msgstr "Namen des Datensatzes eingeben"
+
+msgid "Enter description of the dataset"
+msgstr "Beschreibung des Datensatzes eingeben"
+
+msgid "back"
+msgstr "zurück"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Upload dataset"
+msgstr "Hochladen"
+
+msgid "another dataset"
+msgstr "weiterer Datensatz"
+
 msgid "timerange"
 msgstr "Zeitraum"
 
