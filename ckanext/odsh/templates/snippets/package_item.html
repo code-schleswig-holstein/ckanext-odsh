@@ -20,6 +20,7 @@ Example:
 {% set license = package.license or '-' %}
 {% set timerange = '-' %}
 {% set org = package.organization.title or package.organization.name or '-' %}
+{% set stars = h.odsh_openness_score_dataset_html(package) %}
 {% set access_count=(package.tracking_summary.total if package.tracking_summary) or '-' %}
 {% set timerange_label ='Zeitraum' %}
 {% set access_count_label ='Aufrufe' %}
@@ -81,7 +82,7 @@ Example:
       {% endblock %}
     </ul>
     <div class="dataset-stars">
-      <i class="fa fa-star odsh-star"></i><i class="fa fa-star odsh-star"></i><i class="fa fa-star odsh-star"></i><i class="fa fa-star odsh-star"></i><i class="fa fa-star-o odsh-star"></i>
+       {% snippet "qa/stars.html", stars=stars %}
     </div>
 
     <div class="dataset-info">
