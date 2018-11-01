@@ -55,7 +55,7 @@ is_required=true,placeholder=_('Enter title')) }}
             <!-- field Namensnennung -->
             {{ form.input('access_constraints', id='field-licence-name', value=data.access_constraints,
             error=errors.access_constraints,
-            classes=['control-full'],type='text',is_required=true,attrs={'disabled':true,
+            classes=['control-full span4'],type='text',is_required=true,attrs={'disabled':true,
             'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
         </div>
     </div>
@@ -67,19 +67,21 @@ is_required=true,placeholder=_('Enter title')) }}
         <label for="start-end" class="control-label">{{ _('timerange') }}:
             <span title="{{ _("This field is required") }}" class="control-required">*</span>
         </label>
-        <div id='start-end' class='span5'>
+        <div id='start-end' class='span4'>
             <!-- field temporal_start -->
             {% set temporal_start_label=_('odsh_temporal_start_label') %}
             {{ form.input('temporal_start', id='field-temporal-start', value=data.temporal_start,
-            error=errors.temporal_start, classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
+            error=errors.temporal_start,
+            classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
             }}
         </div>
         <div class='span1'></div>
-        <div class='span5'>
+        <div class='span4'>
             <!-- field temporal_end -->
             {% set temporal_end_label='Ende des Zeitraumes' %}
             {{ form.input('temporal_end', id='field-temporal-end', value=data.temporal_end,
-            error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to')) }}
+            error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to'))
+            }}
         </div>
     </div>
 
@@ -97,7 +99,7 @@ is_required=true,placeholder=_('Enter title')) }}
     {% block package_basic_fields_tags %}
     {% set tag_attrs = {'data-module': 'autocomplete', 'data-module-tags': '', 'data-module-source':
     '/api/2/util/tag/autocomplete?incomplete=?'} %}
-    {{ form.input('tag_string', id='field-tags', label='Schlagwörter', value=data.tag_string, error=errors.tags,
+    {{ form.input('tag_string', id='field-tags', label=_('Tags'), value=data.tag_string, error=errors.tag_string,
     classes=['control-full'], attrs=tag_attrs,
     is_required=true, placeholder=_('odsh tags placeholder')) }}
     {% endblock %}
@@ -107,7 +109,8 @@ is_required=true,placeholder=_('Enter title')) }}
     <input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
     {% endif %}
 
-    {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none' %}
+    {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none'
+    %}
     {% set dataset_has_organization = data.owner_org or data.group_id %}
     {% set organizations_available = h.organizations_available('create_dataset') %}
     {% set user_is_sysadmin = h.check_access('sysadmin') %}
@@ -126,7 +129,8 @@ is_required=true,placeholder=_('Enter title')) }}
                 {% endif %}
                 {% for organization in organizations_available %}
                 {# get out first org from users list only if there is not an existing org #}
-                {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not
+                {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and
+                not
                 data.id and organization.id == organizations_available[0].id) %}
                 <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{
                     organization.display_name }}</option>
@@ -136,7 +140,7 @@ is_required=true,placeholder=_('Enter title')) }}
     </div>
 
     <!-- field spatial_extension -->
-    {{ form.input('spatial_extension', id='field-spatial-extension', label=spatial_extension_label,
+    {{ form.input('spatial_extension', id='field-spatial-extension', label=_('Spatial extension'),
     value=data.spatial_extension,
     error=errors.spatial_extension, classes=['control-full'],type='text',is_required=true,
     placeholder=_('Enter spatial extension')) }}

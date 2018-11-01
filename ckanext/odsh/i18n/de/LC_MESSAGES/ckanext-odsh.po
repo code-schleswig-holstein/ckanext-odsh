@@ -93,12 +93,61 @@ msgstr "Beginn des Zeitraumes"
 
 msgid "odsh_temporal_start_label"
 msgstr "Beginn des Zeitraumes"
- 
+
 msgid "Access constraints"
 msgstr "Namensnennung"
 
+msgid "last change"
+msgstr "Letzte Änderung"
+
+msgid "Files"
+msgstr "Dateien"
+
 msgid "Spatial extension"
-msgstr "räumliche Ausdehnung"
+msgstr "Räumliche Ausdehnung"
+
+msgid "Beginn des Zeitraumes: Fehlender Wert"
+msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
+
+msgid "Ende des Zeitraumes: Fehlender Wert"
+msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
+
+msgid "Name: Fehlender Wert"
+msgstr "Bitte geben Sie eine Url ein"
+
+msgid "Räumliche Ausdehnung: Fehlender Wert"
+msgstr "Bitte geben Sie einen Ort ein"
+
+msgid "Tags"
+msgstr "Schlagwörter"
+
+msgid "Notes: Fehlender Wert"
+msgstr "Bitte geben Sie eine Beschreibung ein"
+
+msgid "Namensnennung: Fehlender Wert"
+msgstr "Bitte geben Sie einen Namen ein"
+
+msgid "Titel: Fehlender Wert"
+msgstr "Bitte geben Sie einen Titel ein"
+
+msgid "Publish date: Fehlender Wert"
+msgstr "Bitte wählen Sie ein Veröffetlichungsdatum"
+
+msgid "Tag string: Fehlender Wert"
+msgstr "Bitte wählen Sie geeignete Schlagwörter"
+
+msgid "Followers"
+msgstr "Abonennten"
+
+msgid "Contact"
+msgstr "Kontaktieren"
+
+msgid "Follow"
+msgstr "Merken"
+
+msgid "Unfollow"
+msgstr "Entmerken"
+
 
 msgid "{number} dataset found"
 msgid_plural "{number} datasets found"

@@ -209,7 +209,6 @@ options - A list/tuple of fields to be used as <options>.
             {% if prepend %}<span class="add-on">{{ prepend }}</span>{%- endif -%}
             <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}"
                 placeholder="{{ placeholder }}" {{ attributes(attrs) }} />
-            {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
         </div>
         {% endcall %}
         {% endmacro %}
@@ -296,7 +295,6 @@ options - A list/tuple of fields to be used as <options>.
             {%endif%}
             <div class="controls{{ " " ~ control_classes | join(' ') }}">
                 {{ caller() }}
-                {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %}
                 {{ extra_html }}
             </div>
         </div>
@@ -318,10 +316,15 @@ options - A list/tuple of fields to be used as <options>.
         {% macro errors(errors={}, type="error", classes=[]) %}
         {% if errors %}
         <div class="error-explanation alert alert-{{ type }}{{ " " ~ classes | join(' ') }}">
-            <p>{{ _('The form contains invalid entries:') }}</p>
             <ul>
                 {% for key, error in errors.items() %}
-                <li data-field-label="{{ key }}">{% if key %}{{ key }}: {% endif %}{{ error }}</li>
+                {%if key %}
+                <li data-field-label="{{ key }}">
+                    {{_(key+': '+error)}}
+                </li>
+                {%else%}
+                <li data-field-label="{{ key }}"> {{error}} </li>
+                {%endif%}
                 {% endfor %}
             </ul>
         </div>

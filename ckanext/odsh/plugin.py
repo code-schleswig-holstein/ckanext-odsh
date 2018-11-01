@@ -101,6 +101,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return facets_dict
 
     def _fields(self):
+        # return ['title','notes','tag_string']
         return ['title','notes']
 
     def _extraFields(self):
@@ -109,7 +110,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def _update_schema(self,schema):
         for field in self._extraFields():
             schema.update({ field: [
-                # toolkit.get_converter('not_empty'),
+                toolkit.get_converter('not_empty'),
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_extras')] })
         for field in self._fields():
