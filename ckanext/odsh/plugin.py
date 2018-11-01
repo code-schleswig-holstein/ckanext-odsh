@@ -5,6 +5,7 @@ from ckan.lib.plugins import DefaultTranslation
 from ckan.lib.plugins import DefaultDatasetForm
 from ckan.common import OrderedDict
 import ckan.lib.helpers as helpers
+import helpers as odsh_helpers
 
 import logging
 
@@ -83,6 +84,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_now': odsh_now,
                 'odsh_group_id_selected': odsh_group_id_selected,
                 'odsh_get_facet_items_dict': odsh_get_facet_items_dict,
+                'odsh_openness_score_dataset_html': odsh_helpers.odsh_openness_score_dataset_html,
         }
 
     def before_map(self, map):
@@ -105,7 +107,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['title','notes']
 
     def _extraFields(self):
-        return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_extension']
+        return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_extension', 'qa']
 
     def _update_schema(self,schema):
         for field in self._extraFields():
