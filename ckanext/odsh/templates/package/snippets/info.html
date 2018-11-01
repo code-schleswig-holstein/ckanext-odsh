@@ -1,0 +1,53 @@
+{#
+Displays a sidebard module with information for given package
+
+pkg - The package dict that owns the resources.
+
+Example:
+
+{% snippet "package/snippets/info.html", pkg=pkg %}
+
+#}
+{% block package_info %}
+{% if pkg %}
+<section class="module module-narrow">
+    <div class="module context-info">
+        <div class="module-content">
+            {% block package_info_inner %}
+            {% block heading %}
+            {% endblock %}
+            {% block nums %}
+            <div class="nums">
+                <p>{{ _('Followers') }}:</p>
+                <p>{{ h.follow_count('dataset', pkg.id) }}</span>
+            </div>
+            {% endblock %}
+            <p>{{ _('Spatial extension') }}:</p>
+            {%set ext=pkg.spatial_extension if pkg.spatial_extension else '-'%}
+            <p>{{ ext }}</span>
+                <p>{{ _('Tags') }}:</p>
+                {%if pkg.tags|length>0%}
+                <p>
+                    {% for tag in pkg.tags %}
+                    {{tag.display_name}}
+                    {%endfor%}
+                </p>
+                {%else%}
+                <p>-</p>
+                {%endif%}
+                {% endblock %}
+                {%set lic=pkg.license_title if pkg.license_title else '-'%}
+                {%set name=' ('+pkg.access_constraints +')' if pkg.access_constraints else ''%}
+                <p>{{ _('License') }}:</p>
+                <p>{{ lic}}{{name}}</p>
+                <p>{{ _('timerange') }}:</p>
+                {%set start=h.render_datetime(pkg.temporal_start,'%d.%m.%Y') if pkg.temporal_start else ''%}
+                {%set end=h.render_datetime(pkg.temporal_end,'%d.%m.%Y') if pkg.temporal_end else ''%}
+                <p>{{ start}}-{{end}}</p>
+                <p>{{ _('last change') }}:</p>
+                {{h.render_datetime(pkg.metadata_modified,'%d.%m.%Y') }}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

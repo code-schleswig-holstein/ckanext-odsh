@@ -1,0 +1,60 @@
+{% extends "package/read_base.html" %}
+
+{% set pkg = c.pkg_dict %}
+
+{% block breadcrumb_content %}
+{% if pkg %}
+{% set dataset = h.dataset_display_name(pkg) %}
+{% if pkg.organization %}
+{% set organization = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
+<li>{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
+{% else %}
+<li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
+{% endif %}
+<li {{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), controller='package', action='read',
+    id=pkg.name %}</li>
+{% else %}
+<li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
+<li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
+{% endif %}
+{% endblock %}
+
+{% block primary_content_inner %}
+{{ super() }}
+{% block package_description %}
+{% if pkg.private %}
+<span class="dataset-private label label-inverse pull-right">
+    <i class="fa fa-lock"></i>
+    {{ _('Private') }}
+</span>
+<div class="follow_button pull-right">
+    {{ h.follow_button('dataset', pkg.name) }}
+</div>
+{% endif %}
+<h1>
+    {% block page_heading %}
+    {{ h.dataset_display_name(pkg) }}
+    {% if pkg.state.startswith('draft') %}
+    [{{ _('Draft') }}]
+    {% endif %}
+    {% if pkg.state == 'deleted' %}
+    [{{ _('Deleted') }}]
+    {% endif %}
+    {% endblock %}
+</h1>
+{% block package_notes %}
+{% if pkg.notes %}
+<div class="notes embedded-content">
+    {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+</div>
+{% endif %}
+{% endblock %}
+{# FIXME why is this here? seems wrong #}
+<span class="insert-comment-thread"></span>
+{% endblock %}
+
+{% block package_resources %}
+{% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+{% endblock %}
+
+{% endblock %}
