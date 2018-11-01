@@ -104,7 +104,7 @@ msgid "Files"
 msgstr "Dateien"
 
 msgid "Spatial extension"
-msgstr "Räumliche Ausdehnung"
+msgstr "Raumbezug"
 
 msgid "Beginn des Zeitraumes: Fehlender Wert"
 msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
