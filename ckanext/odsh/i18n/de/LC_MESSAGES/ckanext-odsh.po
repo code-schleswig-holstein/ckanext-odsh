@@ -115,7 +115,7 @@ msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
 msgid "Name: Fehlender Wert"
 msgstr "Bitte geben Sie eine Url ein"
 
-msgid "Räumliche Ausdehnung: Fehlender Wert"
+msgid "Raumbezug: Fehlender Wert"
 msgstr "Bitte geben Sie einen Ort ein"
 
 msgid "Tags"
