@@ -2,6 +2,9 @@
 
 {% set pkg = c.pkg_dict %}
 
+
+{% set stars = h.odsh_openness_score_dataset_html(pkg) %}
+
 {% block breadcrumb_content %}
 {% if pkg %}
 {% set dataset = h.dataset_display_name(pkg) %}
@@ -27,11 +30,12 @@
     <i class="fa fa-lock"></i>
     {{ _('Private') }}
 </span>
+{% endif %}
 <div class="follow_button pull-right">
     {{ h.follow_button('dataset', pkg.name) }}
 </div>
-{% endif %}
-<h1>
+<div class="odsh-dataset-heading row-fluid">
+  <h2>
     {% block page_heading %}
     {{ h.dataset_display_name(pkg) }}
     {% if pkg.state.startswith('draft') %}
@@ -41,7 +45,12 @@
     [{{ _('Deleted') }}]
     {% endif %}
     {% endblock %}
-</h1>
+  </h2>
+  <div class="dataset-stars">
+    {% snippet "qa/stars.html", stars=stars %}
+  </div>
+</div>
+{# {{ pkg.resources }} #}
 {% block package_notes %}
 {% if pkg.notes %}
 <div class="notes embedded-content">
