@@ -107,7 +107,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['title','notes']
 
     def _extraFields(self):
-        return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_extension']
+        ##return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_extension']
+        return ['publish_date','temporal_start','temporal_end','spatial_extension']
 
     def _update_schema(self,schema):
         for field in self._extraFields():
