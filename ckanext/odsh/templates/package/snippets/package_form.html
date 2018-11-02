@@ -11,7 +11,7 @@ then itself be extended to add/remove blocks of functionality. #}
     <input type="hidden" name="_ckan_phase" value="dataset_new_1" />
     {# pkg_name used in 3 stage edit #}
     <input type="hidden" name="pkg_name" value="{{ data.id }}" />
-    {% block errors %}{{ form.errors(error_summary) }}{% endblock %}
+    {# {% block errors %}{{ form.errors(error_summary) }}{% endblock %} #}
 
     {% block basic_fields %}
     {% snippet 'package/snippets/package_basic_fields.html', data=data, errors=errors, licenses=c.licenses,
@@ -32,9 +32,12 @@ then itself be extended to add/remove blocks of functionality. #}
         {% endif %}
         {% endblock %}
         {% block save_button %}
-        <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data')
-            }}{%
-            endblock %}</button>
+	<div class="row-fluid">
+	  <div class="span6">
+            <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data')
+              }}{% endblock %}</button>
+	  </div>
+	</div>
         {% endblock %}
     </div>
     {% endblock %}

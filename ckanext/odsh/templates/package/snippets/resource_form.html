@@ -16,27 +16,31 @@
     {% endif %}
     {% endblock %}
 
-    {% block errors %}{{ form.errors(error_summary) }}{% endblock %}
+    {# {% block errors %}{{ form.errors(error_summary) }}{% endblock %} #}
 
     <input name="id" value="{{ data.id }}" type="hidden" />
 
     {% block basic_fields %}
+
     {% block basic_fields_url %}
     {% set is_upload = (data.url_type == 'upload') %}
-    {{ form.image_upload(data, errors, field_url='url', field_upload='upload', field_clear='clear_upload',
+    {% set error_string = _('odsh_resource_upload_error_label') if error_summary %}
+    {{ form.image_upload(data, error_string, field_url='url', field_upload='upload', field_clear='clear_upload',
     is_upload_enabled=h.uploads_enabled(), is_url=data.url and not is_upload, is_upload=is_upload,
     upload_label=_('Data-Upload'), url_label=_('URL'), placeholder=_('http://example.com/external-data.csv'),
     field_name='name') }}
     {% endblock %}
 
     {% block basic_fields_name %}
+    {% set error_string = _('odsh_resource_name_error_label') if errors.name %}
     {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('Enter name of the dataset'),
-    value=data.name, error=errors.name, classes=['control-full'], is_required=true) }}
+    value=data.name, error=error_string, classes=['control-full'], is_required=true) }}
     {% endblock %}
 
     {% block basic_fields_description %}
+    {% set error_string = _('odsh_resource_description_error_label') if errors.description %}
     {{ form.markdown('description', id='field-description', label=_('Description'),
-    placeholder=_('Enter description of the dataset'), value=data.description, error=errors.description,
+    placeholder=_('Enter description of the dataset'), value=data.description, error=error_string,
     is_required=true) }}
     {% endblock %}
 

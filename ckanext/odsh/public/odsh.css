@@ -361,7 +361,7 @@ label:after {
     border-radius: 0;
 }
 
-.control-group.error .control-label, .control-group.error .help-block, .control-group.error .help-inline {
+.control-label, .control-group.error .control-label, .control-group.error .help-block, .control-group.error .help-inline {
     color: black;
 }
 
@@ -606,4 +606,18 @@ label:after {
 }
 
 .create-dataset-form{
-    width: 50%;}
+    width: 50%;
+}
+
+.primary.span12 {
+    width: 100%;
+}
+
+.inline-error {
+    color: #d4004b;
+    margin-top: 5px;
+}
+
+.controls select {
+    width: 100%;
+}
