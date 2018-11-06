@@ -110,7 +110,7 @@ msgid "Beginn des Zeitraumes: Fehlender Wert"
 msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
 
 msgid "Ende des Zeitraumes: Fehlender Wert"
-msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
+msgstr "Bitte wählen Sie einen Zeitraum aus"
 
 msgid "Name: Fehlender Wert"
 msgstr "Bitte geben Sie eine Url ein"
@@ -121,7 +121,7 @@ msgstr "Bitte geben Sie einen Ort ein"
 msgid "Tags"
 msgstr "Schlagwörter"
 
-msgid "Notes: Fehlender Wert"
+msgid "Beschreibung: Fehlender Wert"
 msgstr "Bitte geben Sie eine Beschreibung ein"
 
 msgid "Namensnennung: Fehlender Wert"
@@ -130,11 +130,23 @@ msgstr "Bitte geben Sie einen Namen ein"
 msgid "Titel: Fehlender Wert"
 msgstr "Bitte geben Sie einen Titel ein"
 
-msgid "Publish date: Fehlender Wert"
-msgstr "Bitte wählen Sie ein Veröffetlichungsdatum"
+msgid "odsh_publish_date_error_label"
+msgstr "Bitte wählen Sie ein Veröffentlichungsdatum"
+
+msgid "odsh_spatial_extension_error_label"
+msgstr "Bitte geben sie einen räumlichen Bezug an"
 
 msgid "Tag string: Fehlender Wert"
 msgstr "Bitte wählen Sie geeignete Schlagwörter"
+
+msgid "odsh_resource_upload_error_label"
+msgstr "Bitte laden Sie Ihren Datensatz hoch"
+
+msgid "odsh_resource_name_error_label"
+msgstr "Bitte geben sie einen Namen für den Datensatz ein"
+
+msgid "odsh_resource_description_error_label"
+msgstr "Bitte beschreiben Sie Ihren Datensatz"
 
 msgid "Followers"
 msgstr "Abonennten"

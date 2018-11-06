@@ -1,48 +1,46 @@
 {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
 {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 
+{% set res_details = h.odsh_get_resource_details(res.id) %}
+
 <li class="resource-item" data-id="{{ res.id }}">
-    {% block resource_item_title %}
-    <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
-        {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{
-            h.get_translated(res, 'format') }}</span>
-        {{ h.popular('views', res.tracking_summary.total, min=10) }}
-    </a>
-    {% endblock %}
-    {% block resource_item_description %}
-    <p class="description">
-        {% if res.description %}
-        {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
-        {% endif %}
-    </p>
-    {% endblock %}
-    {% block resource_item_explore %}
-    {% if not url_is_edit %}
-    <div class="">
-        {% block resource_item_explore_links %}
-        <a href="{{ url }}">
-            {% if res.has_views %}
-            <i class="fa fa-bar-chart-o"></i>
-            {% else %}
-            <i class="fa fa-info-circle"></i>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="span8 resource-details-left">
+	<div class="row">
+	  <div class="dataformat-label resource-dataformat-label label">{{res.format}}</div>
+	  <div class="resource-title" title="{{ h.resource_display_name(res) }}">
+            {{ h.resource_display_name(res) | truncate(48) }}
+	  </div>
+	</div>
+	<div class="row resource-description-container">
+	  <p class="description">
+            {% if res.description %}
+            {{ h.markdown_extract(h.get_translated(res, 'description'))}}
             {% endif %}
-        </a>
-        {% if res.url and h.is_url(res.url) %}
-        <a href="{{ res.url }}" class="resource-url-analytics" target="_blank">
-            {% if res.has_views or res.url_type == 'upload' %}
-            <i class="fa fa-arrow-circle-o-down"></i>
-            {% else %}
-            <i class="fa fa-external-link"></i>
-            {% endif %}
-        </a>
-        {% endif %}
-        {% if can_edit %}
-        <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+	    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+	  </p>
+	</div>
+      </div>
+      <div class="span4">
+	<div class="resource-icons">
+          {% block resource_item_explore_links %}
+          <a href="{{ res.url or url }}">
+            <i class="fa fa-download"></i>
+          </a>
+	  <a href="#">
+	    <i class="fa fa-eye"></i>
+	  </a>
+          {% if can_edit %}
+          <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
             <i class="fa fa-pencil-square-o"></i>
-        </a>
-        {% endif %}
-        {% endblock %}
+          </a>
+          {% endif %}
+          {% endblock %}
+	</div>
+      </div>
     </div>
-    {% endif %}
-    {% endblock %}
+  </div>
+
 </li>

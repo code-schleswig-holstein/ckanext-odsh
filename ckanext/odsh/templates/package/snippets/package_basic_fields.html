@@ -4,8 +4,9 @@
 
 <!-- field title -->
 {% block package_basic_fields_title %}
+{% set error_string = _(_('Title') + ': '+errors.title[0]) if errors.title %}
 {{ form.input('title', id='field-title', label=_('Title'), value=data.title,
-error=errors.title, classes=['control-full', 'control-large'], attrs={'data-module': 'slug-preview-target'},
+error=error_string, classes=['control-full'], attrs={'data-module': 'slug-preview-target'},
 is_required=true,placeholder=_('Enter title')) }}
 {% endblock %}
 
@@ -23,23 +24,25 @@ is_required=true,placeholder=_('Enter title')) }}
 
     <!-- field notes -->
     {% block package_basic_fields_description %}
+    {% set error_string = _(_('Description') + ': '+errors.notes[0]) if errors.notes %}
     {{ form.markdown('notes', id='field-notes', label=_('Description'), value=data.notes,
-    error=errors.notes, is_required=true, placeholder=_('Enter description')) }}
+    error=error_string, is_required=true, placeholder=_('Enter description')) }}
     {% endblock %}
 
 
     <!-- field license -->
+
     <label class="control-label" for="field-license">
         {{ _("License") }}:
         <span title="{{ _("This field is required") }}" class="control-required">*</span>
     </label>
-    <div class='row'>
-        <div class='span4'>
+    <div class='row-fluid'>
+        <div class='span3'>
             {% block package_basic_fields_license %}
             <div class="control-group">
                 {% set error = errors.license_id %}
                 <div class="controls">
-                    <select id="field-license" name="license_id" class="span4">
+                    <select id="field-license" name="license_id">
                         {% set existing_license_id = data.get('license_id') %}
                         {% for license_id, license_desc in h.license_options(existing_license_id) %}
                         <option value="{{ license_id }}" {% if existing_license_id==license_id %}selected="selected" {%
@@ -50,49 +53,55 @@ is_required=true,placeholder=_('Enter title')) }}
                 </div>
             </div>
         </div>
-        <div class='span1'></div>
-        <div class='span4'>
+        <div class='span3'>
             <!-- field Namensnennung -->
-            {{ form.input('access_constraints', id='field-licence-name', value=data.access_constraints,
+            {{ form.input_raw('access_constraints', id='field-licence-name', value=data.access_constraints,
             error=errors.access_constraints,
-            classes=['control-full span4'],type='text',is_required=true,attrs={'disabled':true,
+            classes=['control-full'],type='text',is_required=true,attrs={'disabled':true,
             'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
         </div>
+	<div class="span6 inline-error">
+	  {{error}}
+	</div>
     </div>
 
     {% endblock %}
 
     <!-- timerange -->
-    <div class='row'>
-        <label for="start-end" class="control-label">{{ _('timerange') }}:
-            <span title="{{ _("This field is required") }}" class="control-required">*</span>
-        </label>
-        <div id='start-end' class='span4'>
+    {% set error_string = _(_('Temporal end') + ': '+errors.temporal_end[0]) if errors.temporal_end %}
+    <label for="start-end" class="control-label">{{ _('timerange') }}:
+      <span title="{{ _("This field is required") }}" class="control-required">*</span>
+    </label>
+    <div class='row-fluid'>
+        <div id='start-end' class='span3'>
             <!-- field temporal_start -->
             {% set temporal_start_label=_('odsh_temporal_start_label') %}
-            {{ form.input('temporal_start', id='field-temporal-start', value=data.temporal_start,
+            {{ form.input_raw('temporal_start', id='field-temporal-start', value=data.temporal_start,
             error=errors.temporal_start,
             classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
             }}
         </div>
-        <div class='span1'></div>
-        <div class='span4'>
+        <div class='span3'>
             <!-- field temporal_end -->
             {% set temporal_end_label='Ende des Zeitraumes' %}
-            {{ form.input('temporal_end', id='field-temporal-end', value=data.temporal_end,
+            {{ form.input_raw('temporal_end', id='field-temporal-end', value=data.temporal_end,
             error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to'))
             }}
         </div>
+	<div class="span6 inline-error">
+	  {{error_string}}
+	</div>
     </div>
 
     <!-- field publish date -->
     {% set publish_date_value=h.odsh_now() %}
+    {% set error_string = _('odsh_publish_date_error_label') if errors.publish_date %}
     <!-- if form_style != 'edit' && !%} -->
     <!-- value=data.get('extras').publish_date, -->
     {% set publish_date_label='Veröffentlichungsdatum'%}
     {{ form.input('publish_date', id='field-publish-date', label=publish_date_label,
     value=publish_date_value,
-    error=errors.publish_date, classes=['control-full'],type='date',is_required=true) }}
+    error=error_string, classes=['control-full'],type='date',is_required=true) }}
 
 
     <!-- field tags -->
@@ -110,22 +119,28 @@ is_required=true,placeholder=_('Enter title')) }}
     {% endblock %}
 
     <!-- field spatial_extension -->
+    {% set error_string = _('odsh_spatial_extension_error_label') if errors.spatial_extension %}
     {{ form.input('spatial_extension', id='field-spatial-extension', label=_('Spatial extension'),
     value=data.spatial_extension,
-    error=errors.spatial_extension, classes=['control-full'],type='text',is_required=true,
+    error=error_string, classes=['control-full'],type='text',is_required=true,
     placeholder=_('Enter spatial extension')) }}
+
     <!-- field private -->
     <div class="control-group">
         <label for="field-private" class="control-label">{{ _('Visibility') }}:
             <span title="{{ _("This field is required") }}" class="control-required">*</span>
         </label>
         <div class="controls">
-            <select id="field-private" name="private">
+	  <div class="row-fluid">
+	    <div class="span6">
+              <select id="field-private" name="private">
                 {% for option in [('True', _('Private')), ('False', _('Public'))] %}
                 <option value="{{ option[0] }}" {% if option[0]==data.private|trim %}selected="selected" {% endif %}>{{
-                    option[1] }}</option>
+                  option[1] }}</option>
                 {% endfor %}
-            </select>
+              </select>
+	    </div>
+	  </div>
         </div>
     </div>
 
@@ -134,12 +149,16 @@ is_required=true,placeholder=_('Enter title')) }}
     <div class="control-group">
         <label for="field-state" class="control-label">{{ _('State') }}</label>
         <div class="controls">
-            <select id="field-state" name="state">
-                <option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {% endif %}>{{
-                    _('Active') }}</option>
-                <option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {% endif %}>{{
-                    _('Deleted') }}</option>
-            </select>
+	  <div class="row-fluid">
+	    <div class="span6">
+              <select id="field-state" name="state">
+		<option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {% endif %}>{{
+                  _('Active') }}</option>
+		<option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {% endif %}>{{
+                  _('Deleted') }}</option>
+              </select>
+	    </div>
+	  </div>
         </div>
     </div>
     {% endif %}
