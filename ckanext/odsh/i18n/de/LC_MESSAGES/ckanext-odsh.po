@@ -161,7 +161,7 @@ msgid "Unfollow"
 msgstr "Entmerken"
 
 msgid "Name: Diese URL ist bereits vergeben"
-msgid "Diese URL ist bereits vergeben"
+msgstr "Diese URL ist bereits vergeben"
 
 msgid "{number} dataset found"
 msgid_plural "{number} datasets found"
