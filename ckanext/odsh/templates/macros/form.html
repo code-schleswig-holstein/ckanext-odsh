@@ -25,8 +25,27 @@ is_required=false) %}
 {%- set onFocus = 'onfocus=(this.type=\'date\')' if type=='date' and not value else '' -%}
 
 {% call input_block(id or name, label, error, classes, extra_html=extra_html, is_required=is_required) %}
+<div class="row-fluid">
+  <div class="span6">
+    <input id="{{ id or name }}" type="{{ _type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}"
+	   {{ onFocus }} {{ attributes(attrs) }} />
+  </div>
+  <div class="span6 inline-error">
+    {{error}}
+  </div>
+</div>
+{% endcall %}
+{% endmacro %}
+
+{% macro input_raw(name, id='', label='', value='', placeholder='', type='text', error="", classes=[], attrs={},
+is_required=false) %}
+{%- set extra_html = caller() if caller -%}
+{%- set _type = 'text' if type=='date' and not value else type -%}
+{%- set onFocus = 'onfocus=(this.type=\'date\')' if type=='date' and not value else '' -%}
+
+{% call input_block(id or name, label, error, classes, extra_html=extra_html, is_required=is_required) %}
 <input id="{{ id or name }}" type="{{ _type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}"
-    {{ onFocus }} {{ attributes(attrs) }} />
+       {{ onFocus }} {{ attributes(attrs) }} />
 {% endcall %}
 {% endmacro %}
 
@@ -137,8 +156,15 @@ options - A list/tuple of fields to be used as <options>.
         {%- set extra_html = caller() if caller -%}
         {% call input_block(id or name, label or name, error, classes, control_classes=["editor"],
         extra_html=extra_html, is_required=is_required) %}
-        <textarea id="{{ id or name }}" name="{{ name }}" cols="20" rows="5" placeholder="{{ placeholder }}"
-            {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
+        <div class="row-fluid">
+          <div class="span6">
+            <textarea id="{{ id or name }}" name="{{ name }}" cols="20" rows="5" placeholder="{{ placeholder }}"
+		      {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
+	  </div>
+	  <div class="span6 inline-error">
+	    {{error}}
+	  </div>
+	</div>
         {% endcall %}
         {% endmacro %}
 
@@ -454,11 +480,11 @@ options - A list/tuple of fields to be used as <options>.
             {% endif %}
 
             {{ input(field_url, label=url_label, id='field-image-url', placeholder=placeholder,
-            value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
+            value=data.get(field_url), error='', classes=['control-full']) }}
 
             {% if is_upload_enabled %}
             {{ input(field_upload, label=upload_label, id='field-image-upload', type='file', placeholder='', value='',
-            error='', classes=['control-full'], is_required=true) }}
+            error=errors, classes=['control-full'], is_required=true) }}
             {% if is_upload %}
             {{ checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='',
             classes=['control-full']) }}

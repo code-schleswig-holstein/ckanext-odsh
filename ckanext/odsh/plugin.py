@@ -85,6 +85,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_group_id_selected': odsh_group_id_selected,
                 'odsh_get_facet_items_dict': odsh_get_facet_items_dict,
                 'odsh_openness_score_dataset_html': odsh_helpers.odsh_openness_score_dataset_html,
+                'odsh_get_resource_details': odsh_helpers.odsh_get_resource_details
         }
 
     def before_map(self, map):
@@ -122,7 +123,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         #         # toolkit.get_converter('not_empty'),
         #         toolkit.get_converter('odsh_convert_groups_string')] })
         schema['resources'].update({
-                'url' : [ toolkit.get_converter('not_empty') ]
+                'url' : [ toolkit.get_converter('not_empty') ],
+                'description' : [ toolkit.get_converter('not_empty') ],
+                'name' : [ toolkit.get_converter('not_empty') ]
                 })
 
     def create_package_schema(self):
