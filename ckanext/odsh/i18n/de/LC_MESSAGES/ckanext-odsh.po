@@ -19,6 +19,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+msgid "Organizations"
+msgstr "Herausgeber"
+
+#: ckan/templates/snippets/search_result_text.html:29
+msgid "{number} organization found"
+msgid_plural "{number} organizations found"
+msgstr[0] "{number} Herausgeber"
+msgstr[1] "{number} Herausgeber"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "do Login"
+msgstr "Einloggen"
+
+msgid "Forgotten your password?"
+msgstr "Passwort vergessen"
+
+msgid "change password"
+msgstr "Passwort ändern"
+
+msgid "Username"
+msgstr "Name"
+
+msgid "enter password"
+msgstr "Passwort eingeben"
+
 msgid "odsh Create Dataset"
 msgstr "Datensatz-Upload"
 
