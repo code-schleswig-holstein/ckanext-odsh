@@ -111,6 +111,7 @@ class KielHarvester(ODSHBaseHarvester):
                 package_dict['license_id'] = license_id
             else:
                 log.error('invalid license_id: %s' % package_dict['license_id'])
+                self._save_object_error('Invalid license_id: %s' % package_dict['license_id'], harvest_object, 'Import')
                 return False
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
