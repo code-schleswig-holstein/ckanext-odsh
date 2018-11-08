@@ -8,7 +8,7 @@ from ckan import model
 from ckan.logic import get_action
 
 from ckanext.harvest.model import HarvestObject
-from ckanext.harvest.harvesters.base import HarvesterBase
+from ckanext.odsh.harvesters import ODSHBaseHarvester
 
 from ckanext.odsh.model.statistiknord import *
 import logging
@@ -23,7 +23,7 @@ def map_general_fields(package_dict, values):
     package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]})
 
 
-class StatistikamtNordHarvester(HarvesterBase):
+class StatistikamtNordHarvester(ODSHBaseHarvester):
     """
     A Harvester for Statistikamt Nord
     """

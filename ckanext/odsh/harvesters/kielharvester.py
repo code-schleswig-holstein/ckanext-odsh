@@ -1,8 +1,8 @@
 from ckan import model
 from ckan.logic import get_action
 from ckan.plugins import toolkit
-from ckanext.harvest.harvesters.base import HarvesterBase
 from ckanext.harvest.model import HarvestObject
+from ckanext.odsh.harvesters import ODSHBaseHarvester
 
 import requests
 import uuid
@@ -14,7 +14,7 @@ import datetime
 log = logging.getLogger(__name__)
 
 
-class KielHarvester(HarvesterBase):
+class KielHarvester(ODSHBaseHarvester):
     '''
     A Harvester for Kiel Open Data
     '''
@@ -106,7 +106,7 @@ class KielHarvester(HarvesterBase):
                     if seperated_tag != '' and len(seperated_tag) < 100:
                         package_dict['tags'].append({'name': seperated_tag.strip()})
 
-#            log.debug(json.dumps(package_dict))
+            package_dict['license_id'] = self._get_license_id(package_dict['license_id'])
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
                 return result
