@@ -106,7 +106,12 @@ class KielHarvester(ODSHBaseHarvester):
                     if seperated_tag != '' and len(seperated_tag) < 100:
                         package_dict['tags'].append({'name': seperated_tag.strip()})
 
-            package_dict['license_id'] = self._get_license_id(package_dict['license_id'])
+            license_id = self._get_license_id(package_dict['license_id'])
+            if license_id:
+                package_dict['license_id'] = license_id
+            else:
+                log.error('invalid license_id: %s' % package_dict['license_id'])
+                return False
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
                 return result
