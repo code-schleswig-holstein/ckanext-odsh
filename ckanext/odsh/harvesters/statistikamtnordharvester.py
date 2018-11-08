@@ -8,7 +8,7 @@ from ckan import model
 from ckan.logic import get_action
 
 from ckanext.harvest.model import HarvestObject
-from ckanext.odsh.harvesters import ODSHBaseHarvester
+from ckanext.odsh.harvesters.base import ODSHBaseHarvester
 
 from ckanext.odsh.model.statistiknord import *
 import logging

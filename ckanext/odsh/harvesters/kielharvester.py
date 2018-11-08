@@ -2,7 +2,7 @@ from ckan import model
 from ckan.logic import get_action
 from ckan.plugins import toolkit
 from ckanext.harvest.model import HarvestObject
-from ckanext.odsh.harvesters import ODSHBaseHarvester
+from ckanext.odsh.harvesters.base import ODSHBaseHarvester
 
 import requests
 import uuid
