@@ -163,8 +163,8 @@ msgstr "Entmerken"
 
 msgid "{number} dataset found"
 msgid_plural "{number} datasets found"
-msgstr[0] "{number} Datensatz gefunden X"
-msgstr[1] "{number} Datensätze gefunden X"
+msgstr[0] "{number} Datensatz gefunden"
+msgstr[1] "{number} Datensätze gefunden"
 
 msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
