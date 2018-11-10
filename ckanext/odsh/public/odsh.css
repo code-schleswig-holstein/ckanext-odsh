@@ -187,6 +187,11 @@ input[type=radio], input[type=checkbox] {
     width: 725px;
 }
 
+.primary.logout {
+    width: 725px;
+    padding-left: 0px;
+}
+
 .wrapper {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -754,10 +759,11 @@ body {
     width: 50%;}
 
 .organization-image{
-    width: 225px;
+    max-width: 225px;
+    max-height: 78px;
     margin: auto;
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
+    text-align: center;
 }
 .is-table-row .organization-image-column {
     width: 225px;
@@ -850,6 +856,25 @@ body {
 .resource-icons img {
     width: 28px;
 }
+.icon{
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    width: 28px;
+    height: 28px;
+}
+.icon-edit{
+    background-image: url(/base/images/Icon-Bearbeiten.png);
+}
+.icon-download{
+    background-image: url(/base/images/Icon-Download.png);
+}
+.icon-edit:hover{
+    background-image: url(/base/images/Icon-Bearbeiten_hover.png);
+}
+.icon-download:hover{
+    background-image: url(/base/images/Icon-Download_hover.png);
+}
+
 
 .resource-icons a {
     color: #003064;

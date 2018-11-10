@@ -17,16 +17,19 @@
 
 {% block subtitle %}{{ _('Logged Out') }}{% endblock %}
 
-{% block primary_content %}
+{% block primary %}
+<div class="primary logout">
   <section class="module">
     <div class="module-content">
       <h1 class="page-heading">
-      	{% block page_heading %}{{ _('Logged Out') }}{% endblock %}
+        {% block page_heading %}{{ _('Logged Out') }}{% endblock %}
       </h1>
       <p>{% trans %}You are now logged out.{% endtrans %}</p>
     </div>
   </section>
+</div>
 {% endblock %}
+
 
 {% block secondary %}
 {% endblock %}
