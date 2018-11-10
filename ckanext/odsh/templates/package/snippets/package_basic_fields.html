@@ -1,5 +1,4 @@
 {% import 'macros/form.html' as form %}
-{% resource 'odsh/bootstrap-multiselect.js' %}
 {% resource 'odsh/odsh_form.js' %}
 
 <!-- field title -->
@@ -60,9 +59,9 @@ is_required=true,placeholder=_('Enter title')) }}
             classes=['control-full'],type='text',is_required=true,attrs={'disabled':true,
             'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
         </div>
-	<div class="span6 inline-error">
-	  {{error}}
-	</div>
+        <div class="span6 inline-error">
+            {{error}}
+        </div>
     </div>
 
     {% endblock %}
@@ -70,7 +69,7 @@ is_required=true,placeholder=_('Enter title')) }}
     <!-- timerange -->
     {% set error_string = _(_('Temporal end') + ': '+errors.temporal_end[0]) if errors.temporal_end %}
     <label for="start-end" class="control-label">{{ _('timerange') }}:
-      <span title="{{ _("This field is required") }}" class="control-required">*</span>
+        <span title="{{ _("This field is required") }}" class="control-required">*</span>
     </label>
     <div class='row-fluid'>
         <div id='start-end' class='span3'>
@@ -88,9 +87,9 @@ is_required=true,placeholder=_('Enter title')) }}
             error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to'))
             }}
         </div>
-	<div class="span6 inline-error">
-	  {{error_string}}
-	</div>
+        <div class="span6 inline-error">
+            {{error_string}}
+        </div>
     </div>
 
     <!-- field publish date -->
@@ -131,16 +130,17 @@ is_required=true,placeholder=_('Enter title')) }}
             <span title="{{ _("This field is required") }}" class="control-required">*</span>
         </label>
         <div class="controls">
-	  <div class="row-fluid">
-	    <div class="span6">
-              <select id="field-private" name="private">
-                {% for option in [('True', _('Private')), ('False', _('Public'))] %}
-                <option value="{{ option[0] }}" {% if option[0]==data.private|trim %}selected="selected" {% endif %}>{{
-                  option[1] }}</option>
-                {% endfor %}
-              </select>
-	    </div>
-	  </div>
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-private" name="private">
+                        {% for option in [('True', _('Private')), ('False', _('Public'))] %}
+                        <option value="{{ option[0] }}" {% if option[0]==data.private|trim %}selected="selected" {%
+                            endif %}>{{
+                            option[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -149,16 +149,18 @@ is_required=true,placeholder=_('Enter title')) }}
     <div class="control-group">
         <label for="field-state" class="control-label">{{ _('State') }}</label>
         <div class="controls">
-	  <div class="row-fluid">
-	    <div class="span6">
-              <select id="field-state" name="state">
-		<option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {% endif %}>{{
-                  _('Active') }}</option>
-		<option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {% endif %}>{{
-                  _('Deleted') }}</option>
-              </select>
-	    </div>
-	  </div>
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-state" name="state">
+                        <option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {%
+                            endif %}>{{
+                            _('Active') }}</option>
+                        <option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {%
+                            endif %}>{{
+                            _('Deleted') }}</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
     {% endif %}

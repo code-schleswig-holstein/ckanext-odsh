@@ -7,9 +7,6 @@
   {% endif %}
   {% endblock %}
   <div class="container">
-    <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
-      <span class="fa fa-bars"></span>
-    </button>
     {# The .header-image class hides the main text and uses image replacement for the title #}
     <div class='row'>
 
@@ -29,22 +26,9 @@
           {% endblock %}
         </hgroup>
       </div>
-
-      <div class='span9 span-navigation pull-right'>
-        {% snippet "snippets/language_selector.html" %}
-
-        {% block header_site_search %}
-        <div class='top-search-form'>
-          <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
-            method="get">
-            <div class="field">
-              <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Suchbegriff') }}" />
-              <button class="btn-search" type="submit">
-            </div>
-          </form>
-        </div>
-        {% endblock %}
-      </div>
+      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+        <span class="fa fa-bars"></span>
+      </button>
 
     </div>
   </div>
@@ -62,28 +46,24 @@
             ('info_page', _('Infos'))
             ) }}
             {% endblock %}
+            {% set clazz='active' if c.action=='login' else ''%}
+            {% if c.userobj %}
+            <li class='{{clazz}}'>
+              <a href="{{ h.url_for('/user/_logout') }}" title="logout">
+                <span class="text">Logout</span>
+              </a>
+            </li>
+            {% else %}
+            <li class='{{clazz}}'>
+              <a href="{{ h.url_for('/user/login') }}" title="login">
+                <span class="text">Login</span>
+              </a>
+            </li>
+            {% endif %}
           </ul>
         </nav>
         {% endblock %}
       </div>
-      <nav class="navigation">
-        <ul class="nav nav-pills ">
-          {% set clazz='active' if c.action=='login' else ''%}
-          {% if c.userobj %}
-          <li class='{{clazz}}'>
-            <a href="{{ h.url_for('/user/_logout') }}" title="logout">
-              <span class="text">Logout</span>
-            </a>
-          </li>
-          {% else %}
-          <li class='{{clazz}}'>
-            <a href="{{ h.url_for('/user/login') }}" title="login">
-              <span class="text">Login</span>
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </nav>
     </div>
   </div>
   </div>
