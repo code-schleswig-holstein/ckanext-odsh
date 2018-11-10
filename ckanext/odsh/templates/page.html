@@ -1,45 +1,45 @@
 {% ckan_extends %}
 
 {%- block content %}
-  {% block maintag %}<div role="main">{% endblock %}
-    <div id="content" class="container">
-      {% block main_content %}
+{% block maintag %}<div role="main">{% endblock %}
+  <div id="content" class="container">
+    {% block main_content %}
 
-        {% block flash %}
-          {{ super() }}
-        {% endblock %}
+    {% block flash %}
+    {{ super() }}
+    {% endblock %}
 
-        {% block toolbar %}
-          {{ super() }}
-        {% endblock %}
+    {% block toolbar %}
+    {{ super() }}
+    {% snippet "snippets/search_box.html"%}
+    {% endblock %}
 
-        <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %} is-table-row">
-          {#
-          The pre_primary block can be used to add content to before the
-          rendering of the main content columns of the page.
-          #}
-          {% block pre_primary %}
-          {% endblock %}
-
-	  {% block secondary %}
-	    <aside class="secondary span3">
-	      {% block secondary_content %}
-                {{ super() }}
-	      {% endblock %}  
-	    </aside>
-	  {% endblock %}
-
-	  {% block primary %}
-	    <div class="primary span9">
-	      {% block primary_content %}
-                {{ super() }}
-	      {% endblock %}
-	    </div>
-	  {% endblock %}
-
-        </div>
+    <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %} is-table-row">
+      {#
+      The pre_primary block can be used to add content to before the
+      rendering of the main content columns of the page.
+      #}
+      {% block pre_primary %}
       {% endblock %}
-    </div>
-  </div>
-{% endblock -%}
 
+      {% block secondary %}
+      <aside class="secondary span3">
+        {% block secondary_content %}
+        {{ super() }}
+        {% endblock %}
+      </aside>
+      {% endblock %}
+
+      {% block primary %}
+      <div class="primary span9">
+        {% block primary_content %}
+        {{ super() }}
+        {% endblock %}
+      </div>
+      {% endblock %}
+
+    </div>
+    {% endblock %}
+  </div>
+</div>
+{% endblock -%}
