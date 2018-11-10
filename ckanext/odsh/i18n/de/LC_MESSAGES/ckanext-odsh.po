@@ -37,6 +37,18 @@ msgstr[1] "{number} Herausgeber"
 msgid "Login"
 msgstr "Login"
 
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Log out"
+msgstr "Logout"
+
+msgid "Logged Out"
+msgstr "Logout"
+
+msgid "You are now logged out."
+msgstr "Sie haben sich erfolgreich abgemeldet."
+
 msgid "do Login"
 msgstr "Einloggen"
 
