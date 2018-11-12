@@ -8,3 +8,4 @@ except ImportError:
 
 from ckanext.odsh.harvesters.statistikamtnordharvester import StatistikamtNordHarvester
 from ckanext.odsh.harvesters.kielharvester import KielHarvester
+from ckanext.odsh.harvesters.base import ODSHBaseHarvester
