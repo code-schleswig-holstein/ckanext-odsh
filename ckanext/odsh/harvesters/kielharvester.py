@@ -13,6 +13,11 @@ import datetime
 
 log = logging.getLogger(__name__)
 
+GROUP_MAPPING = {'kultur_freizeit_sport_tourismus': 'educ', 'gesundheit': 'heal', 'politik_wahlen': 'gove',
+                 'verwaltung': 'gove', 'infrastruktur_bauen_wohnen': None, 'wirtschaft_arbeit': 'econ',
+                 'transport_verkehr': 'tran', 'bildung_wissenschaft': 'educ', 'bevoelkerung': 'soci',
+                 'gesetze_justiz': 'just', 'geo': 'regi', 'soziales': 'soci', 'umwelt_klima': 'envi'}
+
 
 class KielHarvester(ODSHBaseHarvester):
     '''
@@ -95,7 +100,13 @@ class KielHarvester(ODSHBaseHarvester):
             if package_dict['type'] == 'datensatz':
                 package_dict['type'] = 'dataset'
             package_dict['id'] = harvest_object.guid
-            package_dict['groups'] = list()
+
+            mapped_groups = list()
+            for group in package_dict['groups']:
+                if GROUP_MAPPING[group]:
+                    mapped_groups.append(GROUP_MAPPING[group])
+            package_dict['groups'] = mapped_groups
+
             package_dict['extras'] = list()
 
             tags = package_dict['tags']
