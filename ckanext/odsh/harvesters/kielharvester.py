@@ -14,7 +14,7 @@ import datetime
 log = logging.getLogger(__name__)
 
 GROUP_MAPPING = {'kultur_freizeit_sport_tourismus': 'educ', 'gesundheit': 'heal', 'politik_wahlen': 'gove',
-                 'verwaltung': 'gove', 'infrastruktur_bauen_wohnen': None, 'wirtschaft_arbeit': 'econ',
+                 'verwaltung': 'gove', 'infrastruktur_bauen_wohnen': 'regi', 'wirtschaft_arbeit': 'econ',
                  'transport_verkehr': 'tran', 'bildung_wissenschaft': 'educ', 'bevoelkerung': 'soci',
                  'gesetze_justiz': 'just', 'geo': 'regi', 'soziales': 'soci', 'umwelt_klima': 'envi'}
 
