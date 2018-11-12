@@ -104,7 +104,7 @@ class KielHarvester(ODSHBaseHarvester):
             mapped_groups = list()
             for group in package_dict['groups']:
                 if GROUP_MAPPING[group]:
-                    mapped_groups.append(GROUP_MAPPING[group])
+                    mapped_groups.append({'name': GROUP_MAPPING[group]})
             package_dict['groups'] = mapped_groups
 
             package_dict['extras'] = list()
