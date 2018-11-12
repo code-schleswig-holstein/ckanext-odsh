@@ -1,8 +1,8 @@
 from ckan import model
 from ckan.logic import get_action
 from ckan.plugins import toolkit
-from ckanext.harvest.harvesters.base import HarvesterBase
 from ckanext.harvest.model import HarvestObject
+from ckanext.odsh.harvesters.base import ODSHBaseHarvester
 
 import requests
 import uuid
@@ -13,8 +13,13 @@ import datetime
 
 log = logging.getLogger(__name__)
 
+GROUP_MAPPING = {'kultur_freizeit_sport_tourismus': 'educ', 'gesundheit': 'heal', 'politik_wahlen': 'gove',
+                 'verwaltung': 'gove', 'infrastruktur_bauen_wohnen': None, 'wirtschaft_arbeit': 'econ',
+                 'transport_verkehr': 'tran', 'bildung_wissenschaft': 'educ', 'bevoelkerung': 'soci',
+                 'gesetze_justiz': 'just', 'geo': 'regi', 'soziales': 'soci', 'umwelt_klima': 'envi'}
 
-class KielHarvester(HarvesterBase):
+
+class KielHarvester(ODSHBaseHarvester):
     '''
     A Harvester for Kiel Open Data
     '''
@@ -95,7 +100,13 @@ class KielHarvester(HarvesterBase):
             if package_dict['type'] == 'datensatz':
                 package_dict['type'] = 'dataset'
             package_dict['id'] = harvest_object.guid
-            package_dict['groups'] = list()
+
+            mapped_groups = list()
+            for group in package_dict['groups']:
+                if GROUP_MAPPING[group]:
+                    mapped_groups.append(GROUP_MAPPING[group])
+            package_dict['groups'] = mapped_groups
+
             package_dict['extras'] = list()
 
             tags = package_dict['tags']
@@ -106,7 +117,13 @@ class KielHarvester(HarvesterBase):
                     if seperated_tag != '' and len(seperated_tag) < 100:
                         package_dict['tags'].append({'name': seperated_tag.strip()})
 
-#            log.debug(json.dumps(package_dict))
+            license_id = self._get_license_id(package_dict['license_id'])
+            if license_id:
+                package_dict['license_id'] = license_id
+            else:
+                log.error('invalid license_id: %s' % package_dict['license_id'])
+                self._save_object_error('Invalid license_id: %s' % package_dict['license_id'], harvest_object, 'Import')
+                return False
             try:
                 result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
                 return result
