@@ -68,6 +68,11 @@ h1{
     padding-bottom: 5px;
 }
 
+.organization-list-title .search-form {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
 .search-form .control-order-by select {
     width: 225px;
     margin: 0;
@@ -131,6 +136,10 @@ input[type=radio], input[type=checkbox] {
 
 .primary {
     padding-left: 10px;
+}
+
+.primary.organization {
+    padding-left: 0px;
 }
 
 .primary.span9 {
@@ -287,6 +296,33 @@ label.mylabel::after {
 .container-fluid.odsh-dataset-item {
     padding: 20px 0px 20px 0px;
     border-bottom: 2px solid #DBDBDB;
+}
+
+.organization-item{
+    padding: 5px 0px 5px 0px;
+    border-bottom: 2px solid #DBDBDB;
+}
+
+a .organization-item {
+    color: black;
+}
+a:hover .organization-item ,a:focus .organization-item
+{
+    color:black;
+    background-color: rgb(246,247,249);
+}
+a:hover.organization-item ,a:focus.organization-item
+{
+    text-decoration: none;
+}
+
+.organization-item .organization-item-text{
+    vertical-align: middle;
+}
+
+.organization-item-text{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .dataset-content {
@@ -647,7 +683,7 @@ label:after {
     width: 50%;}
 
 .organization-image{
-    height:100px;
+    height:150px;
     max-width: unset;
 }
 

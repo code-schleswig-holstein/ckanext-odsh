@@ -63,6 +63,10 @@
         {% endfor %}
     </p>
     <a class="show-filters btn">{{ _('Filter Results') }}</a>
+    {% else%}
+    {% if always_show_filter_list%}
+    <p class="filter-list"></p>
+    {% endif %}
     {% endif %}
     {% endblock %}
 
