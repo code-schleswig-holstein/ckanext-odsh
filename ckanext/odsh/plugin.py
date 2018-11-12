@@ -94,6 +94,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
             m.connect('/user/me', action='me')
+            m.connect('/user/logged_in', action='me')
+            m.connect('user_dashboard', '/dashboard', action='dashboard', ckan_icon='list')
             m.connect('user_dashboard/{url:.*}', '/dashboard/{url:.*}', action='dashboard', ckan_icon='list')
         return map
 
