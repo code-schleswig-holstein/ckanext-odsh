@@ -8,37 +8,35 @@
   <div class="container-fluid">
     <div class="row">
       <div class="span8 resource-details-left">
-	<div class="row">
-	  <div class="dataformat-label resource-dataformat-label label">{{res.format}}</div>
-	  <div class="resource-title" title="{{ h.resource_display_name(res) }}">
+        <div class="row">
+          <div class="dataformat-label resource-dataformat-label label">{{res.format}}</div>
+          <div class="resource-title" title="{{ h.resource_display_name(res) }}">
             {{ h.resource_display_name(res) | truncate(48) }}
-	  </div>
-	</div>
-	<div class="row resource-description-container">
-	  <p class="description">
+          </div>
+        </div>
+        <div class="row resource-description-container">
+          <p class="description">
             {% if res.description %}
             {{ h.markdown_extract(h.get_translated(res, 'description'))}}
             {% endif %}
-	    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-	  </p>
-	</div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat, sed diam voluptua.
+          </p>
+        </div>
       </div>
       <div class="span4">
-	<div class="resource-icons">
+        <div class="resource-icons">
           {% block resource_item_explore_links %}
           <a href="{{ res.url or url }}">
             <i class="fa fa-download"></i>
           </a>
-	  <a href="#">
-	    <i class="fa fa-eye"></i>
-	  </a>
           {% if can_edit %}
           <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
             <i class="fa fa-pencil-square-o"></i>
           </a>
           {% endif %}
           {% endblock %}
-	</div>
+        </div>
       </div>
     </div>
   </div>
