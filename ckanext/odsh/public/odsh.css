@@ -349,7 +349,7 @@ ul.dataset-resources {
 }
 
 .dataformat-label {
-    background-color: #1c355e !important;
+    background-color: #003064 !important;
     padding: 3px 3px 1px 3px;
     font-size: 14px;
     margin-right: 4px;
@@ -362,11 +362,11 @@ ul.dataset-resources {
 .odsh-star {
     margin-right: 5px;
     font-size: 20px;
-    color: #1c355e;    
+    color: #003064;    
 }
 
 .dataformat-label:hover {
-    background-color: #d7004d !important;
+    background-color: #d4004b!important;
 }
 
 .dataset-info p {
@@ -503,7 +503,6 @@ label:after {
     font-size:18px;
     text-shadow: none;
     font-weight: normal;
-    height: 40px;
     padding-left: 28px;
     padding-right: 28px;
     color:white;
@@ -530,6 +529,11 @@ label:after {
     color:#0089ca;
     font-weight: normal;
     font-size: 16px;
+}
+.btn.btn-edit-categories
+{
+    padding: 0px 4px;
+    font-size: 10px;
 }
 
 .image-upload .btn {
@@ -660,7 +664,7 @@ label:after {
 }
 
 .footer-line{
-    border-top: 1px dotted #e14c81;
+    border-top: 1px dotted #d4004b;
     margin-bottom: 10px;
     margin-top: 20px;
 }
@@ -771,11 +775,11 @@ label:after {
 }
 
 .resource-icons a {
-    color: #1c355e;
+    color: #003064;
 }
 
 .resource-icons a:hover {
-    color: #d7004d;
+    color: #d4004b;
     text-decoration: none;
 }
 

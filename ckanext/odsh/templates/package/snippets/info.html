@@ -17,60 +17,62 @@ Example:
             {% block heading %}
             {% endblock %}
 
-	    {% block groups %}
+            {% block groups %}
             <div class="groups-detail info-detail">
                 <div>{{ _('Kategorie') }}:</div>
-		{{ pkg.groups|map(attribute='display_name')|join('; ') }}
+                {{ pkg.groups|map(attribute='display_name')|join('; ') }}
+                {% if h.check_access('package_update', {'id':pkg.id }) %}
+                <div>
+                    {% link_for _('Edit Categories'), controller='package', action='groups', id=pkg.name,
+                    class_='btn btn-edit-categories', icon='wrench' %}
+                </div>
+                {% endif %}
             </div>
-	    {% endblock %}
+            {% endblock %}
 
             {% block nums %}
-            <div class="nums-detail info-detail">
-                <div>{{ _('Followers') }}:</div>
-                <p>{{ h.follow_count('dataset', pkg.id) }}</p>
-            </div>
             {% endblock %}
 
             {% block spatial %}
             <div class="spatial-detail info-detail">
-              <div>{{ _('Spatial extension') }}:</div>
-              {%set ext=pkg.spatial_extension if pkg.spatial_extension else '-'%}
-              <p>{{ ext }}</p>
-	    </div>
+                <div>{{ _('Spatial extension') }}:</div>
+                {%set ext=pkg.spatial_extension if pkg.spatial_extension else '-'%}
+                <p>{{ ext }}</p>
+            </div>
             {% endblock %}
 
-	    {% block tags %}
-	    <div class="tags-detail info-detail">
-              <div>{{ _('Tags') }}:</div>
-                  <p>{{ pkg.tags|map(attribute='display_name')|join('; ') or '-'}}</p>
-	      </div>
-	    {% endblock %}
+            {% block tags %}
+            <div class="tags-detail info-detail">
+                <div>{{ _('Tags') }}:</div>
+                <p>{{ pkg.tags|map(attribute='display_name')|join('; ') or '-'}}</p>
+            </div>
+            {% endblock %}
 
-	    {% block license %}
-	    <div class="license-detail info-detail">
-	      <div>{{ _('License') }}:</div>
+            {% block license %}
+            <div class="license-detail info-detail">
+                <div>{{ _('License') }}:</div>
                 {%set lic=pkg.license_title if pkg.license_title else '-'%}
                 {%set name=' ('+pkg.access_constraints +')' if pkg.access_constraints else ''%}
                 <p>{{ lic }}{{ name }}</p>
-	    </div>
-	    {% endblock %}
-	    
-	    {% block timerange %}
-	    <div class="timerange-detail info-detail">
+            </div>
+            {% endblock %}
+
+            {% block timerange %}
+            <div class="timerange-detail info-detail">
                 <div>{{ _('timerange') }}:</div>
                 {%set start=h.render_datetime(pkg.temporal_start,'%d.%m.%Y') if pkg.temporal_start else ''%}
                 {%set end=h.render_datetime(pkg.temporal_end,'%d.%m.%Y') if pkg.temporal_end else ''%}
                 <p>{{ start }} - {{ end }}</p>
-	    </div>
-	    {% endblock %}
+            </div>
+            {% endblock %}
 
-	    {% block last_change %}
-	    <div class="last-change-detail info-detail">
+            {% block last_change %}
+            <div class="last-change-detail info-detail">
                 <div>{{ _('last change') }}:</div>
                 {{h.render_datetime(pkg.metadata_modified,'%d.%m.%Y') }}
-	    </div>
-	    {% endblock %}
-		
+            </div>
+            {% endblock %}
+
             {% endblock %}
         </div>
     </div>

@@ -124,7 +124,7 @@
 .navigation-container {
     background: #f2f2f2;
     width: 100% !important;
-    border-bottom: 15px solid #1c355e;
+    border-bottom: 15px solid #003064;
 }
 
 .navigation-row {
@@ -142,7 +142,7 @@
 .nav-pills li a:hover, .nav-pills li:hover {
     border-radius: 0px;
     -webkit-border-radius: 0px;
-    background-color: #011e4a !important;
+    background-color: #003064 !important;
 }
 
 .masthead .navigation .nav-pills li:not(:first-child) {
@@ -156,7 +156,7 @@
 
 /* Change default border color on hover to background color (align font vertically to active navigation tab) */
 .masthead .navigation .nav-pills li:hover {
-    border-top: 2px solid #011e4a;
+    border-top: 2px solid #003064;
 }
 
 /* The active navigation tab gets a differently coloured top-border */

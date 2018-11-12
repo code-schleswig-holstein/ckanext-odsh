@@ -15,7 +15,7 @@
 <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
 {% endif %}
 <li {{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), controller='package', action='read',
-    id=pkg.name %}</li>
+  id=pkg.name %}</li>
 {% else %}
 <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
 <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
@@ -25,15 +25,6 @@
 {% block primary_content_inner %}
 {{ super() }}
 {% block package_description %}
-{% if pkg.private %}
-<span class="dataset-private label label-inverse pull-right">
-    <i class="fa fa-lock"></i>
-    {{ _('Private') }}
-</span>
-{% endif %}
-<div class="follow_button pull-right">
-    {{ h.follow_button('dataset', pkg.name) }}
-</div>
 <div class="odsh-dataset-heading row-fluid">
   <h2>
     {% block page_heading %}
@@ -45,16 +36,32 @@
     [{{ _('Deleted') }}]
     {% endif %}
     {% endblock %}
+    <div class="pull-right">
+      {% if h.check_access('package_update', {'id':pkg.id }) %}
+      <div>
+        {% link_for _('Manage Dataset'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary',
+        icon='wrench' %}
+      </div>
+      {% endif %}
+      {% if pkg.private %}
+      <span class="dataset-private label label-inverse">
+        <i class="fa fa-lock"></i>
+        {{ _('Private') }}
+      </span>
+      {% endif %}
+    </div>
   </h2>
   <div class="dataset-stars">
     {% snippet "qa/stars.html", stars=stars %}
   </div>
+  {% if h.check_access('package_update', {'id':pkg.id }) %}
+  {% endif %}
 </div>
 {# {{ pkg.resources }} #}
 {% block package_notes %}
 {% if pkg.notes %}
 <div class="notes embedded-content">
-    {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+  {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
 </div>
 {% endif %}
 {% endblock %}
