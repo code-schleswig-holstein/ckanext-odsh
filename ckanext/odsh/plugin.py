@@ -92,6 +92,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def before_map(self, map):
         map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+        with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
+            m.connect('/user/me', action='me')
+            m.connect('user_dashboard/{url:.*}', '/dashboard/{url:.*}', action='dashboard', ckan_icon='list')
         return map
 
     def dataset_facets(self, facets_dict, package_type):
