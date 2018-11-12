@@ -66,7 +66,7 @@
         </nav>
         {% endblock %}
       </div>
-      <nav class="navigation pull-right">
+      <nav class="navigation">
         <ul class="nav nav-pills ">
           {% set clazz='active' if c.action=='login' else ''%}
           {% if c.userobj %}
@@ -82,8 +82,8 @@
             </a>
           </li>
           {% endif %}
+        </ul>
       </nav>
-      </ul>
     </div>
   </div>
   </div>

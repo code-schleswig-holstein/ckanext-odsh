@@ -86,7 +86,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_group_id_selected': odsh_group_id_selected,
                 'odsh_get_facet_items_dict': odsh_get_facet_items_dict,
                 'odsh_openness_score_dataset_html': odsh_helpers.odsh_openness_score_dataset_html,
-                'odsh_get_resource_details': odsh_helpers.odsh_get_resource_details
+                'odsh_get_resource_details': odsh_helpers.odsh_get_resource_details,
                 'odsh_get_resource_views': odsh_helpers.odsh_get_resource_views
         }
 
