@@ -19,6 +19,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+msgid "Search dataset"
+msgstr "Nach Datensatz suchen"
+
 msgid "Edit Categories"
 msgstr "Kategorien bearbeiten"
 
@@ -205,3 +208,12 @@ msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
 msgstr[0] "{number} Ergebnis für \"{query}\""
 msgstr[1] "{number} Ergebnisse für \"{query}\""
+
+msgid "Logged Out"
+msgstr "Logout"
+
+msgid "Filter by location"
+msgstr "mit Karte suchen"
+
+msgid "Clear"
+msgstr "zurücksetzen"

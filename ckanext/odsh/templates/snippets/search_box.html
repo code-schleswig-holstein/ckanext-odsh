@@ -1,0 +1,11 @@
+<div class='search-box-container'>
+    <div class='search-box'>
+        <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
+            method="get">
+            <div class="field">
+                <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search dataset') }}" />
+                <button class="btn-search" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
