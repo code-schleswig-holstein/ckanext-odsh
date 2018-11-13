@@ -57,20 +57,28 @@ class Initialization(CkanCommand):
                 present_orgs_keys.append(org_key)
 
         odsh_orgs = {
-            "kiel": "Kiel",
-            "statistikamt-nord": "Statistikamt Nord"
+            "kiel": {
+                "title": "Kiel",
+                "image": "https://www.kiel.de/images/logo-kiel-sailing-city.svg"
+            },
+            "statistikamt-nord": {
+                "title": "Statistikamt Nord",
+                "image": "https://www.statistik-nord.de/static/img/logo-text.svg"
+            }
         }
 
         for org_key in odsh_orgs:
+            title = odsh_orgs[org_key]['title']
             if org_key not in present_orgs_keys:
-                add_message = 'Adding group {org_key}.'.format(
-                    org_key=org_key
+                add_message = 'Adding organization {org_title}.'.format(
+                    org_title=title
                 )
                 print(add_message)
                 group_dict = {
                     'name': org_key,
                     'id': org_key,
-                    'title': odsh_orgs[org_key]
+                    'title': title,
+                    'image_url': odsh_orgs[org_key]['image']
                 }
 
                 self._create_and_purge_organization(
@@ -78,8 +86,8 @@ class Initialization(CkanCommand):
                 )
             else:
                 skip_message = 'Skipping creation of organization '
-                skip_message = skip_message + "{org_key}, as it's already present."
-                print(skip_message.format(org_key=org_key))
+                skip_message = skip_message + "{org_title}, as it's already present."
+                print(skip_message.format(org_title=title))
 
     def _handle_harvesters(self, ckan_api_client):
         data_dict = {}
