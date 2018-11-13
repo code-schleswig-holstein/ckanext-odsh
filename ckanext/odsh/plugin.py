@@ -101,8 +101,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def dataset_facets(self, facets_dict, package_type):
         # TODO: Frage von Pascal 12.10.2018: warum ist die Ordnung hier genau umgekehrt (von hinten nach vorne?)
-        return OrderedDict({'res_format': _('Dateiformat'),
-                            'groups': _('Kategorie')})
+        # Christian: ist sie wohl nicht, ckan sortiert das einfach irgendwie neu
+        return OrderedDict({'organization': _('Herausgeber'),
+                            'res_format': _('Dateiformat'),
+                            'license_title': _('Lizenz'),
+                           'groups': _('Kategorie')})
 
     def organization_facets(self, facets_dict, organization_type, package_type):
         return facets_dict
