@@ -59,11 +59,11 @@ class Initialization(CkanCommand):
         odsh_orgs = {
             "kiel": {
                 "title": "Kiel",
-                "image": "file:///usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/public/base/images/Kiel.png"
+                "image": "https://www.kiel.de/images/logo-kiel-sailing-city.svg"
             },
             "statistikamt-nord": {
                 "title": "Statistikamt Nord",
-                "image": "file:///usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/public/base/images/Statistikamt-Nord.png"
+                "image": "https://www.statistik-nord.de/static/img/logo-text.svg"
             }
         }
 
