@@ -30,22 +30,6 @@
         </hgroup>
       </div>
 
-      <div class='span9 span-navigation pull-right'>
-        {% snippet "snippets/language_selector.html" %}
-
-        {% block header_site_search %}
-        <div class='top-search-form'>
-          <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
-            method="get">
-            <div class="field">
-              <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Suchbegriff') }}" />
-              <button class="btn-search" type="submit">
-            </div>
-          </form>
-        </div>
-        {% endblock %}
-      </div>
-
     </div>
   </div>
 

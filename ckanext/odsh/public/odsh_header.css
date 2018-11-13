@@ -95,31 +95,6 @@
     background: white;
 }
 
-#field-sitewide-search {
-    font-size: 87%;
-    font-weight: 300;
-    padding-left: .5em;
-    width: 167px;
-    line-height: 1.1;
-    border-bottom: 2px solid #c2cbd6 !important;
-    background: #f2f2f2;
-    border: 1px solid #f2f2f2;
-    box-shadow: none !important;
-    height: 20px;
-}
-
-#field-sitewide-search:focus {
-    outline: 1px solid rgba(82,168,236,0.8);
-    border-color: rgba(82,168,236,0.8);    
-}
-
-.simple-input .field .btn-search {
-    height: 32px;
-    width: 32px;
-    background: url(/base/images/search_submit.png);
-    right: -47px;
-    top: 36%;
-}
 
 .navigation-container {
     background: #f2f2f2;

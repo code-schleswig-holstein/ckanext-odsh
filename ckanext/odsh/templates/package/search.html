@@ -11,25 +11,25 @@
 ##
 ## tools on left side, ie filter
 {% block secondary_content %}
-<div class="karte_outer">
-  <p>Karte:</p>
-  <div class="karte_inner">
-    
-  </div>
-</div>
+{% snippet "spatial/snippets/spatial_query.html",
+default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11.8322,53.1632],[11.8322,55.1066],
+[7.6574,55.1066],[7.6574,53.1632]]] }"%}
 <div class="filters">
   <div class="container-fluid filter-reset">
     <div class="filter-reset-label"><span>Filter:</span></div>
     <div class="filter-reset-box"><a href="#">zurücksetzen</a></button></div>
   </div>
 
-    <div>
-        {% for facet in c.facet_titles %}
-        {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
-        {% endfor %}
-    </div>
-    <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+  <div>
+    {% for facet in c.facet_titles %}
+    {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
+    {% endfor %}
+  </div>
+  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
 </div>
 {% endblock %}
 {% block package_search_results_api %}
+{% endblock %}
+{% block page_pagination %}
+{{ c.page.pager(q=c.q,symbol_next='>') }}
 {% endblock %}
