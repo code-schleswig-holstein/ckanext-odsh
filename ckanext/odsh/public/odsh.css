@@ -17,7 +17,7 @@ body {
     line-height: 1.2;
     font-size: 16px;
     background:none;
-    background-color: #d4004b;
+    /* background-color: #d4004b; */
 }
 html,body {
     height: 100%;
@@ -66,6 +66,11 @@ h1{
 /* same width as schleswig-holstein.de */
 .container {
     width: 1000px;
+}
+@media (max-width: 767px){
+.container {
+    width: 100%;
+}
 }
 
 .search-form, .odsh-dataset-heading {
@@ -654,17 +659,27 @@ label:after {
 }
 
 .footer{
-    background: white;
     color:white;
     border-top:60px solid #f2f2f2;
     background: #d4004b;
 }
+@media (max-width: 767px){
+.footer{
+    border-top:0px;
+    width: 100%;
+}
+body {
+    background-color: white;
+}
+}
 .footer .container{
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
     padding-bottom: 15px;
 }
 .footer-content{
-    width: 965px;
+    width: 100%;
+    max-width: 965px;
     padding-top: 160px;
     font-size: 16px;
     font-weight: 500;
@@ -822,7 +837,8 @@ label:after {
     font-weight: 300;
     padding: 0px;
     padding-left: 5px;
-    width: 465px;
+    width: 100%;
+    max-width: 465px;
     line-height: 1.1;
     border: 1px solid #003064!important;
     color:#003064;
@@ -832,6 +848,17 @@ label:after {
     border-radius: 0px;
      margin-left: 245px;
 }
+
+@media (max-width: 767px){
+.search-box-container{
+    margin-bottom: 20px;
+}
+#field-sitewide-search {
+    padding: 0px;
+    margin-left: 0px;
+}
+}
+
 
 /* FROM: https://stackoverflow.com/questions/2610497/change-an-html5-inputs-placeholder-color-with-css */
 /* do not group these rules */
@@ -983,9 +1010,13 @@ label:after {
   text-align: left;
   display: inherit;
 }
+@media (max-width: 767px){
+aside.secondary.span3{
+display: none;
+}
+}
 
 @media (min-width: 768px){
-
 .span9 div.module-content {
     padding-left: 0px;
 }
