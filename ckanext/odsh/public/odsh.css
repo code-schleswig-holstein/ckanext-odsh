@@ -61,6 +61,12 @@ h1{
     font-weight: normal ;
 }
 
+.secondary h1.heading {
+    color:black;
+    font-weight: normal ;
+    font-size: 16px;
+}
+
 /* css for searchresults */
 
 /* same width as schleswig-holstein.de */
@@ -135,7 +141,7 @@ input[type=radio], input[type=checkbox] {
 
 .nav-simple>li {
     border-bottom: 0px;
-    padding: 15px 0px 15px 8px;
+    padding: 15px 0px 15px 0px;
 }
 
 @media (min-width: 768px){
@@ -157,6 +163,10 @@ input[type=radio], input[type=checkbox] {
     width: 193px;
     max-width: 1970px;
     padding: 20px 16px 0px;
+}
+.secondary .module-narrow .module-content{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .primary {
@@ -208,7 +218,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .filters section nav .nav-title {
-    padding: 15px 0px 0px 8px;
+    padding: 15px 0px 0px 0px;
     font-size: 12px;
     color: black;
 }
@@ -829,7 +839,9 @@ body {
 
 .search-box-container{
     width:100%;
+    max-width: 465px;
     margin-bottom: 60px;
+    margin-left: 250px;
 }
 
 #field-sitewide-search {
@@ -838,7 +850,6 @@ body {
     padding: 0px;
     padding-left: 5px;
     width: 100%;
-    max-width: 465px;
     line-height: 1.1;
     border: 1px solid #003064!important;
     color:#003064;
@@ -846,14 +857,26 @@ body {
     box-shadow: none !important;
     height: 40px;
     border-radius: 0px;
-     margin-left: 245px;
+}
+
+.simple-input .field .btn-search {
+    height: 32px;
+    width: 32px;
+    background: url(/base/images/search_submit.png);
+    right: 5px;
+    top: -25px;
+    position: relative;
+    float: right;
+}
+
+.search-box-container .field{
+    width: 100%;
+    max-width: 465px;
 }
 
 @media (max-width: 767px){
 .search-box-container{
     margin-bottom: 20px;
-}
-#field-sitewide-search {
     padding: 0px;
     margin-left: 0px;
 }
@@ -893,14 +916,6 @@ body {
     border-color: rgba(82,168,236,0.8);    
 }
 
-.simple-input .field .btn-search {
-    height: 32px;
-    width: 32px;
-    background: url(/base/images/search_submit.png);
-    right: 287px;
-    top: 36%;
-}
-
 .column1{
   width: 225px;
 }
@@ -912,6 +927,8 @@ body {
 .wrapper {
   margin-bottom: 0px;
 }
+.primary > :last-child.pagination,
+.module-content .pagination,
 .pagination{
     margin-top:65px;
     margin-bottom:50px;
