@@ -57,9 +57,10 @@ class Initialization(CkanCommand):
                 present_orgs_keys.append(org_key)
 
         odsh_orgs = {
-            "kiel": {
-                "title": "Kiel",
-                "image": "https://www.kiel.de/images/logo-kiel-sailing-city.svg"
+            "landeshauptstadt-kiel": {
+                "title": "Landeshauptstadt Kiel",
+                "image": "https://www.kiel.de/images/logo-kiel-sailing-city.svg",
+                "description": "Kommunalverwaltung"
             },
             "statistikamt-nord": {
                 "title": "Statistikamt Nord",
@@ -78,7 +79,8 @@ class Initialization(CkanCommand):
                     'name': org_key,
                     'id': org_key,
                     'title': title,
-                    'image_url': odsh_orgs[org_key]['image']
+                    'image_url': odsh_orgs[org_key].get('image'),
+                    'description': odsh_orgs[org_key].get('description')
                 }
 
                 self._create_and_purge_organization(
@@ -97,13 +99,13 @@ class Initialization(CkanCommand):
             present_harvesters_list.append(harvester["title"])
 
         odsh_harvesters = {
-            "Kiel": {
-                'name': "kiel",
+            "Landeshauptstadt Kiel": {
+                'name': "landeshauptstadt-kiel",
                 'url': "https://www.kiel.de/de/kiel_zukunft/statistik_kieler_zahlen/open_data/Kiel_open_data.json",
                 'source_type': "kiel",
-                'title': "Kiel",
+                'title': "Landeshauptstadt Kiel",
                 'active': True,
-                'owner_org': "kiel",
+                'owner_org': "landeshauptstadt-kiel",
                 'frequency': "MANUAL"
             },
             "Statistikamt Nord": {
