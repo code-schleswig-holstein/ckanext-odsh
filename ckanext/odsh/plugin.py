@@ -108,10 +108,16 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                            'groups': _('Kategorie')})
 
     def organization_facets(self, facets_dict, organization_type, package_type):
-        return facets_dict
+        return OrderedDict({'organization': _('Herausgeber'),
+                            'res_format': _('Dateiformat'),
+                            'license_title': _('Lizenz'),
+                           'groups': _('Kategorie')})
 
     def group_facets(self, facets_dict, group_type, package_type):
-        return facets_dict
+        return OrderedDict({'organization': _('Herausgeber'),
+                            'res_format': _('Dateiformat'),
+                            'license_title': _('Lizenz'),
+                           'groups': _('Kategorie')})
 
     def _fields(self):
         # return ['title','notes','tag_string']
