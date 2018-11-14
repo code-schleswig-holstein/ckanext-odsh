@@ -106,7 +106,8 @@ class Initialization(CkanCommand):
                 'title': "Landeshauptstadt Kiel",
                 'active': True,
                 'owner_org': "landeshauptstadt-kiel",
-                'frequency': "MANUAL"
+                'frequency': "MANUAL",
+                'notes': "Kommunalverwaltung"
             },
             "Statistikamt Nord": {
                 'name': "statistikamt-nord",
