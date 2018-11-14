@@ -73,6 +73,21 @@ h1{
     padding-bottom: 5px;
 }
 
+#organization-datasets-search-form,
+.with-bottom-line
+{
+    border-bottom: 2px solid #dbdbdb;
+}
+
+#organization-datasets-search-form h2 {
+color:black;
+font-size:18px;
+}
+
+.organizaion-full-description{
+    padding-bottom: 50px;
+}
+
 .organization-list-title .search-form {
     padding-bottom: 0px;
     margin-bottom: 0px;
@@ -140,7 +155,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .primary {
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 .primary.organization {
@@ -895,7 +910,15 @@ label:after {
 .pagination ul > li > a:hover,
 .pagination ul > li > a:focus,
 .pagination ul > .active > a,
-.pagination ul > .active > span {
+.pagination ul > .active > span,
+.pagination ul > li:first-child.active > a,
+.pagination ul > li:first-child.active > span,
+.pagination ul > li:first-child.active > a:hover,
+.pagination ul > li:first-child.active > span:hover,
+.pagination ul > li:last-child.active > a,
+.pagination ul > li:last-child.active > span,
+.pagination ul > li:last-child.active > a:hover,
+.pagination ul > li:last-child.active > span:hover {
   background-color: #003064;
   color: white;
 }
@@ -959,4 +982,11 @@ label:after {
   width: 14px;
   text-align: left;
   display: inherit;
+}
+
+@media (min-width: 768px){
+
+.span9 div.module-content {
+    padding-left: 0px;
+}
 }
