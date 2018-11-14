@@ -23,3 +23,28 @@ class OdshUserController(UserController):
         if not authz.is_sysadmin(c.user):
             abort(404)
         return super(OdshUserController,self).dashboard(id,offset)
+
+    def dashboard_datasets(self):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).dashboard_datasets(id)
+
+    def read(self, id=None):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).read(id)
+
+    def follow(self, id):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).follow(id)
+
+    def unfollow(self, id):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).unfollow(id)
+
+    def activity(self, id, offset=0):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).activity(id, offset)

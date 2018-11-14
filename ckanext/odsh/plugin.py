@@ -92,11 +92,44 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def before_map(self, map):
         map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+
+        # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
+            m.connect('/user/edit', action='edit')
+            m.connect('user_generate_apikey', '/user/generate_key/{id}', action='generate_apikey')
+            m.connect('/user/activity/{id}/{offset}', action='activity')
+            m.connect('user_activity_stream', '/user/activity/{id}',
+                    action='activity', ckan_icon='clock-o')
+            m.connect('user_dashboard', '/dashboard', action='dashboard',
+                    ckan_icon='list')
+            m.connect('user_dashboard_datasets', '/dashboard/datasets',
+                    action='dashboard_datasets', ckan_icon='sitemap')
+            m.connect('user_dashboard_groups', '/dashboard/groups',
+                    action='dashboard_groups', ckan_icon='users')
+            m.connect('user_dashboard_organizations', '/dashboard/organizations',
+                    action='dashboard_organizations', ckan_icon='building-o')
+            m.connect('/dashboard/{offset}', action='dashboard')
+            m.connect('user_follow', '/user/follow/{id}', action='follow')
+            m.connect('/user/unfollow/{id}', action='unfollow')
+            m.connect('user_followers', '/user/followers/{id:.*}',
+                    action='followers', ckan_icon='users')
+            m.connect('user_edit', '/user/edit/{id:.*}', action='edit',
+                    ckan_icon='cog')
+            m.connect('user_delete', '/user/delete/{id}', action='delete')
+            m.connect('/user/reset/{id:.*}', action='perform_reset')
+            m.connect('register', '/user/register', action='register')
+            m.connect('login', '/user/login', action='login')
+            m.connect('/user/_logout', action='logout')
+            m.connect('/user/logged_in', action='logged_in')
+            m.connect('/user/logged_out', action='logged_out')
+            m.connect('/user/logged_out_redirect', action='logged_out_page')
+            m.connect('/user/reset', action='request_reset')
             m.connect('/user/me', action='me')
-            m.connect('/user/logged_in', action='me')
-            m.connect('user_dashboard', '/dashboard', action='dashboard', ckan_icon='list')
-            m.connect('user_dashboard/{url:.*}', '/dashboard/{url:.*}', action='dashboard', ckan_icon='list')
+            m.connect('/user/set_lang/{lang}', action='set_lang')
+            m.connect('user_datasets', '/user/{id:.*}', action='read',
+                    ckan_icon='sitemap')
+            m.connect('user_index', '/user', action='index')
+        
         return map
 
     def dataset_facets(self, facets_dict, package_type):
