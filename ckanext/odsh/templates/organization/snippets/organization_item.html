@@ -15,7 +15,7 @@ Example:
 <a class="organization-item" href="{{ url }}" title="{{ _('View {organization_name}').format(organization_name=organization.display_name) }}">
     <div class="row organization-item">
         <div class="span11 organization-item-text">
-            <p>{{ organization.display_name }}</p>
+            <h3>{{ organization.display_name }}</h3>
             {% if organization.description %}
             <p>{{ h.markdown_extract(organization.description, extract_length=200) }}</p>
             {% endif %}
