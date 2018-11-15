@@ -364,6 +364,7 @@ a:hover.organization-item ,a:focus.organization-item
 .organization-item-text{
     padding-left: 10px;
     padding-right: 10px;
+    height: 150px;
 }
 
 .dataset-content {
@@ -422,7 +423,7 @@ ul.dataset-resources {
 .breadcrumb>li a {
     font-weight: normal !important;
     font-size: 15px;
-    color: #003064 !important;
+    color: black;
 }
 .control-required {
     color: black;
@@ -725,25 +726,30 @@ body {
 }
 
 .toolbar .breadcrumb li:after {
-    content: "\f054";
-    font-family: FontAwesome;
-    padding: 0 0 0 5px;
-    color: darkgray;
-    font-size: 12pt;
-    transform: scale(1, 1.5);
+    background-image: url(/base/images/arrow-right.png);
+    background-repeat: no-repeat;
+    background-size: 8px 12px;
+    background-position: 4px 1px;
     display: inline-block;
- -webkit-transform: scale(0.6, 0.9); /* Safari and Chrome */
-  -moz-transform: scale(1, 1.5); /* Firefox */
-  -ms-transform: scale(1, 1.5); /* IE 9+ */
-  -o-transform: scale(1, 1.5); /* Opera */
+    width: 8px;
+    height: 12px;
+    content: "";
+    padding: 0 0 0 5px;
+}
+.toolbar .breadcrumb li:last-of-type:after,
+.toolbar .breadcrumb li.active:after {
+    background-image: none;
+    width: 0px; 
+    height: 0px;
 }
 
 .create-dataset-form{
     width: 50%;}
 
 .organization-image{
-    height:150px;
+    height:100px;
     max-width: unset;
+    padding-top: 25px;
 }
 
 .primary.span12 {
@@ -891,27 +897,33 @@ body {
 
 /* FROM: https://stackoverflow.com/questions/2610497/change-an-html5-inputs-placeholder-color-with-css */
 /* do not group these rules */
+.login-form .controls ::-webkit-input-placeholder,
 #field-sitewide-search::-webkit-input-placeholder {
     color: #003064!important;
 }
-#field-sitewide-search::-moz-placeholder {
+.login-form .controls :-moz-placeholder,
+#field-sitewide-search:-moz-placeholder {
     /* FF 4-18 */
     color: #003064!important;
     opacity: 1 !important;
 }
+.login-form .controls ::-moz-placeholder,
 #field-sitewide-search::-moz-placeholder {
     /* FF 19+ */
     color: #003064!important;
     opacity: 1 !important;
 }
-#field-sitewide-search::-ms-input-placeholder {
+.login-form .controls :-ms-input-placeholder,
+#field-sitewide-search:-ms-input-placeholder {
     /* IE 10+ */
     color: #003064!important;
 }
+.login-form .controls ::-ms-input-placeholder,
 #field-sitewide-search::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #003064!important;
 }
+.login-form .controls ::placeholder,
 #field-sitewide-search::placeholder {
     /* modern browser */
     color: #003064!important;
