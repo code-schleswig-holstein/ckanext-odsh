@@ -842,6 +842,9 @@ body {
 .resource-icons {
     font-size: 28px;
 }
+.resource-icons img {
+    width: 28px;
+}
 
 .resource-icons a {
     color: #003064;
@@ -880,9 +883,10 @@ body {
 }
 
 .simple-input .field .btn-search {
-    height: 32px;
-    width: 32px;
-    background: url(/base/images/search_submit.png);
+    height: 25px;
+    width: 25px;
+    background: url(/base/images/Icon-Suche.png);
+    background-size: 25px 25px;
     right: 5px;
     top: -25px;
     position: relative;
