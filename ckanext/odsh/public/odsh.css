@@ -363,8 +363,9 @@ a:hover.organization-item ,a:focus.organization-item
 
 .organization-item-text{
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 20px;
     height: 150px;
+    width: 705px;
 }
 
 .dataset-content {
@@ -748,9 +749,15 @@ body {
     width: 50%;}
 
 .organization-image{
-    height:100px;
-    max-width: unset;
-    padding-top: 25px;
+    width: 225px;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+.is-table-row .organization-image-column {
+    width: 225px;
+    vertical-align: middle;
+    height: 100%;
 }
 
 .primary.span12 {
