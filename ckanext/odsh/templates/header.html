@@ -47,6 +47,17 @@
             ) }}
             {% endblock %}
             {% set clazz='active' if c.action=='login' else ''%}
+            {% if h.check_access('package_create') %}
+            <li class='{{clazz}}'>
+              {% link_for _('Upload'), controller='package', action='new', group=c.group_dict.id, class_='text' %}
+            </li>
+            {% else %}
+            <li class="disabled">
+              <a href="#">
+                <span class="text">{{_('Upload')}}</span>
+              </a>
+            </li>
+            {% endif %}
             {% if c.userobj %}
             <li class='{{clazz}}'>
               <a href="{{ h.url_for('/user/_logout') }}" title="logout">
