@@ -26,11 +26,11 @@
         <div class="resource-icons">
           {% block resource_item_explore_links %}
           <a href="{{ res.url or url }}">
-            <img src="/base/images/Icon-Download.png" />
+            <div class="icon icon-download"></div>
           </a>
           {% if can_edit %}
           <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
-            <img src="/base/images/Icon-Bearbeiten.png" />
+            <div class="icon icon-edit"></div>
           </a>
           {% endif %}
           {% endblock %}

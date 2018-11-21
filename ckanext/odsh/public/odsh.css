@@ -851,6 +851,25 @@ body {
 .resource-icons img {
     width: 28px;
 }
+.icon{
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    width: 28px;
+    height: 28px;
+}
+.icon-edit{
+    background-image: url(/base/images/Icon-Bearbeiten.png);
+}
+.icon-download{
+    background-image: url(/base/images/Icon-Download.png);
+}
+.icon-edit:hover{
+    background-image: url(/base/images/Icon-Bearbeiten_hover.png);
+}
+.icon-download:hover{
+    background-image: url(/base/images/Icon-Download_hover.png);
+}
+
 
 .resource-icons a {
     color: #003064;
