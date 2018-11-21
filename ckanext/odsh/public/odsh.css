@@ -754,10 +754,11 @@ body {
     width: 50%;}
 
 .organization-image{
-    width: 225px;
+    max-width: 225px;
+    max-height: 78px;
     margin: auto;
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
+    text-align: center;
 }
 .is-table-row .organization-image-column {
     width: 225px;
