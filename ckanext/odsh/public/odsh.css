@@ -187,6 +187,11 @@ input[type=radio], input[type=checkbox] {
     width: 725px;
 }
 
+.primary.logout {
+    width: 725px;
+    padding-left: 0px;
+}
+
 .wrapper {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
