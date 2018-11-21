@@ -699,10 +699,14 @@ body {
 .footer-content{
     width: 100%;
     max-width: 965px;
-    padding-top: 160px;
     font-size: 16px;
     font-weight: 500;
     display: block;
+    background-image: url(/base/images/footer-wappen.png);
+    background-repeat: no-repeat;
+    background-size: 658px 336px; 
+    background-position: 80% 40%;
+    height: 250px;
 }
 .footer-right{
     float: right;
@@ -718,6 +722,7 @@ body {
 }
 
 .footer-first-row{
+    padding-top: 185px;
     height: 20px;
 }
 
