@@ -835,8 +835,11 @@ body {
     color: black;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 395px;
+    /* width: 395px; */
     white-space: nowrap;
+}
+.resource-title-container{
+    display: flex;
 }
 
 .resource-description-container {
