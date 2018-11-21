@@ -1113,3 +1113,14 @@ display: none;
 .masthead .navigation .nav-pills li.disabled:hover{
     background-color: rgb(242, 242, 242)!important;
 }
+
+.field-organization .select2-container .select2-choice {
+    background-color: #F6F7F9;
+    background-image: none;
+    background-image: none;
+    border-radius: 0px;
+    font-size: 14px;
+    color: #657592;
+    font-style: italic;
+    border-color: #77879f;
+}
