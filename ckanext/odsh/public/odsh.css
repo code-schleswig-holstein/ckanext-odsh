@@ -833,6 +833,10 @@ body {
     float: left;
     margin-left: 5px;
     color: black;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 395px;
+    white-space: nowrap;
 }
 
 .resource-description-container {
@@ -848,12 +852,16 @@ body {
     cursor: pointer;
 }
 
-.resource-details-left {
+.is-table-row .resource-details-left {
     padding-right: 20px;
+    width: 455px;
+    float:left;
 }
 
 .resource-icons {
     font-size: 28px;
+    width:210px;
+    float: right;
 }
 .resource-icons img {
     width: 28px;
