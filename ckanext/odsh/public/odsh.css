@@ -426,7 +426,7 @@ ul.dataset-resources {
     color: black;
 }
 
-.breadcrumb>li a {
+.toolbar .breadcrumb>li a {
     font-weight: normal !important;
     font-size: 15px;
     color: black;
