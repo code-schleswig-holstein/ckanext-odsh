@@ -761,7 +761,7 @@ body {
 .organization-image{
     max-width: 225px;
     max-height: 78px;
-    margin: auto;
+    margin-left: auto;
     display: block;
     text-align: center;
 }
