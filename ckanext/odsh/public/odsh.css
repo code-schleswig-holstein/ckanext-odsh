@@ -1137,3 +1137,7 @@ display: none;
     font-style: italic;
     border-color: #77879f;
 }
+
+.logo{
+    margin-left: -7px;
+}
