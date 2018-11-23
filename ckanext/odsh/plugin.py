@@ -4,6 +4,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.lib.plugins import DefaultDatasetForm
 from ckan.common import OrderedDict
+from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
 from routes.mapper import SubMapper
@@ -59,6 +60,13 @@ def odsh_group_id_selected(selected, group_id):
             return True
 
     return False
+
+
+class OdshIcapPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IUploader, inherit=True)
+
+    def get_resource_uploader(self, data_dict):
+        return ODSHResourceUpload(data_dict)
 
 
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
