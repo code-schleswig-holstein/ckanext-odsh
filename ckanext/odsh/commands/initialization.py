@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 """
 Paster command for adding ODSH organizations and harvesters to the CKAN instance.
 """
@@ -63,14 +63,14 @@ class Initialization(CkanCommand):
                 "description": "Kommunalverwaltung"
             },
             "statistikamt-nord": {
-                "title": "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
-                "image": "https://www.statistik-nord.de/static/img/logo-text.svg"
-                "description": "Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
+                "title": u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
+                "image": "https://www.statistik-nord.de/static/img/logo-text.svg",
+                "description": u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
             }
         }
 
         for org_key in odsh_orgs:
-            title = odsh_orgs[org_key]['title']
+            title = odsh_orgs[org_key]['title'].encode('utf-8')
             if org_key not in present_orgs_keys:
                 add_message = 'Adding organization {org_title}.'.format(
                     org_title=title
@@ -81,7 +81,7 @@ class Initialization(CkanCommand):
                     'id': org_key,
                     'title': title,
                     'image_url': odsh_orgs[org_key].get('image'),
-                    'description': odsh_orgs[org_key].get('description')
+                    'description': odsh_orgs[org_key].get('description').encode('utf8')
                 }
 
                 self._create_and_purge_organization(
@@ -114,11 +114,11 @@ class Initialization(CkanCommand):
                 'name': "statistikamt-nord",
                 'url': "http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
                 'source_type': "statistikamt-nord",
-                'title': "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
+                'title': u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
                 'active': True,
                 'owner_org': "statistikamt-nord",
-                'frequency': "MANUAL"
-                'notes': "Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
+                'frequency': "MANUAL",
+                'notes': u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
             }
         }
 
