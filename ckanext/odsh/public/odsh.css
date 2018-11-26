@@ -890,6 +890,9 @@ body {
 .icon-download:hover{
     background-image: url(/base/images/Icon-Download_hover.png);
 }
+.icon-print{
+    width:25px;
+}
 
 
 .resource-icons a {
