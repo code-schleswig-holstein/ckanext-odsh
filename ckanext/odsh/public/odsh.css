@@ -548,7 +548,7 @@ label:after {
 .controls textarea::placeholder {
     color:  #657592!important
 }
-
+.slug-preview .btn.btn-mini,
 .btn.btn-primary{
     background-image: none;
     background-color: #0089ca;
@@ -562,8 +562,13 @@ label:after {
     color:white;
 }
 
+.slug-preview .btn.btn-mini:hover,
+.js .image-upload .btn.hover,
+.image-upload a.btn:hover,
+.image-upload .btn:hover,
 .btn.btn-primary:hover{
-    background-color: #333;
+    background-color: rgb(212,0,75);
+    color:white;
 }
 
 .btn {
@@ -584,6 +589,10 @@ label:after {
     font-weight: normal;
     font-size: 16px;
 }
+.btn:hover {
+    background-color:#0089ca;
+    color: white;
+}
 .btn.btn-edit-categories
 {
     padding: 0px 4px;
@@ -593,7 +602,7 @@ label:after {
 .image-upload .btn {
     color:white;
     background-color: #0089ca;
-    background-color: #0089ca;
+    border:none;
 }
 
 .btn-forget-password{
@@ -645,25 +654,25 @@ label:after {
 /* .stages li.last.uncomplete::after, */
 .stages li.uncomplete .highlight{
     color: #003064;
-    background: #6683a2;
+    background: rgb(204,214,224);
 }
 
 .stages li.last.uncomplete::after {
-    border-bottom-color: #6683a2;
-    border-top-color: #6683a2;
+    border-bottom-color: rgb(204,214,224);
+    border-top-color: rgb(204,214,224);
 }
 
 .stages li.complete .highlight{
     color: #003064;
-    background: #6683a2;
+    background: rgb(204,214,224);
 }
 .stages li.active:after{
     border-top-color: #003064;
     border-bottom-color: #003064;
 }
 .stages li.complete:after{
-    border-top-color: #6683a2;
-    border-bottom-color: #6683a2;
+    border-top-color: rgb(204,214,224);
+    border-bottom-color: rgb(204,214,224);
 }
 
 .stages :focus {
