@@ -263,7 +263,7 @@ input[type=radio], input[type=checkbox] {
 /* input[type=checkbox] + label.checkbox,  */
 input[type=checkbox] + label.mylabel {
     background: #fff;
-    border: 1px solid white;
+    border: 1px solid black;
     height: 8px;
     width: 8px;
     display: inline-block;
@@ -382,6 +382,9 @@ a:hover.organization-item ,a:focus.organization-item
     margin-right: 30px;
     font-weight: normal;
     font-size: 18px;
+}
+.dataset-heading a{
+    text-decoration: underline;
 }
 
 .dataset-empty {
@@ -1140,4 +1143,9 @@ display: none;
 
 .logo{
     margin-left: -7px;
+}
+.filter-list .filtered.pill,
+.filter-list .filtered.pill .fa{
+    background-color: #444444;
+    color:white;
 }
