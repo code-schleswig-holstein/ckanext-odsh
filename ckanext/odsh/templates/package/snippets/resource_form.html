@@ -66,35 +66,41 @@
     {% endif %}
     {% endblock %}
 
-    <div class="form-actions resource-buttons">
-        {% block delete_button %}
-        {% if data.id %}
-        {% if h.check_access('resource_delete', {'id': data.id}) %}
-        <a class="btn btn-danger pull-left" href="{% url_for controller='package', action='resource_delete', resource_id=data.id, id=pkg_name %}"
-            data-module="confirm-action" data-module-content="{{ _('Are you sure you want to delete this resource?') }}">{%
-            block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
-        {% endif %}
-        {% endif %}
-        {% endblock %}
-        {% if stage %}
-        {% block previous_button %}
-        <button class="btn" name="save" value="go-dataset" type="submit">{{ _('back') }}</button>
-        {% endblock %}
-        {% block again_button %}
-        <button class="btn float-right" name="save" value="again" type="submit">{{ _('another dataset') }}</button>
-        {% endblock %}
-        {% endif %}
-    </div>
-    <div class="form-actions">
-        {% if stage %}
-        {% block save_button %}
-        <button class="btn btn-primary" name="save" value="go-metadata" type="submit">{% block save_button_text %}{{
-            _('Upload dataset') }}{% endblock %}</button>
-        {% endblock %}
-        {% else %}
-        {% block add_button %}
-        <button class="btn btn-primary" name="save" value="go-dataset-complete" type="submit">{{ _('Add') }}</button>
-        {% endblock %}
-        {% endif %}
+    <div class='row-fluid'>
+        <div class="span6">
+
+            <div class="form-actions resource-buttons">
+                {% block delete_button %}
+                {% if data.id %}
+                {% if h.check_access('resource_delete', {'id': data.id}) %}
+                <a class="btn btn-danger pull-left" href="{% url_for controller='package', action='resource_delete', resource_id=data.id, id=pkg_name %}"
+                    data-module="confirm-action" data-module-content="{{ _('Are you sure you want to delete this resource?') }}">{%
+                    block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+                {% endif %}
+                {% endif %}
+                {% endblock %}
+                {% if stage %}
+                {% block previous_button %}
+                <button class="btn" name="save" value="go-dataset" type="submit">{{ _('back') }}</button>
+                {% endblock %}
+                {% block again_button %}
+                <button class="btn float-right" name="save" value="again" type="submit">{{ _('another dataset') }}</button>
+                {% endblock %}
+                {% endif %}
+            </div>
+            <div class="form-actions">
+                {% if stage %}
+                {% block save_button %}
+                <button class="btn btn-primary" name="save" value="go-metadata" type="submit">{% block save_button_text
+                    %}{{
+                    _('Upload dataset') }}{% endblock %}</button>
+                {% endblock %}
+                {% else %}
+                {% block add_button %}
+                <button class="btn btn-primary" name="save" value="go-dataset-complete" type="submit">{{ _('Add') }}</button>
+                {% endblock %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 </form>

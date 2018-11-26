@@ -19,6 +19,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+#: ckan/public/base/javascript/modules/autocomplete.js:195
+msgid "Start typing…"
+msgstr "Bitte Schlagwort eingeben"
+
+
 msgid "Search dataset"
 msgstr "Nach Datensatz suchen"
 
