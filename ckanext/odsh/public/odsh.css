@@ -1149,3 +1149,9 @@ display: none;
     background-color: #444444;
     color:white;
 }
+.site-title{
+    color:black;
+    /* text-align:center; */
+    margin-top: 40px;
+    margin-left: 400px;
+}
