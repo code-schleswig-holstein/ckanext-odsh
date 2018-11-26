@@ -79,7 +79,7 @@ msgstr "Beschreibung eingeben"
 msgid "Enter tags"
 msgstr "Stichwörter eingeben"
 
-msgid "Enter spatial extension"
+msgid "Enter spatial uri"
 msgstr "Orte eingeben"
 
 msgid "Enter data"
@@ -151,7 +151,7 @@ msgstr "Letzte Änderung"
 msgid "Files"
 msgstr "Dateien"
 
-msgid "Spatial extension"
+msgid "Spatial uri"
 msgstr "Raumbezug"
 
 msgid "Beginn des Zeitraumes: Fehlender Wert"
@@ -181,7 +181,7 @@ msgstr "Bitte geben Sie einen Titel ein"
 msgid "odsh_publish_date_error_label"
 msgstr "Bitte wählen Sie ein Veröffentlichungsdatum"
 
-msgid "odsh_spatial_extension_error_label"
+msgid "odsh_spatial_uri_error_label"
 msgstr "Bitte geben sie einen räumlichen Bezug an"
 
 msgid "Tag string: Fehlender Wert"
