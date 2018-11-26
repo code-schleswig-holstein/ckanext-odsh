@@ -22,6 +22,9 @@ msgstr ""
 msgid "Search dataset"
 msgstr "Nach Datensatz suchen"
 
+msgid "Search organizations"
+msgstr "Nach Herausgebern suchen"
+
 msgid "Edit Categories"
 msgstr "Kategorien bearbeiten"
 
