@@ -8,6 +8,9 @@ from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
 from routes.mapper import SubMapper
+from pylons import config
+import urllib2
+import csv
 
 import logging
 
@@ -52,6 +55,7 @@ def odsh_convert_groups_string(value,context):
 def odsh_now():
     return helpers.render_datetime(datetime.datetime.now(),"%Y-%m-%d")
 
+
 def odsh_group_id_selected(selected, group_id):
     if type(selected) is not list:
         selected=[selected]
@@ -60,6 +64,38 @@ def odsh_group_id_selected(selected, group_id):
             return True
 
     return False
+
+
+def known_spatial_uri(key, data, errors, context):
+    mapping_file = config.get('ckanext.odsh.spatial.mapping')
+    try:
+        mapping_file = urllib2.urlopen(mapping_file)
+    except Exception:
+        print('Could not load spatial mapping file!')
+
+    not_found = True
+    spatial_text = str()
+    spatial = str()
+    cr = csv.reader(mapping_file, delimiter="\t")
+    for row in cr:
+        if row[0] == data[key]:
+            not_found = False
+            spatial_text = row[1]
+            spatial = row[2]
+            break
+    if not_found:
+        raise toolkit.Invalid("The specified URI is not known.")
+
+    # Get the current extras index
+    current_indexes = [k[1] for k in data.keys()
+                       if len(k) > 1 and k[0] == 'extras']
+
+    new_index = max(current_indexes) + 1 if current_indexes else 0
+
+    data[('extras', new_index, 'key')] = 'spatial_text'
+    data[('extras', new_index, 'value')] = spatial_text
+    data[('extras', new_index+1, 'key')] = 'spatial'
+    data[('extras', new_index+1, 'value')] = spatial
 
 
 class OdshIcapPlugin(plugins.SingletonPlugin):
@@ -166,23 +202,30 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def _extraFields(self):
         ##return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_uri']
-        return ['publish_date','temporal_start','temporal_end','spatial_uri']
+        return ['publish_date', 'temporal_start', 'temporal_end', 'spatial_uri']
 
     def _update_schema(self,schema):
         for field in self._extraFields():
-            schema.update({ field: [
-                toolkit.get_converter('not_empty'),
-                toolkit.get_validator('ignore_missing'),
-                toolkit.get_converter('convert_to_extras')] })
+            if field == 'spatial_uri':
+                schema.update({field: [
+                    toolkit.get_converter('not_empty'),
+                    toolkit.get_validator('ignore_missing'),
+                    toolkit.get_validator('known_spatial_uri'),
+                    toolkit.get_converter('convert_to_extras')]})
+            else:
+                schema.update({field: [
+                    toolkit.get_converter('not_empty'),
+                    toolkit.get_validator('ignore_missing'),
+                    toolkit.get_converter('convert_to_extras')]})
         for field in self._fields():
-            schema.update({ field: [toolkit.get_converter('not_empty')] })
+            schema.update({field: [toolkit.get_converter('not_empty')]})
         # schema.update({ 'groups': [
         #         # toolkit.get_converter('not_empty'),
         #         toolkit.get_converter('odsh_convert_groups_string')] })
         schema['resources'].update({
-                'url' : [ toolkit.get_converter('not_empty') ],
-                'description' : [ toolkit.get_converter('not_empty') ],
-                'name' : [ toolkit.get_converter('not_empty') ]
+                'url': [toolkit.get_converter('not_empty')],
+                'description': [toolkit.get_converter('not_empty')],
+                'name': [toolkit.get_converter('not_empty')]
                 })
 
     def create_package_schema(self):
@@ -214,5 +257,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return []
 
     def get_validators(self): 
-        return { 'odsh_convert_groups_string': odsh_convert_groups_string}
+        return { 'odsh_convert_groups_string': odsh_convert_groups_string,
+                 'known_spatial_uri': known_spatial_uri}
     
