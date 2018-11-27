@@ -94,7 +94,7 @@ msgid "Enter data"
 msgstr "Informationen eingeben"
 
 msgid "Add dataset"
-msgstr "Datensatz hinzufügen"
+msgstr "Distribution hinzufügen"
 
 msgid "next"
 msgstr "weiter"
@@ -115,10 +115,10 @@ msgid "Data-Upload"
 msgstr "Daten-Upload"
 
 msgid "Enter name of the dataset"
-msgstr "Namen des Datensatzes eingeben"
+msgstr "Namen der Distribution eingeben"
 
 msgid "Enter description of the dataset"
-msgstr "Beschreibung des Datensatzes eingeben"
+msgstr "Beschreibung der Distribution eingeben"
 
 msgid "back"
 msgstr "zurück"
@@ -130,7 +130,7 @@ msgid "Upload dataset"
 msgstr "Hochladen"
 
 msgid "another dataset"
-msgstr "weiterer Datensatz"
+msgstr "weiterere Distribution"
 
 msgid "timerange"
 msgstr "Zeitraum"
