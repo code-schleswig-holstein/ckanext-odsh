@@ -427,6 +427,9 @@ ul.dataset-resources {
     font-size: 12px;
     margin-bottom: 1px;
     color: black;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .toolbar .breadcrumb>li a {
