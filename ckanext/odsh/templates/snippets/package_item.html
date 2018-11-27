@@ -75,8 +75,8 @@ Example:
   </div>
   <div class="dataset-meta">
     {% block resources %}
-    {% if package.resources and not hide_resources %}
     {% block resources_outer %}
+    {% if package.resources and not hide_resources %}
     <ul class="dataset-resources">
       {% block resources_inner %}
       {% for resource in h.dict_list_reduce(package.resources, 'format') %}
@@ -88,6 +88,7 @@ Example:
       {% endfor %}
       {% endblock %}
     </ul>
+    {% endif %}
     <div class="dataset-stars">
       {% snippet "qa/stars.html", stars=stars %}
     </div>
@@ -100,7 +101,6 @@ Example:
       <p>{{ _('last change') }}: {{last_change }} </p>
     </div>
     {% endblock %}
-    {% endif %}
     {% endblock %}
   </div>
   {% block package_openness %}
