@@ -167,11 +167,17 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def _extraFields(self):
         ##return ['publish_date','access_constraints','temporal_start','temporal_end','spatial_extension']
         return ['publish_date','temporal_start','temporal_end','spatial_extension']
+    def _extraFieldsOptional(self):
+        return ['access_constraints']
 
     def _update_schema(self,schema):
         for field in self._extraFields():
             schema.update({ field: [
                 toolkit.get_converter('not_empty'),
+                toolkit.get_validator('ignore_missing'),
+                toolkit.get_converter('convert_to_extras')] })
+        for field in self._extraFieldsOptional():
+            schema.update({ field: [
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_extras')] })
         for field in self._fields():
@@ -197,7 +203,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def show_package_schema(self):
         schema = super(OdshPlugin, self).show_package_schema()
-        for field in self._extraFields():
+        for field in self._extraFields()+self._extraFieldsOptional():
             schema.update({
                 field : [toolkit.get_converter('convert_from_extras')]
             })
