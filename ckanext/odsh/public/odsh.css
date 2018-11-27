@@ -853,6 +853,9 @@ body {
 .resource-title-container{
     display: flex;
 }
+.resource-title-container .dataformat-label:hover{
+    background-color: #003064 !important;
+}
 
 .resource-description-container {
     margin-top: 8px;
