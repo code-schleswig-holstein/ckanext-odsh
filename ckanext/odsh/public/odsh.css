@@ -902,6 +902,11 @@ body {
 .icon-print{
     width:25px;
 }
+.breadcrumb .home .icon-home
+{
+    width:15px;
+    vertical-align: 0px;
+}
 
 
 .resource-icons a {
