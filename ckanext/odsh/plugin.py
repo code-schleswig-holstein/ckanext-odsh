@@ -71,7 +71,7 @@ def known_spatial_uri(key, data, errors, context):
     try:
         mapping_file = urllib2.urlopen(mapping_file)
     except Exception:
-        print('Could not load spatial mapping file!')
+        raise toolkit.Invalid("Could not load spatial mapping file!")
 
     not_found = True
     spatial_text = str()
@@ -81,7 +81,9 @@ def known_spatial_uri(key, data, errors, context):
         if row[0] == data[key]:
             not_found = False
             spatial_text = row[1]
-            spatial = row[2]
+            loaded = json.loads(row[2])
+            spatial = json.dumps(loaded['geometry'])
+            print spatial
             break
     if not_found:
         raise toolkit.Invalid("The specified URI is not known.")
@@ -210,7 +212,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 schema.update({field: [
                     toolkit.get_converter('not_empty'),
                     toolkit.get_validator('ignore_missing'),
-                    toolkit.get_validator('known_spatial_uri'),
+                    toolkit.get_converter('known_spatial_uri'),
                     toolkit.get_converter('convert_to_extras')]})
             else:
                 schema.update({field: [
