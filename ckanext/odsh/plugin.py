@@ -180,9 +180,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         #         # toolkit.get_converter('not_empty'),
         #         toolkit.get_converter('odsh_convert_groups_string')] })
         schema['resources'].update({
-                'url' : [ toolkit.get_converter('not_empty') ],
-                'description' : [ toolkit.get_converter('not_empty') ],
-                'name' : [ toolkit.get_converter('not_empty') ]
+                'url' : [ toolkit.get_converter('not_empty') ]
+                # 'description' : [ toolkit.get_converter('not_empty') ],
+                # 'name' : [ toolkit.get_converter('not_empty') ]
                 })
 
     def create_package_schema(self):
