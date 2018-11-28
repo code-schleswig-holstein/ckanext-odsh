@@ -243,3 +243,21 @@ msgstr "zurücksetzen"
 
 msgid "There is no description for this organization"
 msgstr "Es gibt keine Beschreibung für diesen Herausgeber"
+
+msgid "in east"
+msgstr "im Osten"
+
+msgid "in west"
+msgstr "im Westen"
+
+msgid "in north"
+msgstr "im Norden"
+
+msgid "in south"
+msgstr "im Süden"
+
+msgid "borders of map"
+msgstr "Grenzen der Karte"
+
+msgid "Map showing the borders of {map_text}"
+msgstr "Karte, die die Grenzen von {map_text} zeigt"

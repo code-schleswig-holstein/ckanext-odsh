@@ -814,7 +814,13 @@ body {
     max-width: 193px;
     word-break: break-all;
 }
-
+.info-detail p{
+    margin: 0;
+}
+.info-detail .map-text{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .odsh-dataset-heading {
     margin-bottom: 30px;
 }

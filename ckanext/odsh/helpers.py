@@ -4,6 +4,7 @@ import ast
 import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 import ckan.model as model
+import json
 from ckan.common import  c
 
 get_action = logic.get_action
@@ -46,3 +47,43 @@ def odsh_get_resource_views(pkg_dict, resource):
         return get_action('resource_view_list')(
             context, {'id': resource['id']})
 
+def odsh_get_bounding_box(pkg_dict):
+    try:
+        extras=pkg_dict.get('extras')
+        spatial=None
+        for f in extras:
+            if 'key' in f and f['key'] == 'spatial':
+                spatial=f['value']
+                break
+
+        if spatial is not None:
+            d = json.loads(spatial)
+            if 'coordinates' in d:
+                coords=d['coordinates']
+                return compute_bounding_box(coords)
+    except Exception, e:
+        log.error('Error while bounding box %s: %s\nException: %s',
+            e.__class__.__name__,  unicode(e), traceback.format_exc())
+    return None 
+
+def compute_bounding_box(coords):
+    if len(coords)==0:
+        return None
+
+    coords = [c for sublist in coords for c in sublist]
+
+    minx = min(coords, key = lambda t: t[0])[0]
+    maxx = max(coords, key = lambda t: t[0])[0]
+    miny = min(coords, key = lambda t: t[1])[1]
+    maxy = max(coords, key = lambda t: t[1])[1]
+     
+    return [maxx, minx, maxy, miny]
+
+def odsh_get_spatial_text(pkg_dict):
+    extras=pkg_dict.get('extras')
+    spatial=None
+    for f in extras:
+        if 'key' in f and f['key'] == 'spatial_text':
+            spatial=f['value']
+            return spatial
+    return None 
