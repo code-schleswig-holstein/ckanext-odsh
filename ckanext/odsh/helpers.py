@@ -71,6 +71,9 @@ def compute_bounding_box(coords):
         return None
 
     coords = [c for sublist in coords for c in sublist]
+    if type(coords[0][0]) == list:
+        ## multipolygon
+        coords = [c for sublist in coords for c in sublist]
 
     minx = min(coords, key = lambda t: t[0])[0]
     maxx = max(coords, key = lambda t: t[0])[0]
