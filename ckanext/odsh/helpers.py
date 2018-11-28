@@ -82,6 +82,8 @@ def compute_bounding_box(coords):
 def odsh_get_spatial_text(pkg_dict):
     extras=pkg_dict.get('extras')
     spatial=None
+    if extras is None:
+        return None 
     for f in extras:
         if 'key' in f and f['key'] == 'spatial_text':
             spatial=f['value']
