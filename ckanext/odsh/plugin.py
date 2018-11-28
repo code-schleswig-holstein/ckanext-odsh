@@ -71,7 +71,7 @@ def known_spatial_uri(key, data, errors, context):
     try:
         mapping_file = urllib2.urlopen(mapping_file)
     except Exception:
-        raise toolkit.Invalid("Could not load spatial mapping file!")
+        raise Exception("Could not load spatial mapping file!")
 
     not_found = True
     spatial_text = str()
@@ -86,7 +86,7 @@ def known_spatial_uri(key, data, errors, context):
             print spatial
             break
     if not_found:
-        raise toolkit.Invalid("The specified URI is not known.")
+        raise toolkit.Invalid("The specified URI is not known")
 
     # Get the current extras index
     current_indexes = [k[1] for k in data.keys()
