@@ -35,8 +35,8 @@ Example:
 
             {% block spatial %}
             <div class="spatial-detail info-detail">
-                <div>{{ _('Spatial extension') }}:</div>
-                {%set ext=pkg.spatial_extension if pkg.spatial_extension else '-'%}
+                <div>{{ _('Spatial uri') }}:</div>
+                {%set ext=pkg.spatial_uri if pkg.spatial_uri else '-'%}
                 <p>{{ ext }}</p>
             </div>
             {% endblock %}
