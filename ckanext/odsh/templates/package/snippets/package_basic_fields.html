@@ -3,7 +3,6 @@
 
 <!-- field title -->
 {% block package_basic_fields_title %}
-{{errors}}
 {% set error_string = _(_('Title') + ': '+errors.title[0]) if errors.title %}
 {{ form.input('title', id='field-title', label=_('Title'), value=data.title,
 error=error_string, classes=['control-full'], attrs={'data-module': 'slug-preview-target'},
