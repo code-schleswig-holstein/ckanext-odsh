@@ -8,6 +8,20 @@
 
 {% block page_header %}{% endblock %}
 
+{% block toolbar %}
+{{ super() }}
+<div class='search-box-container'>
+    <div class='search-box'>
+        <form class="section site-search simple-input" method="get">
+            <div class="field">
+                <input id="field-sitewide-search" type="text" name="q" value="{{c.q}}" placeholder="{{ _('Search organizations') }}" />
+                <button class="btn-search" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
 {% block page_primary_action %}
 {% endblock %}
 
