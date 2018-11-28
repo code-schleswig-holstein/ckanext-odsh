@@ -83,7 +83,6 @@ def known_spatial_uri(key, data, errors, context):
             spatial_text = row[1]
             loaded = json.loads(row[2])
             spatial = json.dumps(loaded['geometry'])
-            print spatial
             break
     if not_found:
         raise toolkit.Invalid("The specified URI is not known")
@@ -133,7 +132,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_get_facet_items_dict': odsh_get_facet_items_dict,
                 'odsh_openness_score_dataset_html': odsh_helpers.odsh_openness_score_dataset_html,
                 'odsh_get_resource_details': odsh_helpers.odsh_get_resource_details,
-                'odsh_get_resource_views': odsh_helpers.odsh_get_resource_views
+                'odsh_get_resource_views': odsh_helpers.odsh_get_resource_views,
+                'odsh_get_bounding_box': odsh_helpers.odsh_get_bounding_box,
+                'odsh_get_spatial_text': odsh_helpers.odsh_get_spatial_text
         }
 
     def before_map(self, map):
@@ -199,7 +200,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                            'groups': _('Kategorie')})
 
     def _fields(self):
-        # return ['title','notes','tag_string']
         return ['title','notes']
 
     def _extraFields(self):
@@ -223,13 +223,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                     toolkit.get_converter('convert_to_extras')]})
         for field in self._fields():
             schema.update({field: [toolkit.get_converter('not_empty')]})
-        # schema.update({ 'groups': [
-        #         # toolkit.get_converter('not_empty'),
-        #         toolkit.get_converter('odsh_convert_groups_string')] })
+
         schema['resources'].update({
                 'url' : [ toolkit.get_converter('not_empty') ]
-                # 'description' : [ toolkit.get_converter('not_empty') ],
-                # 'name' : [ toolkit.get_converter('not_empty') ]
                 })
 
     def create_package_schema(self):
