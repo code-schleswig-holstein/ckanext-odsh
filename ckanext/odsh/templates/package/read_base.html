@@ -41,8 +41,10 @@
     <p>{{ ext }}</p>
 </div>
 
+{% if map_text %}
 <div class="info-detail">
     <p class='map-text'> {{_('Map showing the borders of {map_text}').format(map_text=map_text)}} </p>
+    {% endif %}
     {% set bbox = h.odsh_get_bounding_box(pkg) %}
     {% if bbox%}
     <div>{{ _('borders of map') }}:</div>
