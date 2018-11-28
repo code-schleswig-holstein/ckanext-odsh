@@ -1,5 +1,10 @@
 {% ckan_extends %}
 
+{% block toolbar %}
+{{ super() }}
+{% snippet "snippets/search_box.html"%}
+{% endblock %}
+
 {% block page_primary_action %}
 {% endblock %}
 

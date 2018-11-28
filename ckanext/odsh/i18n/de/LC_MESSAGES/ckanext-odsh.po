@@ -19,8 +19,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+#: ckan/public/base/javascript/modules/autocomplete.js:195
+msgid "Start typing…"
+msgstr "Bitte Schlagwort eingeben"
+
+
 msgid "Search dataset"
 msgstr "Nach Datensatz suchen"
+
+msgid "Search organizations"
+msgstr "Nach Herausgebern suchen"
 
 msgid "Edit Categories"
 msgstr "Kategorien bearbeiten"
@@ -86,7 +94,7 @@ msgid "Enter data"
 msgstr "Informationen eingeben"
 
 msgid "Add dataset"
-msgstr "Datensatz hinzufügen"
+msgstr "Distribution hinzufügen"
 
 msgid "next"
 msgstr "weiter"
@@ -107,10 +115,10 @@ msgid "Data-Upload"
 msgstr "Daten-Upload"
 
 msgid "Enter name of the dataset"
-msgstr "Namen des Datensatzes eingeben"
+msgstr "Namen der Distribution eingeben"
 
 msgid "Enter description of the dataset"
-msgstr "Beschreibung des Datensatzes eingeben"
+msgstr "Beschreibung der Distribution eingeben"
 
 msgid "back"
 msgstr "zurück"
@@ -122,7 +130,7 @@ msgid "Upload dataset"
 msgstr "Hochladen"
 
 msgid "another dataset"
-msgstr "weiterer Datensatz"
+msgstr "weiterere Distribution"
 
 msgid "timerange"
 msgstr "Zeitraum"
