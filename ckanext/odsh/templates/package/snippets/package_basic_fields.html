@@ -155,12 +155,12 @@ is_required=true,placeholder=_('Enter title')) }}
     </div>
     {% endblock %}
 
-    <!-- field spatial_extension -->
-    {% set error_string = _('odsh_spatial_extension_error_label') if errors.spatial_extension %}
-    {{ form.input('spatial_extension', id='field-spatial-extension', label=_('Spatial extension'),
-    value=data.spatial_extension,
+    <!-- field spatial_uri -->
+    {% set error_string = _('Spatial uri' + ': '+errors.spatial_uri[0]) if errors.spatial_uri%}
+    {{ form.input('spatial_uri', id='field-spatial-uri', label=_('Spatial uri'),
+    value=data.spatial_uri,
     error=error_string, classes=['control-full'],type='text',is_required=true,
-    placeholder=_('Enter spatial extension')) }}
+    placeholder=_('Enter spatial uri')) }}
 
     <!-- field private -->
     <div class="control-group">
