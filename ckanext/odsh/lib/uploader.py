@@ -16,6 +16,7 @@ class ODSHResourceUpload(ResourceUpload):
             raise ValidationError(['Virus gefunden'])
         
     def _icap_virus_found(self):
-        response_object = ODSHICAPRequest(self.filename, self.upload_file).send()
-        return response_object.virus_found()
+        if self.filename and self.upload_file:
+            response_object = ODSHICAPRequest(self.filename, self.upload_file).send()
+            return response_object.virus_found()
         
