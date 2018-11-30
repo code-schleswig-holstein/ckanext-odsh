@@ -97,6 +97,11 @@ class KielHarvester(ODSHBaseHarvester):
                 package_dict['type'] = 'dataset'
             package_dict['id'] = harvest_object.guid
 
+            tags = package_dict['tags']
+            package_dict['tags'] = list()
+            for tag in tags:
+                package_dict['tags'].append({'name': tag})
+
             mapped_groups = list()
             groups = package_dict['groups']
             if isinstance(groups, str):
