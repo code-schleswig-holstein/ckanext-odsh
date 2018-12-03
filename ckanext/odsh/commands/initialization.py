@@ -58,13 +58,13 @@ class Initialization(CkanCommand):
 
         odsh_orgs = {
             "landeshauptstadt-kiel": {
-                "title": "Landeshauptstadt Kiel",
-                "image": "https://www.kiel.de/images/logo-kiel-sailing-city.svg",
-                "description": "Kommunalverwaltung"
+                "title": u"Landeshauptstadt Kiel",
+                "image": u"https://www.kiel.de/images/logo-kiel-sailing-city.svg",
+                "description": u"Kommunalverwaltung"
             },
             "statistikamt-nord": {
                 "title": u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
-                "image": "https://www.statistik-nord.de/static/img/logo-text.svg",
+                "image": u"https://www.statistik-nord.de/static/img/logo-text.svg",
                 "description": u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
             }
         }
@@ -101,9 +101,9 @@ class Initialization(CkanCommand):
 
         odsh_harvesters = {
             "Landeshauptstadt Kiel": {
-                'name': "landeshauptstadt-kiel",
-                'url': "https://www.kiel.de/de/kiel_zukunft/statistik_kieler_zahlen/open_data/Kiel_open_data.json",
-                'source_type': "kiel",
+                'name': u"landeshauptstadt-kiel",
+                'url': u"https://www.kiel.de/de/kiel_zukunft/statistik_kieler_zahlen/open_data/Kiel_open_data.json",
+                'source_type': u"kiel",
                 'title': "Landeshauptstadt Kiel",
                 'active': True,
                 'owner_org': "landeshauptstadt-kiel",
@@ -111,9 +111,9 @@ class Initialization(CkanCommand):
                 'notes': "Kommunalverwaltung"
             },
             "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)": {
-                'name': "statistikamt-nord",
-                'url': "http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
-                'source_type': "statistikamt-nord",
+                'name': u"statistikamt-nord",
+                'url': u"http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
+                'source_type': u"statistikamt-nord",
                 'title': u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
                 'active': True,
                 'owner_org': "statistikamt-nord",
@@ -123,7 +123,7 @@ class Initialization(CkanCommand):
         }
 
         for harvester_key in odsh_harvesters:
-            if harvester_key not in present_harvesters_list:
+            if unicode(harvester_key, "utf-8") not in present_harvesters_list:
                 add_message = 'Adding harvester {harvester_key}.'.format(
                     harvester_key=harvester_key
                 )
