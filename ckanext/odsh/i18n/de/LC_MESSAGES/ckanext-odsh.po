@@ -192,7 +192,7 @@ msgstr "Bitte geben Sie einen Namen ein"
 msgid "Titel: Fehlender Wert"
 msgstr "Bitte geben Sie einen Titel ein"
 
-msgid "odsh_publish_date_error_label"
+msgid "odsh_issued_error_label"
 msgstr "Bitte wählen Sie ein Veröffentlichungsdatum"
 
 msgid "Tag string: Fehlender Wert"

@@ -44,7 +44,7 @@ Example:
             <div class="license-detail info-detail">
                 <div>{{ _('License') }}:</div>
                 {%set lic=pkg.license_title if pkg.license_title else '-'%}
-                {%set name=' (' + pkg.licenseAttributionByText +')' if pkg.licenseAttributionByText else '!!!'%}
+                {%set name=' (' + pkg.licenseAttributionByText +')' if pkg.licenseAttributionByText else ''%}
                 <p>{{ lic }}{{ name }}</p>
             </div>
             {% endblock %}
