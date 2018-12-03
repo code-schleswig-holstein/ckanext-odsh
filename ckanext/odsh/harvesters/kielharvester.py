@@ -104,7 +104,8 @@ class KielHarvester(ODSHBaseHarvester):
 
             mapped_groups = list()
             groups = package_dict['groups']
-            if isinstance(groups, str):
+
+            if isinstance(groups, unicode):
                 groups = [groups]
             for group in groups:
                 if GROUP_MAPPING[group]:
@@ -119,10 +120,7 @@ class KielHarvester(ODSHBaseHarvester):
                     package_dict['extras'].append({'key': 'issued', 'value': published})
                 elif extra['key'] in ['temporal_start', 'temporal_end']:
                     package_dict['extras'].append(extra)
-            for date in package_dict['extras']['dates']:
-                if date['role'] == 'veroeffentlicht':
-                    published = datetime.datetime.strptime(date['date'], "%d.%m.%Y").isoformat()
-            package_dict['extras'].append({'key': 'issued', 'value': published})
+
             package_dict['extras'].append({'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'})
 
             #license_id = self._get_license_id(package_dict['license_id'])
