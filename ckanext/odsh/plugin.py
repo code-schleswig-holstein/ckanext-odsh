@@ -203,23 +203,22 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['title','notes']
 
     def _extraFields(self):
-        return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri']
-
-    def _extraFieldsOptional(self):
-        return ['licenseAttributionByText']
+        return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri', 'licenseAttributionByText']
 
     def _update_schema(self,schema):
         for field in self._extraFields():
-            if field == 'spatial_uri':
+            if field == 'licenseAttributionByText':
+                schema.update({field: [
+                    toolkit.get_validator('ignore_missing'),
+                    toolkit.get_converter('convert_to_extras')]})
+	    elif field == 'spatial_uri':
                 schema.update({field: [
                     toolkit.get_converter('not_empty'),
-                    toolkit.get_validator('ignore_missing'),
                     toolkit.get_converter('known_spatial_uri'),
                     toolkit.get_converter('convert_to_extras')]})
             else:
                 schema.update({field: [
                     toolkit.get_converter('not_empty'),
-                    toolkit.get_validator('ignore_missing'),
                     toolkit.get_converter('convert_to_extras')]})
         for field in self._fields():
             schema.update({field: [toolkit.get_converter('not_empty')]})
@@ -240,7 +239,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def show_package_schema(self):
         schema = super(OdshPlugin, self).show_package_schema()
-        for field in self._extraFields()+self._extraFieldsOptional():
+        for field in self._extraFields():
             schema.update({
                 field : [toolkit.get_converter('convert_from_extras')]
             })
