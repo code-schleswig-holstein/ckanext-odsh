@@ -1,6 +1,7 @@
 from ckan import model
 from ckan.logic import get_action
 from ckan.plugins import toolkit
+import ckan.lib.plugins as lib_plugins
 from ckanext.harvest.model import HarvestObject
 from ckanext.odsh.harvesters.base import ODSHBaseHarvester
 
@@ -40,14 +41,19 @@ class KielHarvester(ODSHBaseHarvester):
         try:
             used_identifiers = []
             ids = []
+            package_ids_in_db = list(map(lambda x: x[0], model.Session.query(HarvestObject.guid)\
+                                .filter(HarvestObject.current == True)\
+                                .filter(HarvestObject.harvest_source_id == harvest_job.source.id).all()))
+            log.info("Package IDs in DB: %s" % str(package_ids_in_db))
             for dataset in datasets:
                 guid = str(uuid.uuid3(uuid.NAMESPACE_URL, dataset.get("url").encode('ascii', 'ignore')))
-                obj = HarvestObject(job=harvest_job, guid=guid)
-                obj.content = json.dumps(dataset)
-                obj.save()
-                log.info("harvest_object_id: %s, GUID: %s successfully gathered " % (str(obj.id), str(obj.guid)))
-                used_identifiers.append(guid)
-                ids.append(obj.id)
+                if guid not in package_ids_in_db:
+                    obj = HarvestObject(job=harvest_job, guid=guid)
+                    obj.content = json.dumps(dataset)
+                    obj.save()
+                    log.info("harvest_object_id: %s, GUID: %s successfully gathered " % (str(obj.id), str(obj.guid)))
+                    used_identifiers.append(guid)
+                    ids.append(obj.id)
 
         except Exception as e:
             self._save_gather_error(
@@ -113,15 +119,15 @@ class KielHarvester(ODSHBaseHarvester):
             package_dict['groups'] = mapped_groups
 
             published = str()
+            extras = package_dict['extras']
             package_dict['extras'] = list()
-            for extra in package_dict['extras']:
+            for extra in extras:
                 if extra['key'] == 'dates':
-                    published = extra['value']['date']
-                    package_dict['extras'].append({'key': 'issued', 'value': published})
+                    package_dict['issued'] = extra['value'][0]['date']
                 elif extra['key'] in ['temporal_start', 'temporal_end']:
-                    package_dict['extras'].append(extra)
+                    package_dict[extra['key']] = extra['value']
 
-            package_dict['extras'].append({'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'})
+            package_dict['spatial_uri'] = 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'
 
             #license_id = self._get_license_id(package_dict['license_id'])
             license_id = 'http://dcat-ap.de/def/licenses/dl-zero-de/2.0'
@@ -132,7 +138,13 @@ class KielHarvester(ODSHBaseHarvester):
                 self._save_object_error('Invalid license_id: %s' % package_dict['license_id'], harvest_object, 'Import')
                 return False
             try:
-                result = self._create_or_update_package(package_dict, harvest_object, package_dict_form='package_show')
+                context = {'user': self._get_user_name(), 'return_id_only': True, 'ignore_auth': True}
+                package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
+                package_schema = package_plugin.create_package_schema()
+                context['schema'] = package_schema
+                log.info("Package Dict: %s" % str(package_dict))
+                self._handle_current_harvest_object(harvest_object, harvest_object.guid)
+                result = toolkit.get_action('package_create')(context, package_dict)
                 return result
             except toolkit.ValidationError as e:
                 self._save_object_error('Validation Error: %s' % str(e.error_summary), harvest_object, 'Import')

@@ -121,7 +121,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'odsh')
-    
+
     def get_helpers(self):
         # Template helper function names should begin with the name of the
         # extension they belong to, to avoid clashing with functions from
@@ -176,7 +176,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('user_datasets', '/user/{id:.*}', action='read',
                     ckan_icon='sitemap')
             m.connect('user_index', '/user', action='index')
-        
+
         return map
 
     def dataset_facets(self, facets_dict, package_type):
@@ -203,7 +203,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['title','notes']
 
     def _extraFields(self):
-        return ['publish_date', 'temporal_start', 'temporal_end', 'spatial_uri']
+        return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri']
 
     def _extraFieldsOptional(self):
         return ['access_constraints']
@@ -256,7 +256,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         # registers itself as the default (above).
         return []
 
-    def get_validators(self): 
+    def get_validators(self):
         return { 'odsh_convert_groups_string': odsh_convert_groups_string,
                  'known_spatial_uri': known_spatial_uri}
-    
+
