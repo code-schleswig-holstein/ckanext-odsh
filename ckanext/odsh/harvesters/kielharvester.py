@@ -7,10 +7,8 @@ from ckanext.odsh.harvesters.base import ODSHBaseHarvester
 
 import requests
 import uuid
-import traceback
 import json
 import logging
-import datetime
 
 log = logging.getLogger(__name__)
 
