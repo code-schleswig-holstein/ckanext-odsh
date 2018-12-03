@@ -142,7 +142,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         package_dict.update({'title': title})
         package_dict.update({'name': munge.munge_title_to_name(title)})
         # Beschreibung sollte noch geliefert werden!
-        package_dict.update({'notes': values['Beschreibung'] or ""})
+        package_dict.update({'notes': values['Beschreibung'] or "Fehlende Beschreibung"})
         package_dict.update({'license_id': self._get_license_id(values['Nutzungsbestimmungen']['ID_derLizenz'][0])})
         package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]})
         package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
