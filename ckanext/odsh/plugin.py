@@ -206,7 +206,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri']
 
     def _extraFieldsOptional(self):
-        return ['access_constraints']
+        return ['access_rights']
 
     def _update_schema(self,schema):
         for field in self._extraFields():

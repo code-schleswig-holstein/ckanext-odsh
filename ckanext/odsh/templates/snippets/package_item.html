@@ -18,7 +18,7 @@ Example:
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set license_title =package.license_title if package.license_title else '-'%}
-{% set license_name=' ('+package.access_constraints +')' if package.access_constraints else ''%}
+{% set license_name=' ('+package.access_rights +')' if package.access_rights else ''%}
 {% set license = license_title + license_name %}
 {% set start=h.render_datetime(package.temporal_start,'%d.%m.%Y') if package.temporal_start else ''%}
 {% set end=h.render_datetime(package.temporal_end,'%d.%m.%Y') if package.temporal_end else ''%}
