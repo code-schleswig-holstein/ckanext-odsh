@@ -54,8 +54,8 @@ is_required=true,placeholder=_('Enter title')) }}
         </div>
         <div class='span3'>
             <!-- field Namensnennung -->
-            {{ form.input_raw('access_constraints', id='field-licence-name', value=data.access_constraints,
-            error=errors.access_constraints,
+            {{ form.input_raw('licenseAttributionByText', id='field-licence-name', value=data.licenseAttributionByText,
+            error=errors.licenseAttributionByText,
             classes=['control-full'],type='text',is_required=true,attrs={'disabled':true,
             'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
         </div>
@@ -75,7 +75,8 @@ is_required=true,placeholder=_('Enter title')) }}
         <div id='start-end' class='span3'>
             <!-- field temporal_start -->
             {% set temporal_start_label=_('odsh_temporal_start_label') %}
-            {{ form.input_raw('temporal_start', id='field-temporal-start', value=data.temporal_start,
+	    {% set data_temporal_start = data.temporal_start.split('T')[0] if data.temporal_start else None %}
+            {{ form.input_raw('temporal_start', id='field-temporal-start', value=data_temporal_start,
             error=errors.temporal_start,
             classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
             }}
@@ -83,7 +84,8 @@ is_required=true,placeholder=_('Enter title')) }}
         <div class='span3'>
             <!-- field temporal_end -->
             {% set temporal_end_label='Ende des Zeitraumes' %}
-            {{ form.input_raw('temporal_end', id='field-temporal-end', value=data.temporal_end,
+	    {% set data_temporal_end = data.temporal_end.split('T')[0] if data.temporal_end else None %}
+            {{ form.input_raw('temporal_end', id='field-temporal-end', value=data_temporal_end,
             error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to'))
             }}
         </div>
@@ -92,15 +94,12 @@ is_required=true,placeholder=_('Enter title')) }}
         </div>
     </div>
 
-    <!-- field publish date -->
-    {% set publish_date_value=h.odsh_now() %}
-    {% set error_string = _('odsh_publish_date_error_label') if errors.publish_date %}
-    <!-- if form_style != 'edit' && !%} -->
-    <!-- value=data.get('extras').publish_date, -->
-    {% set publish_date_label='Veröffentlichungsdatum'%}
-    {{ form.input('publish_date', id='field-publish-date', label=publish_date_label,
-    value=publish_date_value,
-    error=error_string, classes=['control-full'],type='date',is_required=true) }}
+    <!-- field issued -->
+    {% set issued_value=data.issued if data.issued else h.odsh_now() %}
+    {% set error_string = _('odsh_issued_error_label') if errors.issued %}
+    {% set issued_label='Veröffentlichungsdatum'%}
+    {{ form.input('issued', id='field-issued', label=issued_label, value=issued_value,
+    error=error_string, classes=['control-full'], type='date', is_required=true) }}
 
 
     <!-- field tags -->
