@@ -44,7 +44,7 @@ Example:
             <div class="license-detail info-detail">
                 <div>{{ _('License') }}:</div>
                 {%set lic=pkg.license_title if pkg.license_title else '-'%}
-                {%set name=' ('+pkg.access_constraints +')' if pkg.access_constraints else ''%}
+                {%set name=' ('+pkg.access_rights +')' if pkg.access_rights else '!!!'%}
                 <p>{{ lic }}{{ name }}</p>
             </div>
             {% endblock %}
