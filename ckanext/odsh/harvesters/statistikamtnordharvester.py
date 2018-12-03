@@ -9,7 +9,6 @@ from ckan import model
 
 from ckan.logic import get_action
 import ckan.lib.plugins as lib_plugins
-from ckan.lib import munge
 from ckan.plugins import toolkit
 import datetime
 
@@ -140,7 +139,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         package_dict.update({'resources': [], 'tags': [], 'groups': []})
         title = values['Titel']
         package_dict.update({'title': title})
-        package_dict.update({'name': munge.munge_title_to_name(title)})
+        package_dict.update({'name': self._gen_new_name(title)})
         # Beschreibung sollte noch geliefert werden!
         package_dict.update({'notes': values['Beschreibung'] or "Fehlende Beschreibung"})
         package_dict.update({'license_id': self._get_license_id(values['Nutzungsbestimmungen']['ID_derLizenz'][0])})
