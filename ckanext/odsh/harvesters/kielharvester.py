@@ -140,7 +140,6 @@ class KielHarvester(ODSHBaseHarvester):
                 package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
                 package_schema = package_plugin.create_package_schema()
                 context['schema'] = package_schema
-                log.info("Package Dict: %s" % str(package_dict))
                 self._handle_current_harvest_object(harvest_object, harvest_object.guid)
                 result = toolkit.get_action('package_create')(context, package_dict)
                 return result
