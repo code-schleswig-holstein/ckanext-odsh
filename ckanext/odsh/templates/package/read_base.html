@@ -29,32 +29,6 @@
 {% endblock %}
 
 {% block spatial_map %}
-{% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
-{% if dataset_extent %}
-{% snippet "spatial/snippets/dataset_map_sidebar.html", extent=dataset_extent %}
-{% endif %}
-{% block spatial_info %}
-{% set map_text = h.odsh_get_spatial_text(pkg) %}
-<div class="spatial-detail info-detail">
-    <div>{{ _('Spatial uri') }}:</div>
-    {%set ext=map_text if map_text else '-'%}
-    <p>{{ ext }}</p>
-</div>
-
-<div class="info-detail">
-    {% if map_text %}
-    <p class='map-text'> {{_('Map showing the borders of {map_text}').format(map_text=map_text)}} </p>
-    {% endif %}
-    {% set bbox = h.odsh_get_bounding_box(pkg) %}
-    {% if bbox%}
-    <div>{{ _('borders of map') }}:</div>
-    <p> {{ '{0:0.3f}'.format(bbox[0]).zfill(2).replace('.',',') }}° {{_('in east')}}</p>
-    <p> {{ '{0:0.3f}'.format(bbox[1]).replace('.',',') }}° {{_('in west')}}</p>
-    <p> {{ '{0:0.3f}'.format(bbox[2]).replace('.',',') }}° {{_('in south')}}</p>
-    <p> {{ '{0:0.3f}'.format(bbox[3]).replace('.',',') }}° {{_('in north')}}</p>
-    {% endif %}
-</div>
-{% endblock %}
 {% endblock %}
 
 {% endblock %}
