@@ -564,6 +564,39 @@ label:after {
     padding-right: 28px;
     color:white;
 }
+.btn.btn-primary img{
+    height: 10px;
+}
+.btn.btn-primary.btn-arrow-right{
+    padding-left: 21px;
+}
+.btn.btn-primary.btn-arrow-right:before {
+    background-image: url(/base/images/arrow-right-w.png);
+    background-repeat: no-repeat;
+    background-size: 6px 10px;
+    background-position: 5px 2px;
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    content: "";
+    padding: 0 0 0 5px;
+}
+.btn.btn-arrow-right:before
+{
+    background-image: url(/base/images/arrow-right-b.png);
+    background-repeat: no-repeat;
+    background-size: 6px 10px;
+    background-position: 5px 2px;
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    content: "";
+    padding: 0 0 0 5px;
+}
+.btn.btn-arrow-right:hover:before
+{
+    background-image: url(/base/images/arrow-right-w.png);
+}
 
 .slug-preview .btn.btn-mini:hover,
 .js .image-upload .btn.hover,

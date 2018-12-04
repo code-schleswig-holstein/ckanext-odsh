@@ -130,7 +130,7 @@ msgid "Upload dataset"
 msgstr "Hochladen"
 
 msgid "another dataset"
-msgstr "weiterere Distribution"
+msgstr "weitere Distribution"
 
 msgid "timerange"
 msgstr "Zeitraum"

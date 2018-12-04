@@ -81,23 +81,25 @@
                 {% endblock %}
                 {% if stage %}
                 {% block previous_button %}
-                <button class="btn" name="save" value="go-dataset" type="submit">{{ _('back') }}</button>
+                <button class="btn btn-arrow-right" name="save" value="go-dataset" type="submit">{{ _('back') }}</button>
                 {% endblock %}
                 {% block again_button %}
-                <button class="btn float-right" name="save" value="again" type="submit">{{ _('another dataset') }}</button>
+                <button class="btn float-right btn-arrow-right" name="save" value="again" type="submit">{{_('another dataset')}}</button>
                 {% endblock %}
                 {% endif %}
             </div>
             <div class="form-actions">
                 {% if stage %}
                 {% block save_button %}
-                <button class="btn btn-primary" name="save" value="go-metadata" type="submit">{% block save_button_text
+                <button class="btn btn-primary btn-arrow-right" name="save" value="go-metadata" type="submit">{% block
+                    save_button_text
                     %}{{
                     _('Upload dataset') }}{% endblock %}</button>
                 {% endblock %}
                 {% else %}
                 {% block add_button %}
-                <button class="btn btn-primary" name="save" value="go-dataset-complete" type="submit">{{ _('Add') }}</button>
+                <button class="btn btn-primary btn-arrow-right" name="save" value="go-dataset-complete" type="submit">{{
+                    _('Add') }}</button>
                 {% endblock %}
                 {% endif %}
             </div>

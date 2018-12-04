@@ -32,12 +32,14 @@ then itself be extended to add/remove blocks of functionality. #}
         {% endif %}
         {% endblock %}
         {% block save_button %}
-	<div class="row-fluid">
-	  <div class="span6">
-            <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Next: Add Data')
-              }}{% endblock %}</button>
-	  </div>
-	</div>
+        <div class="row-fluid">
+            <div class="span6">
+                <button class="btn btn-primary btn-arrow-right" type="submit" name="save">
+                    {% block save_button_text %}{{
+                    _('Next: Add Data')
+                    }}{% endblock %}</button>
+            </div>
+        </div>
         {% endblock %}
     </div>
     {% endblock %}
