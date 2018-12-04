@@ -1124,6 +1124,13 @@ body {
     margin-right:0px;
     font-weight: normal;
 }
+.module.module-narrow.dataset-map{
+    margin: 5px 0;
+}
+.spatial-detail.info-detail{
+    margin-bottom: 0px;
+}
+
 #dataset-map .module-heading [class^="icon-"],
 #dataset-map .module-heading [class*=" icon-"] {
   font-size: 14px;
