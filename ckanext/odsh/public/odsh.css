@@ -813,6 +813,11 @@ body {
     display: block;
     text-align: center;
 }
+.organization-image-container{
+    padding-bottom: 15px;
+    border-bottom: 2px solid #DBDBDB;
+    margin-bottom: 15px;
+}
 .is-table-row .organization-image-column {
     width: 225px;
     vertical-align: middle;
