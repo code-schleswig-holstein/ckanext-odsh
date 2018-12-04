@@ -10,6 +10,8 @@ abort = base.abort
 class OdshRouteController(HomeController):
     def info_page(self):
         return base.render('info_page.html')
+    def start(self):
+        return base.render('start.html')
 
 class OdshUserController(UserController):
     def me(self, locale=None):
