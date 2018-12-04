@@ -1,0 +1,19 @@
+{% extends "page.html" %}
+{% set homepage_style = ( g.homepage_style or '1' ) %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+<div class="homepage layout-{{ homepage_style }}">
+    <div class="container" style="height:200px">
+        <p style="padding-top:50px">
+            Die Startseite wird im Landesportal umgesetzt.
+        </p>
+    </div>
+    {% block primary_content %}
+    {% endblock %}
+</div>
+{% endblock %}
