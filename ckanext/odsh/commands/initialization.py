@@ -90,7 +90,7 @@ class Initialization(CkanCommand):
             else:
                 skip_message = 'Skipping creation of organization '
                 skip_message = skip_message + "{org_title}, as it's already present."
-                print(skip_message.format(org_title=title))
+                print(skip_message.format(org_title=title.encode('utf8')))
 
     def _handle_harvesters(self, ckan_api_client):
         data_dict = {}
