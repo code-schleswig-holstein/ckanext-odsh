@@ -89,7 +89,7 @@ class KielHarvester(ODSHBaseHarvester):
             return False
 
         if harvest_object.content is None:
-            self._save_object_error('Empty content for object %s' % harvest_object.id, harvest_object, u'Import')
+            self._save_object_error('Empty content for object %s' % harvest_object.id, harvest_object, 'Import')
             return False
         else:
             package_dict = json.loads(harvest_object.content)
@@ -109,26 +109,20 @@ class KielHarvester(ODSHBaseHarvester):
             mapped_groups = list()
             groups = package_dict['groups']
 
-            if isinstance(groups, unicode):
-                groups = [groups]
             for group in groups:
                 if GROUP_MAPPING[group]:
                     mapped_groups.append({'name': GROUP_MAPPING[group]})
             package_dict['groups'] = mapped_groups
 
-            published = str()
             extras = package_dict['extras']
             package_dict['extras'] = list()
             for extra in extras:
-                if extra['key'] == 'dates':
-                    package_dict['issued'] = extra['value'][0]['date']
-                elif extra['key'] in ['temporal_start', 'temporal_end']:
+                if extra['key'] in ['temporal_start', 'temporal_end', 'issued']:
                     package_dict[extra['key']] = extra['value']
 
             package_dict['spatial_uri'] = 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'
 
-            #license_id = self._get_license_id(package_dict['license_id'])
-            license_id = 'http://dcat-ap.de/def/licenses/dl-zero-de/2.0'
+            license_id = self._get_license_id(package_dict['license_id'])
             if license_id:
                 package_dict['license_id'] = license_id
             else:
