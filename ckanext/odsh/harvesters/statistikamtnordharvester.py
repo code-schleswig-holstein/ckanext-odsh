@@ -132,6 +132,15 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             self.map_fields(context, harvest_object)
             return True
 
+    def _update_schema(self, schema):
+        schema.update({'temporal_start': [
+            toolkit.get_validator('ignore_empty'),
+            toolkit.get_converter('convert_to_extras')]})
+        schema.update({'temporal_end': [
+            toolkit.get_validator('ignore_empty'),
+            toolkit.get_converter('convert_to_extras')]})
+
+
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
 
@@ -188,6 +197,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             context = {'user': self._get_user_name(), 'return_id_only': True, 'ignore_auth': True}
             package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
             package_schema = package_plugin.create_package_schema()
+	    self._update_schema(package_schema)
             context['schema'] = package_schema
             self._handle_current_harvest_object(harvest_object, harvest_object.guid)
             result = toolkit.get_action('package_create')(context, package_dict)
