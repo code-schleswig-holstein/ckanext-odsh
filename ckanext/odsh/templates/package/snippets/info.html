@@ -60,8 +60,8 @@ Example:
 
             {% block last_change %}
             <div class="last-change-detail info-detail">
-                <div>{{ _('last change') }}:</div>
-                {{h.render_datetime(pkg.metadata_modified,'%d.%m.%Y') }}
+                <div>{{ _('issued') }}:</div>
+                {{h.render_datetime(pkg.issued,'%d.%m.%Y') }}
             </div>
             {% endblock %}
 

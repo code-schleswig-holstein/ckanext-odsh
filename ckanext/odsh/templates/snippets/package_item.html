@@ -28,7 +28,7 @@ Example:
 {% set access_count=(package.tracking_summary.total if package.tracking_summary) or '-' %}
 {% set timerange_label ='Zeitraum' %}
 {% set access_count_label ='Aufrufe' %}
-{% set last_change = h.render_datetime(package.metadata_modified,'%d.%m.%Y') %}
+{% set issued = h.render_datetime(package.issued,'%d.%m.%Y') %}
 {% set categories = package.groups|map(attribute='display_name')|join(', ') if package.groups else '-' %}
 
 {% block package_item %}
@@ -98,7 +98,7 @@ Example:
       <p> {{_('Lizenz')}}: {{license}}</p>
       <p> {{_('Herausgeber')}}: {{org}} </p>
       <p> {{timerange_label}}: {{timerange}}</p>
-      <p>{{ _('last change') }}: {{last_change }} </p>
+      <p>{{ _('issued') }}: {{issued}} </p>
     </div>
     {% endblock %}
     {% endblock %}

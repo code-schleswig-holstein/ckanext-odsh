@@ -156,6 +156,9 @@ msgstr "Namensnennung"
 msgid "last change"
 msgstr "Letzte Änderung"
 
+msgid "issued"
+msgstr "Veröffentlicht"
+
 msgid "Files"
 msgstr "Dateien"
 
