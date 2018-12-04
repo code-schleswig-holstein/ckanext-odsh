@@ -6,6 +6,8 @@ import ckan.logic as logic
 import ckan.model as model
 import json
 from ckan.common import  c
+import  datetime
+from dateutil import parser
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -92,3 +94,7 @@ def odsh_get_spatial_text(pkg_dict):
             spatial=f['value']
             return spatial
     return None 
+
+def odsh_render_datetime(datetime_, date_format='%d.%m.%Y'):
+    dt = parser.parse(datetime_)
+    return dt.strftime(date_format)

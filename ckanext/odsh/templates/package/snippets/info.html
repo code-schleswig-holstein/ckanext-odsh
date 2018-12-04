@@ -52,16 +52,17 @@ Example:
             {% block timerange %}
             <div class="timerange-detail info-detail">
                 <div>{{ _('timerange') }}:</div>
-                {%set start=h.render_datetime(pkg.temporal_start,'%d.%m.%Y') if pkg.temporal_start else ''%}
-                {%set end=h.render_datetime(pkg.temporal_end,'%d.%m.%Y') if pkg.temporal_end else ''%}
+                {%set start=h.odsh_render_datetime(pkg.temporal_start) if pkg.temporal_start else ''%}
+                {%set end=h.odsh_render_datetime(pkg.temporal_end) if pkg.temporal_end else ''%}
                 <p>{{ start }} - {{ end }}</p>
             </div>
             {% endblock %}
 
             {% block last_change %}
             <div class="last-change-detail info-detail">
+                {%set issued=h.odsh_render_datetime(pkg.issued) if pkg.issued else '-'%}
                 <div>{{ _('issued') }}:</div>
-                {{h.render_datetime(pkg.issued,'%d.%m.%Y') }}
+                {{issued}}
             </div>
             {% endblock %}
 
