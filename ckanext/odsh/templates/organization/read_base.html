@@ -32,6 +32,11 @@
 
 
 {% block secondary_content %}
+{% set organization = c.group_dict %}
+<div class='organization-image-container'>
+<img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}"
+    alt="{{ organization.name }}" class="organization-image">
+</div>
 {% block organization_facets %}{% endblock %}
 {% endblock %}
 
