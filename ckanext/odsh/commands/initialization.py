@@ -70,10 +70,10 @@ class Initialization(CkanCommand):
         }
 
         for org_key in odsh_orgs:
-            title = odsh_orgs[org_key]['title'].encode('utf-8')
+            title = odsh_orgs[org_key]['title']
             if org_key not in present_orgs_keys:
                 add_message = 'Adding organization {org_title}.'.format(
-                    org_title=title
+                    org_title=title.encode('utf8')
                 )
                 print(add_message)
                 group_dict = {
@@ -81,7 +81,7 @@ class Initialization(CkanCommand):
                     'id': org_key,
                     'title': title,
                     'image_url': odsh_orgs[org_key].get('image'),
-                    'description': odsh_orgs[org_key].get('description').encode('utf8')
+                    'description': odsh_orgs[org_key].get('description')
                 }
 
                 self._create_and_purge_organization(
