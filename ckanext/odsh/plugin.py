@@ -3,14 +3,18 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.lib.plugins import DefaultDatasetForm
+from ckan.logic.validators import tag_string_convert
 from ckan.common import OrderedDict
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
+
+from itertools import count
 from routes.mapper import SubMapper
 from pylons import config
 import urllib2
 import csv
+import re
 
 import logging
 
@@ -19,7 +23,7 @@ log = logging.getLogger(__name__)
 _ = toolkit._
 
 def odsh_get_facet_items_dict(name, limit=None):
-    ''' 
+    '''
     Gets all facets like 'get_facet_items_dict' but sorted alphabetically
     instead by count.
     '''
@@ -51,7 +55,7 @@ def odsh_convert_groups_string(value,context):
                 ret.append(g)
     return ret
 
-     
+
 def odsh_now():
     return helpers.render_datetime(datetime.datetime.now(),"%Y-%m-%d")
 
@@ -97,6 +101,34 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index, 'value')] = spatial_text
     data[('extras', new_index+1, 'key')] = 'spatial'
     data[('extras', new_index+1, 'value')] = spatial
+
+def odsh_tag_name_validator(value, context):
+    tagname_match = re.compile('[\w \-.\:\(\)]*$', re.UNICODE)
+    if not tagname_match.match(value):
+        raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
+                        'characters or symbols: -_.:()') % (value))
+    return value
+
+def odsh_tag_string_convert(key, data, errors, context):
+    '''Takes a list of tags that is a comma-separated string (in data[key])
+    and parses tag names. These are added to the data dict, enumerated. They
+    are also validated.'''
+
+    if isinstance(data[key], basestring):
+        tags = [tag.strip() \
+                for tag in data[key].split(',') \
+                if tag.strip()]
+    else:
+        tags = data[key]
+
+    current_index = max( [int(k[1]) for k in data.keys() if len(k) == 3 and k[0] == 'tags'] + [-1] )
+
+    for num, tag in zip(count(current_index+1), tags):
+        data[('tags', num, 'name')] = tag
+
+    for tag in tags:
+        toolkit.get_validator('tag_length_validator')(tag, context)
+        odsh_tag_name_validator(tag, context)
 
 
 class OdshIcapPlugin(plugins.SingletonPlugin):
@@ -224,6 +256,13 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         for field in self._fields():
             schema.update({field: [toolkit.get_converter('not_empty')]})
 
+        for i, item in enumerate(schema['tags']['name']):
+            if item == toolkit.get_validator('tag_name_validator'):
+                schema['tags']['name'][i] = toolkit.get_validator('odsh_tag_name_validator')
+        for i, item in enumerate(schema['tag_string']):
+            if item == tag_string_convert:
+                schema['tag_string'][i] = odsh_tag_string_convert
+
         schema['resources'].update({
                 'url' : [ toolkit.get_converter('not_empty') ]
                 })
@@ -258,5 +297,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def get_validators(self):
         return { 'odsh_convert_groups_string': odsh_convert_groups_string,
-                 'known_spatial_uri': known_spatial_uri}
+                 'known_spatial_uri': known_spatial_uri,
+                 'odsh_tag_name_validator': odsh_tag_name_validator}
 

@@ -133,6 +133,13 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         schema.update({'temporal_end': [
             toolkit.get_validator('ignore_empty'),
             toolkit.get_converter('convert_to_extras')]})
+        schema.update({'issued': [
+            toolkit.get_validator('ignore_missing'),
+            toolkit.get_validator('ignore_empty'),
+            toolkit.get_converter('convert_to_extras')]})
+        for i, item in enumerate(schema['tags']['name']):
+            if item == toolkit.get_validator('tag_name_validator'):
+                schema['tags']['name'][i] = toolkit.get_validator('odsh_tag_name_validator')
 
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
@@ -163,7 +170,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         package_dict.update({'temporal_end': values['ZeitraumBis']})
         package_dict.update({'spatial_uri': 'http://dcat-ap.de/def/politicalGeocoding/stateKey/01'})
         # issued sollte noch geliefert werden!
-        package_dict.update({'issued': datetime.datetime.now()})
+        #package_dict.update({'issued': datetime.datetime.now()})
         self.add_ressources(package_dict, values)
 
         self.add_tags(package_dict, values)
