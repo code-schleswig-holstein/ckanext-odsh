@@ -20,12 +20,6 @@ import logging
 
 log = logging.getLogger(__name__)
 
-#def map_general_fields(package_dict, values):
-#    package_dict.update({'resources': [], 'tags': [], 'groups': []})
-#    package_dict.update({'title': values['Titel']})
-#    package_dict.update({'notes': values['Beschreibung']})
-#    package_dict.update({'license_id': values['Nutzungsbestimmungen']['ID_derLizenz'][0]]})
-
 
 class StatistikamtNordHarvester(ODSHBaseHarvester):
     """
@@ -101,7 +95,6 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
 
         if len(ids) > 0:
             log.info("finished %s IDs of %s IDs successfully gathered" % (len(used_identifiers), len(documents)))
-            #log.debug("List of gathered IDs: %s" % ids)
             log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
             return ids
         else:
@@ -132,14 +125,14 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             self.map_fields(context, harvest_object)
             return True
 
-    def _update_schema(self, schema):
+    @staticmethod
+    def _update_schema(schema):
         schema.update({'temporal_start': [
             toolkit.get_validator('ignore_empty'),
             toolkit.get_converter('convert_to_extras')]})
         schema.update({'temporal_end': [
             toolkit.get_validator('ignore_empty'),
             toolkit.get_converter('convert_to_extras')]})
-
 
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
@@ -150,7 +143,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         package_dict.update({'title': title})
         package_dict.update({'name': self._gen_new_name(title)})
         # Beschreibung sollte noch geliefert werden!
-        package_dict.update({'notes': values['Beschreibung'] or "Fehlende Beschreibung"})
+        package_dict.update({'notes': values['Beschreibung'] or values['Ressourcen']['Ressource'][0]['Ressourcenname']})
         package_dict.update({'license_id': self._get_license_id(values['Nutzungsbestimmungen']['ID_derLizenz'][0])})
         package_dict.update({'author': values["VeroeffentlichendeStelle"]["Name"]})
         package_dict.update({'author_email': values["VeroeffentlichendeStelle"]["EMailAdresse"]})
@@ -181,23 +174,13 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
 
         package_dict['owner_org'] = source_dataset.get('owner_org')
 
-        # get the ID analog to Kiel Harvester
         package_dict['id'] = harvest_object.guid
-
-        #log.debug("ID: " + str(package_dict['id']))
-        #log.debug("license_id: " + str(package_dict["license_id"]))
-        #log.debug("extras: " + str(package_dict["extras"]))
-        #if package_dict.has_key("maintainer"):
-        #log.debug("maintainer: " + str(package_dict["maintainer"]))
-        #log.debug("url: " + str(package_dict["url"]))
-        #log.debug("resource/file_size: " + str(package_dict["resources"]))
-        #log.debug("tags: " + str(package_dict["tags"]))
 
         try:
             context = {'user': self._get_user_name(), 'return_id_only': True, 'ignore_auth': True}
             package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
             package_schema = package_plugin.create_package_schema()
-	    self._update_schema(package_schema)
+            self._update_schema(package_schema)
             context['schema'] = package_schema
             self._handle_current_harvest_object(harvest_object, harvest_object.guid)
             result = toolkit.get_action('package_create')(context, package_dict)
@@ -206,7 +189,8 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             self._save_object_error('Validation Error: %s' % str(e.error_summary), harvest_object, 'Import')
             return False
 
-    def add_tags(self, package_dict, values):
+    @staticmethod
+    def add_tags(package_dict, values):
         tags = values['Schlagwoerter']['Schlagwort']
         for tag in tags:
             seperated_tags = tag.split(',')
@@ -214,7 +198,8 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
                 if seperated_tag != '' and len(seperated_tag) < 100:
                     package_dict['tags'].append({'name': seperated_tag.strip()})
 
-    def add_ressources(self, package_dict, values):
+    @staticmethod
+    def add_ressources(package_dict, values):
         resources = values['Ressourcen']['Ressource']
         for resource in resources:
             resource_dict = dict()
@@ -232,32 +217,21 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
     @staticmethod
     def map_to_group(package_dict, values):
         # open file with the mapping from numbers to DCAT-DE vocabulary:
+        # TODO: needs to be set in the ckan config file, not hardcoded
         with open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/harvesters/number_dcat_de_hamburg.json') as f:
             dcat_theme = json.load(f)
         # get the code
         code = values['StANKategorie']
 
-#        all_authority_codes = ['agri', 'educ', 'envi', 'ener', 'tran', 'tech',
-#                           'econ', 'soci', 'heal', 'gove', 'regi', 'just', 'intr']
-
-        # check, if StANProdukte has id 4
-#        if '4' in values['StANProdukte']:
-#            for item in all_authority_codes:
-#                package_dict['groups'].append({'name' : item})
-
-        # or if possible map it to a group
         if dcat_theme.has_key(str(code)):
                 for item in dcat_theme[str(code)]:
                     package_dict['groups'].append({'name': item})
         else:
-            # put it in the na-group
-#            package_dict['groups'].append({'name': 'na'})
             log.error('Statistik-Nord-Harvester: No valid group code received: %s', code)
 
     @staticmethod
     def _get_content(url):
         url = url.replace(' ', '%20')
-        #log.debug("get_content StatistikNord harvester: %s" % url)
         try:
             http_response = urllib2.urlopen(url, timeout=100000)
             content = http_response.read()
