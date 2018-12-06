@@ -28,7 +28,7 @@ Example:
 {% set access_count=(package.tracking_summary.total if package.tracking_summary) or '-' %}
 {% set timerange_label ='Zeitraum' %}
 {% set access_count_label ='Aufrufe' %}
-{% set issued = h.odsh_render_datetime(package.issued) if package.issued else '-'%}
+{% set issued = h.odsh_render_datetime(package.issued) if package.issued else h.odsh_render_datetime(package.metadata_created) %}
 {% set categories = package.groups|map(attribute='display_name')|join(', ') if package.groups else '-' %}
 
 {% block package_item %}
