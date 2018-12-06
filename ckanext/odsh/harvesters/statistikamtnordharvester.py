@@ -133,6 +133,10 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         schema.update({'temporal_end': [
             toolkit.get_validator('ignore_empty'),
             toolkit.get_converter('convert_to_extras')]})
+        schema.update({'issued': [
+            toolkit.get_validator('ignore_missing'),
+            toolkit.get_validator('ignore_empty'),
+            toolkit.get_converter('convert_to_extras')]})
 
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
