@@ -137,9 +137,6 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             toolkit.get_validator('ignore_missing'),
             toolkit.get_validator('ignore_empty'),
             toolkit.get_converter('convert_to_extras')]})
-        for i, item in enumerate(schema['tags']['name']):
-            if item == toolkit.get_validator('tag_name_validator'):
-                schema['tags']['name'][i] = toolkit.get_validator('odsh_tag_name_validator')
 
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
