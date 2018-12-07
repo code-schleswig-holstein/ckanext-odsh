@@ -8,6 +8,7 @@ import json
 from ckan.common import  c
 import  datetime
 from dateutil import parser
+from ckan.common import config
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -98,3 +99,8 @@ def odsh_get_spatial_text(pkg_dict):
 def odsh_render_datetime(datetime_, date_format='%d.%m.%Y'):
     dt = parser.parse(datetime_)
     return dt.strftime(date_format)
+
+def odsh_upload_known_formats():
+    value = config.get('ckanext.odsh.upload_formats', [])
+    value = toolkit.aslist(value)
+    return value
