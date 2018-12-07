@@ -210,6 +210,9 @@ msgstr "Bitte geben sie einen Namen für den Datensatz ein"
 msgid "odsh_resource_description_error_label"
 msgstr "Bitte beschreiben Sie Ihren Datensatz"
 
+msgid "odsh_resource_format_error_label"
+msgstr "Bitte geben Sie ein Format an"
+
 msgid "Followers"
 msgstr "Abonennten"
 

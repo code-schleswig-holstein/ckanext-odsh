@@ -265,7 +265,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 schema['tag_string'][i] = odsh_tag_string_convert
 
         schema['resources'].update({
-                'url' : [ toolkit.get_converter('not_empty') ]
+                'url' : [ toolkit.get_converter('not_empty') ],
+                'format' : [ toolkit.get_converter('not_empty') ]
                 })
 
     def create_package_schema(self):
