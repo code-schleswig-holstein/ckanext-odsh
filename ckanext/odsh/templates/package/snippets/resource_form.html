@@ -1,3 +1,5 @@
+
+{% resource 'odsh/odsh_image-upload.js' %}
 {% import 'macros/form.html' as form %}
 
 {% set data = data or {} %}
@@ -64,6 +66,20 @@
     {{ form.input('mimetype_inner', id='field-mimetype-inner', label=_('MIME Type'), placeholder=_('eg.
     application/json'), value=data.mimetype_inner, error=errors.mimetype_inner, classes=[]) }}
     {% endif %}
+
+    
+    {% block basic_fields_format %}
+      {% resource 'odsh/odsh_guessformat.js' %}
+
+      {% set format_attrs = {'data-module': 'odsh_guessformat', 'data-module-formats':h.odsh_upload_known_formats()} %}
+
+      {% call form.input('format', id='field-format', label=_('Format'), placeholder=_('eg. CSV, XML or JSON'), value=data.format, error=errors.format, classes=['control-medium'],attrs=format_attrs) %}
+        <span class="info-block info-block-small">
+          <i class="fa fa-info-circle"></i>
+          {{ _('This will be guessed automatically. Leave blank if you wish') }}
+        </span>
+      {% endcall %}
+    {% endblock %}
     {% endblock %}
 
     <div class='row-fluid'>

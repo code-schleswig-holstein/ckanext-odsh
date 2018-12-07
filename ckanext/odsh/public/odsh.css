@@ -607,6 +607,9 @@ label:after {
     background-color: rgb(212,0,75);
     color:white;
 }
+.js .image-upload #field-image-url {
+   padding-right: 0px;
+}
 
 .btn {
     border-bottom-color: none;
