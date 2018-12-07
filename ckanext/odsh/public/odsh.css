@@ -570,6 +570,7 @@ label:after {
 .btn.btn-primary.btn-arrow-right{
     padding-left: 21px;
 }
+.btn.btn-mini::before,
 .btn.btn-primary.btn-arrow-right:before {
     background-image: url(/base/images/arrow-right-w.png);
     background-repeat: no-repeat;
