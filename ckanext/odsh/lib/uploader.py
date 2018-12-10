@@ -6,14 +6,13 @@ import logging
 
 log = logging.getLogger(__name__)
 
-ValidationError = logic.ValidationError
 
 class ODSHResourceUpload(ResourceUpload):
 
     def __init__(self, resource):
         super(ODSHResourceUpload, self).__init__(resource)
         if self._icap_virus_found():
-            raise ValidationError(['Virus gefunden'])
+            raise logic.ValidationError({'upload': ['Virus gefunden']})
         
     def _icap_virus_found(self):
         if self.filename and self.upload_file:
