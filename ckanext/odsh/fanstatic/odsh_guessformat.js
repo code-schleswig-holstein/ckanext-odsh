@@ -7,7 +7,6 @@ ckan.module('odsh_guessformat', function ($)
     let c = $('#field-format')
     let onChange = function (filename)
     {
-            console.log(known_formats)
         let ext = filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2).toLowerCase();
         if (ext !== undefined && known_formats.indexOf(ext) > -1)
         {

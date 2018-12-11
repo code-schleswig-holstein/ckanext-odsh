@@ -1,7 +1,8 @@
- /* Image Upload
- *
- */
-this.ckan.module('odsh_image-upload', function($) {
+/* Image Upload
+*
+*/
+this.ckan.module('odsh_image-upload', function ($)
+{
   return {
     /* options object can be extended using data-module-* attributes */
     options: {
@@ -24,7 +25,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    initialize: function () {
+    initialize: function ()
+    {
       $.proxyAll(this, /_on/);
       var options = this.options;
 
@@ -46,26 +48,27 @@ this.ckan.module('odsh_image-upload', function($) {
 
       // Is there a clear checkbox on the form already?
       var checkbox = $(field_clear, this.el);
-      if (checkbox.length > 0) {
+      if (checkbox.length > 0)
+      {
         checkbox.parents('.control-group').remove();
       }
 
       // Adds the hidden clear input to the form
-      this.field_clear = $('<input type="hidden" name="' + options.field_clear +'">')
+      this.field_clear = $('<input type="hidden" name="' + options.field_clear + '">')
         .appendTo(this.el);
 
       // Button to set the field to be a URL
       this.button_url = $('<a href="javascript:;" class="btn">' +
-                          '<i class="fa fa-globe"></i>' +
-                          this._('Link') + '</a>')
+        '<i class="fa fa-globe"></i>' +
+        this._('Link') + '</a>')
         .prop('title', this._('Link to a URL on the internet (you can also link to an API)'))
         .on('click', this._onFromWeb)
         .insertAfter(this.input);
 
       // Button to attach local file to the form
       this.button_upload = $('<a href="javascript:;" class="btn">' +
-                             '<i class="fa fa-cloud-upload"></i>' +
-                             this._('Upload') + '</a>')
+        '<i class="fa fa-cloud-upload"></i>' +
+        this._('Upload') + '</a>')
         .insertAfter(this.input);
 
       // Button for resetting the form when there is a URL set
@@ -100,15 +103,18 @@ this.ckan.module('odsh_image-upload', function($) {
         .on('change', this._onModifyName);
       // Disables autoName if resource name already has value,
       // i.e. we on edit page
-      if (this.field_name.val()){
+      if (this.field_name.val())
+      {
         this._nameIsDirty = true;
       }
 
-      if (options.is_url) {
+      if (options.is_url)
+      {
         this._showOnlyFieldUrl();
 
         this._updateUrlLabel(this._('URL'));
-      } else if (options.is_upload) {
+      } else if (options.is_upload)
+      {
         this._showOnlyFieldUrl();
 
         this.field_url_input.prop('readonly', true);
@@ -117,7 +123,8 @@ this.ckan.module('odsh_image-upload', function($) {
         this.field_url_input.val(filename);
 
         this._updateUrlLabel(this._('File'));
-      } else {
+      } else
+      {
         this._showOnlyButtons();
       }
     },
@@ -128,7 +135,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns String.
      */
-    _fileNameFromUpload: function(url) {
+    _fileNameFromUpload: function (url)
+    {
       // remove fragment (#)
       url = url.substring(0, (url.indexOf("#") === -1) ? url.length : url.indexOf("#"));
       // remove query string
@@ -148,8 +156,10 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _updateUrlLabel: function(label_text) {
-      if (! this.is_data_resource) {
+    _updateUrlLabel: function (label_text)
+    {
+      if (!this.is_data_resource)
+      {
         return;
       }
 
@@ -161,13 +171,15 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _onFromWeb: function() {
+    _onFromWeb: function ()
+    {
       this._showOnlyFieldUrl();
 
       this.field_url_input.focus()
         .on('blur', this._onFromWebBlur);
 
-      if (this.options.is_upload) {
+      if (this.options.is_upload)
+      {
         this.field_clear.val('true');
       }
 
@@ -178,7 +190,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _onRemove: function() {
+    _onRemove: function ()
+    {
       this._showOnlyButtons();
 
       this.field_url_input.val('');
@@ -193,7 +206,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _onInputChange: function() {
+    _onInputChange: function ()
+    {
       var file_name = this.input.val().split(/^C:\\fakepath\\/).pop();
       this.field_url_input.val(file_name);
       this.field_url_input.prop('readonly', true);
@@ -213,7 +227,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _showOnlyButtons: function() {
+    _showOnlyButtons: function ()
+    {
       this.fields.hide();
       this.button_upload
         .add(this.field_image)
@@ -226,7 +241,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _showOnlyFieldUrl: function() {
+    _showOnlyFieldUrl: function ()
+    {
       this.fields.hide();
       this.field_url.show();
     },
@@ -235,7 +251,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _onInputMouseOver: function() {
+    _onInputMouseOver: function ()
+    {
       this.button_upload.addClass('hover');
     },
 
@@ -243,7 +260,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing.
      */
-    _onInputMouseOut: function() {
+    _onInputMouseOut: function ()
+    {
       this.button_upload.removeClass('hover');
     },
 
@@ -251,7 +269,8 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing
      */
-    _onModifyName: function() {
+    _onModifyName: function ()
+    {
       this._nameIsDirty = true;
     },
 
@@ -259,9 +278,11 @@ this.ckan.module('odsh_image-upload', function($) {
      *
      * Returns nothing
      */
-    _onFromWebBlur: function() {
+    _onFromWebBlur: function ()
+    {
       var url = this.field_url_input.val().match(/([^\/]+)\/?$/)
-      if (url) {
+      if (url)
+      {
         this._autoName(url.pop());
       }
       let file_name = this.field_url_input.val();
@@ -274,10 +295,12 @@ this.ckan.module('odsh_image-upload', function($) {
      * Select by attribute [name] to be on the safe side and allow to change field id
      * Returns nothing
      */
-     _autoName: function(name) {
-        if (!this._nameIsDirty){
-          this.field_name.val(name);
-        }
-     }
+    _autoName: function (name)
+    {
+      if (!this._nameIsDirty)
+      {
+        this.field_name.val(name);
+      }
+    }
   };
 });
