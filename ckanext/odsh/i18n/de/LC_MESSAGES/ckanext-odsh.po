@@ -267,3 +267,9 @@ msgstr "Grenzen der Karte"
 
 msgid "Map showing the borders of {map_text}"
 msgstr "Karte, die die Grenzen von {map_text} zeigt"
+
+msgid "submit date search"
+msgstr "Zeitbezug anwenden"
+
+msgid "daterange"
+msgstr "Zeitbezug"
