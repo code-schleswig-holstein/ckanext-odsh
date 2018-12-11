@@ -146,6 +146,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IValidators)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
     # IConfigurer
 
@@ -301,4 +302,57 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return { 'odsh_convert_groups_string': odsh_convert_groups_string,
                  'known_spatial_uri': known_spatial_uri,
                  'odsh_tag_name_validator': odsh_tag_name_validator}
+    
+
+    def extend_search_convert_local_to_utc_timestamp(self, str_timestamp):
+        DATETIME_FORMAT = '%Y-%m-%d'
+        if not str_timestamp:
+            return ''
+        
+        ##Todo: do we need timezone conversions?
+
+        local_datetime  = datetime.datetime.strptime(str_timestamp, DATETIME_FORMAT);
+        # tz_code = config.get('ckan.timezone', 'Australia/Melbourne')
+        # local = timezone(tz_code)
+        # utc_datetime = _make_aware(local_datetime, local)
+        # local_datetime = utc_datetime.astimezone(pytz.utc)
+        return local_datetime.strftime(DATETIME_FORMAT)+"T00:00:00Z"
+
+    # Add the custom parameters to Solr's facet queries
+    def before_search(self, search_params):
+
+        extras = search_params.get('extras')
+        if not extras:
+            # There are no extras in the search params, so do nothing.
+            return search_params
+
+
+        print(search_params)
+
+        start_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_startdate'))
+        end_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_enddate'))
+
+        if not start_date and not end_date:
+            # The user didn't select any additional params, so do nothing.
+            return search_params
+
+        if not start_date:
+            start_date='*'
+        if not end_date:
+            end_date='*'
+
+        fq = search_params['fq']
+
+        if start_date and end_date:
+            # Add a date-range query with the selected start and end dates into the
+            # Solr facet queries.
+            print('change queary')
+            fq = '{fq} +metadata_modified:[{start_date} TO {end_date}]'.format(
+                fq=fq, start_date=start_date, end_date=end_date)
+            print(fq)
+
+        #return modified facet queries
+        search_params['fq'] = fq
+
+        return search_params
 

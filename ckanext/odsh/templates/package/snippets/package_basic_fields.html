@@ -75,7 +75,7 @@ is_required=true,placeholder=_('Enter title')) }}
         <div id='start-end' class='span3'>
             <!-- field temporal_start -->
             {% set temporal_start_label=_('odsh_temporal_start_label') %}
-	    {% set data_temporal_start = data.temporal_start.split('T')[0] if data.temporal_start else None %}
+            {% set data_temporal_start = data.temporal_start.split('T')[0] if data.temporal_start else None %}
             {{ form.input_raw('temporal_start', id='field-temporal-start', value=data_temporal_start,
             error=errors.temporal_start,
             classes=['control-full'],type='date',is_required=true,placeholder=_('from'))
@@ -84,7 +84,7 @@ is_required=true,placeholder=_('Enter title')) }}
         <div class='span3'>
             <!-- field temporal_end -->
             {% set temporal_end_label='Ende des Zeitraumes' %}
-	    {% set data_temporal_end = data.temporal_end.split('T')[0] if data.temporal_end else None %}
+            {% set data_temporal_end = data.temporal_end.split('T')[0] if data.temporal_end else None %}
             {{ form.input_raw('temporal_end', id='field-temporal-end', value=data_temporal_end,
             error=errors.temporal_end, classes=['control-full'],type='date',is_required=true, placeholder=_('to'))
             }}
