@@ -333,7 +333,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         end_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_enddate'))
 
         if not start_date and not end_date:
-            # The user didn't select any additional params, so do nothing.
             return search_params
 
         if not start_date:
@@ -343,13 +342,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         fq = search_params['fq']
 
-        if start_date and end_date:
-            # Add a date-range query with the selected start and end dates into the
-            # Solr facet queries.
-            print('change queary')
-            fq = '{fq} +metadata_modified:[{start_date} TO {end_date}]'.format(
-                fq=fq, start_date=start_date, end_date=end_date)
-            print(fq)
+        fq = '{fq} +extras_temporal_start:[{start_date} TO {end_date}] OR +extras_temporal_end:[{start_date} TO {end_date}]'.format(fq=fq, start_date=start_date, end_date=end_date)
+
+        print(fq)
 
         #return modified facet queries
         search_params['fq'] = fq
