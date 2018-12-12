@@ -15,6 +15,7 @@ from pylons import config
 import urllib2
 import csv
 import re
+from dateutil.parser import parse
 
 import logging
 
@@ -350,4 +351,14 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         search_params['fq'] = fq
 
         return search_params
+
+    def before_index(self,dict_pkg):
+        ## make special date fields solr conform
+        fields=["issued", "temporal_start", "temporal_end"]
+        for field in fields:
+            field = 'extras_' + field
+            if field in dict_pkg and dict_pkg[field]:
+                d = parse(dict_pkg[field])
+                dict_pkg[field]=d.strftime('%Y-%m-%dT%H:%M:%SZ')
+        return dict_pkg
 
