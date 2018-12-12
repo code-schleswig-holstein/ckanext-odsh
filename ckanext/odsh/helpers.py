@@ -96,9 +96,9 @@ def odsh_get_spatial_text(pkg_dict):
             return spatial
     return None 
 
-def odsh_render_datetime(datetime_, date_format='%d.%m.%Y'):
+def odsh_render_datetime(datetime_, date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'):
     dt = parser.parse(datetime_)
-    return dt.strftime(date_format)
+    return date_format.format(dt)
 
 def odsh_upload_known_formats():
     value = config.get('ckanext.odsh.upload_formats', [])
