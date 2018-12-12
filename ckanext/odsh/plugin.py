@@ -359,6 +359,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             field = 'extras_' + field
             if field in dict_pkg and dict_pkg[field]:
                 d = parse(dict_pkg[field])
-                dict_pkg[field]=d.strftime('%Y-%m-%dT%H:%M:%SZ')
+                dict_pkg[field]='{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(d)
         return dict_pkg
 
