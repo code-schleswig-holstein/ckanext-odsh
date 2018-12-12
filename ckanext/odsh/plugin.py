@@ -170,7 +170,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_get_bounding_box': odsh_helpers.odsh_get_bounding_box,
                 'odsh_get_spatial_text': odsh_helpers.odsh_get_spatial_text,
                 'odsh_render_datetime': odsh_helpers.odsh_render_datetime,
-                'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats
+                'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats,
+                'odsh_encodeurl': odsh_helpers.odsh_encodeurl
         }
 
     def before_map(self, map):
