@@ -343,7 +343,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         fq = search_params['fq']
 
-        fq = '{fq} +extras_temporal_start:[{start_date} TO {end_date}] OR +extras_temporal_end:[{start_date} TO {end_date}]'.format(fq=fq, start_date=start_date, end_date=end_date)
+        fq = '{fq} (+extras_temporal_start:[{start_date} TO {end_date}] OR +extras_temporal_end:[{start_date} TO {end_date}])'.format(fq=fq, start_date=start_date, end_date=end_date)
 
         print(fq)
 
