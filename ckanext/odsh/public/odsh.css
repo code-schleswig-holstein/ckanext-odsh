@@ -1241,3 +1241,14 @@ display: none;
     margin-top: 40px;
     margin-left: 400px;
 }
+
+.share-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.share-links a{
+    font-size: 22px;
+    margin-top: 5px;
+    color:#003064;
+}

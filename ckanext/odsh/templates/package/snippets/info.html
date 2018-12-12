@@ -60,7 +60,8 @@ Example:
 
             {% block last_change %}
             <div class="last-change-detail info-detail">
-                {%set issued=h.odsh_render_datetime(pkg.issued) if pkg.issued else h.odsh_render_datetime(pkg.metadata_created)%}
+                {%set issued=h.odsh_render_datetime(pkg.issued) if pkg.issued else
+                h.odsh_render_datetime(pkg.metadata_created)%}
                 <div>{{ _('issued') }}:</div>
                 {{issued}}
             </div>
@@ -92,7 +93,19 @@ Example:
             {% endif %}
         </div>
         {% endblock %}
-    </div>
+        {% block social_nav %}
+        <div class="info-detail">
+            {% set current_url = h.odsh_encodeurl(h.full_current_url()) %}
+            <p>{{ _('share this dataset')}}:</p>
+            <div class="share-links">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.xing.com/app/user?op=share&url={{ current_url }}" target="_blank"><i class="fa fa-xing-square"></i></a>
+                <a href="https://www.facebook.com/sharer.php?href={{ current_url }}" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                <a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                <a href="mailto:?body={{ current_url }}" target="_blank"><i class="fa fa-envelope"></i></a>
+            </div>
+        </div>
+        {% endblock %}
 </section>
 {% endif %}
 {% endblock %}

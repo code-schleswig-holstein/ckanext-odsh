@@ -273,3 +273,6 @@ msgstr "Zeitbezug anwenden"
 
 msgid "daterange"
 msgstr "Zeitbezug"
+
+msgid "share this dataset"
+msgstr "Datensatz teilen"

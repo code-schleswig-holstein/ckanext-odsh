@@ -9,6 +9,7 @@ from ckan.common import  c
 import  datetime
 from dateutil import parser
 from ckan.common import config
+import urllib
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -104,3 +105,6 @@ def odsh_upload_known_formats():
     value = config.get('ckanext.odsh.upload_formats', [])
     value = toolkit.aslist(value)
     return value
+
+def odsh_encodeurl(url):
+    return urllib.quote(url, safe='')
