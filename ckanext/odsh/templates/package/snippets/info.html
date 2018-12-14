@@ -98,11 +98,11 @@ Example:
             {% set current_url = h.odsh_encodeurl(h.full_current_url()) %}
             <p>{{ _('share this dataset')}}:</p>
             <div class="share-links">
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank"><i class="fa fa-linkedin"></i></a>
-                <a href="https://www.xing.com/app/user?op=share&url={{ current_url }}" target="_blank"><i class="fa fa-xing-square"></i></a>
-                <a href="https://www.facebook.com/sharer.php?href={{ current_url }}" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                <a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                <a href="mailto:?body={{ current_url }}" target="_blank"><i class="fa fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank"><img class='' src="/base/images/Icon-linkedin.png"/></a>
+                <a href="https://www.xing.com/app/user?op=share&url={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-xing.png"/></a>
+                <a href="https://www.facebook.com/sharer.php?href={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-facebook.png"/></a>
+                <a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-twitter.png"/></a>
+                <a href="mailto:?body={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-mail.png"/></a>
             </div>
         </div>
         {% endblock %}

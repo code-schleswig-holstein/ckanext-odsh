@@ -1252,3 +1252,7 @@ display: none;
     margin-top: 5px;
     color:#003064;
 }
+
+.share-links img {
+    width: 20px;
+}
