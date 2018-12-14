@@ -32,15 +32,35 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
   </div>
 
   {% block datereange_search %}
-  <form id="date-search-form" method="get" action="{% url_for controller='package', action='search' %}">
-    {{ form.input_raw('ext_startdate', id='ext_startdate', value=request.params['ext_startdate'],
-    classes=['control-full'],type='date',placeholder=_('from'))
-    }}
-    {{ form.input_raw('ext_enddate', id='ext_enddate', value=request.params['ext_enddate'],
-    classes=['control-full'],type='date',placeholder=_('to'))
-    }}
-    <a href="javascript:{}" onclick="$('#date-search-form').submit();" class="action">{{_('submit date search') }}</a>
-  </form>
+  {% resource 'odsh/odsh_rangesearch.js' %}
+  {% set has_range_filter = request.params.get('ext_startdate') or request.params.get('ext_enddate') %}
+<section class="module module-narrow module-shallow">
+  <nav>
+    <div class="nav-title">{{_('timerange')}}</div>
+    <div class="rangesearch-controls">
+      <form id="date-search-form" method="get" action="{% url_for controller='package', action='search' %}" data-module="odsh_rangesearch">
+        <div class='span1'>
+          <label id="rangesearch-label" class="rangesearch {% if has_range_filter %} checked {%else%} disabled {% endif %}"></label>
+        </div>
+        <div class='span1'>
+          <div class='controls rangesearch'>
+            {%- set start = request.params['ext_startdate'] -%}
+            {%- set end = request.params['ext_enddate'] -%}
+            {%- set typeStart = 'text' if not start else 'date' -%}
+            {%- set typeEnd = 'text' if not end else 'date' -%}
+            {%- set onFocus = 'onfocus=(this.type=\'date\')' -%}
+            <label for="ext_startdate">{{_('from')|title}}</label>
+            <input id="ext_startdate" name="ext_startdate" type="{{ typeStart }}" value="{{start}}" placeholder="{{ _('Date') }}"
+              {{ onFocus }} class='rangesearch' />
+            <label for="ext_enddate">{{_('to')|title}}</label>
+            <input id="ext_enddate" name="ext_enddate" type="{{ typeEnd }}" value="{{end}}" placeholder="{{ _('Date') }}"
+              {{ onFocus }} class='rangesearch' />
+          </div>
+        </div>
+      </form>
+    </div>
+  </nav>
+</section>
   {% endblock %}
 
 </div>

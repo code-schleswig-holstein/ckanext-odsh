@@ -260,7 +260,8 @@ input[type=radio], input[type=checkbox] {
     display:none;
 }
 
-/* input[type=checkbox] + label.checkbox,  */
+
+label.rangesearch,
 input[type=checkbox] + label.mylabel {
     background: #fff;
     border: 1px solid black;
@@ -271,12 +272,8 @@ input[type=checkbox] + label.mylabel {
     margin-bottom: 0px;
     min-height: 8px;
 }
-/* input[type=checkbox] + label.checkbox{
 
-    border: 1px solid black;
-} */
-
-/* input[type=checkbox]:checked + label.checkbox,  */
+label.rangesearch.checked,
 input[type=checkbox]:checked + label.mylabel {
     background: url(/base/images/checked.png);
     background-color: #fff;
@@ -290,14 +287,12 @@ input[type=checkbox]:checked + label.mylabel {
     margin-bottom: 0px;
 
 }
-/* .checklabel .controls > .checkbox:first-child {
-    padding-top: 0px;
-} */
 .checklabel input[type="checkbox"]
 {
     float: inherit;
 }
 
+label.rangesearch,
 label.mylabel  {
     margin-right: 3px;
     margin-bottom: 0px;
@@ -307,8 +302,35 @@ label.mylabel  {
     user-select: none; /* Standard */
 }
 
+label.rangesearch::after,
 label.mylabel::after {
     content: "";
+}
+
+label.rangesearch.disabled {
+    cursor: default;
+    border-color: #999999;
+}
+
+.rangesearch-controls{
+    margin-top:10px;
+}
+
+.rangesearch{
+    display: inline-block;
+}
+
+.controls input.rangesearch{
+    width:155px;
+    padding: 2px;
+    font-size: 12px;
+    line-height: 1.16666667em;
+}
+
+.controls.rangesearch label{
+    font-size: 12px;
+    line-height: 1.16666667em;
+    color:black
 }
 
 /* following makes the secondary span (left side, facets etc.) the same height as the primary span */
