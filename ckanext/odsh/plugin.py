@@ -328,9 +328,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             # There are no extras in the search params, so do nothing.
             return search_params
 
-
-        print(search_params)
-
         start_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_startdate'))
         end_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_enddate'))
 
@@ -345,8 +342,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         fq = search_params['fq']
 
         fq = '{fq} (+extras_temporal_start:[{start_date} TO {end_date}] OR +extras_temporal_end:[{start_date} TO {end_date}])'.format(fq=fq, start_date=start_date, end_date=end_date)
-
-        print(fq)
 
         #return modified facet queries
         search_params['fq'] = fq
