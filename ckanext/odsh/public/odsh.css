@@ -320,8 +320,14 @@ label.rangesearch.disabled {
     display: inline-block;
 }
 
+.rangesearch a{
+    color:black;
+    font-size:14px;
+}
+
 .controls input.rangesearch{
-    width:155px;
+    font-style: normal;
+    width:187px;
     padding: 2px;
     font-size: 12px;
     line-height: 1.16666667em;
