@@ -1,4 +1,5 @@
-import datetime,json
+import datetime
+import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
@@ -23,6 +24,7 @@ log = logging.getLogger(__name__)
 
 _ = toolkit._
 
+
 def odsh_get_facet_items_dict(name, limit=None):
     '''
     Gets all facets like 'get_facet_items_dict' but sorted alphabetically
@@ -32,6 +34,7 @@ def odsh_get_facet_items_dict(name, limit=None):
     facets.sort(key=lambda it: (it['display_name'].lower(), -it['count']))
     log.info(facets)
     return facets
+
 
 def odsh_main_groups():
     '''Return a list of the groups to be shown on the start page.'''
@@ -43,27 +46,28 @@ def odsh_main_groups():
 
     return groups
 
-def odsh_convert_groups_string(value,context):
+
+def odsh_convert_groups_string(value, context):
     if not value:
         return []
     if type(value) is not list:
-        value=[value]
-    groups=helpers.groups_available()
+        value = [value]
+    groups = helpers.groups_available()
     ret = []
     for v in value:
         for g in groups:
-            if g['id']==v:
+            if g['id'] == v:
                 ret.append(g)
     return ret
 
 
 def odsh_now():
-    return helpers.render_datetime(datetime.datetime.now(),"%Y-%m-%d")
+    return helpers.render_datetime(datetime.datetime.now(), "%Y-%m-%d")
 
 
 def odsh_group_id_selected(selected, group_id):
     if type(selected) is not list:
-        selected=[selected]
+        selected = [selected]
     for g in selected:
         if (isinstance(g, basestring) and group_id == g) or (type(g) is dict and group_id == g['id']):
             return True
@@ -83,6 +87,8 @@ def known_spatial_uri(key, data, errors, context):
     spatial = str()
     cr = csv.reader(mapping_file, delimiter="\t")
     for row in cr:
+        print(data[key])
+        print(row[0])
         if row[0] == data[key]:
             not_found = False
             spatial_text = row[1]
@@ -103,12 +109,14 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'key')] = 'spatial'
     data[('extras', new_index+1, 'value')] = spatial
 
+
 def odsh_tag_name_validator(value, context):
     tagname_match = re.compile('[\w \-.\:\(\)]*$', re.UNICODE)
     if not tagname_match.match(value):
         raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
-                        'characters or symbols: -_.:()') % (value))
+                                'characters or symbols: -_.:()') % (value))
     return value
+
 
 def odsh_tag_string_convert(key, data, errors, context):
     '''Takes a list of tags that is a comma-separated string (in data[key])
@@ -116,13 +124,14 @@ def odsh_tag_string_convert(key, data, errors, context):
     are also validated.'''
 
     if isinstance(data[key], basestring):
-        tags = [tag.strip() \
-                for tag in data[key].split(',') \
+        tags = [tag.strip()
+                for tag in data[key].split(',')
                 if tag.strip()]
     else:
         tags = data[key]
 
-    current_index = max( [int(k[1]) for k in data.keys() if len(k) == 3 and k[0] == 'tags'] + [-1] )
+    current_index = max([int(k[1]) for k in data.keys()
+                         if len(k) == 3 and k[0] == 'tags'] + [-1])
 
     for num, tag in zip(count(current_index+1), tags):
         data[('tags', num, 'name')] = tag
@@ -172,33 +181,35 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_render_datetime': odsh_helpers.odsh_render_datetime,
                 'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats,
                 'odsh_encodeurl': odsh_helpers.odsh_encodeurl
-        }
+                }
 
     def before_map(self, map):
-        map.connect('info_page', '/info_page', controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+        map.connect('info_page', '/info_page',
+                    controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
 
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
             m.connect('/user/edit', action='edit')
-            m.connect('user_generate_apikey', '/user/generate_key/{id}', action='generate_apikey')
+            m.connect('user_generate_apikey',
+                      '/user/generate_key/{id}', action='generate_apikey')
             m.connect('/user/activity/{id}/{offset}', action='activity')
             m.connect('user_activity_stream', '/user/activity/{id}',
-                    action='activity', ckan_icon='clock-o')
+                      action='activity', ckan_icon='clock-o')
             m.connect('user_dashboard', '/dashboard', action='dashboard',
-                    ckan_icon='list')
+                      ckan_icon='list')
             m.connect('user_dashboard_datasets', '/dashboard/datasets',
-                    action='dashboard_datasets', ckan_icon='sitemap')
+                      action='dashboard_datasets', ckan_icon='sitemap')
             m.connect('user_dashboard_groups', '/dashboard/groups',
-                    action='dashboard_groups', ckan_icon='users')
+                      action='dashboard_groups', ckan_icon='users')
             m.connect('user_dashboard_organizations', '/dashboard/organizations',
-                    action='dashboard_organizations', ckan_icon='building-o')
+                      action='dashboard_organizations', ckan_icon='building-o')
             m.connect('/dashboard/{offset}', action='dashboard')
             m.connect('user_follow', '/user/follow/{id}', action='follow')
             m.connect('/user/unfollow/{id}', action='unfollow')
             m.connect('user_followers', '/user/followers/{id:.*}',
-                    action='followers', ckan_icon='users')
+                      action='followers', ckan_icon='users')
             m.connect('user_edit', '/user/edit/{id:.*}', action='edit',
-                    ckan_icon='cog')
+                      ckan_icon='cog')
             m.connect('user_delete', '/user/delete/{id}', action='delete')
             m.connect('/user/reset/{id:.*}', action='perform_reset')
             m.connect('register', '/user/register', action='register')
@@ -211,7 +222,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('/user/me', action='me')
             m.connect('/user/set_lang/{lang}', action='set_lang')
             m.connect('user_datasets', '/user/{id:.*}', action='read',
-                    ckan_icon='sitemap')
+                      ckan_icon='sitemap')
             m.connect('user_index', '/user', action='index')
 
         return map
@@ -222,33 +233,33 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return OrderedDict({'organization': _('Herausgeber'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
-                           'groups': _('Kategorie')})
+                            'groups': _('Kategorie')})
 
     def organization_facets(self, facets_dict, organization_type, package_type):
         return OrderedDict({'organization': _('Herausgeber'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
-                           'groups': _('Kategorie')})
+                            'groups': _('Kategorie')})
 
     def group_facets(self, facets_dict, group_type, package_type):
         return OrderedDict({'organization': _('Herausgeber'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
-                           'groups': _('Kategorie')})
+                            'groups': _('Kategorie')})
 
     def _fields(self):
-        return ['title','notes']
+        return ['title', 'notes']
 
     def _extraFields(self):
         return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri', 'licenseAttributionByText']
 
-    def _update_schema(self,schema):
+    def _update_schema(self, schema):
         for field in self._extraFields():
             if field == 'licenseAttributionByText':
                 schema.update({field: [
                     toolkit.get_validator('ignore_missing'),
                     toolkit.get_converter('convert_to_extras')]})
-	    elif field == 'spatial_uri':
+            elif field == 'spatial_uri':
                 schema.update({field: [
                     toolkit.get_converter('not_empty'),
                     toolkit.get_converter('known_spatial_uri'),
@@ -262,15 +273,16 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         for i, item in enumerate(schema['tags']['name']):
             if item == toolkit.get_validator('tag_name_validator'):
-                schema['tags']['name'][i] = toolkit.get_validator('odsh_tag_name_validator')
+                schema['tags']['name'][i] = toolkit.get_validator(
+                    'odsh_tag_name_validator')
         for i, item in enumerate(schema['tag_string']):
             if item == tag_string_convert:
                 schema['tag_string'][i] = odsh_tag_string_convert
 
         schema['resources'].update({
-                'url' : [ toolkit.get_converter('not_empty') ],
-                'format' : [ toolkit.get_converter('not_empty') ]
-                })
+            'url': [toolkit.get_converter('not_empty')],
+            'format': [toolkit.get_converter('not_empty')]
+        })
 
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()
@@ -286,7 +298,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         schema = super(OdshPlugin, self).show_package_schema()
         for field in self._extraFields():
             schema.update({
-                field : [toolkit.get_converter('convert_from_extras')]
+                field: [toolkit.get_converter('convert_from_extras')]
             })
         return schema
 
@@ -301,19 +313,19 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return []
 
     def get_validators(self):
-        return { 'odsh_convert_groups_string': odsh_convert_groups_string,
-                 'known_spatial_uri': known_spatial_uri,
-                 'odsh_tag_name_validator': odsh_tag_name_validator}
-    
+        return {'odsh_convert_groups_string': odsh_convert_groups_string,
+                'known_spatial_uri': known_spatial_uri,
+                'odsh_tag_name_validator': odsh_tag_name_validator}
 
     def extend_search_convert_local_to_utc_timestamp(self, str_timestamp):
         DATETIME_FORMAT = '%Y-%m-%d'
         if not str_timestamp:
             return ''
-        
-        ##Todo: do we need timezone conversions?
 
-        local_datetime  = datetime.datetime.strptime(str_timestamp, DATETIME_FORMAT);
+        # Todo: do we need timezone conversions?
+
+        local_datetime = datetime.datetime.strptime(
+            str_timestamp, DATETIME_FORMAT)
         # tz_code = config.get('ckan.timezone', 'Australia/Melbourne')
         # local = timezone(tz_code)
         # utc_datetime = _make_aware(local_datetime, local)
@@ -328,33 +340,58 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             # There are no extras in the search params, so do nothing.
             return search_params
 
-        start_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_startdate'))
-        end_date = self.extend_search_convert_local_to_utc_timestamp(extras.get('ext_enddate'))
+        start_date = self.extend_search_convert_local_to_utc_timestamp(
+            extras.get('ext_startdate'))
+        end_date = self.extend_search_convert_local_to_utc_timestamp(
+            extras.get('ext_enddate'))
 
         if not start_date and not end_date:
             return search_params
 
+        do_enclosing_query = True
         if not start_date:
-            start_date='*'
+            do_enclosing_query = False
+            start_date = '*'
         if not end_date:
-            end_date='*'
+            do_enclosing_query = False
+            end_date = '*'
 
         fq = search_params['fq']
 
-        fq = '{fq} (+extras_temporal_start:[{start_date} TO {end_date}] OR +extras_temporal_end:[{start_date} TO {end_date}])'.format(fq=fq, start_date=start_date, end_date=end_date)
+        start_query = '+extras_temporal_start:[{start_date} TO {end_date}]'.format(
+            start_date=start_date, end_date=end_date)
 
-        #return modified facet queries
+        end_query = '+extras_temporal_end:[{start_date} TO {end_date}]'.format(
+            start_date=start_date, end_date=end_date)
+
+        enclosing_query = ''
+        if do_enclosing_query:
+            enclosing_query_start = 'extras_temporal_start:[* TO {start_date}]'.format(
+                start_date=start_date)
+
+            enclosing_query_end = 'extras_temporal_end:[{end_date} TO *]'.format(
+                end_date=end_date)
+
+            enclosing_query = ' OR ({enclosing_query_start} AND {enclosing_query_end})'.format(
+                enclosing_query_start=enclosing_query_start, enclosing_query_end=enclosing_query_end)
+
+        fq = '{fq} ({start_query} OR {end_query} {enclosing_query})'.format(
+            fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
+
+        print(fq)
+
+        # return modified facet queries
         search_params['fq'] = fq
 
         return search_params
 
-    def before_index(self,dict_pkg):
-        ## make special date fields solr conform
-        fields=["issued", "temporal_start", "temporal_end"]
+    def before_index(self, dict_pkg):
+        # make special date fields solr conform
+        fields = ["issued", "temporal_start", "temporal_end"]
         for field in fields:
             field = 'extras_' + field
             if field in dict_pkg and dict_pkg[field]:
                 d = parse(dict_pkg[field])
-                dict_pkg[field]='{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(d)
+                dict_pkg[field] = '{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(
+                    d)
         return dict_pkg
-
