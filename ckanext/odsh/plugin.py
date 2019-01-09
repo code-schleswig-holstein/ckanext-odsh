@@ -74,7 +74,6 @@ def odsh_group_id_selected(selected, group_id):
 
     return False
 
-
 def known_spatial_uri(key, data, errors, context):
     mapping_file = config.get('ckanext.odsh.spatial.mapping')
     try:
@@ -204,7 +203,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats,
                 'odsh_encodeurl': odsh_helpers.odsh_encodeurl,
                 'odsh_extract_error': odsh_helpers.odsh_extract_error,
-                'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras
+                'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras,
+                'odsh_create_checksum': odsh_helpers.odsh_create_checksum
                 }
 
     def before_map(self, map):

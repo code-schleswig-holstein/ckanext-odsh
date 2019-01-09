@@ -53,6 +53,11 @@ is_required=false) %}
 {% endcall %}
 {% endmacro %}
 
+{% macro input_extra(field, value='', index='') %}
+<input id="field-{{field}}-key" type="hidden" name="extras__{{index}}__key" value="{{field}}"  />
+<input id="field-{{field}}-value" type="text" name="extras__{{index}}__value" value="{{value}}"  />
+{% endmacro %}
+
 {#
 Builds a single checkbox input.
 
