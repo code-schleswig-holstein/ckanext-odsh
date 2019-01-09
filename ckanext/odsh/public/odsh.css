@@ -1314,9 +1314,7 @@ display: none;
     text-overflow: ellipsis;
     margin-top: 22px;
     width: 242px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center
+    margin-left: 20px;
 }
 .home-groups-title a{
     width: 242px;
