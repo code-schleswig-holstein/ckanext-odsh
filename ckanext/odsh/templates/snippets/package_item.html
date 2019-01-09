@@ -18,17 +18,21 @@ Example:
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set license_title =package.license_title if package.license_title else '-'%}
-{% set license_name=' ('+package.licenseAttributionByText +')' if package.licenseAttributionByText else ''%}
+{% set licenseAttributionByText = h.odsh_extract_value_from_extras(package.extras,'licenseAttributionByText')%}
+{% set license_name=' ('+licenseAttributionByText +')' if licenseAttributionByText else ''%}
 {% set license = license_title + license_name %}
-{% set start=h.odsh_render_datetime(package.temporal_start) if package.temporal_start else ''%}
-{% set end=h.odsh_render_datetime(package.temporal_end) if package.temporal_end else ''%}
+{% set temporal_start = h.odsh_extract_value_from_extras(package.extras,'temporal_start') %}
+{% set start=h.odsh_render_datetime(temporal_start) if temporal_start else ''%}
+{% set temporal_end = h.odsh_extract_value_from_extras(package.extras,'temporal_end') %}
+{% set end=h.odsh_render_datetime(temporal_end) if temporal_end else ''%}
 {% set timerange = start + '-' + end%}
 {% set org = package.organization.title or package.organization.name or '-' %}
 {% set stars = h.odsh_openness_score_dataset_html(package) %}
 {% set access_count=(package.tracking_summary.total if package.tracking_summary) or '-' %}
 {% set timerange_label ='Zeitraum' %}
 {% set access_count_label ='Aufrufe' %}
-{% set issued = h.odsh_render_datetime(package.issued) if package.issued else h.odsh_render_datetime(package.metadata_created) %}
+{% set issued_extra = h.odsh_extract_value_from_extras(package.extras,'issued') %}
+{% set issued = h.odsh_render_datetime(issued_extra) if issued_extra else h.odsh_render_datetime(package.metadata_created) %}
 {% set categories = package.groups|map(attribute='display_name')|join(', ') if package.groups else '-' %}
 
 {% block package_item %}
