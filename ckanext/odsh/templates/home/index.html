@@ -3,17 +3,40 @@
 
 {% block subtitle %}{{ _("Welcome") }}{% endblock %}
 
-{% block maintag %}{% endblock %}
-{% block toolbar %}{% endblock %}
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_('Startseite'), controller='home', action='index') }}</li>
+{% endblock %}
 
-{% block content %}
-<div class="homepage layout-{{ homepage_style }}">
-    <div class="container" style="height:200px">
-        <p style="padding-top:50px">
-            Die Startseite wird im Landesportal umgesetzt.
-        </p>
+
+    {% block main_content %}
+
+{% block toolbar %}
+{{ super() }}
+{% snippet "snippets/search_box.html"%}
+{% endblock %}
+
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet</p>
+    {% for group_row in h.odsh_main_groups() | batch(3, '') %}
+    <div class='home-groups'>
+    <div class='home-groups-rows'>
+        {% for group in group_row %}
+        {% if group != '' %}
+            {% set href = h.add_url_param(controller='package', action='search',extras={'groups':group.id} ) %}
+            <div class='home_group_item'>
+            <div class='home-groups-img'>
+                <img  src="/base/images/icon_kat_{{group.id}}.svg"/>
+            </div>
+            <div class='home-groups-title'>
+                <div>
+                    <a href='{{href}}'>{{group.display_name}}</a>
+                </div>
+            </div> 
+            </div>
+        {% endif %}
+        {% endfor %}
     </div>
-    {% block primary_content %}
-    {% endblock %}
-</div>
+    </div>
+    {% endfor %}
+{% endblock %}
+{% block secondary%}
 {% endblock %}
