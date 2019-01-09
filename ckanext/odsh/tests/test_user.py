@@ -31,12 +31,10 @@ class TestUser(helpers.FunctionalTestBase):
 
     @odsh_test()
     def test_user_logout(self):
-        app = self._get_test_app()
+        #act
+        final_response = self._logout()
 
-        logout_url = url_for(controller='user', action='logout')
-        logout_response = app.get(logout_url, status=302)
-        final_response = helpers.webtest_maybe_follow(logout_response)
-
+        # assert
         assert_true('You are now logged out.' in final_response)
 
     @odsh_test()
@@ -48,9 +46,20 @@ class TestUser(helpers.FunctionalTestBase):
         # act
         response = self._open_url('/user/'+user['name'])
 
-        # arrange
+        # assert
         # we land on the default search page
         response.mustcontain('API Key')
+
+    @odsh_test()
+    def test_user_login_wrong_password(self):
+        # arrange
+        user = factories.User()
+
+        # act
+        response = self._login_user(user, 'wrong')
+
+        # assert
+        response.mustcontain('Login failed. Bad username or password.')
 
     def _open_url(self, url):
         app = self._get_test_app()
@@ -61,11 +70,21 @@ class TestUser(helpers.FunctionalTestBase):
         # let's go to the last redirect in the chain
         return helpers.webtest_maybe_follow(submit_response)
 
-    def _login_user(self, user):
+    def _login_user(self, user, password=None):
         response = self._open_url('/user/login')
         login_form = response.forms[0]
 
         login_form['login'] = user['name']
-        login_form['password'] = 'pass'
+        if password is None:
+            password = 'pass'
+        login_form['password'] = password
 
         return self._submit_form(login_form)
+
+    def _logout(self):
+        app = self._get_test_app()
+
+        logout_url = url_for(controller='user', action='logout')
+        logout_response = app.get(logout_url, status=302)
+        final_response = helpers.webtest_maybe_follow(logout_response)
+        return final_response

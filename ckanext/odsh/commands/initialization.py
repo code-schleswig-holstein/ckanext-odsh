@@ -113,7 +113,7 @@ class Initialization(CkanCommand):
                 'active': True,
                 'owner_org': "landeshauptstadt-kiel",
                 'frequency': "MANUAL",
-                'notes': "Kommunalverwaltung"
+                'notes': "Die Stadt Kiel ist die nördlichste Großstadt Deutschlands und die Landeshauptstadt Schleswig-Holsteins. Als kreisfreie Stadt erledigt sie neben den kommunalen Selbstverwaltungsaufgaben auch Aufgaben einer unteren staatlichen Verwaltungsbehörde und erzeugt, erhebt und verarbeitet als Gebietskörperschaft eine Vielzahl von Daten mit lokalem Bezug."
             },
             "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)": {
                 'name': u"statistikamt-nord",

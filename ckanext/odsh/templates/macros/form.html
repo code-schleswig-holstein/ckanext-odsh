@@ -31,10 +31,10 @@ is_required=false) %}
             placeholder="{{ placeholder }}" {{ onFocus }} {{ attributes(attrs) }} />
     </div>
     <div class="span6 inline-error">
-        {% if error is string %}
-        {{error}}
-        {% else %}
+        {% if error is iterable and error is not string %}
         {{error|first}}
+        {% else %}
+        {{error}}
         {% endif %}
     </div>
 </div>
