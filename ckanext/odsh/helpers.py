@@ -10,6 +10,7 @@ import  datetime
 from dateutil import parser
 from ckan.common import config
 import urllib
+import hashlib
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -108,6 +109,10 @@ def odsh_upload_known_formats():
 
 def odsh_encodeurl(url):
     return urllib.quote(url, safe='')
+
+def odsh_create_checksum(in_string):
+    hashstring = hashlib.md5(in_string.encode('utf-8')).hexdigest()
+    return int(hashstring, base=16)
 
 def odsh_extract_error(key, errors):
     if not errors or not ('extras' in errors):
