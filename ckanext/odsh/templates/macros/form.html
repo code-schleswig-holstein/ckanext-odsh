@@ -33,7 +33,7 @@ is_required=false) %}
     <div class="span6 inline-error">
         {% if error is iterable and error is not string %}
         {{error|first}}
-        {% else %}
+        {% elif error is string %}
         {{error}}
         {% endif %}
     </div>
