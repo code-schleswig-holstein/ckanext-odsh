@@ -35,14 +35,14 @@
     {% block basic_fields_name %}
     {% set error_string = _('odsh_resource_name_error_label') if errors.name %}
     {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('Enter name of the dataset'),
-    value=data.name, error=error_string, classes=['control-full'], is_required=true) }}
+    value=data.name, error=error_string, classes=['control-full'], is_required=false) }}
     {% endblock %}
 
     {% block basic_fields_description %}
     {% set error_string = _('odsh_resource_description_error_label') if errors.description %}
     {{ form.markdown('description', id='field-description', label=_('Description'),
     placeholder=_('Enter description of the dataset'), value=data.description, error=error_string,
-    is_required=true) }}
+    is_required=false) }}
     {% endblock %}
 
     {% endblock basic_fields %}
@@ -73,7 +73,7 @@
       {% set format_attrs = {'data-module': 'odsh_guessformat', 'data-module-formats':h.odsh_upload_known_formats()} %}
       {% set error_string = _('odsh_resource_format_error_label') if errors.format %}
 
-      {% call form.input('format', id='field-format', label=_('Format'), placeholder=_('eg. CSV, XML or JSON'), value=data.format, error=error_string, classes=['control-medium'],attrs=format_attrs) %}
+      {% call form.input('format', id='field-format', label=_('Format'), placeholder=_('eg. CSV, XML or JSON'), value=data.format, error=error_string, is_required=true, classes=['control-medium'],attrs=format_attrs) %}
       {% endcall %}
     {% endblock %}
     {% endblock %}
