@@ -19,7 +19,8 @@
         %}
         {% set label = label_function(item) if label_function else item.display_name %}
         {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-        {% set label_truncated = h.truncate(label, 26) if not label_function else label %}
+        {% set digits = max([label|string|length,2)] %}
+        {% set label_truncated = h.truncate(label, 29-digits) if not label_function else label %}
         <li class="{{ nav_item_class or 'nav-item' }}">
 	  <div class="facet_label">
 	    {# TODO: checkbox-id vereinheitlichen (code-duplikation) und sicher gegen Titel mit Leerzeichen machen! #}
