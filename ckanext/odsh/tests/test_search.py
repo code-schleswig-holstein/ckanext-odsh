@@ -21,6 +21,7 @@ class TestSearch(helpers.FunctionalTestBase):
     def teardown(self):
         model.repo.rebuild_db()
 
+
     @odsh_test()
     def test_dataset_is_in_search_result(self):
         # arrange
