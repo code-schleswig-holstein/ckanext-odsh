@@ -1285,3 +1285,54 @@ display: none;
 .share-links img {
     width: 20px;
 }
+
+.home-groups{
+    width: 100%;
+    margin-top: 20px;
+}
+.home-groups-rows{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 27px;
+}
+
+.home_group_item{
+    width: 282px;
+    height: 220px;
+    background-color: rgb(246,247,249);
+}
+
+.home-groups-title{
+    width: 282px;
+    height: 56px;
+    display: block;
+}
+.home-groups-title div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 22px;
+    width: 242px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+}
+.home-groups-title a{
+    width: 242px;
+    color:#003064;
+}
+.home-groups-img{
+    width: 282px;
+    height: 166px;
+    display: block;
+    background-color:rgb(204,214,224);
+}
+.home-groups-img img{
+    stroke:#003064;
+    left: 150px;
+    top: 50px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
