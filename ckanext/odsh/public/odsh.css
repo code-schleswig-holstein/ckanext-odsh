@@ -498,6 +498,11 @@ label:after {
     font-style: italic
 }
 
+.controls input#field-login,
+.controls input#field-password{
+    font-style: normal;
+} 
+
 .control-group.error input,
 .control-group.error .select2-choices,
 .control-group.error textarea {
