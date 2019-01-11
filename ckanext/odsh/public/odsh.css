@@ -216,7 +216,6 @@ input[type=radio], input[type=checkbox] {
 }
 
 .filter-reset-box a {
-    color: black;
     font-size: 12px;
 }
 
@@ -411,10 +410,10 @@ a:hover.organization-item ,a:focus.organization-item
 .dataset-heading {
     margin-right: 30px;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 20px;
 }
 .dataset-heading a{
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .dataset-empty {
@@ -768,6 +767,8 @@ label:after {
     color:white;
     border-top:60px solid #f2f2f2;
     background: #d4004b;
+    max-width: 1280px;
+    margin: auto;
 }
 @media (max-width: 767px){
 .footer{
@@ -892,7 +893,7 @@ body {
     font-size: 12px;
     color: black;
     max-width: 193px;
-    word-break: break-all;
+    word-break: break-word;
 }
 .info-detail p{
     margin: 0;
@@ -1201,9 +1202,10 @@ body {
 
 }
 #dataset-map .module-heading{
-    padding:0px;
+    padding: 15px 0px 5px 0px;
     margin-right:0px;
     font-weight: normal;
+    border-top: 2px solid #dddddd;
 }
 .module.module-narrow.dataset-map{
     margin: 5px 0;
@@ -1263,7 +1265,7 @@ display: none;
 }
 .filter-list .filtered.pill,
 .filter-list .filtered.pill .fa{
-    background-color: #444444;
+    background-color: #003064;
     color:white;
 }
 .site-title{
