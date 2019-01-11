@@ -145,10 +145,6 @@ input[type=radio], input[type=checkbox] {
     top: 0px;
 }
 
-.nav-simple>li {
-    border-bottom: 0px;
-    padding: 15px 0px 15px 0px;
-}
 
 @media (min-width: 768px){
     [role=main], .main {
@@ -234,9 +230,20 @@ input[type=radio], input[type=checkbox] {
     color: black;
 }
 
+.nav-simple>li {
+    border-bottom: 0px;
+    padding: 15px 0px 0px 0px;
+    width: 193px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+}
+
 .nav-item .facet_label {
-    display: block;
-    float: left;
+    flex:1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav-item .facet_label a{
@@ -244,14 +251,9 @@ input[type=radio], input[type=checkbox] {
 }
 
 .nav-item .facet_count {
-    display: block;
-    float: right;
+    display: inline-block;
     background-color: white;
     padding: 0px 2px 0px 2px;
-}
-
-.filter-checkbox {
-    
 }
 
 
