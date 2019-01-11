@@ -26,7 +26,7 @@
 	    <input type="checkbox" {% if item.active %} checked {% endif %} class="filter-checkbox" id="check-{{ title.lower() }}-{{ loop.index }}"/>
 	    <label class="mylabel" for="check-{{ title.lower() }}-{{ loop.index }}"></label>
 	    <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-                <span>{{ label_truncated }}</span>
+                <span>{{ label}}</span>
             </a>
 	  </div>
 	  <div class="facet_count">
