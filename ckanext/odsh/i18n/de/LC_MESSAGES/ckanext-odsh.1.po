@@ -19,9 +19,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+msgid "map search active"
+msgstr "Kartensuche aktiv"
+
 #: ckanext/odsh/templates/header.html:10
 msgid "Start"
-msgstr "Startseite"
+msgstr "Start"
 
 msgid "Datasets"
 msgstr "Daten"

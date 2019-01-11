@@ -276,3 +276,9 @@ msgstr "Zeitbezug"
 
 msgid "share this dataset"
 msgstr "Datensatz teilen"
+
+msgid "map search active"
+msgstr "Kartensuche aktiv"
+
+msgid "map"
+msgstr "Karte"
