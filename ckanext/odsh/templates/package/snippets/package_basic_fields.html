@@ -95,11 +95,28 @@ is_required=true,placeholder=_('Enter title')) }}
     </div>
 
     <!-- field issued -->
-    {% set issued_value=data.issued if data.issued else h.odsh_now() %}
-    {% set error_string = _('odsh_issued_error_label') if errors.issued %}
-    {% set issued_label='Veröffentlichungsdatum'%}
-    {{ form.input('issued', id='field-issued', label=issued_label, value=issued_value,
-    error=error_string, classes=['control-full'], type='date', is_required=true) }}
+
+    {% set field='issued' %}
+    {% set value = h.odsh_extract_value_from_extras(data.extras,field)%}
+    {% set value_extras = value if value else h.odsh_now() %}
+    {% set index = 4 %}
+
+    <div class="control-group control-full">
+            <label class="control-label" for="field-{{field}}">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+            <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <input id="field-{{field}}-key" type="hidden" name="extras__{{index}}__key" value="{{field}}"  />
+                    <input id="field-{{field}}-value" type="text" name="extras__{{index}}__value" value="{{value_extras}}"  />
+                </div>
+                <div class="span6 inline-error">
+                {% if h.odsh_extract_error(field, errors) %} 
+                {{_(h.odsh_extract_error(field, errors))}}
+                {% endif %}
+                </div>
+            </div>
+            </div>
+        </div>
 
 
     <!-- field tags -->
