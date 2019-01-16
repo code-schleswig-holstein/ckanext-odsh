@@ -87,8 +87,6 @@ def known_spatial_uri(key, data, errors, context):
     spatial = str()
     cr = csv.reader(mapping_file, delimiter="\t")
     for row in cr:
-        print(data[key])
-        print(row[0])
         if row[0] == data[key]:
             not_found = False
             spatial_text = row[1]
@@ -108,6 +106,30 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index, 'value')] = spatial_text
     data[('extras', new_index+1, 'key')] = 'spatial'
     data[('extras', new_index+1, 'value')] = spatial
+
+def _extract_value(key,data,field):
+    key = None
+    for k in data.keys():
+        if data[k] == field:
+            key = k
+            break
+    if key is None:
+        return None
+
+    return data[(key[0],key[1],'value')]
+
+
+def odsh_validate_issued(key, data, errors, context):
+    value = _extract_value(key,data,'issued')
+
+    if not value:
+        raise toolkit.Invalid('issued:odsh_issued_error_label')
+    
+    try:
+        datetime.datetime.strptime(value, '%Y-%m-%d')
+    except ValueError:
+        raise toolkit.Invalid('issued:odsh_issued_not_date_error_label')
+
 
 
 def odsh_tag_name_validator(value, context):
@@ -180,7 +202,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_get_spatial_text': odsh_helpers.odsh_get_spatial_text,
                 'odsh_render_datetime': odsh_helpers.odsh_render_datetime,
                 'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats,
-                'odsh_encodeurl': odsh_helpers.odsh_encodeurl
+                'odsh_encodeurl': odsh_helpers.odsh_encodeurl,
+                'odsh_extract_error': odsh_helpers.odsh_extract_error,
+                'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras
                 }
 
     def before_map(self, map):
@@ -251,7 +275,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return ['title', 'notes']
 
     def _extraFields(self):
-        return ['issued', 'temporal_start', 'temporal_end', 'spatial_uri', 'licenseAttributionByText']
+        return ['temporal_start', 'temporal_end', 'spatial_uri', 'licenseAttributionByText']
 
     def _update_schema(self, schema):
         for field in self._extraFields():
@@ -284,6 +308,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             'format': [toolkit.get_converter('not_empty')]
         })
 
+        schema['extras'].update({
+            'key': [toolkit.get_converter('odsh_validate_issued')]
+        })
+
+
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()
         self._update_schema(schema)
@@ -315,6 +344,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def get_validators(self):
         return {'odsh_convert_groups_string': odsh_convert_groups_string,
                 'known_spatial_uri': known_spatial_uri,
+                'odsh_validate_issued': odsh_validate_issued,
                 'odsh_tag_name_validator': odsh_tag_name_validator}
 
     def extend_search_convert_local_to_utc_timestamp(self, str_timestamp):
@@ -377,8 +407,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         fq = '{fq} ({start_query} OR {end_query} {enclosing_query})'.format(
             fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
-
-        print(fq)
 
         # return modified facet queries
         search_params['fq'] = fq

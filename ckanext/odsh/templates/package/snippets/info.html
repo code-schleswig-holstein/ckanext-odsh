@@ -60,8 +60,8 @@ Example:
 
             {% block last_change %}
             <div class="last-change-detail info-detail">
-                {%set issued=h.odsh_render_datetime(pkg.issued) if pkg.issued else
-                h.odsh_render_datetime(pkg.metadata_created)%}
+                {% set value = h.odsh_extract_value_from_extras(pkg.extras,'issued')%}
+                {% set issued = h.odsh_render_datetime(value) if value else h.odsh_render_datetime(pkg.metadata_created)%} 
                 <div>{{ _('issued') }}:</div>
                 {{issued}}
             </div>

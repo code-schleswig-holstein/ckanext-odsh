@@ -108,3 +108,20 @@ def odsh_upload_known_formats():
 
 def odsh_encodeurl(url):
     return urllib.quote(url, safe='')
+
+def odsh_extract_error(key, errors):
+    if not errors or not ('extras' in errors):
+        return None
+    ext = errors['extras']
+    for item in ext:
+        if 'key' in item:
+            for error in item['key']:
+                if error.startswith(key):
+                    return error.replace(key+':','')
+
+def odsh_extract_value_from_extras(extras, key):
+    if not extras:
+        return None
+    for item in extras:
+        if 'key' in item and item['key'].lower() == key:
+            return item['value']

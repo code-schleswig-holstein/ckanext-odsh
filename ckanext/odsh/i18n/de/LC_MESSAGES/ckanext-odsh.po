@@ -198,6 +198,10 @@ msgstr "Bitte geben Sie einen Titel ein"
 msgid "odsh_issued_error_label"
 msgstr "Bitte wählen Sie ein Veröffentlichungsdatum"
 
+
+msgid "odsh_issued_not_date_error_label"
+msgstr "Bitte wählen Sie ein korrektes Veröffentlichungsdatum"
+
 msgid "Tag string: Fehlender Wert"
 msgstr "Bitte wählen Sie geeignete Schlagwörter"
 
