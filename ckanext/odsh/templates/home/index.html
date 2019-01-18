@@ -16,7 +16,11 @@
 {% endblock %}
 
 <div class='home-page-content'>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet</p>
+<h2 class='home-title'>Open Data Schleswig-Holstein</h2>
+<p>Wir fördern Transparenz und Innovation durch Veröffentlichung schleswig-holsteinischer Daten in offenen, freien und wiederverwendbaren Formaten.</p>
+<a href="/dataset" class="btn btn-primary home-button">
+Datensätze entdecken
+</a>
     {% for group_row in h.odsh_main_groups() | batch(3, '') %}
     <div class='home-groups'>
     <div class='home-groups-rows'>
