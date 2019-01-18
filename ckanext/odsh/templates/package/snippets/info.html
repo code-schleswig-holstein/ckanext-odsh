@@ -88,8 +88,8 @@ Example:
             <div>{{ _('borders of map') }}:</div>
             <p> {{ '{0:0.3f}'.format(bbox[0]).zfill(2).replace('.',',') }}° {{_('in east')}}</p>
             <p> {{ '{0:0.3f}'.format(bbox[1]).replace('.',',') }}° {{_('in west')}}</p>
-            <p> {{ '{0:0.3f}'.format(bbox[2]).replace('.',',') }}° {{_('in south')}}</p>
-            <p> {{ '{0:0.3f}'.format(bbox[3]).replace('.',',') }}° {{_('in north')}}</p>
+            <p> {{ '{0:0.3f}'.format(bbox[2]).replace('.',',') }}° {{_('in north')}}</p>
+            <p> {{ '{0:0.3f}'.format(bbox[3]).replace('.',',') }}° {{_('in south')}}</p>
             {% endif %}
         </div>
         {% endblock %}
