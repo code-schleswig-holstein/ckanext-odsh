@@ -372,6 +372,9 @@ label.rangesearch.disabled {
     padding: 20px 0px 20px 0px;
     border-bottom: 2px solid #DBDBDB;
 }
+.container-fluid.odsh-dataset-item:hover {
+    background-color: rgb(246,247,249);
+}
 
 .organization-item{
     padding: 5px 0px 5px 0px;
