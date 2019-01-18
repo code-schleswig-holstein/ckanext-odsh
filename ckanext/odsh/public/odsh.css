@@ -77,7 +77,7 @@ h3{
 
 /* same width as schleswig-holstein.de */
 .container {
-    width: 1000px;
+    width: 960px;
 }
 @media (max-width: 767px){
 .container {

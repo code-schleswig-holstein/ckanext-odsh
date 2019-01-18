@@ -2,7 +2,7 @@
 
 /* same width as schleswig-holstein.de */
 .navbar-static-top .container {
-    max-width: 1000px;
+    max-width: 960px;
     width: 100%;
 }
 .navbar-static-top .container.navigation-container{
@@ -108,7 +108,7 @@
 }
 
 .navigation-row {
-    width: 1000px;
+    width: 960px;
     padding-left: 0px;
     margin-left: auto;
     margin-right: auto;
