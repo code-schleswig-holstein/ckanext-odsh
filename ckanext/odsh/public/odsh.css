@@ -1295,6 +1295,17 @@ display: none;
     width: 20px;
 }
 
+.home-title{
+    font-size: 32px;
+    font-weight: normal;
+    color:#003064;
+}
+
+.home-button{
+    float:right;
+    margin-bottom: 20px;
+}
+
 .home-page-content{
     width: 960px;
     margin-left: auto;
