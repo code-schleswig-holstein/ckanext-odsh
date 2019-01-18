@@ -202,7 +202,7 @@ msgid "Tag string: Fehlender Wert"
 msgstr "Bitte wählen Sie geeignete Schlagwörter"
 
 msgid "odsh_resource_upload_error_label"
-msgstr "Bitte laden Sie Ihren Datensatz hoch"
+msgstr "Bitte laden Sie eine Distribution hoch"
 
 msgid "odsh_resource_name_error_label"
 msgstr "Bitte geben sie einen Namen für den Datensatz ein"

@@ -1359,3 +1359,6 @@ display: none;
     height: 100px;
     position: relative;
 }
+.required-text{
+    font-size: 14px;
+}
