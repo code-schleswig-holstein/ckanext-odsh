@@ -74,7 +74,13 @@ def odsh_group_id_selected(selected, group_id):
 
     return False
 
+
 def known_spatial_uri(key, data, errors, context):
+    value = _extract_value(key, data, 'spatial_uri')
+
+    if not value:
+        raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
+
     mapping_file = config.get('ckanext.odsh.spatial.mapping')
     try:
         mapping_file = urllib2.urlopen(mapping_file)
@@ -86,14 +92,14 @@ def known_spatial_uri(key, data, errors, context):
     spatial = str()
     cr = csv.reader(mapping_file, delimiter="\t")
     for row in cr:
-        if row[0] == data[key]:
+        if row[0].encode('UTF-8') == value:
             not_found = False
             spatial_text = row[1]
             loaded = json.loads(row[2])
             spatial = json.dumps(loaded['geometry'])
             break
     if not_found:
-        raise toolkit.Invalid("The specified URI is not known")
+        raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_unknown_error_label')
 
     # Get the current extras index
     current_indexes = [k[1] for k in data.keys()
@@ -106,7 +112,8 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'key')] = 'spatial'
     data[('extras', new_index+1, 'value')] = spatial
 
-def _extract_value(key,data,field):
+
+def _extract_value(key, data, field):
     key = None
     for k in data.keys():
         if data[k] == field:
@@ -115,20 +122,23 @@ def _extract_value(key,data,field):
     if key is None:
         return None
 
-    return data[(key[0],key[1],'value')]
+    return data[(key[0], key[1], 'value')]
 
 
-def odsh_validate_issued(key, data, errors, context):
-    value = _extract_value(key,data,'issued')
+def odsh_validate_extra_date(key, field, data, errors, context):
+    value = _extract_value(key, data, field)
 
     if not value:
-        raise toolkit.Invalid('issued:odsh_issued_error_label')
-    
+        raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
+
     try:
         datetime.datetime.strptime(value, '%Y-%m-%d')
     except ValueError:
-        raise toolkit.Invalid('issued:odsh_issued_not_date_error_label')
+        raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
+
+def odsh_validate_extra_date_factory(field):
+    return lambda key, data, errors, context: odsh_validate_extra_date(key, field, data, errors, context)
 
 
 def odsh_tag_name_validator(value, context):
@@ -274,24 +284,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def _fields(self):
         return ['title', 'notes']
 
-    def _extraFields(self):
-        return ['temporal_start', 'temporal_end', 'spatial_uri', 'licenseAttributionByText']
-
     def _update_schema(self, schema):
-        for field in self._extraFields():
-            if field == 'licenseAttributionByText':
-                schema.update({field: [
-                    toolkit.get_validator('ignore_missing'),
-                    toolkit.get_converter('convert_to_extras')]})
-            elif field == 'spatial_uri':
-                schema.update({field: [
-                    toolkit.get_converter('not_empty'),
-                    toolkit.get_converter('known_spatial_uri'),
-                    toolkit.get_converter('convert_to_extras')]})
-            else:
-                schema.update({field: [
-                    toolkit.get_converter('not_empty'),
-                    toolkit.get_converter('convert_to_extras')]})
         for field in self._fields():
             schema.update({field: [toolkit.get_converter('not_empty')]})
 
@@ -309,9 +302,13 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         })
 
         schema['extras'].update({
-            'key': [toolkit.get_converter('odsh_validate_issued')]
+            'key': [
+                toolkit.get_converter('odsh_validate_issued'),
+                toolkit.get_converter('odsh_validate_temporal_start'),
+                toolkit.get_converter('odsh_validate_temporal_end'),
+                toolkit.get_converter('known_spatial_uri'),
+            ]
         })
-
 
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()
@@ -325,10 +322,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def show_package_schema(self):
         schema = super(OdshPlugin, self).show_package_schema()
-        for field in self._extraFields():
-            schema.update({
-                field: [toolkit.get_converter('convert_from_extras')]
-            })
         return schema
 
     def is_fallback(self):
@@ -344,7 +337,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def get_validators(self):
         return {'odsh_convert_groups_string': odsh_convert_groups_string,
                 'known_spatial_uri': known_spatial_uri,
-                'odsh_validate_issued': odsh_validate_issued,
+                'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
+                'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
+                'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
                 'odsh_tag_name_validator': odsh_tag_name_validator}
 
     def extend_search_convert_local_to_utc_timestamp(self, str_timestamp):

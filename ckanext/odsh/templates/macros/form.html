@@ -53,9 +53,11 @@ is_required=false) %}
 {% endcall %}
 {% endmacro %}
 
-{% macro input_extra(field, value='', index='') %}
+{% macro input_extra(field, value='', index='', placeholder='', type='text', attrs={}) %}
+{%- set _type = 'text' if type=='date' and not value else type -%}
+{%- set onFocus = 'onfocus=(this.type=\'date\')' if type=='date' and not value else '' -%}
 <input id="field-{{field}}-key" type="hidden" name="extras__{{index}}__key" value="{{field}}"  />
-<input id="field-{{field}}-value" type="text" name="extras__{{index}}__value" value="{{value}}"  />
+<input id="field-{{field}}-value" type="{{_type}}" name="extras__{{index}}__value" value="{{value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ onFocus }} {{ attributes(attrs) }}/>
 {% endmacro %}
 
 {#
