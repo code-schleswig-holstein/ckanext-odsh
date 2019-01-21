@@ -163,11 +163,11 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
 
         package_dict.update({'licenseAttributionByText': 'Statistisches Amt für Hamburg und Schleswig-Holstein -'
                                                          ' Anstalt des öffentlichen Rechts - (Statistikamt Nord)'})
-        package_dict.update({'temporal_start': values['ZeitraumVon']})
-        package_dict.update({'temporal_end': values['ZeitraumBis']})
+        package_dict.update({'temporal_start': datetime.datetime.strptime(values['ZeitraumVon'], '%Y-%m-%d').isoformat()})
+        package_dict.update({'temporal_end': datetime.datetime.strptime(values['ZeitraumBis'], '%Y-%m-%d').isoformat()})
         package_dict.update({'spatial_uri': 'http://dcat-ap.de/def/politicalGeocoding/stateKey/01'})
         # issued sollte noch geliefert werden!
-        package_dict.update({'issued': datetime.datetime.now()})
+        package_dict.update({'issued': datetime.datetime.utcnow().isoformat()})
         self.add_ressources(package_dict, values)
 
         self.add_tags(package_dict, values)
