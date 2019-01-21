@@ -165,16 +165,19 @@ msgstr "Dateien"
 msgid "Spatial uri"
 msgstr "Raumbezug"
 
-msgid "Spatial uri: The specified URI is not known"
+msgid "odsh_spatial_uri_unknown_error_label"
 msgstr "Der räumliche Bezug is ungültig"
 
-msgid "Spatial uri: Fehlender Wert"
+msgid "odsh_spatial_uri_error_label"
 msgstr "Bitte geben Sie einen räumlichen Bezug an"
 
-msgid "Beginn des Zeitraumes: Fehlender Wert"
+msgid "odsh_temporal_start_error_label"
 msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
 
-msgid "Ende des Zeitraumes: Fehlender Wert"
+msgid "odsh_temporal_end_error_label"
+msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
+
+msgid "odsh_temporal_error_label"
 msgstr "Bitte wählen Sie einen Zeitraum aus"
 
 msgid "Name: Fehlender Wert"

@@ -16,14 +16,15 @@ ckan.module('odsh_form', function ($)
                 // toggle input for 'Namensgebung' depending on the selected licence
                 // TODO: this implementation should be more generic
                 var id = '#field-license';
+                var id_name = '#field-licenseAttributionByText-value';
                 var toggle = function ()
                 {
                     if ($(id).val().indexOf('dl-by-de/2.0') !== -1)
                     {
-                        $('#field-licence-name').prop('disabled', false);
+                        $(id_name).prop('disabled', false);
                     } else
                     {
-                        $('#field-licence-name').prop('disabled', true);
+                        $(id_name).prop('disabled', true);
                     }
                 }
                 toggle(id)

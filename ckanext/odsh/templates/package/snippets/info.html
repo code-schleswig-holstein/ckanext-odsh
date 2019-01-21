@@ -44,7 +44,8 @@ Example:
             <div class="license-detail info-detail">
                 <div>{{ _('License') }}:</div>
                 {%set lic=pkg.license_title if pkg.license_title else '-'%}
-                {%set name=' (' + pkg.licenseAttributionByText +')' if pkg.licenseAttributionByText else ''%}
+                {%set licenseAttributionByText = h.odsh_extract_value_from_extras(pkg.extras,'licenseAttributionByText') %}
+                {%set name=' (' + licenseAttributionByText +')' if licenseAttributionByText else ''%}
                 <p>{{ lic }}{{ name }}</p>
             </div>
             {% endblock %}
@@ -52,8 +53,10 @@ Example:
             {% block timerange %}
             <div class="timerange-detail info-detail">
                 <div>{{ _('timerange') }}:</div>
-                {%set start=h.odsh_render_datetime(pkg.temporal_start) if pkg.temporal_start else ''%}
-                {%set end=h.odsh_render_datetime(pkg.temporal_end) if pkg.temporal_end else ''%}
+                {% set temporal_start = h.odsh_extract_value_from_extras(pkg.extras,'temporal_start') %}
+                {% set temporal_end = h.odsh_extract_value_from_extras(pkg.extras,'temporal_end') %}
+                {%set start=h.odsh_render_datetime(temporal_start) if temporal_start else ''%}
+                {%set end=h.odsh_render_datetime(temporal_end) if temporal_end else ''%}
                 <p>{{ start }} - {{ end }}</p>
             </div>
             {% endblock %}

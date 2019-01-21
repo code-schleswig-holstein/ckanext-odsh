@@ -128,5 +128,5 @@ def odsh_extract_value_from_extras(extras, key):
     if not extras:
         return None
     for item in extras:
-        if 'key' in item and item['key'].lower() == key:
+        if 'key' in item and item['key'].lower() == key.lower():
             return item['value']
