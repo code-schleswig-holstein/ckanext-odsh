@@ -778,6 +778,9 @@ label:after {
     max-width: 1280px;
     margin: auto;
 }
+.footer a{
+    color:white;
+}
 @media (max-width: 767px){
 .footer{
     border-top:0px;
