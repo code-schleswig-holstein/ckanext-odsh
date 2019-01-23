@@ -178,15 +178,15 @@ this.ckan.module('odsh-spatial-query', function ($, _)
       {
         if (extentLayer)
         {
-          $('body').removeClass('dataset-map-expanded');
-          is_exanded = false;
-          resetMap();
-          // Eugh, hacky hack.
+          // $('body').removeClass('dataset-map-expanded');
+          // is_exanded = false;
+          // resetMap();
+          // // Eugh, hacky hack.
           setTimeout(function ()
           {
-            map.fitBounds(extentLayer.getBounds());
+            // map.fitBounds(extentLayer.getBounds());
             submitForm();
-          }, 200);
+          }, 0);
         }
       });
 
@@ -263,7 +263,7 @@ this.ckan.module('odsh-spatial-query', function ($, _)
         setTimeout(function ()
         {
           form.submit();
-        }, 800);
+        }, 0);
       }
     }
   }
