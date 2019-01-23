@@ -77,7 +77,7 @@ h3{
 
 /* same width as schleswig-holstein.de */
 .container {
-    width: 1000px;
+    width: 960px;
 }
 @media (max-width: 767px){
 .container {
@@ -372,6 +372,9 @@ label.rangesearch.disabled {
     padding: 20px 0px 20px 0px;
     border-bottom: 2px solid #DBDBDB;
 }
+.container-fluid.odsh-dataset-item:hover {
+    background-color: rgb(246,247,249);
+}
 
 .organization-item{
     padding: 5px 0px 5px 0px;
@@ -585,6 +588,8 @@ label:after {
 .controls textarea::placeholder {
     color:  #657592!important
 }
+
+
 .slug-preview .btn.btn-mini,
 .btn.btn-primary{
     background-image: none;
@@ -641,6 +646,14 @@ label:after {
     background-color: rgb(212,0,75);
     color:white;
 }
+.slug-preview .btn.disabled.btn-mini:hover,
+.js .image-upload .btn.disabled.hover,
+.image-upload a.btn.disabled:hover,
+.image-upload .btn.disabled:hover,
+.btn.disabled.btn-primary:hover{
+    background-color: #0089ca;
+    color:white;
+}
 .js .image-upload #field-image-url {
    padding-right: 0px;
 }
@@ -662,6 +675,14 @@ label:after {
     color:#0089ca;
     font-weight: normal;
     font-size: 16px;
+}
+.btn.disabled, .btn[disabled] {
+    cursor: default;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 .btn:hover {
     background-color:#0089ca;
@@ -1215,6 +1236,27 @@ body {
     font-weight: normal;
     border-top: 2px solid #dddddd;
 }
+.dataset-map-expanded #dataset-map .module-heading{
+    padding: 5px 0px 5px 5px;
+}
+.dataset-map-expanded #dataset-map
+{
+    width: 960px;
+}
+.dataset-map-expanded #dataset-map .module-heading{
+    border-top: none;
+}
+#dataset-map-edit-buttons-text{
+    display: none;
+}
+
+.dataset-map-expanded #dataset-map-edit-buttons-text{
+    width: 300px;
+    font-size: 12px;
+    display: block;
+    float: left;
+    padding: 12px;
+}
 .module.module-narrow.dataset-map{
     margin: 5px 0;
 }
@@ -1298,6 +1340,22 @@ display: none;
     width: 20px;
 }
 
+.home-title{
+    font-size: 32px;
+    font-weight: normal;
+    color:#003064;
+}
+
+.home-button{
+    float:right;
+    margin-bottom: 20px;
+}
+
+.home-page-content{
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .home-groups{
     width: 100%;
     margin-top: 20px;
@@ -1347,7 +1405,6 @@ display: none;
     position: relative;
 }
 
-.dataset-map-expanded #dataset-map
-{
-    width: 960px;
+.required-text{
+    font-size: 14px;
 }
