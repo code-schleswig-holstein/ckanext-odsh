@@ -137,7 +137,7 @@ this.ckan.module('odsh-spatial-query', function ($, _)
           rectangle: { shapeOptions: module.options.style }
         }
       });
-      L.drawLocal.draw.toolbar.buttons.rectangle='Rechteck ziehen'
+      L.drawLocal.draw.toolbar.buttons.rectangle = 'Rechteck ziehen'
       // Initialize the draw control
       map.addControl(drawControl);
 
@@ -178,15 +178,15 @@ this.ckan.module('odsh-spatial-query', function ($, _)
       {
         if (extentLayer)
         {
-          // $('body').removeClass('dataset-map-expanded');
-          // is_exanded = false;
-          // resetMap();
-          // // Eugh, hacky hack.
+          $('body').removeClass('dataset-map-expanded');
+          is_exanded = false;
+          resetMap();
+          // Eugh, hacky hack.
           setTimeout(function ()
           {
-            // map.fitBounds(extentLayer.getBounds());
+            map.fitBounds(extentLayer.getBounds());
             submitForm();
-          }, 0);
+          }, 200);
         }
       });
 
@@ -263,7 +263,7 @@ this.ckan.module('odsh-spatial-query', function ($, _)
         setTimeout(function ()
         {
           form.submit();
-        }, 0);
+        }, 800);
       }
     }
   }
