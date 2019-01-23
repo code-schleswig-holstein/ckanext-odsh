@@ -97,7 +97,7 @@
         {%set ext_bbox=request.params.get('ext_bbox')%}
         {%set ext_prev_extent=request.params.get('ext_prev_extent')%}
         {%set ext_location=request.params.get('ext_location')%}
-        {% if ext_bbox or ext_prev_extent %}
+        {% if ext_bbox %}
         <p class="filter-list">
             <span class="filtered pill">
                 {{_('map search active')}}
