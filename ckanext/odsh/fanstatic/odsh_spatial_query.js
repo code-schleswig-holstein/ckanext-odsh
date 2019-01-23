@@ -19,9 +19,12 @@ this.ckan.module('odsh-spatial-query', function ($, _)
     },
     template: {
       buttons: [
+        '<div id="dataset-map-edit-buttons-text">',
+        'Wählen Sie mit dem rechten Quadrat Ihren gesuchten Bereich aus und bestätigen Sie mit &quot;Anwenden&quot;',
+        '</div>',
         '<div id="dataset-map-edit-buttons">',
-        '<a href="javascript:;" class="btn cancel">Abbrechen</a> ',
-        '<a href="javascript:;" class="btn apply disabled">Anwenden</a>',
+        '<a href="javascript:;" class="btn btn-arrow-right cancel">Abbrechen</a> ',
+        '<a href="javascript:;" class="btn btn-primary btn-arrow-right apply disabled">Anwenden</a>',
         '</div>'
       ].join('')
     },
@@ -134,7 +137,6 @@ this.ckan.module('odsh-spatial-query', function ($, _)
           rectangle: { shapeOptions: module.options.style }
         }
       });
-      console.log(drawControl)
       L.drawLocal.draw.toolbar.buttons.rectangle='Rechteck ziehen'
       // Initialize the draw control
       map.addControl(drawControl);
