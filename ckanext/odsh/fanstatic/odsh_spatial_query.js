@@ -20,8 +20,8 @@ this.ckan.module('odsh-spatial-query', function ($, _)
     template: {
       buttons: [
         '<div id="dataset-map-edit-buttons">',
-        '<a href="javascript:;" class="btn cancel">Cancel</a> ',
-        '<a href="javascript:;" class="btn apply disabled">Apply</a>',
+        '<a href="javascript:;" class="btn cancel">Abbrechen</a> ',
+        '<a href="javascript:;" class="btn apply disabled">Anwenden</a>',
         '</div>'
       ].join('')
     },
@@ -30,8 +30,6 @@ this.ckan.module('odsh-spatial-query', function ($, _)
     {
       var module = this;
       $.proxyAll(this, /_on/);
-
-      console.log(module)
 
       var user_default_extent = this.el.data('default_extent');
       if (user_default_extent)
@@ -110,18 +108,23 @@ this.ckan.module('odsh-spatial-query', function ($, _)
       //     resolutions: [2000, 1100, 550, 275, 100, 50, 25, 10, 5, 2, 1, 0.5, 0.25]//,
       //     //origin: [0, 0]
       //   }),
-        map = ckan.commonLeafletMap(
-          'dataset-map-container',
-          this.options.map_config,
-          {
-            attributionControl: false,
-            drawControlTooltips: false,
-            // crs: crs
-          }
-        );
+      map = ckan.commonLeafletMap(
+        'dataset-map-container',
+        this.options.map_config,
+        {
+          attributionControl: false,
+          drawControlTooltips: false,
+          // crs: crs
+          zoomControl: false
+        }
+      );
 
-      // Initialize the draw control
-      map.addControl(new L.Control.Draw({
+      L.control.zoom({
+        zoomInTitle: 'Vergrößern',
+        zoomOutTitle: 'Verkleinern',
+      }).addTo(map);
+
+      const drawControl = new L.Control.Draw({
         position: 'topright',
         draw: {
           polyline: false,
@@ -130,7 +133,11 @@ this.ckan.module('odsh-spatial-query', function ($, _)
           marker: false,
           rectangle: { shapeOptions: module.options.style }
         }
-      }));
+      });
+      console.log(drawControl)
+      L.drawLocal.draw.toolbar.buttons.rectangle='Rechteck ziehen'
+      // Initialize the draw control
+      map.addControl(drawControl);
 
       // OK add the expander
       $('a.leaflet-draw-draw-rectangle', module.el).on('click', function (e)

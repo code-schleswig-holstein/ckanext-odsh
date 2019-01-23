@@ -4,7 +4,7 @@
     {{_('map')}}:
   </h2>
   {% set map_config = h.get_common_map_config() %}
-  <div class="dataset-map" data-module="spatial-query" data-default_extent="{{ default_extent }}" data-module-map_config="{{ h.dump_json(map_config) }}" data-template='sdf'>
+  <div class="dataset-map" data-module="odsh-spatial-query" data-default_extent="{{ default_extent }}" data-module-map_config="{{ h.dump_json(map_config) }}" data-template='sdf'>
     <div id="dataset-map-container"></div>
   </div>
   <div id="dataset-map-attribution">
@@ -12,5 +12,4 @@
   </div>
 </section>
 
-{% resource 'ckanext-spatial/spatial_query' %}
-{% resource 'odsh/odsh_map.js' %}
+{% resource 'odsh/odsh_spatial_query' %}
