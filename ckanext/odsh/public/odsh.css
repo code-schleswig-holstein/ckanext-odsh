@@ -1346,3 +1346,8 @@ display: none;
     height: 100px;
     position: relative;
 }
+
+.dataset-map-expanded #dataset-map
+{
+    width: 960px;
+}
