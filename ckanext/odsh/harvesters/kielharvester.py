@@ -124,15 +124,19 @@ class KielHarvester(ODSHBaseHarvester):
             extras = package_dict['extras']
             new_extras = list()
             for extra in extras:
-                if extra['key'] in ['temporal_start', 'temporal_end', 'issued']:
+                # WARNING: When this code was written, all datasets had '-zero-' licences, i.e.
+                # there was no key 'licenseAttributionByText' which we would expect for '-by-' licences.
+                # The setting is just anticipated, matching for datasets with a corresponding licence.
+                if extra['key'] == 'licenseAttributionByText':
+                    new_extras.append(extra)
+                elif extra['key'] in ['temporal_start', 'temporal_end', 'issued']:
                     new_extras.append(extra)
 
             new_extras.append(
-                {'spatial_uri': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'})
+                {'key': 'spatial_uri',
+                 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'})
 
             package_dict['extras'] = new_extras
-
-            log.debug(package_dict['extras'])
 
             license_id = self._get_license_id(package_dict['license_id'])
             if license_id:
