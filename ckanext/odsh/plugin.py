@@ -132,7 +132,9 @@ def odsh_validate_extra_date(key, field, data, errors, context):
         raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
 
     try:
-        datetime.datetime.strptime(value, '%Y-%m-%d')
+        # date.split('T')[0] will yield "2012-01-01"
+        # no matter if the date is like "2012-01-01" or "2012-01-01T00:00:00"
+        datetime.datetime.strptime(value.split('T')[0], '%Y-%m-%d')
     except ValueError:
         raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 

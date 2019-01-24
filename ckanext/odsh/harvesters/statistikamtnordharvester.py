@@ -142,7 +142,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         values = json.loads(harvest_object.content)
 
         package_dict = dict()
-        package_dict.update({'resources': [], 'tags': [], 'groups': []})
+        package_dict.update({'resources': [], 'tags': [], 'groups': [], 'extras': []})
         title = values['Titel']
         package_dict.update({'title': title})
         package_dict.update({'name': self._gen_new_name(title)})
@@ -161,17 +161,10 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             package_dict['url'] = ""
         package_dict.update({'type': 'dataset'})
 
-        package_dict.update({'licenseAttributionByText': 'Statistisches Amt für Hamburg und Schleswig-Holstein -'
-                                                         ' Anstalt des öffentlichen Rechts - (Statistikamt Nord)'})
-        package_dict.update({'temporal_start': values['ZeitraumVon']})
-        package_dict.update({'temporal_end': values['ZeitraumBis']})
-        package_dict.update({'spatial_uri': 'http://dcat-ap.de/def/politicalGeocoding/stateKey/01'})
-        # issued sollte noch geliefert werden!
-        package_dict.update({'issued': datetime.datetime.now()})
         self.add_ressources(package_dict, values)
 
         self.add_tags(package_dict, values)
-
+        self.add_extras(package_dict, values)
         self.map_to_group(package_dict, values)
 
         source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
@@ -192,6 +185,22 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         except toolkit.ValidationError, e:
             self._save_object_error('Validation Error: %s' % str(e.error_summary), harvest_object, 'Import')
             return False
+
+    @staticmethod
+    def add_extras(package_dict, values):
+        # issued sollte noch geliefert werden!
+        package_dict['extras'].append({
+          'key': 'issued', 'value': datetime.datetime.now().isoformat().split('T')[0]})
+        package_dict['extras'].append({
+          'key': 'temporal_start', 'value': values['ZeitraumVon']})
+        package_dict['extras'].append({
+          'key': 'temporal_end', 'value': values['ZeitraumBis']})
+        package_dict['extras'].append({
+          'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/stateKey/01'})
+        package_dict['extras'].append({
+          'key': 'licenseAttributionByText',
+          'value': 'Statistisches Amt für Hamburg und Schleswig-Holstein - '
+              'Anstalt des öffentlichen Rechts - (Statistikamt Nord)'})
 
     @staticmethod
     def add_tags(package_dict, values):
