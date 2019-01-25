@@ -21,7 +21,6 @@ class TestSearch(helpers.FunctionalTestBase):
     def teardown(self):
         model.repo.rebuild_db()
 
-
     @odsh_test()
     def test_dataset_is_in_search_result(self):
         # arrange
@@ -58,9 +57,9 @@ class TestSearch(helpers.FunctionalTestBase):
     @odsh_test()
     def test_query_with_start_date_finds_one_dataset(self):
         # arrange
-        datasetA = self._create_dataset('dataseta', '01-01-1960', '31-12-1960')
-        datasetB = self._create_dataset('datasetb', '01-01-1980', '30-06-1990')
-        datasetC = self._create_dataset('datasetc', '01-03-2001', '30-04-2001')
+        datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31')
+        datasetB = self._create_dataset('datasetb', '1980-01-01', '1990-06-30')
+        datasetC = self._create_dataset('datasetc', '2001-03-01', '2001-04-30')
 
         # act
         response1 = self._perform_date_search(None, '1990-01-01')
@@ -95,15 +94,19 @@ class TestSearch(helpers.FunctionalTestBase):
     def _assert_no_results(self, response):
         assert "No datasets found" in response
 
-    def _create_dataset(self, name='my-own-dataset', temporal_start='27-01-2000', temporal_end='27-01-2000'):
+    def _create_dataset(self, name='my-own-dataset', temporal_start='2000-01-27', temporal_end='2000-01-27'):
         user = factories.User()
+        extras = [
+            {'key': 'temporal_start', 'value': temporal_start},
+            {'key': 'temporal_end', 'value': temporal_end},
+            {'key': 'issued', 'value': '2000-01-27'},
+            {'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01001'}
+        ]
         return factories.Dataset(user=user,
                                  name=name,
                                  title='My very own dataset',
                                  issued='27-01-2000',
-                                 spatial_uri='http://dcat-ap.de/def/politicalGeocoding/districtKey/01001',
-                                 temporal_start=temporal_start,
-                                 temporal_end=temporal_end)
+                                 extras=extras)
 
     def _perform_search(self, query=None):
         search_form = self._perform_search_for_form('dataset-search-box-form')
