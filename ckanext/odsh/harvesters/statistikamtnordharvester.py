@@ -125,19 +125,6 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             self.map_fields(context, harvest_object)
             return True
 
-    @staticmethod
-    def _update_schema(schema):
-        schema.update({'temporal_start': [
-            toolkit.get_validator('ignore_empty'),
-            toolkit.get_converter('convert_to_extras')]})
-        schema.update({'temporal_end': [
-            toolkit.get_validator('ignore_empty'),
-            toolkit.get_converter('convert_to_extras')]})
-        schema.update({'issued': [
-            toolkit.get_validator('ignore_missing'),
-            toolkit.get_validator('ignore_empty'),
-            toolkit.get_converter('convert_to_extras')]})
-
     def map_fields(self, context, harvest_object):
         values = json.loads(harvest_object.content)
 
@@ -176,9 +163,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         try:
             context = {'user': self._get_user_name(), 'return_id_only': True, 'ignore_auth': True}
             package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
-            package_schema = package_plugin.create_package_schema()
-            self._update_schema(package_schema)
-            context['schema'] = package_schema
+            context['schema'] = package_plugin.create_package_schema()
             self._handle_current_harvest_object(harvest_object, harvest_object.guid)
             result = toolkit.get_action('package_create')(context, package_dict)
             return result
@@ -190,11 +175,16 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
     def add_extras(package_dict, values):
         # issued sollte noch geliefert werden!
         package_dict['extras'].append({
-          'key': 'issued', 'value': datetime.datetime.now().isoformat().split('T')[0]})
-        package_dict['extras'].append({
-          'key': 'temporal_start', 'value': values['ZeitraumVon']})
-        package_dict['extras'].append({
-          'key': 'temporal_end', 'value': values['ZeitraumBis']})
+          'key': 'issued', 'value': datetime.datetime.now().isoformat()})
+        try:
+            if values['ZeitraumVon'] != "":
+                package_dict['extras'].append({
+                  'key': 'temporal_start', 'value': values['ZeitraumVon']})
+            if values['ZeitraumBis'] != "":
+                package_dict['extras'].append({
+                  'key': 'temporal_end', 'value': values['ZeitraumBis']})
+        except KeyError as kerr:
+            log.debug("Date not available: " + str(kerr))
         package_dict['extras'].append({
           'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/stateKey/01'})
         package_dict['extras'].append({
