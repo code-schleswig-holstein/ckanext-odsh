@@ -129,14 +129,17 @@ def odsh_validate_extra_date(key, field, data, errors, context):
     value = _extract_value(key, data, field)
 
     if not value:
-        raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
-
-    try:
-        # date.split('T')[0] will yield "2012-01-01"
-        # no matter if the date is like "2012-01-01" or "2012-01-01T00:00:00"
-        datetime.datetime.strptime(value.split('T')[0], '%Y-%m-%d')
-    except ValueError:
-        raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
+        # Statistikamt Nord does not always provide temporal_start/end,
+        # but their datasets have to be accepted as they are.
+        if data[('id',)][:7] != 'StaNord':
+            raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
+    else:
+        try:
+            # date.split('T')[0] will yield "2012-01-01"
+            # no matter if the date is like "2012-01-01" or "2012-01-01T00:00:00"
+            datetime.datetime.strptime(value.split('T')[0],'%Y-%m-%d').isoformat()
+        except ValueError:
+            raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
 
 def odsh_validate_extra_date_factory(field):
