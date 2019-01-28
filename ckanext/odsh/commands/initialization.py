@@ -60,17 +60,35 @@ class Initialization(CkanCommand):
             "landeshauptstadt-kiel": {
                 "title": u"Landeshauptstadt Kiel",
                 "image": u"https://www.kiel.de/images/logo-kiel-sailing-city.svg",
-                "description": u"Kommunalverwaltung"
+                "description": u"Die Stadt Kiel ist die nördlichste Großstadt Deutschlands und die Landeshauptstadt"
+                               u" Schleswig-Holsteins. Als kreisfreie Stadt erledigt sie neben den kommunalen"
+                               u" Selbstverwaltungsaufgaben auch Aufgaben einer unteren staatlichen Verwaltungsbehörde"
+                               u" und erzeugt, erhebt und verarbeitet als Gebietskörperschaft eine Vielzahl von Daten"
+                               u" mit lokalem Bezug."
             },
             "statistikamt-nord": {
-                "title": u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
+                "title": u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - "
+                         u"(Statistikamt Nord)",
                 "image": u"https://www.statistik-nord.de/static/img/logo-text.svg",
-                "description": u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
+                "description": u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – "
+                               u"erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische"
+                               u" Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und"
+                               u" Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes-"
+                               u" und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und"
+                               u" Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und"
+                               u" interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken"
+                               u" werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen"
+                               u" zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich"
+                               u" Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an."
+                               u" Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen"
+                               u" Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als"
+                               u" länderübergreifende Anstalt an den Standorten Hamburg und Kiel."
             },
             "landesamt-fur-soziale-dienste": {
                 "title": u"Landesamt für soziale Dienste",
                 "image": None,
-                "description": u"Das Landesamt für soziale Dienste ist eine obere Landesbehörde des Landes Schleswig-Holstein."
+                "description": u"Das Landesamt für soziale Dienste ist eine obere Landesbehörde des Landes"
+                               u" Schleswig-Holstein."
             }
         }
 
@@ -113,17 +131,34 @@ class Initialization(CkanCommand):
                 'active': True,
                 'owner_org': "landeshauptstadt-kiel",
                 'frequency': "MANUAL",
-                'notes': u"Die Stadt Kiel ist die nördlichste Großstadt Deutschlands und die Landeshauptstadt Schleswig-Holsteins. Als kreisfreie Stadt erledigt sie neben den kommunalen Selbstverwaltungsaufgaben auch Aufgaben einer unteren staatlichen Verwaltungsbehörde und erzeugt, erhebt und verarbeitet als Gebietskörperschaft eine Vielzahl von Daten mit lokalem Bezug."
+                'notes': u"Die Stadt Kiel ist die nördlichste Großstadt Deutschlands und die Landeshauptstadt"
+                         u" Schleswig-Holsteins. Als kreisfreie Stadt erledigt sie neben den kommunalen"
+                         u" Selbstverwaltungsaufgaben auch Aufgaben einer unteren staatlichen Verwaltungsbehörde und"
+                         u" erzeugt, erhebt und verarbeitet als Gebietskörperschaft eine Vielzahl von Daten mit lokalem"
+                         u" Bezug."
             },
-            "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)": {
+            "Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - "
+            "(Statistikamt Nord)": {
                 'name': u"statistikamt-nord",
                 'url': u"http://www.statistik-nord.de/index.php?eID=stan_xml&products=4,6&state=2",
                 'source_type': u"statistikamt-nord",
-                'title': u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - (Statistikamt Nord)",
+                'title': u"Statistisches Amt für Hamburg und Schleswig-Holstein - Anstalt des öffentlichen Rechts - "
+                         u"(Statistikamt Nord)",
                 'active': True,
                 'owner_org': "statistikamt-nord",
                 'frequency': "MANUAL",
-                'notes': u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den Standorten Hamburg und Kiel."              
+                'notes': u"Das Statistische Amt für Hamburg und Schleswig-Holstein – das Statistikamt Nord – erhebt und"
+                         u" veröffentlicht als Teil der amtlichen Statistik in Deutschland statistische Informationen"
+                         u" zu allen gesellschaftlichen Themen für die Bundesländer Hamburg und Schleswig-Holstein. Als"
+                         u" Anstalt des öffentlichen Rechts führt es alle durch Bundes- und EU- Gesetze angeordneten "
+                         u"Statistiken im Auftrag der Trägerländer Hamburg und Schleswig-Holstein für die beiden "
+                         u"Bundesländer durch, bereitet die Daten auf und interpretiert die Ergebnisse. Die objektiv "
+                         u"und unabhängig erstellten Statistiken werden Verwaltung, Politik, Medien sowie Bürgerinnen "
+                         u"und Bürgern gleichermaßen zugänglich gemacht. Darüber hinaus bietet das Amt Dienstleistungen"
+                         u" im Bereich Datenerhebung, -aufbereitung und -analyse nach individuellem Kundenwunsch an. "
+                         u"Das Statistikamt Nord ist hervorgegangen aus den vormaligen Statistischen Landesämtern "
+                         u"Hamburg und Schleswig-Holstein. Seit 2004 firmiert es als länderübergreifende Anstalt an den"
+                         u" Standorten Hamburg und Kiel."
             }
         }
 
