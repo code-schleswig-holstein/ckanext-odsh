@@ -122,6 +122,10 @@ this.ckan.module('odsh-spatial-query', function ($, _)
         }
       );
 
+//       var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
+//     layers: 'ne:ne'
+// }).addTo(map);
+
       L.control.zoom({
         zoomInTitle: 'Vergrößern',
         zoomOutTitle: 'Verkleinern',
