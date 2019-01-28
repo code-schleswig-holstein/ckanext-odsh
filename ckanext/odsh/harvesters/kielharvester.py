@@ -39,23 +39,26 @@ class KielHarvester(ODSHBaseHarvester):
         try:
             used_identifiers = []
             ids = []
-            package_ids_in_db = list(map(lambda x: x[0], model.Session.query(HarvestObject.guid)\
-                                .filter(HarvestObject.current == True)\
+            package_ids_in_db = list(map(lambda x: x[0], model.Session.query(HarvestObject.guid)
+                                .filter(HarvestObject.current == True)
                                 .filter(HarvestObject.harvest_source_id == harvest_job.source.id).all()))
             log.info("Package IDs in DB: %s" % str(package_ids_in_db))
             for dataset in datasets:
-                guid = str(uuid.uuid3(uuid.NAMESPACE_URL, dataset.get("url").encode('ascii', 'ignore')))
+                guid = str(uuid.uuid3(uuid.NAMESPACE_URL,
+                           dataset.get("url").encode('ascii', 'ignore')))
                 if guid not in package_ids_in_db:
                     obj = HarvestObject(job=harvest_job, guid=guid)
                     obj.content = json.dumps(dataset)
                     obj.save()
-                    log.info("harvest_object_id: %s, GUID: %s successfully gathered " % (str(obj.id), str(obj.guid)))
+                    log.info("harvest_object_id: %s, GUID: %s successfully gathered " % (
+                        str(obj.id), str(obj.guid)))
                     used_identifiers.append(guid)
                     ids.append(obj.id)
 
         except Exception as e:
             self._save_gather_error(
-                'Statistik-Nord-Harvester: Error gathering the identifiers from the source server [%s]' % str(e),
+                'Kiel-Harvester: Error gathering the identifiers from the source server [%s]' % str(
+                    e),
                 harvest_job)
             log.error(e)
             return None
@@ -68,7 +71,8 @@ class KielHarvester(ODSHBaseHarvester):
             return ids
         else:
             log.error("No records received")
-            self._save_gather_error("Couldn't find any metadata files", harvest_job)
+            self._save_gather_error(
+                "Couldn't find any metadata files", harvest_job)
             return None
 
     @staticmethod
@@ -79,6 +83,7 @@ class KielHarvester(ODSHBaseHarvester):
             return False
 
     def import_stage(self, harvest_object):
+        log.debug('IMPORT')
         context = {
             'model': model,
             'session': model.Session,
@@ -89,12 +94,14 @@ class KielHarvester(ODSHBaseHarvester):
             return False
 
         if harvest_object.content is None:
-            self._save_object_error('Empty content for object %s' % harvest_object.id, harvest_object, 'Import')
+            self._save_object_error(
+                'Empty content for object %s' % harvest_object.id, harvest_object, 'Import')
             return False
         else:
             package_dict = json.loads(harvest_object.content)
 
-            source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
+            source_dataset = get_action('package_show')(
+                context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
 
             if package_dict['type'] == 'datensatz':
@@ -115,25 +122,39 @@ class KielHarvester(ODSHBaseHarvester):
             package_dict['groups'] = mapped_groups
 
             extras = package_dict['extras']
-            package_dict['extras'] = list()
+            new_extras = list()
             for extra in extras:
-                if extra['key'] in ['temporal_start', 'temporal_end', 'issued']:
-                    package_dict[extra['key']] = extra['value']
+                # WARNING: When this code was written, all datasets had '-zero-' licences, i.e.
+                # there was no key 'licenseAttributionByText' which we would expect for '-by-' licences.
+                # The setting is just anticipated, matching for datasets with a corresponding licence.
+                if extra['key'] == 'licenseAttributionByText':
+                    new_extras.append(extra)
+                elif extra['key'] in ['temporal_start', 'temporal_end', 'issued']:
+                    new_extras.append(extra)
 
-            package_dict['spatial_uri'] = 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'
+            new_extras.append(
+                {'key': 'spatial_uri',
+                 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01002'})
+
+            package_dict['extras'] = new_extras
 
             license_id = self._get_license_id(package_dict['license_id'])
             if license_id:
                 package_dict['license_id'] = license_id
             else:
-                log.error('invalid license_id: %s' % package_dict['license_id'])
-                self._save_object_error('Invalid license_id: %s' % package_dict['license_id'], harvest_object, 'Import')
+                log.error('invalid license_id: %s' %
+                          package_dict['license_id'])
+                self._save_object_error(
+                    'Invalid license_id: %s' % package_dict['license_id'], harvest_object, 'Import')
                 return False
             try:
-                context = {'user': self._get_user_name(), 'return_id_only': True, 'ignore_auth': True}
-                package_plugin = lib_plugins.lookup_package_plugin(package_dict.get('type', None))
+                context = {'user': self._get_user_name(
+                ), 'return_id_only': True, 'ignore_auth': True}
+                package_plugin = lib_plugins.lookup_package_plugin(
+                    package_dict.get('type', None))
                 package_schema = package_plugin.create_package_schema()
                 context['schema'] = package_schema
+                log.debug(package_schema)
                 self._handle_current_harvest_object(harvest_object, harvest_object.guid)
                 result = toolkit.get_action('package_create')(context, package_dict)
                 return result
