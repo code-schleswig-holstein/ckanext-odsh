@@ -1243,6 +1243,15 @@ body {
 {
     width: 960px;
 }
+.dataset-map-expanded .wrapper {
+     margin-top: initial; 
+}
+.dataset-map-expanded #dataset-map{
+    top:-20px;
+}
+.dataset-map-expanded .filters{
+    margin-top:121px;
+}
 .dataset-map-expanded #dataset-map .module-heading{
     border-top: none;
 }
