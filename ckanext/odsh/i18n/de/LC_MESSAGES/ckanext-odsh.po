@@ -178,7 +178,7 @@ msgid "odsh_temporal_end_error_label"
 msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
 
 msgid "odsh_temporal_error_label"
-msgstr "Bitte wählen Sie einen Zeitraum aus"
+msgstr "Bitte geben Sie einen gültigen Zeitraum an"
 
 msgid "Name: Fehlender Wert"
 msgstr "Bitte geben Sie eine Url ein"
