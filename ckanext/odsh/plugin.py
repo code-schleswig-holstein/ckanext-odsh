@@ -4,6 +4,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.lib.plugins import DefaultDatasetForm
+from ckan.lib.navl.dictization_functions import Missing
 from ckan.logic.validators import tag_string_convert
 from ckan.common import OrderedDict
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
@@ -147,6 +148,13 @@ def odsh_validate_extra_date(key, field, data, errors, context):
 def odsh_validate_extra_date_factory(field):
     return lambda key, data, errors, context: odsh_validate_extra_date(key, field, data, errors, context)
 
+def odsh_delete_licenseAttributionByText_if_empty(key, data, errors, context):
+    for k in data:
+        if data[k] == 'licenseAttributionByText':
+            if isinstance(data[(k[0], k[1], 'value')], Missing):
+                del data[(k[0], k[1], 'value')]
+                del data[(k[0], k[1], 'key')]
+                break
 
 def odsh_tag_name_validator(value, context):
     tagname_match = re.compile('[\w \-.\:\(\)]*$', re.UNICODE)
@@ -288,11 +296,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                             'license_title': _('Lizenz'),
                             'groups': _('Kategorie')})
 
-    def _fields(self):
-        return ['title', 'notes']
-
     def _update_schema(self, schema):
-        for field in self._fields():
+        for field in ['title', 'notes']:
             schema.update({field: [toolkit.get_converter('not_empty')]})
 
         for i, item in enumerate(schema['tags']['name']):
@@ -314,6 +319,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_converter('odsh_validate_temporal_start'),
                 toolkit.get_converter('odsh_validate_temporal_end'),
                 toolkit.get_converter('known_spatial_uri'),
+                toolkit.get_converter('licenseAttributionByText')
             ]
         })
 
@@ -343,6 +349,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def get_validators(self):
         return {'odsh_convert_groups_string': odsh_convert_groups_string,
+                'licenseAttributionByText': odsh_delete_licenseAttributionByText_if_empty,
                 'known_spatial_uri': known_spatial_uri,
                 'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
                 'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
