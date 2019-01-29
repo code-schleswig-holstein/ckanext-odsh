@@ -75,7 +75,7 @@ class TestUpload(helpers.FunctionalTestBase):
         response6.mustcontain('odsh_temporal_start_not_date_error_label')
 
     @odsh_test()
-    def test_upload_license_without_attribution_text(self):
+    def test_upload_all_fields_set(self):
         # arrange
         form = self._get_package_new_form()
         form['title'] = 'Titel'
@@ -88,15 +88,13 @@ class TestUpload(helpers.FunctionalTestBase):
         form[self._get_field_name('temporal_start')] = '2019-01-29'
         form[self._get_field_name('temporal_end')] = '2019-02-02'
         form['license_id'] = 'http://dcat-ap.de/def/licenses/dl-zero-de/2.0'
+        form[self._get_field_name('licenseAttributionByText')].value = 'text'
+
         # act
-        print(form)
-        form[self._get_field_key('licenseAttributionByText')
-             ] = 'licenseAttributionByText'
-        form[self._get_field_name('licenseAttributionByText')] = None
         response = self._submit_and_follow_form(form)
 
         # assert
-        response.mustcontain('odsh_spatial_uri_unknown_error_label')
+        assert_true('resource-edit' in response.forms)
 
     def _get_field_name(self, field):
         checksum = odsh_create_checksum(field)
