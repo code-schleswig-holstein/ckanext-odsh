@@ -289,3 +289,9 @@ msgstr "Kartensuche aktiv"
 
 msgid "map"
 msgstr "Karte"
+
+msgid "wrong_start_date_for_search"
+msgstr "Das Datum ist ungültig"
+
+msgid "wrong_end_date_for_search"
+msgstr "Das Datum ist ungültig"

@@ -8,10 +8,8 @@ from ckan.lib.mailer import create_reset_key
 from nose.tools import assert_true, assert_false, assert_equal, assert_in
 from routes import url_for
 import ckan.plugins
+from test_helpers import odsh_test
 
-
-def odsh_test(): return helpers.change_config('ckanext.odsh.spatial.mapping',
-                                              'file:///usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/tests/spatial_mapping.csv')
 
 
 class TestSearch(helpers.FunctionalTestBase):
@@ -55,6 +53,30 @@ class TestSearch(helpers.FunctionalTestBase):
         assert dataset['name'] in response
 
     @odsh_test()
+    def test_query_with_wrong_dates_shows_error(self):
+        # arrange
+        dataset = self._create_dataset()
+
+        # act
+        response1 = self._perform_date_search('foo', None)
+        response2 = self._perform_date_search(None, 'foo')
+        response3 = self._perform_date_search('11-11-11', None)
+
+        # assert
+        assert 'wrong_start_date_for_search' in response1
+        self._assert_datasets_in_response([dataset], response1)
+        assert 'daterange: to' not in response1
+        assert 'daterange: from' not in response1
+        assert 'wrong_end_date_for_search' in response2
+        self._assert_datasets_in_response([dataset], response2)
+        assert 'daterange: to' not in response2
+        assert 'daterange: from' not in response2
+        assert 'wrong_start_date_for_search' in response3
+        assert 'daterange: to' not in response3
+        assert 'daterange: from' not in response3
+        self._assert_datasets_in_response([dataset], response3)
+
+    @odsh_test()
     def test_query_with_start_date_finds_one_dataset(self):
         # arrange
         datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31')
@@ -71,14 +93,19 @@ class TestSearch(helpers.FunctionalTestBase):
         # assert
         self._assert_datasets_in_response([datasetA, datasetB], response1)
         self._assert_datasets_not_in_response([datasetC], response1)
+        assert 'daterange: to' in response1
 
         self._assert_datasets_in_response(
             [datasetA, datasetB, datasetC], response2)
+        assert 'daterange: to' in response2
 
         self._assert_no_results(response3)
+        assert 'daterange: from' in response3
 
         self._assert_datasets_in_response([datasetB], response4)
         self._assert_datasets_not_in_response([datasetA, datasetC], response4)
+        assert 'daterange: to' in response4
+        assert 'daterange: from' in response4
 
         self._assert_datasets_in_response([datasetC], response5)
         self._assert_datasets_not_in_response([datasetA, datasetB], response5)

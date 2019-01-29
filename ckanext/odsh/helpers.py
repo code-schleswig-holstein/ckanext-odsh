@@ -106,8 +106,17 @@ def odsh_get_spatial_text(pkg_dict):
 
 
 def odsh_render_datetime(datetime_, date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'):
-    dt = parser.parse(datetime_)
-    return date_format.format(dt)
+    if not datetime_:
+        return ''
+    try:
+        DATETIME_FORMAT = '%Y-%m-%d'
+        dt = datetime.datetime.strptime(
+            datetime_, DATETIME_FORMAT)
+        return dt.strftime('%d.%m.%Y')
+        # dt = parser.parse(datetime_, dayfirst=False)
+        # return date_format.format(dt)
+    except:
+        return ''
 
 
 def odsh_upload_known_formats():

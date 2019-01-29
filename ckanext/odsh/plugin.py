@@ -99,7 +99,8 @@ def known_spatial_uri(key, data, errors, context):
             spatial = json.dumps(loaded['geometry'])
             break
     if not_found:
-        raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_unknown_error_label')
+        raise toolkit.Invalid(
+            'spatial_uri:odsh_spatial_uri_unknown_error_label')
 
     # Get the current extras index
     current_indexes = [k[1] for k in data.keys()
@@ -137,7 +138,8 @@ def odsh_validate_extra_date(key, field, data, errors, context):
         try:
             # date.split('T')[0] will yield "2012-01-01"
             # no matter if the date is like "2012-01-01" or "2012-01-01T00:00:00"
-            datetime.datetime.strptime(value.split('T')[0],'%Y-%m-%d').isoformat()
+            datetime.datetime.strptime(
+                value.split('T')[0], '%Y-%m-%d').isoformat()
         except ValueError:
             raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
@@ -370,10 +372,15 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             # There are no extras in the search params, so do nothing.
             return search_params
 
-        start_date = self.extend_search_convert_local_to_utc_timestamp(
-            extras.get('ext_startdate'))
-        end_date = self.extend_search_convert_local_to_utc_timestamp(
-            extras.get('ext_enddate'))
+        start_date=None
+        end_date=None
+        try:
+            start_date = self.extend_search_convert_local_to_utc_timestamp(
+                extras.get('ext_startdate'))
+            end_date = self.extend_search_convert_local_to_utc_timestamp(
+                extras.get('ext_enddate'))
+        except ValueError:
+            return search_params
 
         if not start_date and not end_date:
             return search_params
