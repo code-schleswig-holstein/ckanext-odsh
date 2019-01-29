@@ -73,20 +73,22 @@
     {% endif %}
     {% endif %}
     <div id="datesearch-filter">
-        {%set start_date=request.params.get('ext_startdate')%}
-        {%set end_date=request.params.get('ext_enddate')%}
-        {% if start_date or end_date %}
+        {%set start_date=h.odsh_render_datetime(request.params.get('ext_startdate'))%}
+        {%set end_date=h.odsh_render_datetime(request.params.get('ext_enddate'))%}
+        {%- set start_error = start_date == '' and request.params.get('ext_startdate')-%}
+        {%- set end_error = end_date == '' and request.params.get('ext_enddate')-%}
+        {% if (start_date or end_date) and (not start_error and not end_error)%}
         <p class="filter-list">
             {% if start_date %}
             <span class="filtered pill">
-                {{_('daterange')}}: {{_('from')}} {{ h.odsh_render_datetime(start_date)}}
+                {{_('daterange')}}: {{_('from')}} {{ start_date}}
                 <a href="{{ h.remove_url_param('ext_startdate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
             </span>
             {% endif %}
 
             {% if end_date %}
             <span class="filtered pill">
-                {{_('daterange')}}: {{_('to')}} {{ h.odsh_render_datetime(end_date)}}
+                {{_('daterange')}}: {{_('to')}} {{ end_date}}
                 <a href="{{ h.remove_url_param('ext_enddate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
             </span>
             {% endif %}

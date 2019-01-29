@@ -1425,3 +1425,10 @@ display: none;
 .required-text{
     font-size: 14px;
 }
+
+.error-reange-search{
+    color: #d4004b;
+    margin-top: -5px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
