@@ -1244,7 +1244,7 @@ body {
     width: 960px;
 }
 .dataset-map-expanded .wrapper {
-     margin-top: initial; 
+     margin-top: 0px; 
 }
 .dataset-map-expanded #dataset-map{
     top:-20px;
