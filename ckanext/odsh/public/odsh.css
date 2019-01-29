@@ -1267,6 +1267,13 @@ body {
     float: left;
     padding: 12px;
 }
+
+/* on ie11 leaflet-touch is active and prevents correct drawing of controls */
+.leaflet-touch .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle 
+{
+    background-position: 50% 50%
+}
+
 .module.module-narrow.dataset-map{
     margin: 5px 0;
 }
