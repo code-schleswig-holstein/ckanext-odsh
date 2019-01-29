@@ -1248,6 +1248,7 @@ body {
 }
 .dataset-map-expanded #dataset-map{
     top:-20px;
+    z-index: 999;
 }
 .dataset-map-expanded .filters{
     margin-top:121px;
