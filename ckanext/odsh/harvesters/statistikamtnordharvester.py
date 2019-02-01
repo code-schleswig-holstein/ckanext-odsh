@@ -179,10 +179,12 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         try:
             if values['ZeitraumVon'] != "":
                 package_dict['extras'].append({
-                  'key': 'temporal_start', 'value': datetime.datetime.strptime(['ZeitraumVon'], '%Y-%m-%d').isoformat()})
+                  'key': 'temporal_start', 'value': datetime.datetime.strptime(values['ZeitraumVon'], '%Y-%m-%d')
+                        .isoformat()})
             if values['ZeitraumBis'] != "":
                 package_dict['extras'].append({
-                  'key': 'temporal_end', 'value': datetime.datetime.strptime(['ZeitraumBis'], '%Y-%m-%d').isoformat()})
+                  'key': 'temporal_end', 'value': datetime.datetime.strptime(values['ZeitraumBis'], '%Y-%m-%d')
+                        .isoformat()})
         except KeyError as kerr:
             log.debug("Date not available: " + str(kerr))
         package_dict['extras'].append({
