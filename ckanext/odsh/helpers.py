@@ -109,7 +109,7 @@ def odsh_render_datetime(datetime_, date_format='{0.day:02d}.{0.month:02d}.{0.ye
     if not datetime_:
         return ''
     try:
-        DATETIME_FORMAT = '%Y-%m-%d'
+        DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
         dt = datetime.datetime.strptime(
             datetime_, DATETIME_FORMAT)
         return dt.strftime('%d.%m.%Y')
