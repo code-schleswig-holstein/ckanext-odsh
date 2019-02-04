@@ -73,22 +73,34 @@
     {% endif %}
     {% endif %}
     <div id="datesearch-filter">
-        {%set start_date=h.odsh_render_datetime(request.params.get('ext_startdate'))%}
-        {%set end_date=h.odsh_render_datetime(request.params.get('ext_enddate'))%}
+        {%set start_date=h.odsh_render_datetime(request.params.get('ext_startdate'), False)%}
+        {%set end_date=h.odsh_render_datetime(request.params.get('ext_enddate'), False)%}
         {%- set start_error = start_date == '' and request.params.get('ext_startdate')-%}
         {%- set end_error = end_date == '' and request.params.get('ext_enddate')-%}
-        {% if (start_date or end_date) and (not start_error and not end_error)%}
+        {% if start_date or end_date or start_error or end_error%}
         <p class="filter-list">
-            {% if start_date %}
+            {% if start_date and not start_error%}
             <span class="filtered pill">
                 {{_('daterange')}}: {{_('from')}} {{ start_date}}
                 <a href="{{ h.remove_url_param('ext_startdate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
             </span>
             {% endif %}
+            {% if start_error %}
+            <span class="filtered pill error">
+                {{_('daterange')}}: {{_('wrong_start_date_for_search')}}
+                <a href="{{ h.remove_url_param('ext_startdate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            </span>
+            {% endif %}
 
-            {% if end_date %}
+            {% if end_date and not end_error%}
             <span class="filtered pill">
                 {{_('daterange')}}: {{_('to')}} {{ end_date}}
+                <a href="{{ h.remove_url_param('ext_enddate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            </span>
+            {% endif %}
+            {% if end_error %}
+            <span class="filtered pill error">
+                {{_('daterange')}}: {{_('wrong_end_date_for_search')}}
                 <a href="{{ h.remove_url_param('ext_enddate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
             </span>
             {% endif %}

@@ -105,11 +105,15 @@ def odsh_get_spatial_text(pkg_dict):
     return None
 
 
-def odsh_render_datetime(datetime_, date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'):
+def odsh_render_datetime(datetime_, fromIso=True):
+    date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'
     if not datetime_:
         return ''
     try:
-        DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
+        if fromIso:
+            DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
+        else:
+            DATETIME_FORMAT = '%Y-%m-%d'
         dt = datetime.datetime.strptime(
             datetime_, DATETIME_FORMAT)
         return dt.strftime('%d.%m.%Y')

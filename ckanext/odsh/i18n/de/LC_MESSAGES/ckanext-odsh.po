@@ -291,7 +291,7 @@ msgid "map"
 msgstr "Karte"
 
 msgid "wrong_start_date_for_search"
-msgstr "Das Datum ist ungültig"
+msgstr "Das Startdatum ist ungültig"
 
 msgid "wrong_end_date_for_search"
-msgstr "Das Datum ist ungültig"
+msgstr "Das Enddatum ist ungültig"

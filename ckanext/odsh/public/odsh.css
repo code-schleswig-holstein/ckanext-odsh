@@ -367,6 +367,9 @@ label.rangesearch.disabled {
     top: -8px;
     right: -8px;    
 }
+.pill.error .remove .fa.fa-times{
+    background-color: #d4004b;
+}
 
 .container-fluid.odsh-dataset-item {
     padding: 20px 0px 20px 0px;
@@ -1349,6 +1352,10 @@ display: none;
     background-color: #003064;
     color:white;
 }
+.filtered.pill.error{
+    background-color: #d4004b;
+}
+
 .site-title{
     color:black;
     /* text-align:center; */
