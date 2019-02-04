@@ -1268,6 +1268,20 @@ body {
     padding: 12px;
 }
 
+.dataset-map-label
+{
+    position: relative;
+    left:5px;
+    top:180px;
+    z-index: 999;
+}
+
+.dataset-map-expanded .dataset-map-label
+{
+    left:12px;
+    top:280px;
+}
+
 /* on ie11 leaflet-touch is active and prevents correct drawing of controls */
 .leaflet-touch .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle 
 {
