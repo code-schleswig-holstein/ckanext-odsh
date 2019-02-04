@@ -5,7 +5,9 @@
   </h2>
   {% set map_config = h.get_common_map_config() %}
   <div class="dataset-map" data-module="odsh-spatial-query" data-default_extent="{{ default_extent }}" data-module-map_config="{{ h.dump_json(map_config) }}" data-template='sdf'>
-    <div id="dataset-map-container"></div>
+    <div id="dataset-map-container">
+    <div class='dataset-map-label'>&copy; GeoBasis-DE / BKG 2019</div>
+    </div>
   </div>
   <div id="dataset-map-attribution">
     {% snippet "spatial/snippets/map_attribution.html", map_config=map_config %}
