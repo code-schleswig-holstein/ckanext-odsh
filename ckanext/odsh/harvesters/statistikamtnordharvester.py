@@ -174,15 +174,17 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
     @staticmethod
     def add_extras(package_dict, values):
         # issued sollte noch geliefert werden!
-        package_dict['extras'].append({
-          'key': 'issued', 'value': datetime.datetime.now().isoformat()})
+        #package_dict['extras'].append({
+        #  'key': 'issued', 'value': datetime.datetime.now().isoformat()})
         try:
             if values['ZeitraumVon'] != "":
                 package_dict['extras'].append({
-                  'key': 'temporal_start', 'value': values['ZeitraumVon']})
+                  'key': 'temporal_start', 'value': datetime.datetime.strptime(values['ZeitraumVon'], '%Y-%m-%d')
+                        .isoformat()})
             if values['ZeitraumBis'] != "":
                 package_dict['extras'].append({
-                  'key': 'temporal_end', 'value': values['ZeitraumBis']})
+                  'key': 'temporal_end', 'value': datetime.datetime.strptime(values['ZeitraumBis'], '%Y-%m-%d')
+                        .isoformat()})
         except KeyError as kerr:
             log.debug("Date not available: " + str(kerr))
         package_dict['extras'].append({
