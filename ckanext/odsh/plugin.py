@@ -77,7 +77,7 @@ def odsh_group_id_selected(selected, group_id):
 
 
 def known_spatial_uri(key, data, errors, context):
-    value = _extract_value(key, data, 'spatial_uri')
+    value = _extract_value(data, 'spatial_uri')
 
     if not value:
         raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
@@ -115,7 +115,7 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'value')] = spatial
 
 
-def _extract_value(key, data, field):
+def _extract_value(data, field):
     key = None
     for k in data.keys():
         if data[k] == field:
@@ -123,12 +123,20 @@ def _extract_value(key, data, field):
             break
     if key is None:
         return None
-
     return data[(key[0], key[1], 'value')]
 
+def _set_value(data, field, value):
+    key = None
+    for k in data.keys():
+        if data[k] == field:
+            key = k
+            break
+    if key is None:
+        return None
+    data[(key[0], key[1], 'value')] = value
 
 def odsh_validate_extra_date(key, field, data, errors, context):
-    value = _extract_value(key, data, field)
+    value = _extract_value(data, field)
 
     if not value:
         # Statistikamt Nord does not always provide temporal_start/end,
@@ -137,10 +145,10 @@ def odsh_validate_extra_date(key, field, data, errors, context):
             raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
     else:
         try:
-            # date.split('T')[0] will yield "2012-01-01"
-            # no matter if the date is like "2012-01-01" or "2012-01-01T00:00:00"
-            datetime.datetime.strptime(
-                value.split('T')[0], '%Y-%m-%d').isoformat()
+            dt=parse(value, dayfirst=True)
+            _set_value(data, field, dt.isoformat())
+            # datetime.datetime.strptime(
+            #    value.split('T')[0], '%Y-%m-%d').isoformat()
         except ValueError:
             raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
@@ -168,7 +176,6 @@ def odsh_tag_string_convert(key, data, errors, context):
     '''Takes a list of tags that is a comma-separated string (in data[key])
     and parses tag names. These are added to the data dict, enumerated. They
     are also validated.'''
-
     if isinstance(data[key], basestring):
         tags = [tag.strip()
                 for tag in data[key].split(',')
