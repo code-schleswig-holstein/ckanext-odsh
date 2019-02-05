@@ -396,6 +396,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         except ValueError:
             return search_params
 
+        empty_range = start_date and end_date and start_date > end_date
+
         if not start_date and not end_date:
             return search_params
 
@@ -416,7 +418,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             start_date=start_date, end_date=end_date)
 
         enclosing_query = ''
-        if do_enclosing_query:
+        if do_enclosing_query and not empty_range:
             enclosing_query_start = 'extras_temporal_start:[* TO {start_date}]'.format(
                 start_date=start_date)
 

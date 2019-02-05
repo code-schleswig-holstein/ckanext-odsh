@@ -53,6 +53,17 @@ class TestSearch(helpers.FunctionalTestBase):
         assert dataset['name'] in response
 
     @odsh_test()
+    def test_query_with_end_before_start_finds_no_dataset(self):
+        # arrange
+        datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31')
+
+        # act
+        response = self._perform_date_search('1960-12-30', '1960-02-01')
+
+        # assert
+        self._assert_no_results(response)
+
+    @odsh_test()
     def test_query_with_wrong_dates_shows_error(self):
         # arrange
         dataset = self._create_dataset()
