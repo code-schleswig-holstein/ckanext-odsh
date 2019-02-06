@@ -11,6 +11,7 @@ from dateutil import parser
 from ckan.common import config
 import urllib
 import hashlib
+import re
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -104,24 +105,34 @@ def odsh_get_spatial_text(pkg_dict):
             return spatial
     return None
 
+def extend_search_convert_local_to_utc_timestamp(str_timestamp):
+    if not str_timestamp:
+        return None 
+
+    if not re.match(r'\d\d\d\d-\d\d-\d\d', str_timestamp):
+        raise 'wrong format'
+    
+    dt = parser.parse(str_timestamp, dayfirst=False).isoformat()
+
+    return dt+"Z"
 
 def odsh_render_datetime(datetime_, fromIso=True):
     date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'
     if not datetime_:
+        return ''
+    if not re.match(r'\d\d\d\d-\d\d-\d\d', datetime_):
         return ''
     try:
         if fromIso:
             DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
         else:
             DATETIME_FORMAT = '%Y-%m-%d'
-        dt = datetime.datetime.strptime(
-            datetime_, DATETIME_FORMAT)
-        return dt.strftime('%d.%m.%Y')
-        # dt = parser.parse(datetime_, dayfirst=False)
-        # return date_format.format(dt)
+
+        dt = parser.parse(datetime_, dayfirst=False)
+        return date_format.format(dt)
+
     except:
         return ''
-
 
 def odsh_upload_known_formats():
     value = config.get('ckanext.odsh.upload_formats', [])
