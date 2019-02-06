@@ -53,6 +53,20 @@ class TestSearch(helpers.FunctionalTestBase):
         assert dataset['name'] in response
 
     @odsh_test()
+    def test_query_with_very_old_dataset(self):
+        # arrange
+        dataseta = self._create_dataset('do_not_find_me', '2011-01-01', '2013-12-31')
+        datasetb = self._create_dataset('old_dataset', '1111-01-01', '1860-12-31')
+
+        # act
+        response = self._perform_date_search('1110-12-30', '1960-02-01')
+
+        # assert
+        assert 'wrong_start_date_for_search' not in response
+        self._assert_datasets_in_response([datasetb], response)
+        self._assert_datasets_not_in_response([dataseta], response)
+
+    @odsh_test()
     def test_query_with_end_before_start_finds_no_dataset(self):
         # arrange
         datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31')

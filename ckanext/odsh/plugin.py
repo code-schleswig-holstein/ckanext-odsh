@@ -144,13 +144,14 @@ def odsh_validate_extra_date(key, field, data, errors, context):
         if not ('id',) in data or data[('id',)][:7] != 'StaNord':
             raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
     else:
-        try:
-            dt=parse(value, dayfirst=True)
-            _set_value(data, field, dt.isoformat())
-            # datetime.datetime.strptime(
-            #    value.split('T')[0], '%Y-%m-%d').isoformat()
-        except ValueError:
-            raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
+        if re.match(r'\d\d\d\d-\d\d-\d\d', value):
+            try:
+                dt=parse(value, dayfirst=True)
+                _set_value(data, field, dt.isoformat())
+                return
+            except ValueError:
+                pass
+        raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
 
 def odsh_validate_extra_date_factory(field):
@@ -363,20 +364,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
                 'odsh_tag_name_validator': odsh_tag_name_validator}
 
-    def extend_search_convert_local_to_utc_timestamp(self, str_timestamp):
-        DATETIME_FORMAT = '%Y-%m-%d'
-        if not str_timestamp:
-            return ''
-
-        # Todo: do we need timezone conversions?
-
-        local_datetime = datetime.datetime.strptime(
-            str_timestamp, DATETIME_FORMAT)
-        # tz_code = config.get('ckan.timezone', 'Australia/Melbourne')
-        # local = timezone(tz_code)
-        # utc_datetime = _make_aware(local_datetime, local)
-        # local_datetime = utc_datetime.astimezone(pytz.utc)
-        return local_datetime.strftime(DATETIME_FORMAT)+"T00:00:00Z"
 
     # Add the custom parameters to Solr's facet queries
     def before_search(self, search_params):
@@ -389,11 +376,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         start_date=None
         end_date=None
         try:
-            start_date = self.extend_search_convert_local_to_utc_timestamp(
+            start_date = odsh_helpers.extend_search_convert_local_to_utc_timestamp(
                 extras.get('ext_startdate'))
-            end_date = self.extend_search_convert_local_to_utc_timestamp(
+            end_date = odsh_helpers.extend_search_convert_local_to_utc_timestamp(
                 extras.get('ext_enddate'))
-        except ValueError:
+        except:
             return search_params
 
         empty_range = start_date and end_date and start_date > end_date
@@ -430,6 +417,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         fq = '{fq} ({start_query} OR {end_query} {enclosing_query})'.format(
             fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
+
+        print(fq)
 
         # return modified facet queries
         search_params['fq'] = fq
