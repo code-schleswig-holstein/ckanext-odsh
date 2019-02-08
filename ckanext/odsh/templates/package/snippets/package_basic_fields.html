@@ -110,7 +110,8 @@ is_required=true,placeholder=_('Enter title')) }}
     <!-- field issued -->
 
     {% set field = 'issued' %}
-    {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
+    {% set data_issued = h.odsh_extract_value_from_extras(data.extras,field) %}
+    {% set value = data_issued.split('T')[0] if data_issued else None %}
     {% set error = h.odsh_extract_error(field, errors) %}
     <div class="control-group {{ " error" if error }} control-full">
         <label class="control-label" for="field-{{field}}">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
