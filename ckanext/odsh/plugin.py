@@ -146,7 +146,7 @@ def odsh_validate_extra_date(key, field, data, errors, context):
     else:
         if re.match(r'\d\d\d\d-\d\d-\d\d', value):
             try:
-                dt=parse(value, dayfirst=True)
+                dt=parse(value)
                 _set_value(data, field, dt.isoformat())
                 return
             except ValueError:
