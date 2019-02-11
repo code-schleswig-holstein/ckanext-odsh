@@ -139,6 +139,8 @@ def odsh_validate_extra_date(key, field, data, errors, context):
     value = _extract_value(data, field)
 
     if not value:
+        if field == 'temporal_end':
+            return # temporal_end is optional
         # Statistikamt Nord does not always provide temporal_start/end,
         # but their datasets have to be accepted as they are.
         if not ('id',) in data or data[('id',)][:7] != 'StaNord':
