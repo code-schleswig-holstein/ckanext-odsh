@@ -243,6 +243,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def before_map(self, map):
         map.connect('info_page', '/info_page',
                     controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+        map.connect('home', '/',
+                    controller='ckanext.odsh.controller:OdshRouteController', action='start')
 
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
