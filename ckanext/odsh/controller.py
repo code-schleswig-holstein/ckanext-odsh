@@ -11,7 +11,7 @@ class OdshRouteController(HomeController):
     def info_page(self):
         h.redirect_to('https://preview-sh70.dpaorinp.de/DE/Schwerpunkte/openData/Infos/infos_node.html')
     def start(self):
-        return base.render('start.html')
+        h.redirect_to('https://preview-sh70.dpaorinp.de/DE/Schwerpunkte/openData/openData_node.html')
 
 class OdshUserController(UserController):
     def me(self, locale=None):
