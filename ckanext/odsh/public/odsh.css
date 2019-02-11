@@ -1346,6 +1346,12 @@ display: none;
 
 .logo{
     margin-left: -7px;
+    height: 70px; 
+}
+.logo img{
+    height: 65px; 
+    width:auto;
+    padding: 6px;
 }
 .filter-list .filtered.pill,
 .filter-list .filtered.pill .fa{
