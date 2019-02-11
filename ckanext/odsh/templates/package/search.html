@@ -2,14 +2,45 @@
 
 {% block toolbar %}
 {{ super() }}
+<form id='dataset-search-box-form' class="section site-search simple-input" action="{% url_for controller='package', action='search' %}"
+    method="get" data-module="select-switch">
 {% snippet "snippets/search_box.html"%}
 {% endblock %}
 
-{% block page_primary_action %}
-{% endblock %}
+{% block primary_content %}
+  <section class="module">
+    <div class="module-content">
+      {% block page_primary_action %}
+      {% endblock %}
+      {% block form %}
+        {% set facets = {
+          'fields': c.fields_grouped,
+          'search': c.search_facets,
+          'titles': c.facet_titles,
+          'translated_fields': c.translated_fields,
+          'remove_field': c.remove_field }
+        %}
+        {% set sorting = [
+          (_('Relevance'), 'score desc, metadata_modified desc'),
+          (_('Name Ascending'), 'title_string asc'),
+          (_('Name Descending'), 'title_string desc'),
+          (_('Last Modified'), 'metadata_modified desc'),
+          (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+        %}
+        {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
+      {% endblock %}
+      {% block package_search_results_list %}
+        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+      {% endblock %}
+    </div>
 
-{% block package_search_results_list %}
-{{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+    {% block page_pagination %}
+    {{ c.page.pager(q=c.q,symbol_next='>') }}
+    {% endblock %}
+  </section>
+
+  {% block package_search_results_api %}
+  {% endblock %}
 {% endblock %}
 
 
@@ -36,7 +67,6 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
     <nav>
       <div class="nav-title">{{_('timerange')}}</div>
       <div class="rangesearch-controls">
-        <form id="date-search-form" method="get" action="{% url_for controller='package', action='search' %}">
           <div class='controls rangesearch'>
             {%- set start = request.params['ext_startdate'] -%}
             {%- set start_error = h.odsh_render_datetime(start, False) == '' and start -%}
@@ -61,9 +91,8 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
                     {{_('wrong_end_date_for_search')}}
                 </div>
               {%endif%}
-            <a class='pull-right' href="javascript:{}" onclick="$('#date-search-form').submit();" class="action">{{_('submit date search') }}</a>
+            <a class='pull-right' href="javascript:{}" onclick="$('#dataset-search-box-form').submit();" class="action">{{_('submit date search') }}</a>
           </div>
-        </form>
       </div>
     </nav>
   </section>
@@ -71,8 +100,7 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
 
 </div>
 {% endblock %}
-{% block package_search_results_api %}
-{% endblock %}
-{% block page_pagination %}
-{{ c.page.pager(q=c.q,symbol_next='>') }}
+
+{% block pre_wrap %}
+</form>
 {% endblock %}

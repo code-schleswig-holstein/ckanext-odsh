@@ -135,6 +135,33 @@ class TestSearch(helpers.FunctionalTestBase):
         self._assert_datasets_in_response([datasetC], response5)
         self._assert_datasets_not_in_response([datasetA, datasetB], response5)
 
+    @odsh_test()
+    def test_dataset_combime_date_range_search_and_text_search_same_title(self):
+        # arrange
+        datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31','mytitle')
+        datasetB = self._create_dataset('datasetb', '1980-01-01', '1990-06-30', 'mytitle')
+
+        # act
+        response = self._perform_text_and_date_search('mytitle', None, '1970-01-01')
+
+        # assert
+        self._assert_datasets_in_response([datasetA], response)
+        self._assert_datasets_not_in_response([datasetB], response)
+
+    @odsh_test()
+    def test_dataset_combime_date_range_search_and_text_search_same_dates(self):
+        # arrange
+        datasetA = self._create_dataset('dataseta', '1960-01-01', '1960-12-31','mytitle')
+        datasetB = self._create_dataset('datasetb', '1960-01-01', '1960-12-31','othertitle')
+        datasetC = self._create_dataset('datasetc', '1980-01-01', '1990-06-30', 'mytitle')
+
+        # act
+        response = self._perform_text_and_date_search('mytitle', None, '1970-01-01')
+
+        # assert
+        self._assert_datasets_in_response([datasetA], response)
+        self._assert_datasets_not_in_response([datasetB, datasetC], response)
+
     def _assert_datasets_in_response(self, datasets, response):
         for dataset in datasets:
             assert dataset['name'] in response
@@ -146,7 +173,7 @@ class TestSearch(helpers.FunctionalTestBase):
     def _assert_no_results(self, response):
         assert "No datasets found" in response
 
-    def _create_dataset(self, name='my-own-dataset', temporal_start='2000-01-27', temporal_end='2000-01-27'):
+    def _create_dataset(self, name='my-own-dataset', temporal_start='2000-01-27', temporal_end='2000-01-27',title='title'):
         user = factories.User()
         extras = [
             {'key': 'temporal_start', 'value': temporal_start},
@@ -156,7 +183,7 @@ class TestSearch(helpers.FunctionalTestBase):
         ]
         return factories.Dataset(user=user,
                                  name=name,
-                                 title='My very own dataset',
+                                 title=title,
                                  issued='27-01-2000',
                                  extras=extras)
 
@@ -167,7 +194,16 @@ class TestSearch(helpers.FunctionalTestBase):
         return helpers.webtest_submit(search_form)
 
     def _perform_date_search(self, search_from, search_to):
-        search_form = self._perform_search_for_form('date-search-form')
+        search_form = self._perform_search_for_form('dataset-search-box-form')
+        if search_form is not None:
+            search_form['ext_startdate'] = search_from
+        if search_to is not None:
+            search_form['ext_enddate'] = search_to
+        return helpers.webtest_submit(search_form)
+
+    def _perform_text_and_date_search(self, query, search_from, search_to):
+        search_form = self._perform_search_for_form('dataset-search-box-form')
+        search_form['q'] = query
         if search_form is not None:
             search_form['ext_startdate'] = search_from
         if search_to is not None:
