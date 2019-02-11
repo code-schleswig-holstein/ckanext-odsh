@@ -881,8 +881,8 @@ body {
     text-align: center;
 }
 .organization-image-info{
-    max-width: 225px;
-    max-height: 78px;
+    max-width: 190px;
+    height: auto;
     margin: auto;
     display: block;
     text-align: center;
