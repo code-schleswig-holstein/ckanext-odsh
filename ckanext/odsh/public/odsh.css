@@ -448,10 +448,8 @@ ul.dataset-resources {
     margin-bottom: 10px;
 }
 
-.odsh-star {
-    margin-right: 5px;
-    font-size: 20px;
-    color: #003064;    
+.odsh-star img {
+    padding-right: 5px;
 }
 
 .dataformat-label:hover {
