@@ -84,7 +84,7 @@ this.ckan.module('odsh-spatial-query', function ($, _)
       var previous_extent;
       var is_exanded = false;
       var should_zoom = true;
-      var form = $("#dataset-search");
+      var form = $("#dataset-search-box-form"); //TODO: use default or inject
       // CKAN 2.1
       if (!form.length)
       {
