@@ -232,6 +232,13 @@ class StatistikNordDocument(MappedXmlDocument):
             multiplicity="0..1",
         ),
         StatistikNordDocumentElement(
+            name="Veroeffentlichungsdatum",
+            search_paths=[
+                "Veroeffentlichungsdatum/text()",
+            ],
+            multiplicity="0..1",
+        ),
+        StatistikNordDocumentElement(
             name="ZeitlicheGranularitaetIntervallDerErhebung",
             search_paths=[
                 "ZeitlicheGranularitaetIntervallDerErhebung/text()",
