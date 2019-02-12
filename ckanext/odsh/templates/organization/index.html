@@ -10,14 +10,13 @@
 
 {% block toolbar %}
 {{ super() }}
+<form  id='organization-search-form' class="section site-search simple-input" method="get" data-module="select-switch">
 <div class='search-box-container'>
     <div class='search-box'>
-        <form class="section site-search simple-input" method="get">
             <div class="field">
                 <input id="field-sitewide-search" type="text" name="q" value="{{c.q}}" placeholder="{{ _('Search organizations') }}" />
                 <button class="btn-search" type="submit">
             </div>
-        </form>
     </div>
 </div>
 {% endblock %}
@@ -60,4 +59,8 @@
 {% endblock %}
 
 {% block secondary%}
+{% endblock %}
+
+{% block pre_wrap %}
+</form>
 {% endblock %}
