@@ -8,7 +8,10 @@ reason - A reason why the dataset doesn't have a rating.
 {% snippet "qa/stars.html", stars=4 %}
 
 #}
+{% set short_texts=['', ': OL', ': RE', ': OF', ': URI', ': LD'] %}
+{% set texts=['OL = offene Lizenz', 'RE = maschinen-lesbar', 'OF = offenes Format', 'URI = verwendet URIs', 'LD = Linked Data'] %}
 <span class="star-rating{% if stars == 0 %} no-stars{% endif %}">
+{% resource 'odsh/odsh_popover.js' %}
   {%- if stars == None -%}
   {{ reason }}
   {%- else -%}
@@ -19,9 +22,11 @@ reason - A reason why the dataset doesn't have a rating.
     </span>
     {%- endfor -%}
     {%- for index in range(5-stars) -%}
-    <span class="odsh-star">
-            <img src='/base/images/opendata-empty.svg'/>
-    </span>
+    <div class='odsh-star-wrap'>
+      <a tabindex="0" data-module="odsh_popover" data-module-text='{{texts[index]}}' role="button" data-toggle="popover" data-trigger="focus" class="odsh-star">
+              <img  src='/base/images/opendata-{{index+1}}.svg'/>
+      </a>
+    </div>
     {%- endfor -%}
     {%- if stars == 0 -%}
     {# 0 stars looks awfully like 5 stars, so be explicit #}
@@ -29,4 +34,9 @@ reason - A reason why the dataset doesn't have a rating.
     {%- endif -%}
   </span>
   {%- endif -%}
+    <div class='odsh-star-wrap'>
+      <a tabindex="0" data-module="odsh_popover" data-module-text="{{stars}} Stars{{short_texts[index]}}<br><a target='_blank' href='https://5stardata.info/de/'>5 Star Open Data Modell</a>" role="button" data-toggle="popover" data-trigger="focus" class="odsh-star">
+          <i class="fa fa-info odsh-star-info"></i>
+      </a>
+    </div>
 </span>
