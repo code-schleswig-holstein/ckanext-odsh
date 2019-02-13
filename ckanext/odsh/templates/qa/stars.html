@@ -18,14 +18,14 @@ reason - A reason why the dataset doesn't have a rating.
   <span class="star-rating-stars">
     {%- for index in range(stars) -%}
     <div class='odsh-star-wrap'>
-            <img src='/base/images/opendata-empty.svg'/>
+      <a tabindex="0" data-module="odsh_popover" data-module-text='{{texts[index]}}' role="button" data-toggle="popover" data-trigger="focus" class="odsh-star">
+              <img  src='/base/images/opendata-{{index+1}}.svg'/>
+      </a>
     </div>
     {%- endfor -%}
     {%- for index in range(5-stars) -%}
     <div class='odsh-star-wrap'>
-      <a tabindex="0" data-module="odsh_popover" data-module-text='{{texts[index]}}' role="button" data-toggle="popover" data-trigger="focus" class="odsh-star">
-              <img  src='/base/images/opendata-{{index+1}}.svg'/>
-      </a>
+            <img src='/base/images/opendata-empty.svg'/>
     </div>
     {%- endfor -%}
     {%- if stars == 0 -%}
