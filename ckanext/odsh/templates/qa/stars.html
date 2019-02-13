@@ -17,9 +17,9 @@ reason - A reason why the dataset doesn't have a rating.
   {%- else -%}
   <span class="star-rating-stars">
     {%- for index in range(stars) -%}
-    <span class="odsh-star">
-            <img src='/base/images/opendata-{{index+1}}.svg'/>
-    </span>
+    <div class='odsh-star-wrap'>
+            <img src='/base/images/opendata-empty.svg'/>
+    </div>
     {%- endfor -%}
     {%- for index in range(5-stars) -%}
     <div class='odsh-star-wrap'>
