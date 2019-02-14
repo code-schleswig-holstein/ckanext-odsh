@@ -10,7 +10,9 @@ ckan.module('odsh_popover', function ($)
         {
             this.el.popover({
                        content: this.options.text,
-                       placement: 'right',html:true});
+                placement: 'right', html: true,
+                trigger:'hover'
+            });
         }
     };
 });
