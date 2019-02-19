@@ -370,7 +370,10 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
 
     # Add the custom parameters to Solr's facet queries
+    # use several daterange queries agains temporal_start and temporal_end field
+    # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
+
 
         extras = search_params.get('extras')
         if not extras:
@@ -419,10 +422,18 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             enclosing_query = ' OR ({enclosing_query_start} AND {enclosing_query_end})'.format(
                 enclosing_query_start=enclosing_query_start, enclosing_query_end=enclosing_query_end)
 
-        fq = '{fq} ({start_query} OR {end_query} {enclosing_query})'.format(
-            fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
+        
+        if end_date is '*':
+            open_end_query = '(*:* NOT extras_temporal_end:[* TO *])'
+        else:
+            open_end_query = '((*:* NOT extras_temporal_end:[* TO *]) AND extras_temporal_start:[* TO {end_date}])'.format(
+                    end_date=end_date)
 
-        print(fq)
+        fq = '{fq} ({start_query} OR {end_query} {enclosing_query} OR {open_end_query})'.format(
+            fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query, open_end_query=open_end_query)
+
+        # fq = '{fq} ({start_query}'.format(
+        #     fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
 
         # return modified facet queries
         search_params['fq'] = fq

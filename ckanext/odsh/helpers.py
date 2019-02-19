@@ -33,8 +33,6 @@ def odsh_openness_score_dataset_html(dataset):
                     qa = ast.literal_eval(r_qa)
                 else:
                     qa = r_qa
-                print('QA')
-                print(qa)
                 resource_score = qa.get('openness_score')
                 if resource_score > score:
                     score = resource_score
