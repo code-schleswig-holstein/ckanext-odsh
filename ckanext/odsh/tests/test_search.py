@@ -162,6 +162,27 @@ class TestSearch(helpers.FunctionalTestBase):
         self._assert_datasets_in_response([datasetA], response)
         self._assert_datasets_not_in_response([datasetB, datasetC], response)
 
+    @odsh_test()
+    def test_dataset_without_end(self):
+        # arrange
+        datasetA = self._create_dataset('dataseta', '1960-01-01', None,'mytitle')
+
+        # act
+        response1 = self._perform_text_and_date_search('mytitle', '1950-01-01', '1950-02-01')
+        response2 = self._perform_text_and_date_search('mytitle', '1950-01-01', '1960-02-01')
+        response3 = self._perform_text_and_date_search('mytitle', '1950-01-01', None)
+        response4 = self._perform_text_and_date_search('mytitle', None, '1970-01-01')
+        response5 = self._perform_text_and_date_search('mytitle', '1970-01-01', '1980-02-01')
+        response6 = self._perform_text_and_date_search('mytitle', None, '1950-01-01')
+
+        # assert
+        self._assert_datasets_not_in_response([datasetA], response1)
+        self._assert_datasets_in_response([datasetA], response2)
+        self._assert_datasets_in_response([datasetA], response3)
+        self._assert_datasets_in_response([datasetA], response4)
+        self._assert_datasets_in_response([datasetA], response5)
+        self._assert_datasets_not_in_response([datasetA], response6)
+
     def _assert_datasets_in_response(self, datasets, response):
         for dataset in datasets:
             assert dataset['name'] in response

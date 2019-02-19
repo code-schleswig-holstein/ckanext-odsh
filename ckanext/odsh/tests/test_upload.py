@@ -30,7 +30,7 @@ class TestUpload(helpers.FunctionalTestBase):
         response.mustcontain('Title: Missing value')
         response.mustcontain('Description: Missing value')
         response.mustcontain('odsh_spatial_uri_error_label')
-        response.mustcontain('odsh_temporal_error_label')
+        response.mustcontain('odsh_temporal_start_error_label')
 
     @odsh_test()
     def test_upload_empty_wrong_spatial_uri(self):
@@ -67,7 +67,7 @@ class TestUpload(helpers.FunctionalTestBase):
         response7 = self._submit_form(form)
 
         # assert
-        response1.mustcontain('odsh_temporal_error_label')
+        response1.mustcontain('odsh_temporal_start_not_date_error_label')
         response2.mustcontain('odsh_temporal_error_label')
         response3.mustcontain('odsh_temporal_end_not_date_error_label')
         response4.mustcontain('odsh_temporal_start_not_date_error_label')
