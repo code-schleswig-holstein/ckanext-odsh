@@ -183,6 +183,9 @@ msgstr "Bitte geben Sie einen gültigen Zeitraum an"
 msgid "Name: Fehlender Wert"
 msgstr "Bitte geben Sie eine Url ein"
 
+msgid "Lizenz: Fehlender Wert"
+msgstr "Bitte geben Sie eine Lizenz an"
+
 msgid "Raumbezug: Fehlender Wert"
 msgstr "Bitte geben Sie einen Ort ein"
 

@@ -179,7 +179,7 @@ def presorted_license_options(existing_license_id=None):
     license_ids = [license.id for license in licenses]
     if existing_license_id and existing_license_id not in license_ids:
         license_ids.insert(0, existing_license_id)
-    return [
+    return [('','')]+[
         (license_id,
          register[license_id].title if license_id in register else license_id)
         for license_id in license_ids]

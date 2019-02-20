@@ -310,7 +310,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                             'groups': _('Kategorie')})
 
     def _update_schema(self, schema):
-        for field in ['title', 'notes']:
+        for field in ['title', 'notes','license_id']:
             schema.update({field: [toolkit.get_converter('not_empty')]})
 
         for i, item in enumerate(schema['tags']['name']):
