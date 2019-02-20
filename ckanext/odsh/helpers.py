@@ -168,3 +168,18 @@ def odsh_extract_value_from_extras(extras, key):
             if 'value' in item:
                 return item['value']
             return None
+
+
+def presorted_license_options(existing_license_id=None):
+    '''Returns [(l.title, l.id), ...] for the licenses configured to be
+    offered. Always includes the existing_license_id, if supplied.
+    '''
+    register = model.Package.get_license_register()
+    licenses = register.values()
+    license_ids = [license.id for license in licenses]
+    if existing_license_id and existing_license_id not in license_ids:
+        license_ids.insert(0, existing_license_id)
+    return [
+        (license_id,
+         register[license_id].title if license_id in register else license_id)
+        for license_id in license_ids]
