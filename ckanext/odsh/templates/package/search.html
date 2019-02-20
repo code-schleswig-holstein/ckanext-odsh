@@ -73,7 +73,7 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
           {% resource 'odsh/datepicker.css' %}
           {% resource 'odsh/bootstrap-datepicker.js' %}
           {% resource 'odsh/odsh_datepicker.js' %}
-          <div class='controls rangesearch' data-module="odsh_datepicker">
+          <div class='controls rangesearch' >
             {%- set start = request.params['ext_startdate'] -%}
             {%- set start_error = h.odsh_render_datetime(start, False) == '' and start -%}
             {%- set end = request.params['ext_enddate'] -%}
@@ -83,7 +83,7 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
             <label for="ext_startdate">{{_('from')|title}}</label>
             <input id="ext_startdate" name="ext_startdate" type="hidden" value="{{start}}" placeholder="{{ _('Date') }}"/>
             <input readonly="" style="cursor:pointer;" id="datepicker_start" type="text" value="{{h.odsh_render_datetime(start, False)}}" placeholder="{{ _('Date') }}"
-               class='rangesearch' />
+               class='rangesearch' data-module="odsh_datepicker" data-module-target='ext_startdate'/>
               {%if start_error %}
                 <div class="error-reange-search">
                     {{_('wrong_start_date_for_search')}}
@@ -92,7 +92,7 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
             <label for="ext_enddate">{{_('to')|title}}</label>
             <input id="ext_enddate" name="ext_enddate" type="hidden" value="{{end}}" placeholder="{{ _('Date') }}" />
             <input readonly="" style="cursor:pointer;" id="datepicker_end" type="text" value="{{h.odsh_render_datetime(end, False)}}" placeholder="{{ _('Date') }}"
-               class='rangesearch' />
+               class='rangesearch' data-module="odsh_datepicker" data-module-target='ext_enddate'/>
               {%if end_error %}
                 <div class="error-reange-search">
                     {{_('wrong_end_date_for_search')}}
