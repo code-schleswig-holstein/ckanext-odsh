@@ -16,6 +16,7 @@ this.ckan.module('odsh_datepicker', function ($, _)
                     weekStart: 1,
                     format: "dd.mm.yyyy"
                 };
+            var target = $('#' + this.options.target)
             var showFormat = "dd.mm.yyyy"
             var opts = {
                 format: showFormat,
@@ -30,34 +31,17 @@ this.ckan.module('odsh_datepicker', function ($, _)
                 var v = moment(ev.date);
                 var fs = 'YYYY-MM-DD';
 
-                switch (ev.target.id)
+
+                if (ev.date)
                 {
-                    case 'datepicker_start':
-                        if (ev.date)
-                        {
-                            $('#ext_startdate').val(v.format(fs));
-                        } else
-                        {
-                            $('#ext_startdate').val('');
-                        }
-                        return;
-                    case 'datepicker_end':
-                        if (ev.date)
-                        {
-                            $('#ext_enddate').val(v.format(fs));
-                        } else
-                        {
-                            $('#ext_enddate').val('');
-                        }
-                        return;
+                    target.val(v.format(fs));
+                } else
+                {
+                    target.val('');
                 }
             }
 
-            $('#datepicker_start')
-                .datepicker(opts)
-                .on('changeDate', onChange);
-            $('#datepicker_end')
-                .datepicker(opts)
+            this.el.datepicker(opts)
                 .on('changeDate', onChange);
         }
     }

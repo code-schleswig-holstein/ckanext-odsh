@@ -80,14 +80,22 @@ is_required=true,placeholder=_('Enter title')) }}
         <span title="{{ _("This field is required") }}" class="control-required">*</span>
     </label>
     <div class='row-fluid'>
+          {% resource 'odsh/moment.js' %}
+          {% resource 'odsh/datepicker.css' %}
+          {% resource 'odsh/bootstrap-datepicker.js' %}
+          {% resource 'odsh/odsh_datepicker.js' %}
         <div id='start-end' class='span3'>
             <!-- field temporal_start -->
             {% set field = 'temporal_start' %}
             {% set data_temporal_start = h.odsh_extract_value_from_extras(data.extras,field) %}
             {% set value = data_temporal_start.split('T')[0] if data_temporal_start else None %}
+            {% set index = h.odsh_create_checksum(field) %}
             <div class="control-group {{ " error" if error_start }} control-full">
                 <div class="controls">
-                            {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='date', placeholder=_('from')) }}
+                            {{ form.input_extra(field, value=value, index=index, type='hidden') }}
+                            <input readonly="" style="cursor:pointer;" id="datepicker_start" type="text" 
+                                value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('from') }}"
+                                data-module="odsh_datepicker" data-module-target='field-temporal_start-value'/>
                 </div>
             </div>
         </div>
@@ -98,7 +106,10 @@ is_required=true,placeholder=_('Enter title')) }}
             {% set value = data_temporal_end.split('T')[0] if data_temporal_end else None %}
             <div class="control-group {{ " error" if error_end }} control-full">
                 <div class="controls">
-                            {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='date', placeholder=_('to')) }}
+                            {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='hidden') }}
+                            <input readonly="" style="cursor:pointer;" id="datepicker_end" type="text" 
+                                value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('to') }}"
+                                data-module="odsh_datepicker" data-module-target='field-temporal_end-value'/>
                 </div>
             </div>
         </div>
@@ -113,14 +124,17 @@ is_required=true,placeholder=_('Enter title')) }}
 
     {% set field = 'issued' %}
     {% set data_issued = h.odsh_extract_value_from_extras(data.extras,field) %}
-    {% set value = data_issued.split('T')[0] if data_issued else None %}
+    {% set value = data_issued.split('T')[0] if data_issued else h.odsh_now()%}
     {% set error = h.odsh_extract_error(field, errors) %}
     <div class="control-group {{ " error" if error }} control-full">
         <label class="control-label" for="field-{{field}}">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
         <div class="controls">
             <div class="row-fluid">
                 <div class="span6">
-                    {{ form.input_extra(field, value=value if value else h.odsh_now(), index=h.odsh_create_checksum(field), type='date') }}
+                    {{ form.input_extra(field, value=value , index=h.odsh_create_checksum(field), type='hidden') }}
+                    <input readonly="" style="cursor:pointer;"  type="text" 
+                        value="{{h.odsh_render_datetime(value, False)}}" 
+                        data-module="odsh_datepicker" data-module-target='field-issued-value'/>
                 </div>
                 <div class="span6 inline-error">
                     {% if error %} 
