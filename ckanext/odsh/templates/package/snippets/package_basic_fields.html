@@ -40,6 +40,7 @@ is_required=true,placeholder=_('Enter title')) }}
             {% block package_basic_fields_license %}
             <div class="control-group">
                 {% set error = errors.license_id %}
+                {% set error_string = _(_("License") + ': '+errors.license_id[0] ) if errors.license_id %}
                 <div class="controls">
                     <select id="field-license" name="license_id">
                         {% set existing_license_id = data.get('license_id') %}
@@ -48,7 +49,6 @@ is_required=true,placeholder=_('Enter title')) }}
                             endif %}>{{ license_desc }}</option>
                         {% endfor %}
                     </select>
-                    {% if error %}<span class="error-block">{{ error }}</span>{% endif %}
                 </div>
             </div>
         </div>
@@ -63,9 +63,11 @@ is_required=true,placeholder=_('Enter title')) }}
                 </div>
             </div>
         </div>
-        <div class="span6 inline-error">
-            {{error}}
-        </div>
+        {% if error_string %} 
+            <div class="span6 inline-error">
+                {{_(error_string)}}
+            </div>
+        {% endif %}
     </div>
 
     {% endblock %}
