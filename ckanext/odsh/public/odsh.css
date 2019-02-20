@@ -1595,7 +1595,7 @@ a:hover.tooltips_cls span {
 }
 
 #testsystem 
-{ position:fixed; padding:0 50px 0 50px; top:40px; right:-60px; background-color:#a60000; color:#fff;
+{ position:fixed; padding:0 65px 0 65px; top:40px; right:-60px; background-color:#a60000; color:#fff;
     font-size:1em; z-index:100; transform:rotate(+45deg); text-align:center; font-weight:bolder; border:#c14646;
     border-style:dashed; border-width:1px 
 } 
