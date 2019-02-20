@@ -169,7 +169,8 @@ def odsh_extract_value_from_extras(extras, key):
                 return item['value']
             return None
 
-def license_options(existing_license_id=None):
+
+def presorted_license_options(existing_license_id=None):
     '''Returns [(l.title, l.id), ...] for the licenses configured to be
     offered. Always includes the existing_license_id, if supplied.
     '''
