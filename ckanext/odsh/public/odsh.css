@@ -455,6 +455,7 @@ ul.dataset-resources {
 .popover{
     width: unset;
     display:inline-table!important;
+    white-space: nowrap;
 }
 
 a.odsh-star {
