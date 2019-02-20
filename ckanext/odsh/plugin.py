@@ -239,7 +239,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_encodeurl': odsh_helpers.odsh_encodeurl,
                 'odsh_extract_error': odsh_helpers.odsh_extract_error,
                 'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras,
-                'odsh_create_checksum': odsh_helpers.odsh_create_checksum
+                'odsh_create_checksum': odsh_helpers.odsh_create_checksum,
+                'presorted_license_options': odsh_helpers.presorted_license_options
                 }
 
     def before_map(self, map):
