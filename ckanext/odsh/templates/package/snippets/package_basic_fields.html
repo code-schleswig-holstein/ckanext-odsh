@@ -93,7 +93,7 @@ is_required=true,placeholder=_('Enter title')) }}
             <div class="control-group {{ " error" if error_start }} control-full">
                 <div class="controls">
                             {{ form.input_extra(field, value=value, index=index, type='hidden') }}
-                            <input readonly="" style="cursor:pointer;" id="datepicker_start" type="text" 
+                            <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_start" type="text" 
                                 value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('from') }}"
                                 data-module="odsh_datepicker" data-module-target='field-temporal_start-value'/>
                 </div>
@@ -107,7 +107,7 @@ is_required=true,placeholder=_('Enter title')) }}
             <div class="control-group {{ " error" if error_end }} control-full">
                 <div class="controls">
                             {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='hidden') }}
-                            <input readonly="" style="cursor:pointer;" id="datepicker_end" type="text" 
+                            <input pattern="\d{2}\.\d{2}\.\d{4}"  autocomplete="off" id="datepicker_end" type="text" 
                                 value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('to') }}"
                                 data-module="odsh_datepicker" data-module-target='field-temporal_end-value'/>
                 </div>
@@ -132,7 +132,7 @@ is_required=true,placeholder=_('Enter title')) }}
             <div class="row-fluid">
                 <div class="span6">
                     {{ form.input_extra(field, value=value , index=h.odsh_create_checksum(field), type='hidden') }}
-                    <input readonly="" style="cursor:pointer;"  type="text" 
+                    <input  pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" type="text" 
                         value="{{h.odsh_render_datetime(value, False)}}" 
                         data-module="odsh_datepicker" data-module-target='field-issued-value'/>
                 </div>
