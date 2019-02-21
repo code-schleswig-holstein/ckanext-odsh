@@ -69,6 +69,7 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
     <nav>
       <div class="nav-title">{{_('timerange')}}</div>
       <div class="rangesearch-controls">
+          {% import 'macros/form.html' as form %}
           {% resource 'odsh/moment.js' %}
           {% resource 'odsh/datepicker.css' %}
           {% resource 'odsh/bootstrap-datepicker.js' %}
@@ -81,18 +82,14 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
             {%- set typeStart = 'text' if (start_error or not start) else 'date' -%}
             {%- set typeEnd = 'text' if (end_error or not end) else 'date' -%}
             <label for="ext_startdate">{{_('from')|title}}</label>
-            <input id="ext_startdate" name="ext_startdate" type="hidden" value="{{start}}" placeholder="{{ _('Date') }}"/>
-            <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_start" type="text" value="{{h.odsh_render_datetime(start, False)}}" placeholder="{{ _('Date') }}"
-               class='rangesearch' data-module="odsh_datepicker" data-module-target='ext_startdate'/>
+	          {% snippet 'snippets/datepicker.html', id='ext_startdate', value=start, class='rangesearch', placeholder=_('Date') %}
               {%if start_error %}
                 <div class="error-reange-search">
                     {{_('wrong_start_date_for_search')}}
                 </div>
               {%endif%}
             <label for="ext_enddate">{{_('to')|title}}</label>
-            <input id="ext_enddate" name="ext_enddate" type="hidden" value="{{end}}" placeholder="{{ _('Date') }}" />
-            <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_end" type="text" value="{{h.odsh_render_datetime(end, False)}}" placeholder="{{ _('Date') }}"
-               class='rangesearch' data-module="odsh_datepicker" data-module-target='ext_enddate'/>
+	          {% snippet 'snippets/datepicker.html', id='ext_enddate', value=end, class='rangesearch', placeholder=_('Date') %}
               {%if end_error %}
                 <div class="error-reange-search">
                     {{_('wrong_end_date_for_search')}}
