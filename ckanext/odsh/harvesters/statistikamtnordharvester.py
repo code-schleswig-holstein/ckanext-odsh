@@ -173,10 +173,11 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
 
     @staticmethod
     def add_extras(package_dict, values):
-        # issued sollte noch geliefert werden!
-        #package_dict['extras'].append({
-        #  'key': 'issued', 'value': datetime.datetime.now().isoformat()})
         try:
+            if values['Veroeffentlichungsdatum'] != "":
+                package_dict['extras'].append({
+                  'key': 'issued', 'value': datetime.datetime.strptime(values['Veroeffentlichungsdatum'], '%Y-%m-%d')
+                        .isoformat()})
             if values['ZeitraumVon'] != "":
                 package_dict['extras'].append({
                   'key': 'temporal_start', 'value': datetime.datetime.strptime(values['ZeitraumVon'], '%Y-%m-%d')
