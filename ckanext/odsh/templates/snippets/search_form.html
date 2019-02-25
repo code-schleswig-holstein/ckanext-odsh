@@ -106,6 +106,16 @@
         </p>
         {% endif %}
     </div>
+    <div id="score-filter">
+        {%- set selected_score = request.params.get('ext_score')-%}
+        {% if selected_score %}
+        <p class="filter-list">
+            <span class="filtered pill">
+                {{_('Score')}}: {{ selected_score}}
+                <a href="{{ h.remove_url_param('ext_score') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            </span>
+        {% endif %}
+    </div>
     <div >
         {%set ext_bbox=request.params.get('ext_bbox')%}
         {%set ext_prev_extent=request.params.get('ext_prev_extent')%}

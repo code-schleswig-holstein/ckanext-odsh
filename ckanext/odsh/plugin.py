@@ -393,11 +393,21 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
 
+        print(search_params)
 
         extras = search_params.get('extras')
+
+
         if not extras:
             # There are no extras in the search params, so do nothing.
             return search_params
+
+        fq = search_params['fq']
+
+        score = extras.get('ext_score')
+        if score:
+            fq = "{fq} qa:/.*'openness_score':.[{score}-5].*/".format(fq=fq, score=score)
+            search_params['fq'] = fq
 
         start_date=None
         end_date=None
@@ -422,7 +432,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             do_enclosing_query = False
             end_date = '*'
 
-        fq = search_params['fq']
 
         start_query = '+extras_temporal_start:[{start_date} TO {end_date}]'.format(
             start_date=start_date, end_date=end_date)
