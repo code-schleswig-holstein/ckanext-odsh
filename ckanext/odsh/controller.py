@@ -9,9 +9,9 @@ abort = base.abort
 
 class OdshRouteController(HomeController):
     def info_page(self):
-        h.redirect_to('https://preview-sh70.dpaorinp.de/DE/Schwerpunkte/openData/Infos/infos_node.html')
+        h.redirect_to('http://www.schleswig-holstein.de/odpinfo')
     def start(self):
-        h.redirect_to('https://preview-sh70.dpaorinp.de/DE/Schwerpunkte/openData/openData_node.html')
+        h.redirect_to('http://www.schleswig-holstein.de/odpstart')
 
 class OdshUserController(UserController):
     def me(self, locale=None):
