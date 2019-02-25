@@ -61,6 +61,9 @@ def odsh_convert_groups_string(value, context):
                 ret.append(g)
     return ret
 
+def odsh_convert_format_string(value, context):
+    return value.upper()
+
 
 def odsh_now():
     return helpers.render_datetime(datetime.datetime.now(), "%Y-%m-%d")
@@ -323,7 +326,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         schema['resources'].update({
             'url': [toolkit.get_converter('not_empty')],
-            'format': [toolkit.get_converter('not_empty')]
+            'format': [toolkit.get_converter('not_empty'), toolkit.get_converter('odsh_convert_format_string') ],
         })
 
         schema['extras'].update({
@@ -367,7 +370,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
                 'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
-                'odsh_tag_name_validator': odsh_tag_name_validator}
+                'odsh_tag_name_validator': odsh_tag_name_validator,
+                'odsh_convert_format_string': odsh_convert_format_string}
 
 
     # Add the custom parameters to Solr's facet queries
