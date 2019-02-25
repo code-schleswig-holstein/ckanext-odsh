@@ -305,3 +305,6 @@ msgstr "Das Startdatum ist ungültig"
 
 msgid "wrong_end_date_for_search"
 msgstr "Das Enddatum ist ungültig"
+
+msgid "Score"
+msgstr "Bewertung"

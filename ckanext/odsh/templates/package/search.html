@@ -103,6 +103,30 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
     </nav>
   </section>
   {% endblock %}
+  {% block qa_search%}
+  <section class="module module-narrow module-shallow">
+    <nav>
+      <div class="nav-title">{{_('Score')}}</div>
+   {%- set score = request.params['ext_score'] -%}
+    <input id='ext_score' name='ext_score' value='{{score}}' type='hidden'/>
+    {%- for stars in range(1,6)|reverse -%}
+    <div class='search-score search-score-{{stars}}'>
+    {%- for index in range(1,stars+1) -%}
+    <div class='odsh-star-wrap'>
+         <img  src='/base/images/opendata-{{index}}.svg'/>
+    </div>
+    {%- endfor -%}
+    {%- for index in range(5-stars) -%}
+    <div class='odsh-star-wrap'>
+            <img src='/base/images/opendata-empty.svg'/>
+    </div>
+    {%- endfor -%}
+    </div>
+    {%- endfor -%}
+    </nav>
+  </section>
+  {% endblock %}
+
 
 </div>
 {% endblock %}
