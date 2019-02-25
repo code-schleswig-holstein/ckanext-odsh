@@ -20,7 +20,6 @@ this.ckan.module('odsh_datepicker', function ($, _)
             var showFormat = "dd.mm.yyyy"
             var opts = {
                 format: showFormat,
-                // keyboardNavigation: false,
                 autoclose: true,
                 language: 'de',
                 clearBtn: true,
