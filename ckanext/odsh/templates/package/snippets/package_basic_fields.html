@@ -28,6 +28,21 @@ is_required=true,placeholder=_('Enter title')) }}
     error=error_string, is_required=true, placeholder=_('Enter description')) }}
     {% endblock %}
 
+    {% block package_basic_fields_org %}
+    {% if data.group_id %}
+    <input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
+    {% endif %}
+
+    {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none'
+    %}
+    {% set dataset_has_organization = data.owner_org or data.group_id %}
+    {% set organizations_available = h.organizations_available('create_dataset') %}
+    {% set user_is_sysadmin = h.check_access('sysadmin') %}
+    {% set show_organizations_selector = organizations_available %}
+    {% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or
+    dataset_is_draft)) %}
+    {% set existing_org = data.owner_org or data.group_id %}
+
     <div class="control-group field-organization">
         <label for="field-organizations" class="control-label">{{ _('Organization') }}
             <span title="{{ _("This field is required") }}" class="control-required">*</span>
@@ -42,10 +57,7 @@ is_required=true,placeholder=_('Enter title')) }}
                         {% endif %}
                         {% for organization in organizations_available %}
                         {# get out first org from users list only if there is not an existing org #}
-                        {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org
-                        and
-                        not
-                        data.id and organization.id == organizations_available[0].id) %}
+                        {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
                         <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{
                             organization.display_name }}</option>
                         {% endfor %}
@@ -54,10 +66,11 @@ is_required=true,placeholder=_('Enter title')) }}
             </div>
         </div>
     </div>
+    {% endblock %}
 
 
     <!-- field license -->
-
+    {% set error_missing_attr = h.odsh_extract_error('licenseAttributionByText', errors) %}
     <label class="control-label" for="field-license">
         {{ _("License") }}:
         <span title="{{ _("This field is required") }}" class="control-required">*</span>
@@ -65,9 +78,9 @@ is_required=true,placeholder=_('Enter title')) }}
     <div class='row-fluid'>
         <div class='span3'>
             {% block package_basic_fields_license %}
-            <div class="control-group">
                 {% set error = errors.license_id %}
-                {% set error_string = _(_("License") + ': '+errors.license_id[0] ) if errors.license_id %}
+                {% set error_license_id = _(_("License") + ': '+errors.license_id[0] ) if errors.license_id %}
+            <div class="control-group {{ " error" if error_license_id }}">
                 <div class="controls">
                     <select id="field-license" name="license_id">
                         {% set existing_license_id = data.get('license_id') %}
@@ -83,16 +96,21 @@ is_required=true,placeholder=_('Enter title')) }}
             <!-- field Namensnennung -->
             {% set field = 'licenseAttributionByText' %}
             {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
-            <div class="control-group {{ " error" if error }} control-full">
+            <div class="control-group {{ " error" if error_missing_attr }} control-full">
                 <div class="controls">
                             {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', attrs={'disabled':true,
             'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
                 </div>
             </div>
         </div>
-        {% if error_string %} 
+        {% if error_license_id %} 
             <div class="span6 inline-error">
-                {{_(error_string)}}
+                {{_(error_license_id)}}
+            </div>
+        {% endif %}
+        {% if error_missing_attr%} 
+            <div class="span6 inline-error">
+                {{_(error_missing_attr)}}
             </div>
         {% endif %}
     </div>
@@ -182,22 +200,6 @@ is_required=true,placeholder=_('Enter title')) }}
     is_required=true, placeholder=_('odsh tags placeholder')) }}
     {% endblock %}
 
-    {% block package_basic_fields_org %}
-    {% if data.group_id %}
-    <input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
-    {% endif %}
-
-    {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none'
-    %}
-    {% set dataset_has_organization = data.owner_org or data.group_id %}
-    {% set organizations_available = h.organizations_available('create_dataset') %}
-    {% set user_is_sysadmin = h.check_access('sysadmin') %}
-    {% set show_organizations_selector = organizations_available %}
-    {% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or
-    dataset_is_draft)) %}
-    {% set existing_org = data.owner_org or data.group_id %}
-
-    {% endblock %}
 
     <!-- field spatial_uri -->
     {% set field = 'spatial_uri' %}

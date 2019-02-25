@@ -547,6 +547,7 @@ label:after {
 } 
 
 .control-group.error input,
+.control-group.error select,
 .control-group.error .select2-choices,
 .control-group.error textarea {
     border-color:#d4004b;  /* SH Rot */
