@@ -87,7 +87,7 @@ class TestUpload(helpers.FunctionalTestBase):
         form[self._get_field_name('issued')] = '2019-01-29'
         form[self._get_field_name('temporal_start')] = '2019-01-29'
         form[self._get_field_name('temporal_end')] = '2019-02-02'
-        form['license_id'] = 'http://dcat-ap.de/def/licenses/dl-zero-de/2.0'
+        form['license_id'] = 'http://dcat-ap.de/def/licenses/dl-by-de/2.0'
         form[self._get_field_name('licenseAttributionByText')].value = 'text'
 
         # act
@@ -95,6 +95,19 @@ class TestUpload(helpers.FunctionalTestBase):
 
         # assert
         assert_true('resource-edit' in response.forms)
+
+    @odsh_test()
+    def test_upload_license(self):
+        # arrange
+        form = self._get_package_new_form()
+
+        # act
+        form['license_id'] = 'http://dcat-ap.de/def/licenses/dl-by-de/2.0'
+        form[self._get_field_name('licenseAttributionByText')].value = ''
+        response1 = self._submit_form(form)
+
+        # assert
+        response1.mustcontain('odsh_licence_text_missing_error_label')
 
     def _get_field_name(self, field):
         checksum = odsh_create_checksum(field)

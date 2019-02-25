@@ -206,7 +206,8 @@ class TestSearch(helpers.FunctionalTestBase):
                                  name=name,
                                  title=title,
                                  issued='27-01-2000',
-                                 extras=extras)
+                                 extras=extras,
+                                 license_id='id')
 
     def _perform_search(self, query=None):
         search_form = self._perform_search_for_form('dataset-search-box-form')

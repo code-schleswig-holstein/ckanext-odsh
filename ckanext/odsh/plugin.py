@@ -162,13 +162,27 @@ def odsh_validate_extra_date(key, field, data, errors, context):
 def odsh_validate_extra_date_factory(field):
     return lambda key, data, errors, context: odsh_validate_extra_date(key, field, data, errors, context)
 
-def odsh_delete_licenseAttributionByText_if_empty(key, data, errors, context):
+def odsh_validate_licenseAttributionByText(key, data, errors, context):
+    isByLicense=False
+    for k in data:
+        if len(k)>0 and k[0] == 'license_id' and not isinstance(data[k], Missing) and 'dl-by-de' in data[k]:
+            isByLicense = True
+            break
+    hasAttribution=False
     for k in data:
         if data[k] == 'licenseAttributionByText':
             if isinstance(data[(k[0], k[1], 'value')], Missing):
                 del data[(k[0], k[1], 'value')]
                 del data[(k[0], k[1], 'key')]
                 break
+            else:
+                value = data[(k[0], k[1], 'value')]
+                hasAttribution = value != ''
+                break
+    if isByLicense and not hasAttribution:
+        raise toolkit.Invalid('licenseAttributionByText:odsh_licence_text_missing_error_label')
+    if not isByLicense and hasAttribution:
+        raise toolkit.Invalid('licenseAttributionByText:odsh_licence_text_not_allowed_error_label')
 
 def odsh_tag_name_validator(value, context):
     tagname_match = re.compile('[\w \-.\:\(\)]*$', re.UNICODE)
@@ -365,7 +379,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def get_validators(self):
         return {'odsh_convert_groups_string': odsh_convert_groups_string,
-                'licenseAttributionByText': odsh_delete_licenseAttributionByText_if_empty,
+                'licenseAttributionByText': odsh_validate_licenseAttributionByText,
                 'known_spatial_uri': known_spatial_uri,
                 'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
                 'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),

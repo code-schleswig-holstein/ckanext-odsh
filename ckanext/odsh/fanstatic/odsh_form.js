@@ -22,9 +22,12 @@ ckan.module('odsh_form', function ($)
                     if ($(id).val().indexOf('dl-by-de/2.0') !== -1)
                     {
                         $(id_name).prop('disabled', false);
+                        if (!$(id_name).val())
+                            $(id_name).val($('#field-organizations option:selected').text());
                     } else
                     {
                         $(id_name).prop('disabled', true);
+                        $(id_name).val('');
                     }
                 }
                 toggle(id)

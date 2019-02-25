@@ -223,6 +223,13 @@ msgstr "Bitte beschreiben Sie Ihren Datensatz"
 msgid "odsh_resource_format_error_label"
 msgstr "Bitte geben Sie ein Format an"
 
+msgid "odsh_licence_text_missing_error_label"
+msgstr "Bitte geben Sie einen Namen an"
+
+msgid "odsh_licence_text_not_allowed_error_label"
+msgstr "Ein Name ist bei dieser Lizenz nicht zulässig"
+
+
 msgid "Followers"
 msgstr "Abonennten"
 
