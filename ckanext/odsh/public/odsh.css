@@ -1004,12 +1004,23 @@ body {
 .resource-title {
     float: left;
     margin-left: 5px;
-    color: black;
     text-overflow: ellipsis;
     overflow: hidden;
     /* width: 395px; */
     white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
 }
+
+.resource-title a{
+
+    color: black;
+}
+
+.resource-title a:hover{
+    text-decoration: none
+}
+
 .resource-title-container{
     display: flex;
 }
@@ -1024,10 +1035,6 @@ body {
 .resource-description-container .description {
     line-height: 1.3;
     color: black;
-}
-
-.resource-title {
-    cursor: pointer;
 }
 
 .is-table-row .resource-details-left {
