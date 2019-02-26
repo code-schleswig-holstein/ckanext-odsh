@@ -61,9 +61,6 @@ def odsh_convert_groups_string(value, context):
                 ret.append(g)
     return ret
 
-def odsh_convert_format_string(value, context):
-    return value.upper()
-
 
 def odsh_now():
     return helpers.render_datetime(datetime.datetime.now(), "%Y-%m-%d")
@@ -307,8 +304,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return map
 
     def dataset_facets(self, facets_dict, package_type):
-        # TODO: Frage von Pascal 12.10.2018: warum ist die Ordnung hier genau umgekehrt (von hinten nach vorne?)
-        # Christian: ist sie wohl nicht, ckan sortiert das einfach irgendwie neu
         return OrderedDict({'organization': _('Herausgeber'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
@@ -340,7 +335,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         schema['resources'].update({
             'url': [toolkit.get_converter('not_empty')],
-            'format': [toolkit.get_converter('not_empty'), toolkit.get_converter('odsh_convert_format_string') ],
+            'format': [toolkit.get_converter('not_empty')],
         })
 
         schema['extras'].update({
@@ -384,16 +379,13 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
                 'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
-                'odsh_tag_name_validator': odsh_tag_name_validator,
-                'odsh_convert_format_string': odsh_convert_format_string}
+                'odsh_tag_name_validator': odsh_tag_name_validator}
 
 
     # Add the custom parameters to Solr's facet queries
     # use several daterange queries agains temporal_start and temporal_end field
     # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
-
-        print(search_params)
 
         extras = search_params.get('extras')
 
@@ -477,4 +469,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 d = parse(dict_pkg[field])
                 dict_pkg[field] = '{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(
                     d)
+        if 'res_format' in dict_pkg:
+            dict_pkg['res_format']=[e.lower() for e in dict_pkg['res_format']]
         return dict_pkg
