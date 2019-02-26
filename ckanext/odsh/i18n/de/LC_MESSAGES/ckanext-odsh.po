@@ -308,3 +308,10 @@ msgstr "Das Enddatum ist ungültig"
 
 msgid "Score"
 msgstr "Bewertung"
+
+msgid "Issued Ascending"
+msgstr "Veröffentlichungsdatum aufsteigend"
+
+msgid "Issued Descending"
+msgstr "Veröffentlichungsdatum absteigend"
+
