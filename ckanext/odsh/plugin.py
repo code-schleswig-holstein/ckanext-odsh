@@ -165,7 +165,7 @@ def odsh_validate_extra_date_factory(field):
 def odsh_validate_licenseAttributionByText(key, data, errors, context):
     isByLicense=False
     for k in data:
-        if len(k)>0 and k[0] == 'license_id' and not isinstance(data[k], Missing) and 'dl-by-de' in data[k]:
+        if len(k)>0 and k[0] == 'license_id' and data[k] and not isinstance(data[k], Missing) and 'dl-by-de' in data[k]:
             isByLicense = True
             break
     hasAttribution=False
