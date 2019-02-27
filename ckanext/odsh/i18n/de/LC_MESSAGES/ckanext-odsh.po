@@ -307,7 +307,7 @@ msgid "wrong_end_date_for_search"
 msgstr "Das Enddatum ist ungültig"
 
 msgid "Score"
-msgstr "Bewertung"
+msgstr "Open-Data-Eigenschaften"
 
 msgid "Issued Ascending"
 msgstr "Veröffentlichungsdatum aufsteigend"

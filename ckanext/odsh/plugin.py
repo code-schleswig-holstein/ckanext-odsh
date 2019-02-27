@@ -7,6 +7,7 @@ from ckan.lib.plugins import DefaultDatasetForm
 from ckan.lib.navl.dictization_functions import Missing
 from ckan.logic.validators import tag_string_convert
 from ckan.common import OrderedDict
+import ckan.model as model
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
@@ -160,9 +161,12 @@ def odsh_validate_extra_date_factory(field):
     return lambda key, data, errors, context: odsh_validate_extra_date(key, field, data, errors, context)
 
 def odsh_validate_licenseAttributionByText(key, data, errors, context):
+    register = model.Package.get_license_register()
     isByLicense=False
+    print(register.keys())
     for k in data:
-        if len(k)>0 and k[0] == 'license_id' and data[k] and not isinstance(data[k], Missing) and 'dl-by-de' in data[k]:
+        if len(k) > 0 and k[0] == 'license_id' and data[k] and not isinstance(data[k], Missing) and \
+            'Namensnennung' in register[data[k]].title:
             isByLicense = True
             break
     hasAttribution=False
@@ -381,6 +385,19 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
                 'odsh_tag_name_validator': odsh_tag_name_validator}
 
+    def process_score_in_search_params(self,search_params):
+        extras = search_params.get('extras')
+
+        score = 0 
+        for i in range(1,6):
+            if extras.get('ext_score_'+str(i)):
+                score = max([score,i])
+
+        if score>0:
+            fq = search_params['fq']
+            fq = "{fq} qa:/.*'openness_score':.[{score}-5].*/".format(fq=fq, score=i)
+            search_params['fq'] = fq
+
 
     # Add the custom parameters to Solr's facet queries
     # use several daterange queries agains temporal_start and temporal_end field
@@ -388,11 +405,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def before_search(self, search_params):
 
         extras = search_params.get('extras')
-
-
         if not extras:
             # There are no extras in the search params, so do nothing.
             return search_params
+
+        self.process_score_in_search_params(search_params)
 
         fq = search_params['fq']
 
@@ -452,10 +469,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         fq = '{fq} ({start_query} OR {end_query} {enclosing_query} OR {open_end_query})'.format(
             fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query, open_end_query=open_end_query)
 
-        # fq = '{fq} ({start_query}'.format(
-        #     fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query)
-
-        # return modified facet queries
         search_params['fq'] = fq
 
         return search_params
@@ -472,3 +485,4 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         if 'res_format' in dict_pkg:
             dict_pkg['res_format']=[e.lower() for e in dict_pkg['res_format']]
         return dict_pkg
+    

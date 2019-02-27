@@ -9,13 +9,19 @@ $(document).ready(function ()
     {
         return function ()
         {
-            $('#ext_score').val(score)
+            // $('#label-score-'+score).toggleClass('checked')
+            $('#check-score-' + score).prop("checked", !$('#check-score-' + score).prop("checked"));
+            //  $('#check-score-'+score).val(1)
             $("#dataset-search-box-form").submit(); //TODO: use default or inject
         }
     }
     for (let i = 1; i <= 5; i++)
     {
         $('.search-score-' + i).click(search(i));
+        $('#check-score-' + i).click(function ()
+        {
+            $("#dataset-search-box-form").submit(); //TODO: use default or inject
+        });
     }
 
 });

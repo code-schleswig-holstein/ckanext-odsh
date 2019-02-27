@@ -32,7 +32,7 @@ Example:
 {% set timerange_label ='Zeitraum' %}
 {% set access_count_label ='Aufrufe' %}
 {% set issued_extra = h.odsh_extract_value_from_extras(package.extras,'issued') %}
-{% set issued = h.odsh_render_datetime(issued_extra) if issued_extra else h.odsh_render_datetime(package.metadata_created) %}
+{% set issued = h.odsh_render_datetime(issued_extra) if issued_extra else '-' %}
 {% set categories = package.groups|map(attribute='display_name')|join(', ') if package.groups else '-' %}
 
 {% block package_item %}
