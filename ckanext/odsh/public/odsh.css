@@ -262,6 +262,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 
+label.label-score,
 label.rangesearch,
 input[type=checkbox] + label.mylabel {
     background: #fff;
@@ -274,6 +275,7 @@ input[type=checkbox] + label.mylabel {
     min-height: 8px;
 }
 
+input[type=checkbox]:checked + label.label-score,
 label.rangesearch.checked,
 input[type=checkbox]:checked + label.mylabel {
     background: url(/base/images/checked.png);
@@ -286,13 +288,14 @@ input[type=checkbox]:checked + label.mylabel {
     display:inline-block;
     padding: 0 0px 0 0px;
     margin-bottom: 0px;
-
 }
+
 .checklabel input[type="checkbox"]
 {
     float: inherit;
 }
 
+label.label-score,
 label.rangesearch,
 label.mylabel  {
     margin-right: 3px;
@@ -319,6 +322,17 @@ label.rangesearch.disabled {
 
 .rangesearch{
     display: inline-block;
+}
+
+.search-score
+{
+    color:black;
+    font-size:12px;
+    display: inline;
+    cursor: pointer;
+}
+.search-score:hover{
+    text-decoration: underline;
 }
 
 .rangesearch a{
@@ -1608,9 +1622,3 @@ a:hover.tooltips_cls span {
     border-style:dashed; border-width:1px 
 } 
 #testsystem p { margin:0 }
-
-.search-score
-{
-    cursor: pointer;
-    padding-top: 5px;
-}
