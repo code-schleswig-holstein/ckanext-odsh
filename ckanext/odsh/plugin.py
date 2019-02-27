@@ -482,7 +482,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 d = parse(dict_pkg[field])
                 dict_pkg[field] = '{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(
                     d)
-        if 'res_format' in dict_pkg:
-            dict_pkg['res_format']=[e.lower() for e in dict_pkg['res_format']]
+        # if 'res_format' in dict_pkg:
+        #     dict_pkg['res_format']=[e.lower() for e in dict_pkg['res_format']]
         return dict_pkg
     
