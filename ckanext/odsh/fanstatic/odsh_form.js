@@ -19,7 +19,8 @@ ckan.module('odsh_form', function ($)
                 var id_name = '#field-licenseAttributionByText-value';
                 var toggle = function ()
                 {
-                    if ($(id).val().indexOf('dl-by-de/2.0') !== -1)
+                    let text = $(id + ' option:selected').text()
+                    if (text.indexOf('Namensnennung') !== -1)
                     {
                         $(id_name).prop('disabled', false);
                         if (!$(id_name).val())
