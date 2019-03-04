@@ -454,7 +454,7 @@ ul.dataset-resources {
 .dataformat-label {
     background-color: #003064 !important;
     padding: 3px 3px 1px 3px;
-    font-size: 32px;
+    font-size: 14px;
     margin-right: 4px;
 }
 
@@ -1021,11 +1021,15 @@ body {
     font-size: 50px;
     padding: 10px;
     float: right;
-    line-height: 1em;
+    line-height: 46px;
     color: rgb(242, 242, 242);
     background-color: #dbdbdb!important;
     text-shadow: none;
     border-radius: 8px;
+    width: 90px;
+    height: 42px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 element.style {
