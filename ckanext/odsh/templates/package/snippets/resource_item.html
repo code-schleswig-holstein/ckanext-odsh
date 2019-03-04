@@ -10,9 +10,6 @@
     <div class="row">
       <div class="span8 resource-details-left">
         <div class="row resource-title-container">
-        <a href="{{ download }}">
-          <div class="dataformat-label resource-dataformat-label label">{{res.format}}</div>
-        </a>
           <div class="resource-title" title="{{ h.resource_display_name(res) }}">
         <a href="{{ download }}">
             {{ h.resource_display_name(res) }}
@@ -26,7 +23,6 @@
             {% endif %}
           </p>
         </div>
-      </div>
       <div class="resource-icons">
         {% block resource_item_explore_links %}
         <a href="{{ download }}">
@@ -39,6 +35,10 @@
         {% endif %}
         {% endblock %}
       </div>
+      </div>
+        <a href="{{ download }}">
+          <div class="dataformat-label resource-dataformat-label label">{{res.format}}</div>
+        </a>
     </div>
   </div>
 
