@@ -118,7 +118,10 @@ font-size:18px;
     color: #003064;
 }
 
-.search-form h2, .odsh-dataset-heading h2 {
+.search-form h2, 
+.odsh-dataset-heading h2,
+.odsh-dataset-heading span
+ {
     margin-top: 0px;
     font-size: 25px;
     color: #003064;
@@ -364,6 +367,11 @@ label.rangesearch.disabled {
     float: none;
     display: table-cell;
     vertical-align: top;
+}
+
+.is-table-row .row-fluid [class*="span"] {
+    float: none;
+    display: block;
 }
 
 .pill {
@@ -1083,16 +1091,18 @@ element.style {
 }
 
 .resource-icons {
-    font-size: 28px;
+    font-size: 24px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 .resource-icons img {
     width: 28px;
 }
 .icon{
     background-repeat: no-repeat;
-    background-size: 28px 28px;
-    width: 28px;
-    height: 28px;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
     padding-right: 10px;
 }
 .icon-edit{
@@ -1663,7 +1673,7 @@ a:hover.tooltips_cls span {
 {
     display: inline-block;
     background-color: #dbdbdb;
-    padding: 12px;
+    padding: 8px 20px;
     border-radius: 10px;
     margin-right:20px;
     margin-top: 20px;
@@ -1672,9 +1682,45 @@ a:hover.tooltips_cls span {
 {
     color: black;
     text-decoration: none;
+    font-size: 12px;
 }
 
 .tag-pill:hover
 {
     cursor: pointer;
+}
+
+.package-form-column
+{
+    width: 460px;
+}
+
+.dataset-edit-form .span6
+{
+    width:60%; 
+}
+
+.dataset-edit-form .span6
+{
+    width:60%; 
+}
+
+.dataset-edit-form .span6.inline-error
+{
+    width:30%; 
+    display: inline-block;
+}
+.dataset-edit-form .control-group .row-fluid .span6
+{
+    display: inline-block;
+}
+.dataset-edit-form  .row-fluid .span3
+{
+    display: inline-block;
+    width:28.5%; 
+}
+
+span.clear { 
+    clear: right; 
+    display: block; 
 }

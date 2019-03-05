@@ -36,6 +36,9 @@ msgstr "Kategorien bearbeiten"
 msgid "Manage Dataset"
 msgstr "Datensatz bearbeiten"
 
+msgid "Manage Dataset {name}"
+msgstr "Datensatz {name} bearbeiten"
+
 msgid "Organizations"
 msgstr "Herausgeber"
 

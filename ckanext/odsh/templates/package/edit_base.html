@@ -14,12 +14,19 @@
 {% endblock %}
 
 {% block content_action %}
-{% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn', icon='eye' %}
 {% endblock %}
 
 {% block content_primary_nav %}
-{{ h.build_nav_icon('dataset_edit', _('Edit metadata'), id=pkg.name) }}
-{{ h.build_nav_icon('dataset_resources', _('Resources'), id=pkg.name) }}
+{% endblock %}
+
+
+{% block primary_content %}
+<div class="odsh-dataset-heading">
+    <span>Datensatz &#65282;{{pkg.name}}&#65282; bearbeiten</span>
+   {% link_for  _('back'), controller='package', action='read', id=pkg.name, class_='btn pull-right', icon='arrow-left' %}
+<span class="clear"></span>
+</div>
+{{ super() }}
 {% endblock %}
 
 {% block secondary_content %}
