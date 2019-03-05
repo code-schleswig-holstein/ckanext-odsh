@@ -33,12 +33,6 @@ Example:
             {% block nums %}
             {% endblock %}
 
-            {% block tags %}
-            <div class="tags-detail info-detail">
-                <div>{{ _('Tags') }}:</div>
-                <p>{{ pkg.tags|map(attribute='display_name')|join('; ') or '-'}}</p>
-            </div>
-            {% endblock %}
 
             {% block license %}
             <div class="license-detail info-detail">
