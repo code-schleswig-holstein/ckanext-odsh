@@ -17,11 +17,6 @@
           </div>
         </div>
         <div class="row resource-description-container">
-          <p class="description">
-            {% if res.description %}
-            {{ h.markdown_extract(h.get_translated(res, 'description'))}}
-            {% endif %}
-          </p>
         </div>
       <div class="resource-icons">
         {% block resource_item_explore_links %}

@@ -1,5 +1,6 @@
 {% import 'macros/form.html' as form %}
 {% resource 'odsh/odsh_form.js' %}
+{% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none' %}
 
 <!-- field title -->
 {% block package_basic_fields_title %}
@@ -10,16 +11,19 @@ is_required=true,placeholder=_('Enter title')) }}
 {% endblock %}
 
 {% block package_basic_fields_url %}
-{% set prefix = h.url_for(controller='package', action='read', id='') %}
-{% set domain = h.url_for(controller='package', action='read', id='', qualified=true) %}
-{% set domain = domain|replace("http://", "")|replace("https://", "") %}
-{% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain, 'data-module-placeholder': '<dataset>'}
-    %}
+{% if(dataset_is_draft)%}
+    {% set prefix = h.url_for(controller='package', action='read', id='') %}
+    {% set domain = h.url_for(controller='package', action='read', id='', qualified=true) %}
+    {% set domain = domain|replace("http://", "")|replace("https://", "") %}
+    {% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain, 'data-module-placeholder': '<dataset>'}
+        %}
 
-    <!-- field name -->
+    <!-- field name/url -->
     {{ form.prepend('name', id='field-name', label=_('URL'), prepend=prefix,
     value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
-    {% endblock %}
+ {% endif %}
+ {% endblock %}
+
 
     <!-- field notes -->
     {% block package_basic_fields_description %}
@@ -33,8 +37,6 @@ is_required=true,placeholder=_('Enter title')) }}
     <input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
     {% endif %}
 
-    {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none'
-    %}
     {% set dataset_has_organization = data.owner_org or data.group_id %}
     {% set organizations_available = h.organizations_available('create_dataset') %}
     {% set user_is_sysadmin = h.check_access('sysadmin') %}
