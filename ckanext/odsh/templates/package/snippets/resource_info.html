@@ -10,12 +10,21 @@ Example:
 #}
 <div class="module context-info">
     <div class="module-content">
-        <h1 class="heading">{{ h.resource_display_name(res) or res.id }}</h1>
-        <div class="nums">
-            <dl>
-                <dt>{{ _('Format') }}</dt>
-                <dd>{{ h.get_translated(res, 'format') }}</dd>
-            </dl>
-        </div>
+            <div class="info-detail">
+                <div>{{ _('dataset') }}:</div>
+                    {{ h.dataset_display_name(pkg) }}
+            </div>
+            <div class="info-detail">
+                <div>{{ _('Name Resource') }}:</div>
+                    {{ res.name }}
+            </div>
+            <div class="info-detail">
+                <div>{{ _('Resource count') }}:</div>
+                    {{ pkg.resources|count}}
+            </div>
+            <div class="info-detail">
+                <div>{{ _('Format') }}:</div>
+                    <div class="label dataformat-label">{{res.format}}</div>
+            </div>
     </div>
 </div>

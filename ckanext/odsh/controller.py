@@ -1,6 +1,7 @@
 import ckan.lib.base as base
 from ckan.controllers.home import HomeController
 from ckan.controllers.user import UserController
+from ckan.controllers.package import PackageController
 import ckan.lib.helpers as h
 import ckan.authz as authz
 from ckan.common import c
@@ -48,3 +49,6 @@ class OdshUserController(UserController):
         if not authz.is_sysadmin(c.user):
             abort(404)
         return super(OdshUserController,self).activity(id, offset)
+
+class OdshPackageController(PackageController):
+    pass

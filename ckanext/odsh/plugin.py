@@ -267,6 +267,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         map.connect('home', '/',
                     controller='ckanext.odsh.controller:OdshRouteController', action='start')
 
+        map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
+
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
             m.connect('/user/edit', action='edit')

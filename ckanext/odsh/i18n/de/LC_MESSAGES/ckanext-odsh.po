@@ -318,3 +318,8 @@ msgstr "Veröffentlichungsdatum aufsteigend"
 msgid "Issued Descending"
 msgstr "Veröffentlichungsdatum absteigend"
 
+msgid "Name Resource"
+msgstr "Name Ressource"
+
+msgid "Resource count"
+msgstr "Anzahl Ressourcen"

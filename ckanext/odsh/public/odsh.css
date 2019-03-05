@@ -1550,6 +1550,8 @@ font-weight: 100;
 
 .required-text{
     font-size: 14px;
+    margin-top: 20px;
+    display: block;
 }
 
 .error-reange-search{
@@ -1700,6 +1702,7 @@ a:hover.tooltips_cls span {
     width:60%; 
 }
 
+.resource-edit-form .row-fluid .span6,
 .dataset-edit-form .span6
 {
     width:60%; 
@@ -1714,6 +1717,7 @@ a:hover.tooltips_cls span {
 {
     display: inline-block;
 }
+
 .dataset-edit-form  .row-fluid .span3
 {
     display: inline-block;
