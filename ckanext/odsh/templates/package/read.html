@@ -39,7 +39,7 @@
     <div class="pull-right">
       {% if h.check_access('package_update', {'id':pkg.id }) %}
       <div>
-        {% link_for _('Manage Dataset'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary',
+        {% link_for _('Manage Dataset'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary btn-add-dataset',
         icon='wrench' %}
       </div>
       {% endif %}

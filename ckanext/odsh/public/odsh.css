@@ -1733,3 +1733,10 @@ span.clear {
 {
     margin-top:25px;
 }
+
+.btn.btn-primary.btn-add-dataset
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 225px;
+}
