@@ -71,9 +71,11 @@
 
 {% block package_resources %}
 {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+  {% if h.check_access('package_update', {'id':pkg.id }) %}
       <div class='add-resource-container'>
         {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary', icon='plus' %}
       </div>
+  {% endif %}
 {% endblock %}
 
 <div class='tag-container'>
