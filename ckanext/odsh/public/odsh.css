@@ -120,7 +120,7 @@ font-size:18px;
 
 .search-form h2, 
 .odsh-dataset-heading h2,
-.odsh-dataset-heading span
+.odsh-dataset-heading .title 
  {
     margin-top: 0px;
     font-size: 25px;
