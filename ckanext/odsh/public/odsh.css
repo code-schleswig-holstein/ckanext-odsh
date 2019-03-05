@@ -1666,7 +1666,7 @@ a:hover.tooltips_cls span {
     padding-top:10px;
     margin-top:20px;
     display: flex;
-    width: 100%;
+    width: 720px;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: start;
