@@ -42,9 +42,6 @@
         {% link_for _('Manage Dataset'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary',
         icon='wrench' %}
       </div>
-      <div>
-        {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary', icon='plus' %}
-      </div>
       {% endif %}
       {% if pkg.private %}
       <span class="dataset-private label label-inverse">
@@ -74,6 +71,9 @@
 
 {% block package_resources %}
 {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+      <div class='add-resource-container'>
+        {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary', icon='plus' %}
+      </div>
 {% endblock %}
 
 <div class='tag-container'>
