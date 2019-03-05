@@ -20,13 +20,17 @@
 {% endblock %}
 
 {% block primary_content_inner %}
+{% set active = data and data.state=='active' %}
+
+  {% if active %}
 <div class="odsh-dataset-heading">
-    <span>Ressource {%if(res.name)%}&#65282;{{res.name}}&#65282;{%endif%} bearbeiten</span>
+    <span class='title'>Ressource {%if(res.name)%}&#65282;{{res.name}}&#65282;{%endif%} bearbeiten</span>
   {% if res %}
     {% link_for _('back'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn pull-right', icon='arrow-left' %}
   {% endif %}
 <span class="clear"></span>
 </div>
+  {% endif %}
   <h1 class="hide-heading">{% block form_title %}{{ _('Edit resource') }}{% endblock %}</h1>
   {% block form %}{% endblock %}
 {% endblock %}
