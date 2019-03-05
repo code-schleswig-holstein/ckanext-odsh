@@ -36,9 +36,11 @@
         {% endblock %}
       </div>
       </div>
+      {% if(res.format) %}
         <a href="{{ download }}">
           <div class="dataformat-label resource-dataformat-label label" style='font-size:{{150/(res.format|length)}}px'>{{res.format}}</div>
         </a>
+      {% endif %}
     </div>
   </div>
 
