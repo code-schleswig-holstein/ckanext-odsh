@@ -73,4 +73,12 @@
 {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
 {% endblock %}
 
+<div class='tag-container'>
+{% for tag in pkg.tags %}
+    <div class='tag-pill'>
+      {{h.tag_link(tag)}}
+    </div>
+{% endfor %}
+</div>
+
 {% endblock %}
