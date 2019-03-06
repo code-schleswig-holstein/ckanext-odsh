@@ -22,9 +22,8 @@
 
 {% block primary_content %}
 <div class="odsh-dataset-heading">
-    <span class='title'>Datensatz &#65282;{{pkg.name}}&#65282; bearbeiten</span>
-   {% link_for  _('back'), controller='package', action='read', id=pkg.name, class_='btn pull-right', icon='arrow-left' %}
-<span class="clear"></span>
+    <div class='title'>Datensatz &#65282;{{pkg.name}}&#65282; bearbeiten</div>
+   {% link_for  _('back'), controller='package', action='read', id=pkg.name, class_='btn btn-heading', icon='arrow-left' %}
 </div>
 {{ super() }}
 {% endblock %}

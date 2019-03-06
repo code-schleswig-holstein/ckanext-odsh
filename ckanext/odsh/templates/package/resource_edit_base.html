@@ -26,7 +26,7 @@
 <div class="odsh-dataset-heading">
     <span class='title'>Ressource {%if(res.name)%}&#65282;{{res.name}}&#65282;{%endif%} bearbeiten</span>
   {% if res %}
-    {% link_for _('back'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn pull-right', icon='arrow-left' %}
+    {% link_for _('back'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn btn-heading', icon='arrow-left' %}
   {% endif %}
 <span class="clear"></span>
 </div>

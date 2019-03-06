@@ -128,6 +128,12 @@ font-size:18px;
     font-weight: 300;
 }
 
+.odsh-dataset-heading .title
+{
+    max-width: 415px;
+    display: inline-block;
+}
+
 .module-content:first-child {
     padding-top: 0px;
 }
@@ -1230,6 +1236,12 @@ element.style {
 
 .column1{
   width: 225px;
+}
+
+.btn-heading{
+  width: 225px;
+  float: right;
+  vertical-align: top;
 }
 
 [role=main],
