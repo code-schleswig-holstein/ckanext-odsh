@@ -1411,21 +1411,6 @@ display: none;
 }
 }
 
-.masthead .navigation .nav-pills li.disabled a:hover, 
-.masthead .navigation .nav-pills li.disabled
-{
-    pointer-events: none;
-    cursor: default;
-    background-color: rgb(242, 242, 242)!important;
-    border-top: 2px solid rgb(242, 242, 242) ;
-}
-.masthead .navigation .nav-pills li.disabled span{
-    color:rgba(0, 49, 102, 0.44);
-}
-.masthead .navigation .nav-pills li.disabled:hover{
-    background-color: rgb(242, 242, 242)!important;
-}
-
 .field-organization .select2-container .select2-choice {
     background-color: #F6F7F9;
     background-image: none;
@@ -1740,3 +1725,4 @@ span.clear {
     padding-right: 0px;
     width: 225px;
 }
+
