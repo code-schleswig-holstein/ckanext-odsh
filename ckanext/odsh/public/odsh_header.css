@@ -117,6 +117,20 @@
 .masthead .nav-collapse {
     float: left;
     padding-top: 0px;
+    width: 100%;
+}
+
+.masthead .navigation {
+     margin-right: 0px; 
+}
+.navbar .nav
+{
+    margin: 0px;
+}
+
+.masthead .navigation .nav-pills,
+.masthead .navigation  {
+    width: 100%;
 }
 
 .nav-pills li a:hover, .nav-pills li:hover {
@@ -135,6 +149,8 @@
 }
 
 /* Change default border color on hover to background color (align font vertically to active navigation tab) */
+
+.masthead .navigation .nav-pills li.open,
 .masthead .navigation .nav-pills li:hover {
     border-top: 2px solid #003064;
 }
@@ -164,4 +180,95 @@
 .masthead .nav>li:hover a {
     color: #ffffff;
     text-decoration: underline;
+}
+
+.masthead .navigation .nav-pills li.disabled a:hover, 
+.masthead .navigation .nav-pills li.disabled
+{
+    pointer-events: none;
+    cursor: default;
+    background-color: rgb(242, 242, 242)!important;
+    border-top: 2px solid rgb(242, 242, 242) ;
+}
+.masthead .navigation .nav-pills li.disabled span{
+    color:rgba(0, 49, 102, 0.44);
+}
+.masthead .navigation .nav-pills li.disabled:hover{
+    background-color: rgb(242, 242, 242)!important;
+}
+
+.masthead .navigation .nav-pills .dropdown 
+{
+}
+
+.masthead .navigation .nav-pills .dropdown .dropdown-menu
+{
+    width: 180px;
+}
+
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li
+{
+    color:black;
+    margin-left: 0px;
+    padding:5px;
+    border: none;
+}
+
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a:hover,
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover,
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover a
+{
+    color:white;
+    background-color: #003064;
+    cursor: pointer;
+}
+
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a
+{
+    color:white;
+    color: #003064;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+    background-image: none;
+}
+
+.masthead .navigation .nav-pills li.dropdown.open,
+.masthead .navigation .nav-pills li.dropdown.open > a.dropdown-toggle:hover,
+.navbar .nav li.dropdown.open > .dropdown-toggle
+{
+    background-color: #003064;
+    color: white;
+} 
+
+.masthead .navigation .nav-pills .dropdown img
+{
+    height: 2.5em;
+    vertical-align: middle;
+}
+
+.masthead .navigation .nav-pills li.dropdown
+{
+    float: right;
+}
+
+.masthead .navigation .nav-pills li.dropdown > .dropdown-toggle
+{
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+.user-icon
+{
+    fill:#003064;
+    height: 30px;
+    margin-top: -5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.masthead .navigation .nav-pills li.open .user-icon,
+.masthead .navigation .nav-pills li a:hover .user-icon
+{
+    fill:white;
 }
