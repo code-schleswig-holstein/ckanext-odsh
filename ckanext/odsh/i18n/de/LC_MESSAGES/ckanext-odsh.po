@@ -323,3 +323,9 @@ msgstr "Name Ressource"
 
 msgid "Resource count"
 msgstr "Anzahl Ressourcen"
+
+msgid "Show More"
+msgstr "mehr anzeigen"
+
+msgid "Show Less"
+msgstr "weniger anzeigen"

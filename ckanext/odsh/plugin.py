@@ -34,7 +34,6 @@ def odsh_get_facet_items_dict(name, limit=None):
     '''
     facets = helpers.get_facet_items_dict(name, limit)
     facets.sort(key=lambda it: (it['display_name'].lower(), -it['count']))
-    log.info(facets)
     return facets
 
 
