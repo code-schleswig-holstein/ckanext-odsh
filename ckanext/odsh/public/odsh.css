@@ -1010,6 +1010,7 @@ body {
     margin-bottom: 5px;
 }
 .odsh-dataset-heading {
+    word-wrap: break-word;
     margin-bottom: 30px;
 }
 
