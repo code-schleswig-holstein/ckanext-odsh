@@ -9,12 +9,8 @@ icon='plus-square' %}
 
 {% block toolbar %}
 {{ super() }}
-<form id='organization-datasets-search-form' class="search-form"  %}"
-    method="get" data-module="select-switch">
-{% snippet "snippets/search_box.html"%}
 {% endblock %}
 {% block pre_wrap %}
-</form>
 {% endblock %}
 
 {% block primary_content_inner %}
@@ -27,15 +23,19 @@ icon='plus-square' %}
 'remove_field': c.remove_field }
 %}
 {% set sorting = [
+
 (_('Relevance'), 'score desc, metadata_modified desc'),
 (_('Name Ascending'), 'title_string asc'),
 (_('Name Descending'), 'title_string desc'),
-(_('Last Modified'), 'metadata_modified desc'),
+(_('Issued Ascending'), 'extras_issued asc'),
+(_('Issued Descending'), 'extras_issued desc'),
 (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
 %}
+<form id='organization-datasets-search-form'  method="get" data-module="select-switch">
 {% snippet 'snippets/search_form.html', form_id='organization-datasets-search-form', type='dataset', query=c.q,
 sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search
 datasets...'), show_empty=request.params, fields=c.fields, force_title=_('Datasets') %}
+</form>
 {% endblock %}
 {% block packages_list %}
 {% if c.page.items %}
