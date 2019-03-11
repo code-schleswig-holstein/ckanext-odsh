@@ -7,7 +7,7 @@
 
 {% block facet_list_items %}
 {# {% with items = items or h.get_facet_items_dict(name,20) %} #}
-{% with items = items or h.odsh_get_facet_items_dict(name,20) %}
+{% with items = items or h.odsh_get_facet_items_dict(name) %}
 {% if items %}
 <nav>
   {% set title = title or h.get_facet_title(name) %}
@@ -37,19 +37,17 @@
     </ul>
 </nav>
 
-{# TODO: when there are more than N facets ('with items...' above), how many should be
-displayed and how should these links look? Pascal R. 12.10.2018 #}
-{#<p class="module-footer">
+<div class="module-footer">
     {% if h.get_param_int('_%s_limit' % name) %}
     {% if h.has_more_facets(name) %}
     <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}"
-        class="read-more">{{ _('Show More {facet_type}').format(facet_type=title) }}</a>
+        class="read-more">> {{ _('Show More') }}</a>
     {% endif %}
     {% else %}
-    <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{
-        _('Show Only Popular {facet_type}').format(facet_type=title) }}</a>
+    <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">> {{
+        _('Show Less')}}</a>
     {% endif %}
-</p>#}
+</div>
 
 {% else %}
 <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>

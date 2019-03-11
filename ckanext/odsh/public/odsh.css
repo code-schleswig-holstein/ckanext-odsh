@@ -142,6 +142,19 @@ font-size:18px;
     padding: 0;
 }
 
+.module-narrow .module-footer {
+    padding: 0;
+    border: none;
+    font-size: 12px;
+}
+
+.module .read-more{
+    font-weight: normal;
+    font-style: italic;
+    padding-top: 20px;
+    display: block;
+}
+
 .page-heading{
         font-size: 25px;
     color: #003064;
