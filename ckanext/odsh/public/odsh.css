@@ -402,6 +402,7 @@ label.rangesearch.disabled {
 .container-fluid.odsh-dataset-item {
     padding: 20px 0px 20px 0px;
     border-bottom: 2px solid #DBDBDB;
+    display: table;
 }
 .container-fluid.odsh-dataset-item:hover {
     background-color: rgb(246,247,249);
@@ -437,14 +438,19 @@ a:hover.organization-item ,a:focus.organization-item
 }
 
 .dataset-content {
-    float:left;
     width: 470px;
+    display: table-cell;
+    position: relative;
 }
 
 .dataset-heading {
     margin-right: 30px;
     font-weight: normal;
     font-size: 20px;
+}
+.dataset-content p{
+    font-size: 12px;
+    margin: 0 0 5px; 
 }
 .dataset-heading a{
     text-decoration: none;
@@ -456,9 +462,11 @@ a:hover.organization-item ,a:focus.organization-item
 }
 
 .dataset-meta {
-    float:right;
     width: 225px;
     /* width: 30%; */
+    height: 100%;
+    display: table-cell;
+    position: relative;
 }
 
 ul.dataset-resources {
@@ -539,6 +547,11 @@ a.odsh-star:hover {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.dataset-info.issued {
+    position: absolute;
+    bottom: 0px;
 }
 
 .toolbar .breadcrumb>li a {
@@ -1742,3 +1755,17 @@ span.clear {
     width: 225px;
 }
 
+.package-info-pill
+{
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #dbdbdb;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+p.package-info-categorie 
+{
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
