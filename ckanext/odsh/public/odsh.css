@@ -90,16 +90,6 @@ h3{
     padding-bottom: 5px;
 }
 
-#organization-datasets-search-form,
-.with-bottom-line
-{
-    border-bottom: 2px solid #dbdbdb;
-}
-
-#organization-datasets-search-form h2 {
-color:black;
-font-size:18px;
-}
 
 .organizaion-full-description{
     padding-bottom: 50px;
