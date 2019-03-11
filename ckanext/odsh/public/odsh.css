@@ -1703,12 +1703,15 @@ a:hover.tooltips_cls span {
 .dataset-edit-form .span6
 {
     width:60%; 
+    display: inline-block;
 }
 
+.resource-edit-form .row-fluid .span6.inline-error,
 .dataset-edit-form .span6.inline-error
 {
     width:30%; 
     display: inline-block;
+    float:none;
 }
 .dataset-edit-form .control-group .row-fluid .span6
 {
