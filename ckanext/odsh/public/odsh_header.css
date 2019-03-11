@@ -231,6 +231,7 @@
     margin: 0px;
     padding: 0px;
     background-image: none;
+    display: inline-block;
 }
 
 .masthead .navigation .nav-pills li.dropdown.open,
@@ -266,6 +267,20 @@
     margin-top: -5px;
     vertical-align: middle;
     position: relative;
+}
+
+.user-icon-small
+{
+    fill:#003064;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover .user-icon-small,
+.user-icon-small:hover{
+    fill:white;
 }
 
 .masthead .navigation .nav-pills li.open .user-icon,
