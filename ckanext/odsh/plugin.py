@@ -260,7 +260,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'presorted_license_options': odsh_helpers.presorted_license_options
                 }
 
+    def after_map(self, map):
+        return map
+
     def before_map(self, map):
+
         map.connect('info_page', '/info_page',
                     controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
         map.connect('home', '/',
@@ -268,29 +272,50 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
+        # /api/util ver 1, 2 or none
+        with SubMapper(map, controller='api', path_prefix='/api{ver:/1|/2|}',
+                    ver='/1') as m:
+            m.connect('/i18n/{lang}', action='i18n_js_translations')
+
+        with SubMapper(map, controller='package') as m:
+            m.connect('search', '/dataset', action='search',
+                    highlight_actions='index search')
+            m.connect('add dataset', '/dataset/new', action='new')
+
+            m.connect('/dataset/{action}/{id}',
+                    requirements=dict(action='|'.join([
+                        'new_resource',
+                    ])))
+            m.connect('dataset_edit', '/dataset/edit/{id}', action='edit',
+                    ckan_icon='pencil-square-o')
+            m.connect('dataset_read', '/dataset/{id}', action='read',
+                    ckan_icon='sitemap')
+            m.connect('resource_edit', '/dataset/{id}/resource_edit/{resource_id}',
+                    action='resource_edit', ckan_icon='pencil-square-o')
+            m.connect('/dataset/{id}/resource/{resource_id}/download',
+                    action='resource_download')
+            m.connect('/dataset/{id}/resource/{resource_id}/download/{filename}',
+                    action='resource_download')
+
+        with SubMapper(map, controller='organization') as m:
+            m.connect('organizations_index', '/organization', action='index')
+            m.connect('/organization/new', action='new')
+            m.connect('/organization/{action}/{id}',
+                    requirements=dict(action='|'.join([
+                        'delete',
+                        'member_new',
+                        'member_delete',
+                    ])))
+            m.connect('organization_read', '/organization/{id}', action='read', ckan_icon='sitemap')
+            m.connect('organization_edit', '/organization/edit/{id}',
+                    action='edit', ckan_icon='pencil-square-o')
+            m.connect('organization_members', '/organization/members/{id}',
+                    action='members', ckan_icon='users')
+
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
             m.connect('/user/edit', action='edit')
-            m.connect('user_generate_apikey',
-                      '/user/generate_key/{id}', action='generate_apikey')
-            m.connect('/user/activity/{id}/{offset}', action='activity')
-            m.connect('user_activity_stream', '/user/activity/{id}',
-                      action='activity', ckan_icon='clock-o')
-            m.connect('user_dashboard', '/dashboard', action='dashboard',
-                      ckan_icon='list')
-            m.connect('user_dashboard_datasets', '/dashboard/datasets',
-                      action='dashboard_datasets', ckan_icon='sitemap')
-            m.connect('user_dashboard_groups', '/dashboard/groups',
-                      action='dashboard_groups', ckan_icon='users')
-            m.connect('user_dashboard_organizations', '/dashboard/organizations',
-                      action='dashboard_organizations', ckan_icon='building-o')
-            m.connect('/dashboard/{offset}', action='dashboard')
-            m.connect('user_follow', '/user/follow/{id}', action='follow')
-            m.connect('/user/unfollow/{id}', action='unfollow')
-            m.connect('user_followers', '/user/followers/{id:.*}',
-                      action='followers', ckan_icon='users')
-            m.connect('user_edit', '/user/edit/{id:.*}', action='edit',
-                      ckan_icon='cog')
+            m.connect('user_edit', '/user/edit/{id:.*}', action='edit', ckan_icon='cog')
             m.connect('user_delete', '/user/delete/{id}', action='delete')
             m.connect('/user/reset/{id:.*}', action='perform_reset')
             m.connect('register', '/user/register', action='register')
@@ -299,12 +324,18 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('/user/logged_in', action='logged_in')
             m.connect('/user/logged_out', action='logged_out')
             m.connect('/user/logged_out_redirect', action='logged_out_page')
-            m.connect('/user/reset', action='request_reset')
-            m.connect('/user/me', action='me')
-            m.connect('/user/set_lang/{lang}', action='set_lang')
             m.connect('user_datasets', '/user/{id:.*}', action='read',
                       ckan_icon='sitemap')
-            m.connect('user_index', '/user', action='index')
+
+        # robots.txt
+        map.connect('/(robots.txt)', controller='template', action='view')
+
+        # sometimes we get requests for favicon.ico we should redirect to
+        # the real favicon location.
+        map.redirect('/favicon.ico', config.get('ckan.favicon'))
+
+        ## everything that is not mapped above is mapped to 'not found' this also applies to all routes which are mapped afterwards
+        map.connect('block', '/{url:.*}', controller='ckanext.odsh.controller:OdshRouteController', action='not_found')
 
         return map
 
