@@ -22,12 +22,12 @@
 
 {% block primary_content %}
 <div class="odsh-dataset-heading">
-    <div class='title'>Datensatz &#65282;{{pkg.name}}&#65282; bearbeiten</div>
+    <div class='title'>Datensatz &quot;{{h.dataset_display_name(pkg)}}&quot; bearbeiten</div>
    {% link_for  _('back'), controller='package', action='read', id=pkg.name, class_='btn btn-heading', icon='arrow-left' %}
 </div>
 {{ super() }}
 {% endblock %}
 
 {% block secondary_content %}
-{% snippet 'package/snippets/info.html', pkg=pkg, hide_follow_button=true %}
+{% snippet 'package/snippets/info.html', pkg=pkg, hide_follow_button=true, hide_social=true %}
 {% endblock %}
