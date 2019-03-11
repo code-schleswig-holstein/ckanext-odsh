@@ -7,6 +7,16 @@ icon='plus-square' %}
 {% endif %}
 {% endblock %}
 
+{% block toolbar %}
+{{ super() }}
+<form id='organization-datasets-search-form' class="search-form"  %}"
+    method="get" data-module="select-switch">
+{% snippet "snippets/search_box.html"%}
+{% endblock %}
+{% block pre_wrap %}
+</form>
+{% endblock %}
+
 {% block primary_content_inner %}
 {% block groups_search_form %}
 {% set facets = {
