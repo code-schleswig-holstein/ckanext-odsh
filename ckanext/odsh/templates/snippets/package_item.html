@@ -40,6 +40,7 @@ Example:
   {% block content %}
   <div class="dataset-content">
     {% block heading %}
+    <p>{{org}}</p>
     <h3 class="dataset-heading">
       {% block heading_private %}
       {% if package.private %}
@@ -70,11 +71,13 @@ Example:
     {% endif %}
     {% endblock %}
     {% block notes %}
-    {% if notes %}
-    <div>{{ notes|urlize }}</div>
-    {% else %}
-    <p class="dataset-empty">{{ _("This dataset has no description") }}</p>
-    {% endif %}
+    <div class='package-info-pill'>
+        {{timerange}}
+    </div>
+    <div class='package-info-pill'>
+        {{h.odsh_get_spatial_text(package) }}
+    </div>
+    <p class='package-info-categorie'>{{ _('Kategorie') }}: {{ categories}} </p>
     {% endblock %}
   </div>
   <div class="dataset-meta">
@@ -97,20 +100,12 @@ Example:
       {% snippet "qa/stars.html", stars=stars %}
     </div>
 
-    <div class="dataset-info">
-      <p>{{ _('Kategorie') }}: {{ categories}} </p>
-      <p> {{_('Lizenz')}}: {{license}}</p>
-      <p> {{_('Herausgeber')}}: {{org}} </p>
-      <p> {{timerange_label}}: {{timerange}}</p>
+    <div class="dataset-info issued">
       <p>{{ _('issued') }}: {{issued}} </p>
     </div>
     {% endblock %}
     {% endblock %}
   </div>
-  {% block package_openness %}
-  <div class="module module-narrow module-shallow context-info">
-  </div>
-  {% endblock %}
   {% endblock %}
 </div>
 {% endblock %}
