@@ -45,12 +45,6 @@
             <li class='{{clazz}}'>
               {% link_for _('Upload'), controller='package', action='new', group=c.group_dict.id, class_='text' %}
             </li>
-            {% else %}
-            <li class="disabled">
-              <a href="#">
-                <span class="text">{{_('Upload')}}</span>
-              </a>
-            </li>
             {% endif %}
             {% if c.userobj %}
             <li class='{{clazz}} dropdown navbar-right'>
