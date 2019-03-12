@@ -20,6 +20,8 @@ import csv
 import re
 from dateutil.parser import parse
 
+import ckan.plugins as p
+
 import logging
 
 log = logging.getLogger(__name__)
@@ -264,6 +266,15 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return map
 
     def before_map(self, map):
+        # allow all other plugin routes
+        for plugin in p.PluginImplementations(p.IRoutes):
+            if not isinstance(plugin, OdshPlugin):
+                print(plugin)
+                map = plugin.before_map(map)
+        for plugin in p.PluginImplementations(p.IRoutes):
+            if not isinstance(plugin, OdshPlugin):
+                print(plugin)
+                map = plugin.after_map(map)
 
         # /api ver 3 or none
         with SubMapper(map, controller='api', path_prefix='/api{ver:/3|}',
