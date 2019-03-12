@@ -349,7 +349,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return OrderedDict({'organization': _('Herausgeber'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
-                            'groups': _('Kategorie')})
+                            'groups': _('Kategorie'),
+                            'openness': _('Open-Data-Eigenschaften')})
 
     def organization_facets(self, facets_dict, organization_type, package_type):
         return OrderedDict({'organization': _('Herausgeber'),
@@ -423,20 +424,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
                 'odsh_tag_name_validator': odsh_tag_name_validator}
 
-    def process_score_in_search_params(self,search_params):
-        extras = search_params.get('extras')
-
-        score = 0 
-        for i in range(1,6):
-            if extras.get('ext_score_'+str(i)):
-                score = max([score,i])
-
-        if score>0:
-            fq = search_params['fq']
-            fq = "{fq} qa:/.*'openness_score':.[{score}-5].*/".format(fq=fq, score=i)
-            search_params['fq'] = fq
-
-
     # Add the custom parameters to Solr's facet queries
     # use several daterange queries agains temporal_start and temporal_end field
     # TODO: use field of type date_range in solr index instead
@@ -447,14 +434,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             # There are no extras in the search params, so do nothing.
             return search_params
 
-        self.process_score_in_search_params(search_params)
-
         fq = search_params['fq']
-
-        score = extras.get('ext_score')
-        if score:
-            fq = "{fq} qa:/.*'openness_score':.[{score}-5].*/".format(fq=fq, score=score)
-            search_params['fq'] = fq
 
         start_date=None
         end_date=None
@@ -511,6 +491,21 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         return search_params
 
+    scores = [ ['0OL'], ['0OL','1RE'], ['0OL','1RE','2OF'], ['0OL','1RE','2OF','3URI'], ['0OL','1RE','2OF','3URI','4LD']]
+    def map_qa_score(self, dict_pkg):
+        if 'validated_data_dict' in dict_pkg and 'openness_score' in dict_pkg['validated_data_dict']:
+                d = json.loads(dict_pkg['validated_data_dict'])
+                score = -1
+                for r in d['resources']:
+                    if 'qa' in r:
+                        i = r['qa'].find('openness_score')
+                        s = int(r['qa'][i+17])
+                        if s > score:
+                                score=s
+                if score > 0:
+                    dict_pkg['openness']=OdshPlugin.scores[score-1]
+
+
     def before_index(self, dict_pkg):
         # make special date fields solr conform
         fields = ["issued", "temporal_start", "temporal_end"]
@@ -518,9 +513,12 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             field = 'extras_' + field
             if field in dict_pkg and dict_pkg[field]:
                 d = parse(dict_pkg[field])
-                dict_pkg[field] = '{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(
-                    d)
+                dict_pkg[field] = '{0.year:4d}-{0.month:02d}-{0.day:02d}T00:00:00Z'.format(d)
         # if 'res_format' in dict_pkg:
         #     dict_pkg['res_format']=[e.lower() for e in dict_pkg['res_format']]
+
+        self.map_qa_score(dict_pkg)
+
         return dict_pkg
+
     

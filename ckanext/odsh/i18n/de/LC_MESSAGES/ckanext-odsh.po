@@ -329,3 +329,18 @@ msgstr "mehr anzeigen"
 
 msgid "Show Less"
 msgstr "weniger anzeigen"
+
+msgid "0OL"
+msgstr "offene Lizenz"
+
+msgid "1RE"
+msgstr "maschinenlesbar"
+
+msgid "2OF"
+msgstr "offenes Format"
+
+msgid "3URI"
+msgstr "verwendet URIs"
+
+msgid "4LD"
+msgstr "Linked Data"

@@ -102,29 +102,6 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
     </nav>
   </section>
   {% endblock %}
-  {% block qa_search%}
-  <section class="module module-narrow module-shallow">
-    <nav>
-      <div class="nav-title">{{_('Score')}}</div>
-   <ul class="unstyled nav nav-simple nav-facet">
-    {% set titles=['offene Lizenz', 'maschinenlesbar', 'offenes Format', 'verwendet URIs', 'Linked Data'] %}
-    {%- for stars in range(1,6)-%}
-      {%- set score = request.params['ext_score_'+stars|string]=='on'-%}
-      <li class='nav-item'>
-      <div class='facet_label'>
-	      <input name='ext_score_{{stars}}' type="checkbox" {% if score %} checked {% endif %} class="filter-checkbox" id="check-score-{{stars}}"/>
-        <label class='label-score label-score-{{stars}}' for='check-score-{{stars}}'></label>
-        <div class='search-score search-score-{{stars}}'  title="offene Lizenz">
-                    <span>{{titles[stars-1]}}</span>
-        </div>
-      </div>
-      </li>
-    {%- endfor -%}
-    </ul>
-    </nav>
-  </section>
-  {% endblock %}
-
 
 </div>
 {% endblock %}
