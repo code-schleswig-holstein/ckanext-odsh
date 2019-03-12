@@ -267,14 +267,14 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def before_map(self, map):
         # allow all other plugin routes
-        for plugin in p.PluginImplementations(p.IRoutes):
-            if not isinstance(plugin, OdshPlugin):
-                print(plugin)
-                map = plugin.before_map(map)
-        for plugin in p.PluginImplementations(p.IRoutes):
-            if not isinstance(plugin, OdshPlugin):
-                print(plugin)
-                map = plugin.after_map(map)
+        # for plugin in p.PluginImplementations(p.IRoutes):
+        #     if not isinstance(plugin, OdshPlugin):
+        #         print(plugin)
+        #         map = plugin.before_map(map)
+        # for plugin in p.PluginImplementations(p.IRoutes):
+        #     if not isinstance(plugin, OdshPlugin):
+        #         print(plugin)
+        #         map = plugin.after_map(map)
 
         # /api ver 3 or none
         with SubMapper(map, controller='api', path_prefix='/api{ver:/3|}',
@@ -352,7 +352,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         map.redirect('/favicon.ico', config.get('ckan.favicon'))
 
         ## everything that is not mapped above is mapped to 'not found' this also applies to all routes which are mapped afterwards
-        map.connect('block', '/{url:.*}', controller='ckanext.odsh.controller:OdshRouteController', action='not_found')
+        ##map.connect('block', '/{url:.*}', controller='ckanext.odsh.controller:OdshRouteController', action='not_found')
 
         return map
 
