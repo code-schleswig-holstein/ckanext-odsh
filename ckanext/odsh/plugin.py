@@ -265,10 +265,16 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
     def before_map(self, map):
 
-        map.connect('info_page', '/info_page',
-                    controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
-        map.connect('home', '/',
-                    controller='ckanext.odsh.controller:OdshRouteController', action='start')
+        # /api ver 3 or none
+        with SubMapper(map, controller='api', path_prefix='/api{ver:/3|}',
+                    ver='/3') as m:
+            m.connect('/action/{logic_function}', action='action',
+                    conditions=dict(method=['GET', 'POST']))
+
+            map.connect('info_page', '/info_page',
+                        controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+            map.connect('home', '/',
+                        controller='ckanext.odsh.controller:OdshRouteController', action='start')
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
