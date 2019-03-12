@@ -18,6 +18,9 @@
         item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url)
         %}
         {% set label = label_function(item) if label_function else item.display_name %}
+        {% if title=='Open-Data-Eigenschaften'%}
+        {% set label = _(label)%}
+        {% endif%}
         {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
         {% set label_truncated = h.truncate(label, 25) if not label_function else label %}
         <li class="{{ nav_item_class or 'nav-item' }}">
