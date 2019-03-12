@@ -55,12 +55,16 @@
         {% set search_facets_items = facets.search.get(field)['items'] %}
         {% for value in facets.fields[field] %}
         <span class="filtered pill">
-            {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
-            {{ facets.translated_fields[(field,value)] }}
+            {% if(field=='openness')%}
+                {{_(value)}}
             {%- else -%}
-            {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-            {%- endif %}
-            <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+                {{ facets.translated_fields[(field,value)] }}
+                {%- else -%}
+                {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+                {%- endif %}
+             {%- endif %}
+                <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
         </span>
         {% endfor %}
         {% endfor %}
@@ -104,16 +108,6 @@
             </span>
             {% endif %}
         </p>
-        {% endif %}
-    </div>
-    <div id="score-filter">
-        {%- set selected_score = request.params.get('ext_score')-%}
-        {% if selected_score %}
-        <p class="filter-list">
-            <span class="filtered pill">
-                {{_('Score')}}: {{ selected_score}}
-                <a href="{{ h.remove_url_param('ext_score') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
-            </span>
         {% endif %}
     </div>
     <div >
