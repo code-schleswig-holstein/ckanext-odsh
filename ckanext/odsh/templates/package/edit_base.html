@@ -24,6 +24,7 @@
 <div class="odsh-dataset-heading">
     <div class='title'>Datensatz &quot;{{h.dataset_display_name(pkg)}}&quot; bearbeiten</div>
    {% link_for  _('back'), controller='package', action='read', id=pkg.name, class_='btn btn-heading', icon='arrow-left' %}
+<span class="clear"></span>
 </div>
 {{ super() }}
 {% endblock %}
