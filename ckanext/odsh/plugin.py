@@ -335,6 +335,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('user_edit', '/user/edit/{id:.*}', action='edit', ckan_icon='cog')
             m.connect('user_delete', '/user/delete/{id}', action='delete')
             m.connect('/user/reset/{id:.*}', action='perform_reset')
+            m.connect('/user/reset', action='request_reset')
             m.connect('register', '/user/register', action='register')
             m.connect('login', '/user/login', action='login')
             m.connect('/user/_logout', action='logout')
@@ -343,7 +344,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('/user/logged_out_redirect', action='logged_out_page')
             m.connect('user_datasets', '/user/{id:.*}', action='read',
                       ckan_icon='sitemap')
-            m.connect('/user/reset', action='request_reset')
 
         # robots.txt
         map.connect('/(robots.txt)', controller='template', action='view')
