@@ -5,12 +5,26 @@ ckan.module('odsh_form', function ($)
         {
             // enable multiselect for input
             if (this.options.multiselect)
-                $(this.el[0]).multiselect({
-                    allSelectedText: this.options.allselectedtext,
-                    nonSelectedText: this.options.nonselectedtext,
-                    nSelectedText: this.options.nselectedtext,
-                    numberDisplayed: 1
-                });
+            {
+                var multi = $(this.el[0])
+                if (multi)
+                {
+                    multi.multiselect({
+                        allSelectedText: this.options.allselectedtext,
+                        nonSelectedText: this.options.nonselectedtext,
+                        nSelectedText: this.options.nselectedtext,
+                        numberDisplayed: 1,
+                        onChange: function (option, checked, select)
+                        {
+                            var values = $('#field-groups option:selected')
+                                .map(function (a, item) { return item.value; }).get().join(',')
+                                console.log(values)
+                            $('#field-groups-value').val(values);
+                        }
+                    });
+                }
+            }
+
             if (this.options.licensetoggle)
             {
                 // toggle input for 'Namensgebung' depending on the selected licence

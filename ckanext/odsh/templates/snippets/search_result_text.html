@@ -39,7 +39,7 @@ Example:
 {{ text_query_none.format(query=query) }}
 {%- endif -%}
 {%- else -%}
-{%- if count -%}
+{%- if count and text_no_query -%}
 {{ text_no_query.format(number=h.localised_number(count)) }}
 {%- else -%}
 {{ text_no_query_none }}
