@@ -90,6 +90,9 @@ setup(
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
+
+        [ckan.rdf.profiles]
+        odshdcatap_de=ckanext.odsh.profiles:ODSHDCATdeProfile
     ''',
 
     # If you are changing from the default layout of your extension, you may

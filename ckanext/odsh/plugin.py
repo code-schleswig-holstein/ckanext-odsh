@@ -299,7 +299,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
-    plugins.implements(IDCATRDFHarvester) 
 
     # IConfigurer
 
@@ -610,8 +609,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return dict_pkg
 
     ## implementation of IDCATRDFHarvester
-    def before_download(self, url, harvest_job):
-        return url, []
+class OdshDCATRDFHarvesterPlugin(plugins.SingletonPlugin):
+    plugins.implements(IDCATRDFHarvester) 
 
     def update_session(self, session):
         return session
@@ -619,42 +618,28 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def after_download(self, content, harvest_job):
         return content, []
 
-    def before_update(self, harvest_object, dataset_dict, temp_dict):
-        pass
-
     def after_update(self, harvest_object, dataset_dict, temp_dict):
         return None
-
-    def before_create(self, harvest_object, dataset_dict, temp_dict):
-        pass
 
     def after_create(self, harvest_object, dataset_dict, temp_dict):
         return None
 
+    def before_download(self, url, harvest_job):
+        return url, []
+
+    def _updateLicense(self, dataset_dict):
+        register = model.Package.get_license_register()
+        print(dataset_dict)
+
+        for resource in dataset_dict['resources']:
+            print(resource)
+            license = resource['license'] if 'license' in resource else None
+            if license in register:
+                 dataset_dict['license_id'] = license
+                 return
 
     def before_update(self, harvest_object, dataset_dict, temp_dict):
-        if 'license_id' in dataset_dict:
-            return
-
-        register = model.Package.get_license_register()
-
-        for resource in harvest_object.resources:
-            license = resource.license
-            if license:
-                if license in register:
-                    dataset_dict['license_id'] = license
-                    return
+        self._updateLicense(dataset_dict)
 
     def before_create(self, harvest_object, dataset_dict, temp_dict):
-
-        if 'license_id' in dataset_dict:
-            return
-
-        register = model.Package.get_license_register()
-
-        for resource in harvest_object.resources:
-            license = resource.license
-            if license:
-                if license in register:
-                    dataset_dict['license_id'] = license
-                    return
+        self._updateLicense(dataset_dict)
