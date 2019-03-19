@@ -1,5 +1,6 @@
 {% import 'macros/form.html' as form %}
 {% resource 'odsh/odsh_form.js' %}
+{% resource 'odsh/bootstrap-multiselect.js' %}
 {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none' %}
 
 <!-- field title -->
@@ -263,3 +264,41 @@ is_required=true,placeholder=_('Enter title')) }}
         </div>
     </div>
     {% endif %}
+
+    <!-- field groups -->
+    {#
+    <div class="control-group">
+        {% set groups_label='Kategorien'%}
+        {% set multiselect_nonSelectedText='keine' %}
+        {% set multiselect_allSelectedText='alle' %}
+        {% set multiselect_nSelectedText='gewählt' %}
+        <!-- {% set error = errors.groups %} -->
+        <label for="field-groups" class="control-label">{{ groups_label }}
+            <span title="{{ _("This field is required") }}" class="control-required">*</span>
+        </label>
+        <div class="controls">
+            {% set existing_groups = data.get('groups') %}
+            {% if existing_groups %}
+            {% set existing_groups_string = existing_groups|map(attribute='id')|join(',') %}
+            {% else %}
+            {% set existing_groups_string = h.odsh_extract_value_from_extras(data.extras,'groups') %}
+            {% endif %}
+            {{existing_groups_string}}
+            {{existing_groups}}
+            {% if data.id %}
+                <input name='groups' value='[{"id":"ener"}]'></input>
+            {% else %}
+            <select id='field-groups' multiple="multiple" data-module="odsh_form" data-module-multiselect='true'
+                data-module-nonSelectedText="{{multiselect_nonSelectedText}}" data-module-allSelectedText="{{multiselect_allSelectedText}}"
+                data-module-nSelectedText="{{multiselect_nSelectedText}}">
+                {% for option in h.groups_available()%}
+                <option value={{option.id}} {% if existing_groups_string!=None and option['id'] in existing_groups_string %}selected="selected"
+                    {% endif %}>
+                    {{ option['display_name'] }}</option>
+                {% endfor %}
+            </select>
+            {{ form.input_extra('groups', value=existing_groups_string, index=h.odsh_create_checksum('groups'), type='hidden')}}
+            {% endif %}
+        </div>
+    </div>
+    #}

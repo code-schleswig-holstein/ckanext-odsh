@@ -82,6 +82,7 @@ setup(
         [ckan.plugins]
         odsh=ckanext.odsh.plugin:OdshPlugin
         odsh_icap=ckanext.odsh.plugin:OdshIcapPlugin
+        odsh_dcatdeharvester=ckanext.odsh.plugin:OdshDCATRDFHarvesterPlugin
         statistikamtnord_harvester=ckanext.odsh.harvesters:StatistikamtNordHarvester
         kiel_harvester=ckanext.odsh.harvesters:KielHarvester
 
