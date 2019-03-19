@@ -7,6 +7,7 @@ from ckan.lib.plugins import DefaultDatasetForm
 from ckan.lib.navl.dictization_functions import Missing
 from ckan.logic.validators import tag_string_convert
 from ckan.common import OrderedDict
+from ckanext.dcat.interfaces import IDCATRDFHarvester
 import ckan.model as model
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
@@ -164,7 +165,6 @@ def odsh_validate_extra_date_factory(field):
 def odsh_validate_licenseAttributionByText(key, data, errors, context):
     register = model.Package.get_license_register()
     isByLicense=False
-    print(register.keys())
     for k in data:
         if len(k) > 0 and k[0] == 'license_id' and data[k] and not isinstance(data[k], Missing) and \
             'Namensnennung' in register[data[k]].title:
@@ -205,8 +205,11 @@ def odsh_tag_string_convert(key, data, errors, context):
     else:
         tags = data[key]
 
+
     current_index = max([int(k[1]) for k in data.keys()
                          if len(k) == 3 and k[0] == 'tags'] + [-1])
+
+
 
     for num, tag in zip(count(current_index+1), tags):
         data[('tags', num, 'name')] = tag
@@ -214,6 +217,70 @@ def odsh_tag_string_convert(key, data, errors, context):
     for tag in tags:
         toolkit.get_validator('tag_length_validator')(tag, context)
         odsh_tag_name_validator(tag, context)
+
+def odsh_group_convert(key, data, errors, context):
+    # print('GROUPS')
+    print(key)
+    print(data)
+
+
+def odsh_validate_extra_groups(key, data, errors, context):
+    value = _extract_value(data, 'groups')
+    print('GROUPS')
+    print(value)
+    if not value:
+        return
+    groups = [g.strip() for g in value.split(',') if value.strip()]
+    # data[('groups', 0, 'id')]='soci'
+    # data[('groups', 1, 'id')]='ener'
+    print('STRIP')
+    print(groups)
+    for k in data.keys():
+        print(k)
+        if len(k) == 3 and k[0] == 'groups':
+            print('del')
+            data[k]=''
+            # del data[k]
+    print(data)
+
+    # for num, tag in zip(range(len(groups)), groups):
+    #     data[('groups', num, 'id')] = tag
+    #     # print(data[('groups', num, 'id')])
+
+def odsh_group_string_convert(key, data, errors, context):
+    '''Takes a list of groups that is a comma-separated string (in data[key])
+    and parses groups names. These are added to the data dict, enumerated. 
+    They are also validated.'''
+    print('GROUPSTRING')
+    print(key)
+
+    if isinstance(data[key], basestring):
+        tags = [tag.strip()
+                for tag in data[key].split(',')
+                if tag.strip()]
+    else:
+        tags = data[key]
+
+    print(tags)
+
+    current_index = max([int(k[1]) for k in data.keys()
+                         if len(k) == 3 and k[0] == 'groups'] + [-1])
+
+    # for num, tag in zip(count(current_index+1), tags):
+    #     data[('groups', num, 'id')] = tag
+    #     print(data[('groups', num, 'id')])
+
+
+
+    # current_index = max([int(k[1]) for k in data.keys()
+    #                      if len(k) == 3 and k[0] == 'groups'] + [-1])
+
+    # for num, tag in zip(count(current_index+1), tags):
+    #     data[('groups', num, 'id')] = tag
+
+    # for tag in tags:
+    #     toolkit.get_validator('tag_length_validator')(tag, context)
+    #     odsh_tag_name_validator(tag, context)
 
 
 class OdshIcapPlugin(plugins.SingletonPlugin):
@@ -232,6 +299,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(IDCATRDFHarvester) 
 
     # IConfigurer
 
@@ -282,10 +350,10 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('/action/{logic_function}', action='action',
                     conditions=dict(method=['GET', 'POST']))
 
-            map.connect('info_page', '/info_page',
-                        controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
-            map.connect('home', '/',
-                        controller='ckanext.odsh.controller:OdshRouteController', action='start')
+        map.connect('info_page', '/info_page',
+                    controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
+        map.connect('home', '/',
+                    controller='ckanext.odsh.controller:OdshRouteController', action='start')
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
@@ -335,6 +403,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('user_edit', '/user/edit/{id:.*}', action='edit', ckan_icon='cog')
             m.connect('user_delete', '/user/delete/{id}', action='delete')
             m.connect('/user/reset/{id:.*}', action='perform_reset')
+            m.connect('/user/reset', action='request_reset')
             m.connect('register', '/user/register', action='register')
             m.connect('login', '/user/login', action='login')
             m.connect('/user/_logout', action='logout')
@@ -378,6 +447,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def _update_schema(self, schema):
         for field in ['title', 'notes','license_id']:
             schema.update({field: [toolkit.get_converter('not_empty')]})
+        
+        # schema.update({'groups_string': [toolkit.get_converter('odsh_group_string_convert')]})
+        # schema.update({'groupss': [toolkit.get_converter('odsh_group_convert')]})
 
         for i, item in enumerate(schema['tags']['name']):
             if item == toolkit.get_validator('tag_name_validator'):
@@ -398,7 +470,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_converter('odsh_validate_temporal_start'),
                 toolkit.get_converter('odsh_validate_temporal_end'),
                 toolkit.get_converter('known_spatial_uri'),
-                toolkit.get_converter('licenseAttributionByText')
+                toolkit.get_converter('licenseAttributionByText'),
+                # toolkit.get_converter('odsh_validate_extra_groups')
             ]
         })
 
@@ -433,7 +506,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
                 'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
                 'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
-                'odsh_tag_name_validator': odsh_tag_name_validator}
+                'odsh_tag_name_validator': odsh_tag_name_validator,
+                'odsh_group_string_convert':odsh_group_string_convert,
+                'odsh_group_convert':odsh_group_convert,
+                'odsh_validate_extra_groups':odsh_validate_extra_groups
+                }
 
     # Add the custom parameters to Solr's facet queries
     # use several daterange queries agains temporal_start and temporal_end field
@@ -532,4 +609,52 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         return dict_pkg
 
-    
+    ## implementation of IDCATRDFHarvester
+    def before_download(self, url, harvest_job):
+        return url, []
+
+    def update_session(self, session):
+        return session
+
+    def after_download(self, content, harvest_job):
+        return content, []
+
+    def before_update(self, harvest_object, dataset_dict, temp_dict):
+        pass
+
+    def after_update(self, harvest_object, dataset_dict, temp_dict):
+        return None
+
+    def before_create(self, harvest_object, dataset_dict, temp_dict):
+        pass
+
+    def after_create(self, harvest_object, dataset_dict, temp_dict):
+        return None
+
+
+    def before_update(self, harvest_object, dataset_dict, temp_dict):
+        if 'license_id' in dataset_dict:
+            return
+
+        register = model.Package.get_license_register()
+
+        for resource in harvest_object.resources:
+            license = resource.license
+            if license:
+                if license in register:
+                    dataset_dict['license_id'] = license
+                    return
+
+    def before_create(self, harvest_object, dataset_dict, temp_dict):
+
+        if 'license_id' in dataset_dict:
+            return
+
+        register = model.Package.get_license_register()
+
+        for resource in harvest_object.resources:
+            license = resource.license
+            if license:
+                if license in register:
+                    dataset_dict['license_id'] = license
+                    return
