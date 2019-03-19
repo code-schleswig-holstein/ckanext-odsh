@@ -7,7 +7,6 @@ from ckan.lib.plugins import DefaultDatasetForm
 from ckan.lib.navl.dictization_functions import Missing
 from ckan.logic.validators import tag_string_convert
 from ckan.common import OrderedDict
-from ckanext.dcat.interfaces import IDCATRDFHarvester
 import ckan.model as model
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
@@ -607,39 +606,3 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         self.map_qa_score(dict_pkg)
 
         return dict_pkg
-
-    ## implementation of IDCATRDFHarvester
-class OdshDCATRDFHarvesterPlugin(plugins.SingletonPlugin):
-    plugins.implements(IDCATRDFHarvester) 
-
-    def update_session(self, session):
-        return session
-
-    def after_download(self, content, harvest_job):
-        return content, []
-
-    def after_update(self, harvest_object, dataset_dict, temp_dict):
-        return None
-
-    def after_create(self, harvest_object, dataset_dict, temp_dict):
-        return None
-
-    def before_download(self, url, harvest_job):
-        return url, []
-
-    def _updateLicense(self, dataset_dict):
-        register = model.Package.get_license_register()
-        print(dataset_dict)
-
-        for resource in dataset_dict['resources']:
-            print(resource)
-            license = resource['license'] if 'license' in resource else None
-            if license in register:
-                 dataset_dict['license_id'] = license
-                 return
-
-    def before_update(self, harvest_object, dataset_dict, temp_dict):
-        self._updateLicense(dataset_dict)
-
-    def before_create(self, harvest_object, dataset_dict, temp_dict):
-        self._updateLicense(dataset_dict)
