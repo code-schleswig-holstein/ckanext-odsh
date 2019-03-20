@@ -40,7 +40,7 @@ Example:
                 {%set lic=pkg.license_title if pkg.license_title else '-'%}
                 {%set licenseAttributionByText = h.odsh_extract_value_from_extras(pkg.extras,'licenseAttributionByText') %}
                 {%set name=' (' + licenseAttributionByText +')' if licenseAttributionByText else ''%}
-                <p>{{ lic }}{{ name }}</p>
+                <a href='{{pkg.license_url}}'>{{ lic }}{{ name }}</a>
             </div>
             {% endblock %}
 

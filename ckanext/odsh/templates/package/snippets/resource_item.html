@@ -10,10 +10,13 @@
     <div class="row">
       <div class="span8 resource-details-left">
         <div class="row resource-title-container">
-          <div class="resource-title" title="{{ h.resource_display_name(res) }}">
+        {% set rtitle=h.resource_display_name(res) if res.name else ' '%}
+          <div class="resource-title" title="{{ rtitle }}">
+        {% if res.name %}
         <a href="{{ download }}">
             {{ h.resource_display_name(res) }}
         </a>
+        {% endif %}
           </div>
         </div>
         <div class="row resource-description-container">

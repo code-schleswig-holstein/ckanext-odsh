@@ -1080,10 +1080,10 @@ element.style {
     white-space: nowrap;
     cursor: pointer;
     text-decoration: none;
+    min-height: 1em;
 }
 
 .resource-title a{
-
     color: black;
 }
 
