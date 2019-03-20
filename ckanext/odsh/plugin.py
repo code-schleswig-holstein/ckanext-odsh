@@ -10,6 +10,7 @@ from ckan.common import OrderedDict
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
+import ckanext.odsh.logic.action as action
 
 from routes.mapper import SubMapper
 from pylons import config
@@ -76,6 +77,12 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.IActions)
+
+    # IActions
+
+    def get_actions(self):
+        return {'package_create': action.odsh_package_create}
 
     # IConfigurer
 
