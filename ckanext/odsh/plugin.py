@@ -11,6 +11,7 @@ import ckan.model as model
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
+import ckanext.odsh.logic.action as action
 
 from itertools import count
 from routes.mapper import SubMapper
@@ -298,6 +299,12 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.IActions)
+
+    # IActions
+
+    def get_actions(self):
+        return {'package_create': action.odsh_package_create}
 
     # IConfigurer
 
