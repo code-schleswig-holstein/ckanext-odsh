@@ -21,12 +21,6 @@ Example:
             <div class="groups-detail info-detail">
                 <div>{{ _('Kategorie') }}:</div>
                 {{ pkg.groups|map(attribute='display_name')|join('; ') }}
-                {% if h.check_access('package_update', {'id':pkg.id }) %}
-                <div>
-                    {% link_for _('Edit Categories'), controller='package', action='groups', id=pkg.name,
-                    class_='btn btn-edit-categories', icon='wrench' %}
-                </div>
-                {% endif %}
             </div>
             {% endblock %}
 

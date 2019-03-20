@@ -4,25 +4,22 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.lib.plugins import DefaultDatasetForm
-from ckan.lib.navl.dictization_functions import Missing
 from ckan.logic.validators import tag_string_convert
+from ckan.logic.schema import default_extras_schema
 from ckan.common import OrderedDict
-import ckan.model as model
 from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
 
-from itertools import count
 from routes.mapper import SubMapper
 from pylons import config
-import urllib2
-import csv
-import re
 from dateutil.parser import parse
 
 import ckan.plugins as p
 
 import logging
+
+import validation
 
 log = logging.getLogger(__name__)
 
@@ -50,20 +47,6 @@ def odsh_main_groups():
     return groups
 
 
-def odsh_convert_groups_string(value, context):
-    if not value:
-        return []
-    if type(value) is not list:
-        value = [value]
-    groups = helpers.groups_available()
-    ret = []
-    for v in value:
-        for g in groups:
-            if g['id'] == v:
-                ret.append(g)
-    return ret
-
-
 def odsh_now():
     return helpers.render_datetime(datetime.datetime.now(), "%Y-%m-%d")
 
@@ -76,211 +59,6 @@ def odsh_group_id_selected(selected, group_id):
             return True
 
     return False
-
-
-def known_spatial_uri(key, data, errors, context):
-    value = _extract_value(data, 'spatial_uri')
-
-    if not value:
-        raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
-
-    mapping_file = config.get('ckanext.odsh.spatial.mapping')
-    try:
-        mapping_file = urllib2.urlopen(mapping_file)
-    except Exception:
-        raise Exception("Could not load spatial mapping file!")
-
-    not_found = True
-    spatial_text = str()
-    spatial = str()
-    cr = csv.reader(mapping_file, delimiter="\t")
-    for row in cr:
-        if row[0].encode('UTF-8') == value:
-            not_found = False
-            spatial_text = row[1]
-            loaded = json.loads(row[2])
-            spatial = json.dumps(loaded['geometry'])
-            break
-    if not_found:
-        raise toolkit.Invalid(
-            'spatial_uri:odsh_spatial_uri_unknown_error_label')
-
-    # Get the current extras index
-    current_indexes = [k[1] for k in data.keys()
-                       if len(k) > 1 and k[0] == 'extras']
-
-    new_index = max(current_indexes) + 1 if current_indexes else 0
-
-    data[('extras', new_index, 'key')] = 'spatial_text'
-    data[('extras', new_index, 'value')] = spatial_text
-    data[('extras', new_index+1, 'key')] = 'spatial'
-    data[('extras', new_index+1, 'value')] = spatial
-
-
-def _extract_value(data, field):
-    key = None
-    for k in data.keys():
-        if data[k] == field:
-            key = k
-            break
-    if key is None:
-        return None
-    return data[(key[0], key[1], 'value')]
-
-def _set_value(data, field, value):
-    key = None
-    for k in data.keys():
-        if data[k] == field:
-            key = k
-            break
-    if key is None:
-        return None
-    data[(key[0], key[1], 'value')] = value
-
-def odsh_validate_extra_date(key, field, data, errors, context):
-    value = _extract_value(data, field)
-
-    if not value:
-        if field == 'temporal_end':
-            return # temporal_end is optional
-        # Statistikamt Nord does not always provide temporal_start/end,
-        # but their datasets have to be accepted as they are.
-        if not ('id',) in data or data[('id',)][:7] != 'StaNord':
-            raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
-    else:
-        if re.match(r'\d\d\d\d-\d\d-\d\d', value):
-            try:
-                dt=parse(value)
-                _set_value(data, field, dt.isoformat())
-                return
-            except ValueError:
-                pass
-        raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
-
-
-def odsh_validate_extra_date_factory(field):
-    return lambda key, data, errors, context: odsh_validate_extra_date(key, field, data, errors, context)
-
-def odsh_validate_licenseAttributionByText(key, data, errors, context):
-    register = model.Package.get_license_register()
-    isByLicense=False
-    for k in data:
-        if len(k) > 0 and k[0] == 'license_id' and data[k] and not isinstance(data[k], Missing) and \
-            'Namensnennung' in register[data[k]].title:
-            isByLicense = True
-            break
-    hasAttribution=False
-    for k in data:
-        if data[k] == 'licenseAttributionByText':
-            if isinstance(data[(k[0], k[1], 'value')], Missing):
-                del data[(k[0], k[1], 'value')]
-                del data[(k[0], k[1], 'key')]
-                break
-            else:
-                value = data[(k[0], k[1], 'value')]
-                hasAttribution = value != ''
-                break
-    if isByLicense and not hasAttribution:
-        raise toolkit.Invalid('licenseAttributionByText:odsh_licence_text_missing_error_label')
-    if not isByLicense and hasAttribution:
-        raise toolkit.Invalid('licenseAttributionByText:odsh_licence_text_not_allowed_error_label')
-
-def odsh_tag_name_validator(value, context):
-    tagname_match = re.compile('[\w \-.\:\(\)]*$', re.UNICODE)
-    if not tagname_match.match(value):
-        raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
-                                'characters or symbols: -_.:()') % (value))
-    return value
-
-
-def odsh_tag_string_convert(key, data, errors, context):
-    '''Takes a list of tags that is a comma-separated string (in data[key])
-    and parses tag names. These are added to the data dict, enumerated. They
-    are also validated.'''
-    if isinstance(data[key], basestring):
-        tags = [tag.strip()
-                for tag in data[key].split(',')
-                if tag.strip()]
-    else:
-        tags = data[key]
-
-
-    current_index = max([int(k[1]) for k in data.keys()
-                         if len(k) == 3 and k[0] == 'tags'] + [-1])
-
-
-
-    for num, tag in zip(count(current_index+1), tags):
-        data[('tags', num, 'name')] = tag
-
-    for tag in tags:
-        toolkit.get_validator('tag_length_validator')(tag, context)
-        odsh_tag_name_validator(tag, context)
-
-def odsh_group_convert(key, data, errors, context):
-    # print('GROUPS')
-    print(key)
-    print(data)
-
-
-def odsh_validate_extra_groups(key, data, errors, context):
-    value = _extract_value(data, 'groups')
-    print('GROUPS')
-    print(value)
-    if not value:
-        return
-    groups = [g.strip() for g in value.split(',') if value.strip()]
-    # data[('groups', 0, 'id')]='soci'
-    # data[('groups', 1, 'id')]='ener'
-    print('STRIP')
-    print(groups)
-    for k in data.keys():
-        print(k)
-        if len(k) == 3 and k[0] == 'groups':
-            print('del')
-            data[k]=''
-            # del data[k]
-    print(data)
-
-    # for num, tag in zip(range(len(groups)), groups):
-    #     data[('groups', num, 'id')] = tag
-    #     # print(data[('groups', num, 'id')])
-
-def odsh_group_string_convert(key, data, errors, context):
-    '''Takes a list of groups that is a comma-separated string (in data[key])
-    and parses groups names. These are added to the data dict, enumerated. 
-    They are also validated.'''
-    print('GROUPSTRING')
-    print(key)
-
-    if isinstance(data[key], basestring):
-        tags = [tag.strip()
-                for tag in data[key].split(',')
-                if tag.strip()]
-    else:
-        tags = data[key]
-
-    print(tags)
-
-    current_index = max([int(k[1]) for k in data.keys()
-                         if len(k) == 3 and k[0] == 'groups'] + [-1])
-
-    # for num, tag in zip(count(current_index+1), tags):
-    #     data[('groups', num, 'id')] = tag
-    #     print(data[('groups', num, 'id')])
-
-
-
-    # current_index = max([int(k[1]) for k in data.keys()
-    #                      if len(k) == 3 and k[0] == 'groups'] + [-1])
-
-    # for num, tag in zip(count(current_index+1), tags):
-    #     data[('groups', num, 'id')] = tag
-
-    # for tag in tags:
-    #     toolkit.get_validator('tag_length_validator')(tag, context)
-    #     odsh_tag_name_validator(tag, context)
-
 
 class OdshIcapPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IUploader, inherit=True)
@@ -323,6 +101,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_upload_known_formats': odsh_helpers.odsh_upload_known_formats,
                 'odsh_encodeurl': odsh_helpers.odsh_encodeurl,
                 'odsh_extract_error': odsh_helpers.odsh_extract_error,
+                'odsh_extract_error_new': odsh_helpers.odsh_extract_error_new,
                 'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras,
                 'odsh_create_checksum': odsh_helpers.odsh_create_checksum,
                 'presorted_license_options': odsh_helpers.presorted_license_options
@@ -446,8 +225,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         for field in ['title', 'notes','license_id']:
             schema.update({field: [toolkit.get_converter('not_empty')]})
         
-        # schema.update({'groups_string': [toolkit.get_converter('odsh_group_string_convert')]})
-        # schema.update({'groupss': [toolkit.get_converter('odsh_group_convert')]})
+        ##schema.update({'group_string': [toolkit.get_converter('odsh_group_string_convert')]})
+        # for i, item in enumerate(schema['groups']):
+        #schema['id'].update({'id': schema['groups']['id']+[toolkit.get_converter('odsh_group_convert')]})
+        ##schema['groups'].update({'id': schema['groups']['id']})
+    ##        schema.update({'groups': [toolkit.get_converter('empty')]})
 
         for i, item in enumerate(schema['tags']['name']):
             if item == toolkit.get_validator('tag_name_validator'):
@@ -455,7 +237,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                     'odsh_tag_name_validator')
         for i, item in enumerate(schema['tag_string']):
             if item == tag_string_convert:
-                schema['tag_string'][i] = odsh_tag_string_convert
+                schema['tag_string'][i] = validation.tag_string_convert
 
         schema['resources'].update({
             'url': [toolkit.get_converter('not_empty')],
@@ -468,10 +250,13 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_converter('odsh_validate_temporal_start'),
                 toolkit.get_converter('odsh_validate_temporal_end'),
                 toolkit.get_converter('known_spatial_uri'),
-                toolkit.get_converter('licenseAttributionByText'),
-                # toolkit.get_converter('odsh_validate_extra_groups')
+                toolkit.get_converter('licenseAttributionByText')
             ]
         })
+        ##schema.update({'title': [toolkit.get_converter('odsh_validate_extras')]+ schema['title']})
+        schema.update({'__extras':  [toolkit.get_converter('odsh_validate_extras')] })
+        # eschema = schema['extras']
+        ##schema.update({'extras':  None })
 
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()
@@ -498,17 +283,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return []
 
     def get_validators(self):
-        return {'odsh_convert_groups_string': odsh_convert_groups_string,
-                'licenseAttributionByText': odsh_validate_licenseAttributionByText,
-                'known_spatial_uri': known_spatial_uri,
-                'odsh_validate_issued': odsh_validate_extra_date_factory('issued'),
-                'odsh_validate_temporal_start': odsh_validate_extra_date_factory('temporal_start'),
-                'odsh_validate_temporal_end': odsh_validate_extra_date_factory('temporal_end'),
-                'odsh_tag_name_validator': odsh_tag_name_validator,
-                'odsh_group_string_convert':odsh_group_string_convert,
-                'odsh_group_convert':odsh_group_convert,
-                'odsh_validate_extra_groups':odsh_validate_extra_groups
-                }
+        return validation.get_validators()
 
     # Add the custom parameters to Solr's facet queries
     # use several daterange queries agains temporal_start and temporal_end field

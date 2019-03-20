@@ -344,3 +344,6 @@ msgstr "verwendet URIs"
 
 msgid "4LD"
 msgstr "Linked Data"
+
+msgid "at least one group needed"
+msgstr "Bitte geben Sie mindestens eine Kategorie an"

@@ -149,16 +149,21 @@ def odsh_create_checksum(in_string):
     return int(hashstring, base=16)
 
 
-def odsh_extract_error(key, errors):
-    if not errors or not ('extras' in errors):
+def odsh_extract_error(key, errors, field='extras'):
+    if not errors or not (field in errors):
         return None
-    ext = errors['extras']
+    ext = errors[field]
     for item in ext:
         if 'key' in item:
             for error in item['key']:
                 if error.startswith(key):
                     return error.replace(key+':', '')
 
+def odsh_extract_error_new(key, errors):
+    if not errors or not ('__extras' in errors):
+        return None
+    error = errors['__extras'][0].get(key,None)
+    return error
 
 def odsh_extract_value_from_extras(extras, key):
     if not extras:

@@ -18,7 +18,6 @@ ckan.module('odsh_form', function ($)
                         {
                             var values = $('#field-groups option:selected')
                                 .map(function (a, item) { return item.value; }).get().join(',')
-                                console.log(values)
                             $('#field-groups-value').val(values);
                         }
                     });
