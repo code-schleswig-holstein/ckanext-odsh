@@ -11,20 +11,6 @@ error=error_string, classes=['control-full'], attrs={'data-module': 'slug-previe
 is_required=true,placeholder=_('Enter title')) }}
 {% endblock %}
 
-{% block package_basic_fields_url %}
-{% if(dataset_is_draft)%}
-    {% set prefix = h.url_for(controller='package', action='read', id='') %}
-    {% set domain = h.url_for(controller='package', action='read', id='', qualified=true) %}
-    {% set domain = domain|replace("http://", "")|replace("https://", "") %}
-    {% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain, 'data-module-placeholder': '<dataset>'}
-        %}
-
-    <!-- field name/url -->
-    {{ form.prepend('name', id='field-name', label=_('URL'), prepend=prefix,
-    value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
- {% endif %}
- {% endblock %}
-
 
     <!-- field notes -->
     {% block package_basic_fields_description %}
