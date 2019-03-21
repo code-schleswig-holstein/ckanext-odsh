@@ -24,7 +24,7 @@ def _extract_value(data, field):
 def validate_extra_groups(data):
     value = _extract_value(data, 'groups')
     if not value:
-        raise toolkit.Invalid({'groups':'at least one group needed'})
+        return 'at least one group needed'
 
     groups = [g.strip() for g in value.split(',') if value.strip()]
     for k in data.keys():
@@ -32,13 +32,24 @@ def validate_extra_groups(data):
             data[k]=''
             # del data[k]
     if len(groups)==0:
-        raise toolkit.Invalid({'groups':'at least one group needed'})
+        return 'at least one group needed'
 
     for num, tag in zip(range(len(groups)), groups):
         data[('groups', num, 'id')] = tag
 
 def validate_extras(key, data, errors, context):
-    validate_extra_groups(data)
+    pass
+    extra_errors = {}
+    error = validate_extra_groups(data)
+    if error:
+        extra_errors['groups'] = error
+
+    error = validate_extra_date_new(key, 'issued', data, False)
+    if error:
+        extra_errors['issued'] = error
+
+    if extra_errors:
+        raise toolkit.Invalid(extra_errors)
 
 def _set_value(data, field, value):
     key = None
@@ -50,12 +61,32 @@ def _set_value(data, field, value):
         return None
     data[(key[0], key[1], 'value')] = value
 
-def validate_extra_date(key, field, data, errors, context):
+def validate_extra_date_new(key, field, data, optional=False):
     value = _extract_value(data, field)
 
     if not value:
-        if field == 'temporal_end':
-            return # temporal_end is optional
+        if optional:
+            return 
+        # Statistikamt Nord does not always provide temporal_start/end,
+        # but their datasets have to be accepted as they are.
+        if not ('id',) in data or data[('id',)][:7] != 'StaNord':
+            return 'empty'
+    else:
+        if re.match(r'\d\d\d\d-\d\d-\d\d', value):
+            try:
+                dt=parse(value)
+                _set_value(data, field, dt.isoformat())
+                return
+            except ValueError:
+                pass
+        return 'not a valid date'
+
+def validate_extra_date(key, field, data, optional=False):
+    value = _extract_value(data, field)
+
+    if not value:
+        if optional:
+            return 
         # Statistikamt Nord does not always provide temporal_start/end,
         # but their datasets have to be accepted as they are.
         if not ('id',) in data or data[('id',)][:7] != 'StaNord':
@@ -71,8 +102,8 @@ def validate_extra_date(key, field, data, errors, context):
         raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
 
 
-def validate_extra_date_factory(field):
-    return lambda key, data, errors, context: validate_extra_date(key, field, data, errors, context)
+def validate_extra_date_factory(field, optional=False):
+    return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
 
 def validate_licenseAttributionByText(key, data, errors, context):
     register = model.Package.get_license_register()
@@ -172,9 +203,8 @@ def get_validators():
     return {
             'licenseAttributionByText': validate_licenseAttributionByText,
             'known_spatial_uri': known_spatial_uri,
-            'odsh_validate_issued': validate_extra_date_factory('issued'),
             'odsh_validate_temporal_start': validate_extra_date_factory('temporal_start'),
-            'odsh_validate_temporal_end': validate_extra_date_factory('temporal_end'),
+            'odsh_validate_temporal_end': validate_extra_date_factory('temporal_end', True),
             'odsh_tag_name_validator': tag_name_validator,
             'odsh_validate_extras':validate_extras
             }

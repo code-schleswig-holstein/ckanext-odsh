@@ -160,6 +160,8 @@ def odsh_extract_error(key, errors, field='extras'):
                     return error.replace(key+':', '')
 
 def odsh_extract_error_new(key, errors):
+    print('ERRORS')
+    print(errors)
     if not errors or not ('__extras' in errors):
         return None
     error = errors['__extras'][0].get(key,None)
