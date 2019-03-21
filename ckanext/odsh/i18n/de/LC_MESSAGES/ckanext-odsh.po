@@ -177,8 +177,20 @@ msgstr "Bitte geben Sie einen räumlichen Bezug an"
 msgid "odsh_temporal_start_error_label"
 msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
 
+msgid "temporal_start: empty"
+msgstr "Bitte wählen Sie einen Beginn des Zeitraumes aus"
+
 msgid "odsh_temporal_end_error_label"
 msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
+
+msgid "temporal_end: empty"
+msgstr "Bitte wählen Sie ein Ende des Zeitraumes aus"
+
+msgid "temporal_start: not a valid date"
+msgstr "Bitte wählen Sie einen gültigen Beginn des Zeitraumes aus"
+
+msgid "temporal_end: not a valid date"
+msgstr "Bitte wählen Sie ein gültiges Ende des Zeitraumes aus"
 
 msgid "odsh_temporal_error_label"
 msgstr "Bitte geben Sie einen gültigen Zeitraum an"

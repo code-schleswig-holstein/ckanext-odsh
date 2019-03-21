@@ -21,12 +21,12 @@ def _extract_value(data, field):
         return None
     return data[(key[0], key[1], 'value')]
 
-def validate_extra_groups(data, requireAtLeastOne):
+def validate_extra_groups(data, requireAtLeastOne, errors):
     value = _extract_value(data, 'groups')
     if not value:
-        if not requireAtLeastOne:
-            return None
-        return 'at least one group needed'
+        if requireAtLeastOne:
+            errors['groups']= 'at least one group needed'  
+        return 
 
     groups = [g.strip() for g in value.split(',') if value.strip()]
     for k in data.keys():
@@ -34,29 +34,24 @@ def validate_extra_groups(data, requireAtLeastOne):
             data[k]=''
             # del data[k]
     if len(groups)==0:
-        if not requireAtLeastOne:
-            return None
-        return 'at least one group needed'
+        if requireAtLeastOne:
+            errors['groups']= 'at least one group needed'  
+        return 
 
     for num, tag in zip(range(len(groups)), groups):
         data[('groups', num, 'id')] = tag
 
 def validate_extras(key, data, errors, context):
-    pass
     extra_errors = {}
-    error = validate_extra_groups(data,False)
-    if error:
-        extra_errors['groups'] = error
+    isStaNord = ('id',) in data and data[('id',)][:7] == 'StaNord'
 
-    error = validate_extra_date_new(key, 'issued', data, False)
-    if error:
-        extra_errors['issued'] = error
+    validate_extra_groups(data, False, extra_errors)
+    validate_extra_date_new(key, 'issued', data, False, extra_errors)
+    validate_extra_date_new(key, 'temporal_start', data, isStaNord, extra_errors)
+    validate_extra_date_new(key, 'temporal_end', data, True, extra_errors)
+    validate_licenseAttributionByText(data, extra_errors)
 
-    error = validate_licenseAttributionByText(data)
-    if error:
-        extra_errors['licenseAttributionByText'] = error
-
-    if extra_errors:
+    if len(extra_errors.values()):
         raise toolkit.Invalid(extra_errors)
 
 def _set_value(data, field, value):
@@ -69,25 +64,24 @@ def _set_value(data, field, value):
         return None
     data[(key[0], key[1], 'value')] = value
 
-def validate_extra_date_new(key, field, data, optional=False):
+def validate_extra_date_new(key, field, data, optional, errors):
     value = _extract_value(data, field)
 
     if not value:
-        if optional:
-            return 
-        # Statistikamt Nord does not always provide temporal_start/end,
-        # but their datasets have to be accepted as they are.
-        if not ('id',) in data or data[('id',)][:7] != 'StaNord':
-            return 'empty'
+        if not optional:
+            errors[field] = 'empty'
+        return
     else:
         if re.match(r'\d\d\d\d-\d\d-\d\d', value):
             try:
+                print('parse')
+                print(value)
                 dt=parse(value)
                 _set_value(data, field, dt.isoformat())
                 return
             except ValueError:
                 pass
-        return 'not a valid date'
+        errors[field] = 'not a valid date'
 
 def validate_extra_date(key, field, data, optional=False):
     value = _extract_value(data, field)
@@ -113,7 +107,7 @@ def validate_extra_date(key, field, data, optional=False):
 def validate_extra_date_factory(field, optional=False):
     return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
 
-def validate_licenseAttributionByText(data):
+def validate_licenseAttributionByText(data, errors):
     register = model.Package.get_license_register()
     isByLicense=False
     for k in data:
@@ -133,9 +127,9 @@ def validate_licenseAttributionByText(data):
                 hasAttribution = value != ''
                 break
     if isByLicense and not hasAttribution:
-        return 'empty not allowed'
+        errors['licenseAttributionByText'] = 'empty not allowed'
     if not isByLicense and hasAttribution:
-        return 'text not allowed for this license'
+        errors['licenseAttributionByText'] = 'text not allowed for this license'
 
 def known_spatial_uri(key, data, errors, context):
     value = _extract_value(data, 'spatial_uri')
@@ -210,8 +204,6 @@ def tag_string_convert(key, data, errors, context):
 def get_validators():
     return {
             'known_spatial_uri': known_spatial_uri,
-            'odsh_validate_temporal_start': validate_extra_date_factory('temporal_start'),
-            'odsh_validate_temporal_end': validate_extra_date_factory('temporal_end', True),
             'odsh_tag_name_validator': tag_name_validator,
             'odsh_validate_extras':validate_extras
             }
