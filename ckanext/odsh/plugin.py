@@ -253,7 +253,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         schema['extras'].update({
             'key': [
-                toolkit.get_converter('odsh_validate_issued'),
                 toolkit.get_converter('odsh_validate_temporal_start'),
                 toolkit.get_converter('odsh_validate_temporal_end'),
                 toolkit.get_converter('known_spatial_uri'),
