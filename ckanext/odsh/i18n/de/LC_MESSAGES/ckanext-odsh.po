@@ -235,9 +235,14 @@ msgstr "Bitte geben Sie ein Format an"
 msgid "odsh_licence_text_missing_error_label"
 msgstr "Bitte geben Sie einen Namen an"
 
+msgid "licenseAttributionByText: empty not allowed"
+msgstr "Bitte geben Sie einen Namen an"
+
 msgid "odsh_licence_text_not_allowed_error_label"
 msgstr "Ein Name ist bei dieser Lizenz nicht zulässig"
 
+msgid "licenseAttributionByText: text not allowed for this license"
+msgstr "Ein Name ist bei dieser Lizenz nicht zulässig"
 
 msgid "Followers"
 msgstr "Abonennten"
@@ -351,5 +356,5 @@ msgstr "verwendet URIs"
 msgid "4LD"
 msgstr "Linked Data"
 
-msgid "at least one group needed"
+msgid "groups: at least one group needed"
 msgstr "Bitte geben Sie mindestens eine Kategorie an"
