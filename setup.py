@@ -92,6 +92,7 @@ setup(
         ckan = ckan.lib.extract:extract_ckan
 
         [ckan.rdf.profiles]
+        odsheuro_dcat_ap=ckanext.odsh.profiles:ODSHEuropeanDCATAPProfile
         odshdcatap_de=ckanext.odsh.profiles:ODSHDCATdeProfile
     ''',
 

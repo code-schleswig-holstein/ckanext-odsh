@@ -231,12 +231,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def _update_schema(self, schema):
         for field in ['title', 'notes','license_id']:
             schema.update({field: [toolkit.get_converter('not_empty')]})
-        
-        ##schema.update({'group_string': [toolkit.get_converter('odsh_group_string_convert')]})
-        # for i, item in enumerate(schema['groups']):
-        #schema['id'].update({'id': schema['groups']['id']+[toolkit.get_converter('odsh_group_convert')]})
-        ##schema['groups'].update({'id': schema['groups']['id']})
-    ##        schema.update({'groups': [toolkit.get_converter('empty')]})
 
         for i, item in enumerate(schema['tags']['name']):
             if item == toolkit.get_validator('tag_name_validator'):
@@ -256,7 +250,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_converter('odsh_validate_temporal_start'),
                 toolkit.get_converter('odsh_validate_temporal_end'),
                 toolkit.get_converter('known_spatial_uri'),
-                toolkit.get_converter('licenseAttributionByText')
             ]
         })
         ##schema.update({'title': [toolkit.get_converter('odsh_validate_extras')]+ schema['title']})
