@@ -59,7 +59,7 @@ is_required=true,placeholder=_('Enter title')) }}
 
 
     <!-- field license -->
-    {% set error_missing_attr = h.odsh_extract_error('licenseAttributionByText', errors) %}
+    {% set error_missing_attr = h.odsh_extract_error_new('licenseAttributionByText', errors) %}
     <label class="control-label" for="field-license">
         {{ _("License") }}:
         <span title="{{ _("This field is required") }}" class="control-required">*</span>
@@ -88,7 +88,7 @@ is_required=true,placeholder=_('Enter title')) }}
             <div class="control-group {{ " error" if error_missing_attr }} control-full">
                 <div class="controls">
                             {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', attrs={'disabled':true,
-            'data-module':"odsh_form", 'data-module-licensetoggle':'true' }, placeholder=_('enter name')) }}
+            'data-module':"odsh_form", 'data-module-licensetoggle':'true', 'data-module-autofill':'true'}, placeholder=_('enter name')) }}
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@ is_required=true,placeholder=_('Enter title')) }}
                 </div>
                 <div class="span6 inline-error">
                     {% if error %} 
-                    {{_('issued: ' + error)}}
+                    {{_(error)}}
                     {% endif %}
                 </div>
             </div>
