@@ -135,8 +135,13 @@ def known_spatial_uri(key, data, errors, context):
     value = _extract_value(data, 'spatial_uri')
 
     if not value:
-        raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
-
+        # some harvesters might import a polygon directly...
+        poly = _extract_value(data, 'spatial')
+        if not poly:
+            raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
+        else:
+            return 
+                
     mapping_file = config.get('ckanext.odsh.spatial.mapping')
     try:
         mapping_file = urllib2.urlopen(mapping_file)
