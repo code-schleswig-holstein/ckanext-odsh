@@ -35,6 +35,7 @@ Example:
 {% if query %}
 {%- if count -%}
 {{ text_query.format(number=h.localised_number(count), query=query) }}
+<a href={{h.url_for(controller='feed', action='custom', q=query)}}> <i class="fa fa-medium fa-rss"></i></a>
 {%- else -%}
 {{ text_query_none.format(query=query) }}
 {%- endif -%}

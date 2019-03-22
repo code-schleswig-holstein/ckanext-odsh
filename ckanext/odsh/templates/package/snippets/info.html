@@ -56,6 +56,11 @@ Example:
                 <div>{{ _('issued') }}:</div>
                 {{issued}}
             </div>
+            <div class="last-change-detail info-detail">
+                {% set modified = h.odsh_render_datetime(pkg.metadata_modified)%} 
+                <div>{{ _('modified') }}:</div>
+                {{modified}}
+            </div>
             {% endblock %}
 
             {% endblock %}

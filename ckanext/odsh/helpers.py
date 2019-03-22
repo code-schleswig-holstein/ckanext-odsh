@@ -18,11 +18,11 @@ log = logging.getLogger(__name__)
 
 
 def odsh_openness_score_dataset_html(dataset):
-    score = 0
+    score = -1 
     #dataset = json.loads(dataset)
     resources = dataset.get('resources')
     if resources is None:
-        return 0
+        return score 
     for resource in resources:
         r_qa = resource.get('qa')
         if r_qa:
