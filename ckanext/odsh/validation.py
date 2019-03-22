@@ -1,3 +1,4 @@
+# This Python file uses the following encoding: utf-8
 import csv
 import re
 import urllib2
@@ -178,7 +179,7 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'value')] = spatial
 
 def tag_name_validator(value, context):
-    tagname_match = re.compile('[\w \-.\:\(\)äöüÄÖÜß\'\`]*$', re.UNICODE)
+    tagname_match = re.compile('[\w \-.\:\(\)äöüÄÖÜß\´\`]*$', re.UNICODE)
     if not tagname_match.match(value):
         raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
                                 'characters or symbols: -_.:()') % (value))
