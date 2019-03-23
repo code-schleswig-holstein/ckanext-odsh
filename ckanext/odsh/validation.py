@@ -12,6 +12,9 @@ from ckan.lib.navl.dictization_functions import Missing
 
 from pylons import config
 
+import logging
+log = logging.getLogger(__name__)
+
 def _extract_value(data, field):
     key = None
     for k in data.keys():
@@ -24,25 +27,31 @@ def _extract_value(data, field):
 
 def validate_extra_groups(data, requireAtLeastOne, errors):
     value = _extract_value(data, 'groups')
-    if not value:
-        if requireAtLeastOne:
-            errors['groups']= 'at least one group needed'  
-        data[('groups', 0, 'id')] = '' 
-        return 
+    if value != None:
+        # 'value != None' means the extra key 'groups' was found,
+        # so the dataset came from manual editing via the web-frontend.        
+        if not value:
+            if requireAtLeastOne:
+                errors['groups']= 'at least one group needed'
+            data[('groups', 0, 'id')] = '' 
+            return 
 
-    groups = [g.strip() for g in value.split(',') if value.strip()]
-    for k in data.keys():
-        if len(k) == 3 and k[0] == 'groups':
-            data[k]=''
-            # del data[k]
-    if len(groups)==0:
-        if requireAtLeastOne:
-            errors['groups']= 'at least one group needed'  
-        return 
+        groups = [g.strip() for g in value.split(',') if value.strip()]
+        for k in data.keys():
+            if len(k) == 3 and k[0] == 'groups':
+                data[k]=''
+                # del data[k]
+        if len(groups)==0:
+            if requireAtLeastOne:
+                errors['groups']= 'at least one group needed'  
+            return 
 
-    for num, group in zip(range(len(groups)), groups):
-        data[('groups', num, 'id')] = group
-    
+        for num, group in zip(range(len(groups)), groups):
+            data[('groups', num, 'id')] = group
+    else: # no extra-field 'groups'
+        # dataset might come from a harvest process
+        if not data[('groups', 0, 'id')]:
+            errors['groups']= 'at least one group needed'
 
 def validate_extras(key, data, errors, context):
     extra_errors = {}
