@@ -12,6 +12,8 @@ from ckan.lib.navl.dictization_functions import Missing
 
 from pylons import config
 
+_ = toolkit._
+
 import logging
 log = logging.getLogger(__name__)
 

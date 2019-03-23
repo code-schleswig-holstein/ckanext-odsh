@@ -373,3 +373,8 @@ msgstr "Linked Data"
 
 msgid "groups: at least one group needed"
 msgstr "Bitte geben Sie mindestens eine Kategorie an"
+
+msgid "Tag \"%s\" must be alphanumeric characters or symbols: -_.:()"
+msgstr ""
+"Tags \"%s\" müssen aus alphnummerischen Zeichen oder diesen Symbolen "
+"bestehen: -_.:()"
