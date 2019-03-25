@@ -23,7 +23,7 @@
 </div>
 {% if c.group_dict.description %}
 <p class="organizaion-full-description with-bottom-line">
-    {{ h.markdown_extract(c.group_dict.description, extract_length=0) }}
+    {{ h.render_markdown(c.group_dict.description) }}
 </p>
 {% else %}
 <p class="empty">{{ _('There is no description for this organization') }}</p>
