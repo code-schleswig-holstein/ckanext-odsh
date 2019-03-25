@@ -577,6 +577,7 @@ label:after {
 .image-upload label:after {
     content: ": *";
 }
+.multiselect.btn.btn-default,
 .controls input,
 .controls select,
 .controls ul.select2-choices,
@@ -1776,4 +1777,119 @@ p.package-info-categorie
 .dataset-spacer{
     display: table-cell;
     width: 25px;
+}
+
+.multiselect-native-select,
+.multiselect-native-select .btn-group
+{
+    width: 100%;
+}
+
+#field-groups
+{
+    color:#F6F7F9;
+}
+
+#field-groups,
+.multiselect.btn.btn-default
+{
+    width: 100%;
+    height: 30px;
+    padding: 0px;
+    text-align: left;
+}
+
+.multiselect.btn.btn-default  .multiselect-selected-text
+{
+    padding-left: 10px;
+}
+
+.multiselect.btn.btn-default .caret {
+    border-top: 6px solid #657592;
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    float: right;
+    margin-right: 5px;
+}
+
+.select2-container .select2-choice .select2-arrow
+{
+    width: 12px;
+}
+.select2-container .select2-choice .select2-arrow b
+{
+    background: none;
+    border-top: 6px solid #657592;
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    content: '';
+    margin-top: 10px;
+    margin-left: 0;
+}
+.select2-container .select2-choice .select2-arrow
+{
+    background-image: none;
+    border:none;
+    background-color:#F6F7F9;
+    color: #657592;
+}
+
+.multiselect-container.dropdown-menu
+{
+    padding-top:10px;
+    border-top: none;
+    border-color: #657592;
+    border-radius: 0px;
+    top: 26px;
+    width: 429px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.multiselect-container.dropdown-menu .checkbox
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.multiselect-container>li>a>label>input[type=checkbox]
+{
+    float:none;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,
+.dropdown-menu > li.active a, 
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a 
+{
+    background-color: #3875d7;
+    background-image: none;
+}
+
+.select2-results
+{
+    padding: 0px;
+}
+.select2-drop
+{
+    border-radius: 0px;
+}
+.select2-drop-active
+{
+    border-color: #657592;
+}
+
+.controls .multiselect:focus,
+.controls select:focus,
+.controls textarea:focus
+{
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6)
 }
