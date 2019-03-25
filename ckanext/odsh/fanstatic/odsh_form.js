@@ -19,6 +19,11 @@ ckan.module('odsh_form', function ($)
                             var values = $('#field-groups option:selected')
                                 .map(function (a, item) { return item.value; }).get().join(',')
                             $('#field-groups-value').val(values);
+                        },
+                        onInitialized: function ()
+                        {
+                            var mselectc = $('.multiselect-container.dropdown-menu')
+                            mselectc.width(mselectc.parents("div").width()-2)
                         }
                     });
                 }
@@ -30,14 +35,14 @@ ckan.module('odsh_form', function ($)
                 // TODO: this implementation should be more generic
                 var id = '#field-license';
                 var id_name = '#field-licenseAttributionByText-value';
-                var autofill=this.options.autofill
+                var autofill = this.options.autofill
                 var toggle = function ()
                 {
                     let text = $(id + ' option:selected').text()
                     if (text.indexOf('Namensnennung') !== -1)
                     {
                         $(id_name).prop('disabled', false);
-                        if (!$(id_name).val()&&autofill)
+                        if (!$(id_name).val() && autofill)
                             $(id_name).val($('#field-organizations option:selected').text());
                     } else
                     {
