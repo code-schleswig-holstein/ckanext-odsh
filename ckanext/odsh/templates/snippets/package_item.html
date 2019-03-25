@@ -98,7 +98,9 @@ Example:
     </ul>
     {% endif %}
     <div class="dataset-stars">
+    {% if stars>-1%}
       {% snippet "qa/stars.html", stars=stars %}
+    {% endif %}
     </div>
 
     <div class="dataset-info issued">
