@@ -162,6 +162,9 @@ msgstr "Letzte Änderung"
 msgid "issued"
 msgstr "Veröffentlicht"
 
+msgid "modified"
+msgstr "Zuletzt bearbeitet"
+
 msgid "Files"
 msgstr "Dateien"
 
