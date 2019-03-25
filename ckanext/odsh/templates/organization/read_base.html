@@ -22,9 +22,9 @@
     <h2> {{ c.group_dict.title or c.group_dict.name }} </h2>
 </div>
 {% if c.group_dict.description %}
-<p class="organizaion-full-description with-bottom-line">
+<div class="organizaion-full-description with-bottom-line">
     {{ h.render_markdown(c.group_dict.description) }}
-</p>
+</div>
 {% else %}
 <p class="empty">{{ _('There is no description for this organization') }}</p>
 {% endif %}
