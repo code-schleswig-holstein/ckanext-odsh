@@ -118,22 +118,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return map
 
     def before_map(self, map):
-        # allow all other plugin routes
-        # for plugin in p.PluginImplementations(p.IRoutes):
-        #     if not isinstance(plugin, OdshPlugin):
-        #         print(plugin)
-        #         map = plugin.before_map(map)
-        # for plugin in p.PluginImplementations(p.IRoutes):
-        #     if not isinstance(plugin, OdshPlugin):
-        #         print(plugin)
-        #         map = plugin.after_map(map)
-
-        # /api ver 3 or none
-        with SubMapper(map, controller='api', path_prefix='/api{ver:/3|}',
-                    ver='/3') as m:
-            m.connect('/action/{logic_function}', action='action',
-                    conditions=dict(method=['GET', 'POST']))
-
         map.connect('info_page', '/info_page',
                     controller='ckanext.odsh.controller:OdshRouteController', action='info_page')
         map.connect('home', '/',
@@ -141,45 +125,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
-        # /api/util ver 1, 2 or none
-        with SubMapper(map, controller='api', path_prefix='/api{ver:/1|/2|}',
-                    ver='/1') as m:
-            m.connect('/i18n/{lang}', action='i18n_js_translations')
-
-        with SubMapper(map, controller='package') as m:
-            m.connect('search', '/dataset', action='search',
-                    highlight_actions='index search')
-            m.connect('add dataset', '/dataset/new', action='new')
-
-            m.connect('/dataset/{action}/{id}',
-                    requirements=dict(action='|'.join([
-                        'new_resource',
-                    ])))
-            m.connect('dataset_edit', '/dataset/edit/{id}', action='edit',
-                    ckan_icon='pencil-square-o')
-            m.connect('dataset_read', '/dataset/{id}', action='read',
-                    ckan_icon='sitemap')
-            m.connect('resource_edit', '/dataset/{id}/resource_edit/{resource_id}',
-                    action='resource_edit', ckan_icon='pencil-square-o')
-            m.connect('/dataset/{id}/resource/{resource_id}/download',
-                    action='resource_download')
-            m.connect('/dataset/{id}/resource/{resource_id}/download/{filename}',
-                    action='resource_download')
-
-        with SubMapper(map, controller='organization') as m:
-            m.connect('organizations_index', '/organization', action='index')
-            m.connect('/organization/new', action='new')
-            m.connect('/organization/{action}/{id}',
-                    requirements=dict(action='|'.join([
-                        'delete',
-                        'member_new',
-                        'member_delete',
-                    ])))
-            m.connect('organization_read', '/organization/{id}', action='read', ckan_icon='sitemap')
-            m.connect('organization_edit', '/organization/edit/{id}',
-                    action='edit', ckan_icon='pencil-square-o')
-            m.connect('organization_members', '/organization/members/{id}',
-                    action='members', ckan_icon='users')
 
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
@@ -196,17 +141,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('/user/logged_out_redirect', action='logged_out_page')
             m.connect('user_datasets', '/user/{id:.*}', action='read',
                       ckan_icon='sitemap')
-
-        # robots.txt
-        map.connect('/(robots.txt)', controller='template', action='view')
-
-        # sometimes we get requests for favicon.ico we should redirect to
-        # the real favicon location.
-        map.redirect('/favicon.ico', config.get('ckan.favicon'))
-
-        ## everything that is not mapped above is mapped to 'not found' this also applies to all routes which are mapped afterwards
-        ##map.connect('block', '/{url:.*}', controller='ckanext.odsh.controller:OdshRouteController', action='not_found')
-
         return map
 
     def dataset_facets(self, facets_dict, package_type):
