@@ -182,12 +182,10 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         schema['extras'].update({
             'key': [
                 toolkit.get_converter('known_spatial_uri'),
+                toolkit.get_converter('validate_licenseAttributionByText'),
             ]
         })
-        ##schema.update({'title': [toolkit.get_converter('odsh_validate_extras')]+ schema['title']})
         schema.update({'__extras':  [toolkit.get_converter('odsh_validate_extras')] })
-        # eschema = schema['extras']
-        ##schema.update({'extras':  None })
 
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()

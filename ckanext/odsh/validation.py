@@ -26,6 +26,7 @@ def validate_extra_groups(data, requireAtLeastOne, errors):
     if not value:
         if requireAtLeastOne:
             errors['groups']= 'at least one group needed'  
+        data[('groups', 0, 'id')] = '' 
         return 
 
     groups = [g.strip() for g in value.split(',') if value.strip()]
@@ -38,18 +39,19 @@ def validate_extra_groups(data, requireAtLeastOne, errors):
             errors['groups']= 'at least one group needed'  
         return 
 
-    for num, tag in zip(range(len(groups)), groups):
-        data[('groups', num, 'id')] = tag
+    for num, group in zip(range(len(groups)), groups):
+        data[('groups', num, 'id')] = group
+    
 
 def validate_extras(key, data, errors, context):
     extra_errors = {}
     isStaNord = ('id',) in data and data[('id',)][:7] == 'StaNord'
 
+
     validate_extra_groups(data, False, extra_errors)
-    validate_extra_date_new(key, 'issued', data, False, extra_errors)
+    validate_extra_date_new(key, 'issued', data, isStaNord, extra_errors)
     validate_extra_date_new(key, 'temporal_start', data, isStaNord, extra_errors)
     validate_extra_date_new(key, 'temporal_end', data, True, extra_errors)
-    validate_licenseAttributionByText(data, extra_errors)
 
     if len(extra_errors.values()):
         raise toolkit.Invalid(extra_errors)
@@ -107,7 +109,7 @@ def validate_extra_date(key, field, data, optional=False):
 def validate_extra_date_factory(field, optional=False):
     return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
 
-def validate_licenseAttributionByText(data, errors):
+def validate_licenseAttributionByText(key, data, errors,context):
     register = model.Package.get_license_register()
     isByLicense=False
     for k in data:
@@ -118,7 +120,8 @@ def validate_licenseAttributionByText(data, errors):
     hasAttribution=False
     for k in data:
         if data[k] == 'licenseAttributionByText':
-            if isinstance(data[(k[0], k[1], 'value')], Missing):
+            print(data[k])
+            if isinstance(data[(k[0], k[1], 'value')], Missing) or (k[0], k[1], 'value') not in data:
                 del data[(k[0], k[1], 'value')]
                 del data[(k[0], k[1], 'key')]
                 break
@@ -191,6 +194,8 @@ def tag_string_convert(key, data, errors, context):
     current_index = max([int(k[1]) for k in data.keys()
                          if len(k) == 3 and k[0] == 'tags'] + [-1])
 
+    print('TAGS')
+    print(current_index)
 
 
     for num, tag in zip(count(current_index+1), tags):
@@ -205,5 +210,6 @@ def get_validators():
     return {
             'known_spatial_uri': known_spatial_uri,
             'odsh_tag_name_validator': tag_name_validator,
-            'odsh_validate_extras':validate_extras
+            'odsh_validate_extras':validate_extras,
+            'validate_licenseAttributionByText':validate_licenseAttributionByText
             }

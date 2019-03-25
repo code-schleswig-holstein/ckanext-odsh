@@ -186,7 +186,7 @@ is_required=true,placeholder=_('Enter title')) }}
     '/api/2/util/tag/autocomplete?incomplete=?'} %}
     {{ form.input('tag_string', id='field-tags', label=_('Tags'), value=data.tag_string, error=errors.tag_string,
     classes=['control-full'], attrs=tag_attrs,
-    is_required=true, placeholder=_('odsh tags placeholder')) }}
+    is_required=false, placeholder=_('odsh tags placeholder')) }}
     {% endblock %}
 
 
