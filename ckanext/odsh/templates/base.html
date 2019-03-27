@@ -11,6 +11,7 @@
 {% block head_extras %}
 {{ super() }}
 {% set matomo_url = 'https://phpefi.schleswig-holstein.de/gsb_analytics/'%}
+{% set matomo_id = 3%}
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -20,11 +21,12 @@
   (function() {
     var u="{{matomo_url}}";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(['setSiteId', '{{matomo_id}}']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="{{matomo_url}}/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
+{% endblock %}
+{% block page %}
 {% endblock %}
