@@ -7,3 +7,24 @@
 <link rel="stylesheet" href="/odsh_header.css?refresh={{ range(1,10000) | random }}" />
 <link rel="stylesheet" href="/bootstrap-multiselect.css" />
 {% endblock %}
+
+{% block head_extras %}
+{{ super() }}
+{% set matomo_url = 'https://phpefi.schleswig-holstein.de/gsb_analytics/'%}
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="{{matomo_url}}";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="{{matomo_url}}/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+{% endblock %}
