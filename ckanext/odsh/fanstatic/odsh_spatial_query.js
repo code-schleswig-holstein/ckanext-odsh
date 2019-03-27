@@ -111,7 +111,6 @@ this.ckan.module('odsh-spatial-query', function ($, _)
       //     resolutions: [2000, 1100, 550, 275, 100, 50, 25, 10, 5, 2, 1, 0.5, 0.25]//,
       //     //origin: [0, 0]
       //   }),
-      console.log(this.options.map_config)
       map = ckan.commonLeafletMap(
         'dataset-map-container',
         this.options.map_config,
