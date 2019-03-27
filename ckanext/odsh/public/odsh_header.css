@@ -170,6 +170,7 @@
 }
 
 /* Font color of navigation links (default) */
+.masthead .nav>li>a:focus,
 .masthead .nav>li>a, .masthead .nav>.active>a {
     padding: 16px 10px 19px;
     color: #003064;
