@@ -3,6 +3,9 @@ from ckanext.dcat.utils import resource_uri
 from ckanext.dcat.profiles import EuropeanDCATAPProfile, DCT
 from ckan.model.license import LicenseRegister
 import ckanext.dcatde.dataset_utils as ds_utils
+import logging
+
+log = logging.getLogger(__name__)
 
 class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
 
@@ -33,7 +36,7 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
 
 class ODSHDCATdeProfile(DCATdeProfile):
     def parse_dataset(self, dataset_dict, dataset_ref):
-        dataset_dict = super(DCATdeProfile,self).parse_dataset(dataset_dict, dataset_ref)
+        dataset_dict = super(ODSHDCATdeProfile,self).parse_dataset(dataset_dict, dataset_ref)
         # Enhance Distributions
         for distribution in self.g.objects(dataset_ref, DCAT.distribution):
             for resource_dict in dataset_dict.get('resources', []):
