@@ -3,6 +3,9 @@
 
 {%- block content %}
 {% block maintag %}<div role="main">{% endblock %}
+{% set matomo_url = 'https://phpefi.schleswig-holstein.de/gsb_analytics/'%}
+{% set matomo_id = 3%}
+<noscript><p><img src="{{matomo_url}}/piwik.php?idsite={{matomo_id}}" style="border:0;" alt="" /></p></noscript>
   <div id="content" class="container">
 <div id="testsystem">
       <p>TESTSYSTEM</p>
