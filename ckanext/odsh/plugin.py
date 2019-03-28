@@ -125,6 +125,13 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
+        # /api ver 3 or none with matomo
+        GET_POST = dict(method=['GET', 'POST'])
+        with SubMapper(map, controller='ckanext.odsh.controller:MamotoApiController', path_prefix='/api{ver:/3|}', ver='/3') as m:
+            m.connect('/action2/{logic_function}', action='action', conditions=GET_POST)
+
+        with SubMapper(map, controller='ckanext.odsh.controller:MatomoFeedController') as m:
+            m.connect('/feeds/custom.atom', action='custom')
 
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
