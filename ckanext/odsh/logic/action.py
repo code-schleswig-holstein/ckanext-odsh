@@ -2,6 +2,7 @@ import logging
 from ckan.logic.action.create import package_create, user_create, group_member_create
 import ckan.model as model
 import ckan.lib.dictization.model_dictize as model_dictize
+import ckan.plugins.toolkit as toolkit
 
 log = logging.getLogger(__name__)
 
@@ -28,5 +29,7 @@ def munge_increment_name(data_dict):
 def odsh_user_create(context, data_dict):
     model = context['model']
     user = user_create(context, data_dict)
-    a = group_member_create(context, {'id': 'educ', 'username': user.get('username'), 'role': 'editor'})
-    return model_dictize.user_dictize(model.User.get(user.get('username')), context)
+    groups = toolkit.get_action('group_list')
+    for group in groups:
+        group_member_create(context, {'id': group, 'username': user.get('name'), 'role': 'member'})
+    return model_dictize.user_dictize(model.User.get(user.get('name')), context)
