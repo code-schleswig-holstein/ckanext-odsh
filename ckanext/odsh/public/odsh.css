@@ -1818,6 +1818,14 @@ p.package-info-categorie
     float: right;
     margin-right: 5px;
 }
+.control-group.error .multiselect-container>li>a>label
+{
+    color: #003064;
+}
+.control-group.error .multiselect-container>li>a>label:hover
+{
+    color: white;
+}
 
 .select2-container .select2-choice .select2-arrow
 {
@@ -1868,11 +1876,12 @@ p.package-info-categorie
     float:none;
 }
 
+.select2-results .select2-highlighted,
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,
 .dropdown-menu > li.active a, 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a 
 {
-    background-color: #3875d7;
+    background-color: #003064;
     background-image: none;
 }
 

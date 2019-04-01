@@ -49,7 +49,7 @@ def validate_extras(key, data, errors, context):
     isStaNord = ('id',) in data and data[('id',)][:7] == 'StaNord'
 
 
-    validate_extra_groups(data, False, extra_errors)
+    validate_extra_groups(data, True, extra_errors)
     validate_extra_date_new(key, 'issued', data, isStaNord, extra_errors)
     validate_extra_date_new(key, 'temporal_start', data, isStaNord, extra_errors)
     validate_extra_date_new(key, 'temporal_end', data, True, extra_errors)

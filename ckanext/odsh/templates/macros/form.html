@@ -156,7 +156,7 @@ options - A list/tuple of fields to be used as <options>.
 
         #}
         {% macro markdown(name, id='', label='', value='', placeholder='', error="", classes=[], attrs={},
-        is_required=false) %}
+        is_required=false, cols=20, rows=5) %}
         {% set classes = (classes|list) %}
         {% do classes.append('control-full') %}
         {% set markdown_tooltip = "
@@ -169,7 +169,7 @@ options - A list/tuple of fields to be used as <options>.
         extra_html=extra_html, is_required=is_required) %}
         <div class="row-fluid">
             <div class="span6">
-                <textarea id="{{ id or name }}" name="{{ name }}" cols="20" rows="5" placeholder="{{ placeholder }}"
+                <textarea id="{{ id or name }}" name="{{ name }}" cols="{{cols}}" rows="{{rows}}" placeholder="{{ placeholder }}"
                     {{ attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
             </div>
             <div class="span6 inline-error">
