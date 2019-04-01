@@ -1818,6 +1818,10 @@ p.package-info-categorie
     float: right;
     margin-right: 5px;
 }
+.control-group.error .multiselect-container>li>a>label
+{
+    color: #003064;
+}
 
 .select2-container .select2-choice .select2-arrow
 {
