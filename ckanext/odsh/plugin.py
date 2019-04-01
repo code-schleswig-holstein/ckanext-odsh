@@ -130,7 +130,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         with SubMapper(map, controller='ckanext.odsh.controller:MamotoApiController', path_prefix='/api{ver:/3|}', ver='/3') as m:
             m.connect('/action2/{logic_function}', action='action', conditions=GET_POST)
 
-        with SubMapper(map, controller='ckanext.odsh.controller:MatomoFeedController') as m:
+        with SubMapper(map, controller='ckanext.odsh.controller:OdshFeedController') as m:
             m.connect('/feeds/custom.atom', action='custom')
 
         # redirect all user routes to custom controller

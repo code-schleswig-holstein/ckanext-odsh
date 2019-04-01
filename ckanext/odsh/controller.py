@@ -4,12 +4,14 @@ from ckan.controllers.user import UserController
 from ckan.controllers.api import ApiController
 from ckan.controllers.feed import FeedController
 from ckan.controllers.package import PackageController
+from ckan.controllers.feed import FeedController, ITEMS_LIMIT, _package_search, _create_atom_id
 import ckan.lib.helpers as h
 import ckan.authz as authz
 from ckan.common import c
 import logging
 import matomo 
 import ckan.logic as logic
+from ckan.common import c, request, config
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -131,3 +133,60 @@ class MatomoFeedController(FeedController):
     def custom(self):
         matomo.create_matomo_request()
         return FeedController.custom(self)
+
+class OdshFeedController(FeedController):
+    def custom(self):
+        extra_fields=['ext_startdate', 'ext_enddate', 'ext_bbox', 'ext_prev_extent']
+        q = request.params.get('q', u'')
+        fq = ''
+        search_params = {}
+        extras = {}
+        for (param, value) in request.params.items():
+            if param not in ['q', 'page', 'sort'] + extra_fields \
+                    and len(value) and not param.startswith('_'):
+                search_params[param] = value
+                fq += ' %s:"%s"' % (param, value)
+            if param in extra_fields:
+                extras[param]=value
+        search_params['extras']=extras
+
+        page = h.get_page_number(request.params)
+
+        limit = ITEMS_LIMIT
+        data_dict = {
+            'q': q,
+            'fq': fq,
+            'start': (page - 1) * limit,
+            'rows': limit,
+            'sort': request.params.get('sort', None),
+            'extras': extras
+        }
+
+        item_count, results = _package_search(data_dict)
+
+        navigation_urls = self._navigation_urls(request.params,
+                                                item_count=item_count,
+                                                limit=data_dict['rows'],
+                                                controller='feed',
+                                                action='custom')
+
+        feed_url = self._feed_url(request.params,
+                                  controller='feed',
+                                  action='custom')
+
+        atom_url = h._url_with_params('/feeds/custom.atom',
+                                      search_params.items())
+
+        alternate_url = self._alternate_url(request.params)
+
+        site_title = config.get('ckan.site_title', 'CKAN')
+
+        return self.output_feed(results,
+                                feed_title=u'%s - Custom query' % site_title,
+                                feed_description=u'Recently created or updated'
+                                ' datasets on %s. Custom query: \'%s\'' %
+                                (site_title, q),
+                                feed_link=alternate_url,
+                                feed_guid=_create_atom_id(atom_url),
+                                feed_url=feed_url,
+                                navigation_urls=navigation_urls)

@@ -114,13 +114,13 @@
     margin-right: auto;
 }
 
-.masthead .nav-collapse {
+.navbar.masthead .nav-collapse {
     float: left;
     padding-top: 0px;
     width: 100%;
 }
 
-.masthead .navigation {
+.navbar.masthead .navigation {
      margin-right: 0px; 
 }
 .navbar .nav
@@ -128,8 +128,8 @@
     margin: 0px;
 }
 
-.masthead .navigation .nav-pills,
-.masthead .navigation  {
+.navbar.masthead .navigation .nav-pills,
+.navbar.masthead .navigation  {
     width: 100%;
 }
 
@@ -139,29 +139,29 @@
     background-color: #003064 !important;
 }
 
-.masthead .navigation .nav-pills li:not(:first-child) {
+.navbar.masthead .navigation .nav-pills li:not(:first-child) {
     margin-left: 22px;
 }
 
 /* Default border to align font vertically to active navigation tab */
-.masthead .navigation .nav-pills li {
+.navbar.masthead .navigation .nav-pills li {
     border-top: 2px solid #f2f2f2;
 }
 
 /* Change default border color on hover to background color (align font vertically to active navigation tab) */
 
-.masthead .navigation .nav-pills li.open,
-.masthead .navigation .nav-pills li:hover {
+.navbar.masthead .navigation .nav-pills li.open,
+.navbar.masthead .navigation .nav-pills li:hover {
     border-top: 2px solid #003064;
 }
 
 /* The active navigation tab gets a differently coloured top-border */
-.masthead .navigation .nav-pills li.active {
+.navbar.masthead .navigation .nav-pills li.active {
     border-top: 2px solid #003064;
 }
 
 /* Remove borders and get background color from parent (.navigation-container) */
-.masthead .navigation .nav-pills li.active a {
+.navbar.masthead .navigation .nav-pills li.active a {
     background-color: inherit;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -170,44 +170,41 @@
 }
 
 /* Font color of navigation links (default) */
-.masthead .nav>li>a:focus,
-.masthead .nav>li>a, .masthead .nav>.active>a {
+.navbar.masthead .nav>li>a:focus,
+.navbar.masthead .nav>li>a, .navbar.masthead .nav>.active>a {
     padding: 16px 10px 19px;
     color: #003064;
     font-size: 1.125rem;
 }
 
 /* Font color of navigation links (hover) */
-.masthead .nav>li:hover a {
+.navbar.masthead .nav>li:hover a {
     color: #ffffff;
     text-decoration: underline;
 }
 
-.masthead .navigation .nav-pills li.disabled a:hover, 
-.masthead .navigation .nav-pills li.disabled
+.navbar.masthead .navigation .nav-pills li.disabled a:hover, 
+.navbar.masthead .navigation .nav-pills li.disabled
 {
     pointer-events: none;
     cursor: default;
     background-color: rgb(242, 242, 242)!important;
     border-top: 2px solid rgb(242, 242, 242) ;
 }
-.masthead .navigation .nav-pills li.disabled span{
+.navbar.masthead .navigation .nav-pills li.disabled span{
     color:rgba(0, 49, 102, 0.44);
 }
-.masthead .navigation .nav-pills li.disabled:hover{
+.navbar.masthead .navigation .nav-pills li.disabled:hover{
     background-color: rgb(242, 242, 242)!important;
 }
 
-.masthead .navigation .nav-pills .dropdown 
-{
-}
 
-.masthead .navigation .nav-pills .dropdown .dropdown-menu
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu
 {
     width: 190px;
 }
 
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li
 {
     color:black;
     margin-left: 0px;
@@ -215,16 +212,16 @@
     border: none;
 }
 
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a:hover,
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover,
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover a
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a:hover,
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover,
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover a
 {
     color:white;
     background-color: #003064;
     cursor: pointer;
 }
 
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li > a
 {
     color:white;
     color: #003064;
@@ -235,26 +232,26 @@
     display: inline-block;
 }
 
-.masthead .navigation .nav-pills li.dropdown.open,
-.masthead .navigation .nav-pills li.dropdown.open > a.dropdown-toggle:hover,
+.navbar.masthead .navigation .nav-pills li.dropdown.open,
+.navbar.masthead .navigation .nav-pills li.dropdown.open > a.dropdown-toggle:hover,
 .navbar .nav li.dropdown.open > .dropdown-toggle
 {
     background-color: #003064;
     color: white;
 } 
 
-.masthead .navigation .nav-pills .dropdown img
+.navbar.masthead .navigation .nav-pills .dropdown img
 {
     height: 2.5em;
     vertical-align: middle;
 }
 
-.masthead .navigation .nav-pills li.dropdown
+.navbar.masthead .navigation .nav-pills li.dropdown
 {
     float: right;
 }
 
-.masthead .navigation .nav-pills li.dropdown > .dropdown-toggle
+.navbar.masthead .navigation .nav-pills li.dropdown > .dropdown-toggle
 {
     padding-bottom: 12px;
     padding-top: 12px;
@@ -279,13 +276,13 @@
     position: relative;
 }
 
-.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover .user-icon-small,
+.navbar.masthead .navigation .nav-pills .dropdown .dropdown-menu > li:hover .user-icon-small,
 .user-icon-small:hover{
     fill:white;
 }
 
-.masthead .navigation .nav-pills li.open .user-icon,
-.masthead .navigation .nav-pills li a:hover .user-icon
+.navbar.masthead .navigation .nav-pills li.open .user-icon,
+.navbar.masthead .navigation .nav-pills li a:hover .user-icon
 {
     fill:white;
 }
