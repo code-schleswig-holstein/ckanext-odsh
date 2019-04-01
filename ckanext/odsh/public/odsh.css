@@ -1868,11 +1868,12 @@ p.package-info-categorie
     float:none;
 }
 
+.select2-results .select2-highlighted,
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,
 .dropdown-menu > li.active a, 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a 
 {
-    background-color: #3875d7;
+    background-color: #003064;
     background-image: none;
 }
 
