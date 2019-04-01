@@ -12,6 +12,7 @@ import logging
 import matomo 
 import ckan.logic as logic
 from ckan.common import c, request, config
+import hashlib
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -64,25 +65,6 @@ class OdshPackageController(PackageController):
     pass
 
 class MamotoApiController(ApiController):
-
-    def _post_matomo(self, user, request_obj_type, request_function, request_id):
-    # if config.get('googleanalytics.id'):
-        data_dict = {
-            "siteid": 1,
-            "rec": 1,
-            # "tid": config.get('googleanalytics.id'),
-            # "cid": hashlib.md5(user).hexdigest(),
-            # # customer id should be obfuscated
-            # "t": "event",
-            # "dh": c.environ['HTTP_HOST'],
-            # "dp": c.environ['PATH_INFO'],
-            # "dr": c.environ.get('HTTP_REFERER', ''),
-            # "ec": "CKAN API Request",
-            # "ea": request_obj_type+request_function,
-            # "el": request_id,
-        }
-        # plugin.GoogleAnalyticsPlugin.analytics_queue.put(data_dict)
-
     def action(self, logic_function, ver=None):
         try:
             function = logic.get_action(logic_function)
@@ -95,47 +77,21 @@ class MamotoApiController(ApiController):
                     id = request_data['q']
                 if 'query' in request_data:
                     id = request_data['query']
-                # self._post_matomo(c.user, logic_function, '', id)
-                userid=hashlib.md5(user).hexdigest()
+                userid=None
+                if c.user:
+                    userid=hashlib.md5(c.user).hexdigest()[:16]
                 matomo.create_matomo_request(userid)
+            else:
+                matomo.create_matomo_request()
+
         except Exception, e:
-            log.debug(e)
-            pass
+            log.error(e)
         
-
         return ApiController.action(self, logic_function, ver)
-
-
-    # def list(self, ver=None, register=None, subregister=None, id=None):
-
-    # def show(self, ver=None, register=None, subregister=None,
-            #  id=None, id2=None):
-        # self._post_analytics(c.user,
-        #                      register +
-        #                      ("_"+str(subregister) if subregister else ""),
-        #                      "show",
-        #                      id)
-        # return ApiController.show(self, ver, register, subregister, id, id2)
-
-    # def create(self, ver=None, register=None, subregister=None,
-    #            id=None, id2=None):
-
-
-    # def update(self, ver=None, register=None, subregister=None,
-    #            id=None, id2=None):
-
-    # def delete(self, ver=None, register=None, subregister=None,
-    #            id=None, id2=None):
-
-    # def search(self, ver=None, register=None):
-
-class MatomoFeedController(FeedController):
-    def custom(self):
-        matomo.create_matomo_request()
-        return FeedController.custom(self)
 
 class OdshFeedController(FeedController):
     def custom(self):
+        matomo.create_matomo_request()
         extra_fields=['ext_startdate', 'ext_enddate', 'ext_bbox', 'ext_prev_extent']
         q = request.params.get('q', u'')
         fq = ''
