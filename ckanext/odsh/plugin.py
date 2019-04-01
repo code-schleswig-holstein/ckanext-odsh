@@ -225,8 +225,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # use several daterange queries agains temporal_start and temporal_end field
     # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
-        print('BEFORE')
-        print(search_params)
 
         extras = search_params.get('extras')
         if not extras:
