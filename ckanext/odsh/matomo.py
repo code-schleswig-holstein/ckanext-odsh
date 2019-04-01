@@ -2,14 +2,10 @@ from piwikapi.tracking import PiwikTracker
 from piwikapi.tests.request import FakeRequest
 from ckan.common import c, request
 from pylons import config
-
-# def get_request_url_with_params():
-#     if request.GET:
+import logging
+from ckan.plugins.toolkit import enqueue_job
 
 def create_matomo_request(userId=None):
-
-    # print(request.url)
-
     headers = {
         'HTTP_USER_AGENT': request.headers.get('User-Agent'),
         'REMOTE_ADDR': request.headers.get('Host'),
@@ -21,12 +17,8 @@ def create_matomo_request(userId=None):
         'HTTPS': False,
     }
     fakerequest = FakeRequest(headers)
-    piwiktracker = PiwikTracker('1', fakerequest)
-    piwiktracker.set_api_url('http://192.168.178.45/piwik.php')
+    piwiktracker =PiwikTracker(config.get('ckanext.odsh.matomo_id'), fakerequest)
+    piwiktracker.set_api_url(config.get('ckanext.odsh.matomo_url'))
     if userId:
         piwiktracker.set_visitor_id(userId)
-    # piwiktracker.set_ip(headers['REMOTE_ADDR']) # Optional, to override the IP
-    # piwiktracker.set_token_auth(PIWIK_TOKEN_AUTH)  # Optional, to override the IP
-    # print(piwiktracker.do_track_page_view('My Page Title'))
-    # print(c.environ['PATH_INFO'])
-    piwiktracker.do_track_page_view(request.path_qs)
+    enqueue_job(piwiktracker.do_track_page_view,[request.path_qs], queue='tracking')
