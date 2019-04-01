@@ -139,6 +139,11 @@ def odsh_upload_known_formats():
     value = toolkit.aslist(value)
     return value
 
+def odsh_tracking_id():
+    return config.get('ckanext.odsh.matomo_id')
+
+def odsh_tracking_url():
+    return config.get('ckanext.odsh.matomo_url')
 
 def odsh_encodeurl(url):
     return urllib.quote(url, safe='')
