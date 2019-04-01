@@ -1822,6 +1822,10 @@ p.package-info-categorie
 {
     color: #003064;
 }
+.control-group.error .multiselect-container>li>a>label:hover
+{
+    color: white;
+}
 
 .select2-container .select2-choice .select2-arrow
 {
