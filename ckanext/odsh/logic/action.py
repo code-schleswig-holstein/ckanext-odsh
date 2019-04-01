@@ -29,7 +29,7 @@ def munge_increment_name(data_dict):
 def odsh_user_create(context, data_dict):
     model = context['model']
     user = user_create(context, data_dict)
-    groups = toolkit.get_action('group_list')()
+    groups = toolkit.get_action('group_list')(data_dict={'all_fields': False})
     for group in groups:
         group_member_create(context, {'id': group, 'username': user.get('name'), 'role': 'member'})
     return model_dictize.user_dictize(model.User.get(user.get('name')), context)
