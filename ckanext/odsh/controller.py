@@ -72,8 +72,6 @@ class OdshFeedController(FeedController):
             if param in extra_fields:
                 extras[param]=value
         search_params['extras']=extras
-        print('EXTRAS')
-        print(search_params)
 
         page = h.get_page_number(request.params)
 
@@ -87,8 +85,6 @@ class OdshFeedController(FeedController):
             'extras': extras
         }
 
-        print('DATA')
-        print(data_dict)
         item_count, results = _package_search(data_dict)
 
         navigation_urls = self._navigation_urls(request.params,
