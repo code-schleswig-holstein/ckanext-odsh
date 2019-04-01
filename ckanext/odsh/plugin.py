@@ -112,7 +112,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_extract_error_new': odsh_helpers.odsh_extract_error_new,
                 'odsh_extract_value_from_extras': odsh_helpers.odsh_extract_value_from_extras,
                 'odsh_create_checksum': odsh_helpers.odsh_create_checksum,
-                'presorted_license_options': odsh_helpers.presorted_license_options
+                'presorted_license_options': odsh_helpers.presorted_license_options,
+                'odsh_tracking_id': odsh_helpers.odsh_tracking_id,
+                'odsh_tracking_url': odsh_helpers.odsh_tracking_url
                 }
 
     def after_map(self, map):
@@ -129,7 +131,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         # /api ver 3 or none with matomo
         GET_POST = dict(method=['GET', 'POST'])
         with SubMapper(map, controller='ckanext.odsh.controller:MamotoApiController', path_prefix='/api{ver:/3|}', ver='/3') as m:
-            m.connect('/action2/{logic_function}', action='action', conditions=GET_POST)
+            m.connect('/action/{logic_function}', action='action', conditions=GET_POST)
 
         with SubMapper(map, controller='ckanext.odsh.controller:OdshFeedController') as m:
             m.connect('/feeds/custom.atom', action='custom')

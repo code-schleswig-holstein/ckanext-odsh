@@ -1,13 +1,21 @@
 import ckan.lib.base as base
 from ckan.controllers.home import HomeController
 from ckan.controllers.user import UserController
+from ckan.controllers.api import ApiController
+from ckan.controllers.feed import FeedController
 from ckan.controllers.package import PackageController
 from ckan.controllers.feed import FeedController, ITEMS_LIMIT, _package_search, _create_atom_id
 import ckan.lib.helpers as h
 import ckan.authz as authz
+from ckan.common import c
+import logging
+import matomo 
+import ckan.logic as logic
 from ckan.common import c, request, config
+import hashlib
 
 abort = base.abort
+log = logging.getLogger(__name__)
 
 class OdshRouteController(HomeController):
     def info_page(self):
@@ -16,7 +24,6 @@ class OdshRouteController(HomeController):
         h.redirect_to('http://www.schleswig-holstein.de/odpstart')
     def not_found(self):
         abort(404)
-
 
 class OdshUserController(UserController):
     def me(self, locale=None):
@@ -57,8 +64,34 @@ class OdshUserController(UserController):
 class OdshPackageController(PackageController):
     pass
 
+class MamotoApiController(ApiController):
+    def action(self, logic_function, ver=None):
+        try:
+            function = logic.get_action(logic_function)
+            side_effect_free = getattr(function, 'side_effect_free', False)
+            request_data = self._get_request_data(
+                try_url_params=side_effect_free)
+            if isinstance(request_data, dict):
+                id = request_data.get('id', '')
+                if 'q' in request_data:
+                    id = request_data['q']
+                if 'query' in request_data:
+                    id = request_data['query']
+                userid=None
+                if c.user:
+                    userid=hashlib.md5(c.user).hexdigest()[:16]
+                matomo.create_matomo_request(userid)
+            else:
+                matomo.create_matomo_request()
+
+        except Exception, e:
+            log.error(e)
+        
+        return ApiController.action(self, logic_function, ver)
+
 class OdshFeedController(FeedController):
     def custom(self):
+        matomo.create_matomo_request()
         extra_fields=['ext_startdate', 'ext_enddate', 'ext_bbox', 'ext_prev_extent']
         q = request.params.get('q', u'')
         fq = ''

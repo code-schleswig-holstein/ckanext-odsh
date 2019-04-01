@@ -10,8 +10,8 @@
 
 {% block head_extras %}
 {{ super() }}
-{% set matomo_url = 'https://phpefi.schleswig-holstein.de/gsb_analytics/'%}
-{% set matomo_id = 3%}
+{% set matomo_url = h.odsh_tracking_url()%}
+{% set matomo_id = h.odsh_tracking_id()%}
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -19,11 +19,10 @@
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u="{{matomo_url}}";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setTrackerUrl', '{{matomo_url}}']);
     _paq.push(['setSiteId', '{{matomo_id}}']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='{{matomo_url|replace('piwik.php','piwik.js')}}'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <!-- End Matomo Code -->
