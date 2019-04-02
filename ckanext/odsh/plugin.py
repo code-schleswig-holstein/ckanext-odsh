@@ -61,12 +61,26 @@ def odsh_group_id_selected(selected, group_id):
 
     return False
 
+def remove_route(map,routename):
+    route = None
+    for i,r in enumerate(map.matchlist):
+
+        if r.name == routename:
+            route = r
+            break
+    if route is not None:
+        map.matchlist.remove(route)
+        for key in map.maxkeys:
+            if key == route.maxkeys:
+                map.maxkeys.pop(key)
+                map._routenames.pop(route.name)
+                break
+
 class OdshIcapPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IUploader, inherit=True)
 
     def get_resource_uploader(self, data_dict):
         return ODSHResourceUpload(data_dict)
-
 
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
@@ -128,9 +142,21 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
         map.redirect('/dataset/{id}/resource/{resource_id}', '/dataset/{id}')
 
+        if p.toolkit.asbool(config.get('ckanext.dcat.enable_rdf_endpoints', True)):
+            remove_route(map, 'dcat_catalog')
+            map.connect('dcat_catalog',
+                            config.get('ckanext.dcat.catalog_endpoint', '/catalog.{_format}'),
+                            controller='ckanext.odsh.controller:OdshDCATController', action='read_catalog',
+                            requirements={'_format': 'xml|rdf|n3|ttl|jsonld'})
+
+        # with SubMapper(map, controller='ckanext.odsh.controller:OdshApiController') as m:
+        #     m.connect('/catalog2', action='read_catalog')
+
+
+
         # /api ver 3 or none with matomo
         GET_POST = dict(method=['GET', 'POST'])
-        with SubMapper(map, controller='ckanext.odsh.controller:MamotoApiController', path_prefix='/api{ver:/3|}', ver='/3') as m:
+        with SubMapper(map, controller='ckanext.odsh.controller:OdshApiController', path_prefix='/api{ver:/3|}', ver='/3') as m:
             m.connect('/action/{logic_function}', action='action', conditions=GET_POST)
 
         with SubMapper(map, controller='ckanext.odsh.controller:OdshFeedController') as m:
