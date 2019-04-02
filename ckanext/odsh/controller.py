@@ -13,6 +13,8 @@ import matomo
 import ckan.logic as logic
 from ckan.common import c, request, config
 import hashlib
+import ckan.plugins.toolkit as toolkit
+from ckanext.dcat.controllers import DCATController
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -64,7 +66,7 @@ class OdshUserController(UserController):
 class OdshPackageController(PackageController):
     pass
 
-class MamotoApiController(ApiController):
+class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
         try:
             function = logic.get_action(logic_function)
@@ -88,6 +90,11 @@ class MamotoApiController(ApiController):
             log.error(e)
         
         return ApiController.action(self, logic_function, ver)
+    
+class OdshDCATController(DCATController):
+    def read_catalog(self, _format):
+        matomo.create_matomo_request()
+        return DCATController.read_catalog(self,_format)
 
 class OdshFeedController(FeedController):
     def custom(self):
