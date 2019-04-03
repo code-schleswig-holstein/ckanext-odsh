@@ -183,4 +183,4 @@ class OdshAutocompleteController(ApiController):
         if solr_response.hits == 0:
             raise SearchError('Dataset not found in the search index')
         else:
-            return base.response.body_file.write(solr_response.docs[0])
+            return base.response.body_file.write(str(solr_response.docs[0]))
