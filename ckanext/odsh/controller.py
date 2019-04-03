@@ -166,16 +166,19 @@ class OdshFeedController(FeedController):
 
 
 class OdshAutocompleteController(ApiController):
+    @staticmethod
     def autocomplete(self):
         query = {
-            'rows': 1,
-            'q': 'title: Obst',
+            'suggest': 'true',
+            'suggest.build': 'true',
+            'suggest.dictionary': 'ODSHSuggester',
+            'suggest.q': 'Obs',
             'wt': 'json'}
 
         conn = make_connection(decode_dates=False)
         log.debug('Package query: %r' % query)
         try:
-            solr_response = conn.search(**query)
+            solr_response = conn.search('', search_handler='suggest', **query)
         except pysolr.SolrError as e:
             raise SearchError('SOLR returned an error running query: %r Error: %r' %
                               (query, e))
