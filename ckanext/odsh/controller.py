@@ -175,14 +175,15 @@ class OdshAutocompleteController(ApiController):
             'wt': 'json'}
 
         conn = make_connection(decode_dates=False)
-        log.debug('Package query: %r' % query)
+        log.debug('Suggest query: %r' % query)
         try:
             solr_response = conn.search('', search_handler='suggest', **query)
         except pysolr.SolrError as e:
             raise SearchError('SOLR returned an error running query: %r Error: %r' %
                               (query, e))
 
-        if solr_response.hits == 0:
-            raise SearchError('Dataset not found in the search index')
-        else:
-            return base.response.body_file.write(str(solr_response.docs[0]))
+        suggest = solr_response.raw_response.get('suggest')
+        hits = suggest.get(query.get('suggest.dictionary')).get(query.get('suggest.q')).get('numFound')
+        if hits >= 1:
+            return base.response.body_file.write(suggest.get(query.get('suggest.dictionary'))
+                                                 .get(query.get('suggest.q')).get('suggestions')[0].get('term'))
