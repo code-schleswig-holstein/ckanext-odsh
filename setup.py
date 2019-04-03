@@ -84,6 +84,7 @@ setup(
         odsh_icap=ckanext.odsh.plugin:OdshIcapPlugin
         statistikamtnord_harvester=ckanext.odsh.harvesters:StatistikamtNordHarvester
         kiel_harvester=ckanext.odsh.harvesters:KielHarvester
+        odsh_autocomplete=ckanext.odsh.plugin:OdshAutocompletePlugin
 
         [paste.paster_command]
         odsh_initialization = ckanext.odsh.commands.initialization:Initialization
