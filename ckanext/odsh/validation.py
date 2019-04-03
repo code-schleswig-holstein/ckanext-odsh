@@ -88,8 +88,6 @@ def validate_extra_date_new(key, field, data, optional, errors):
     else:
         if re.match(r'\d\d\d\d-\d\d-\d\d', value):
             try:
-                print('parse')
-                print(value)
                 dt=parse(value)
                 _set_value(data, field, dt.isoformat())
                 return
@@ -121,8 +119,7 @@ def validate_extra_date(key, field, data, optional=False):
 def validate_extra_date_factory(field, optional=False):
     return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
 
-def validate_licenseAttributionByText(key, data, errors,context):    
-    log.error("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ")
+def validate_licenseAttributionByText(key, data, errors,context):
     register = model.Package.get_license_register()
     isByLicense=False
     for k in data:
@@ -133,7 +130,6 @@ def validate_licenseAttributionByText(key, data, errors,context):
     hasAttribution=False
     for k in data:
         if data[k] == 'licenseAttributionByText':
-            print(data[k])
             if isinstance(data[(k[0], k[1], 'value')], Missing) or (k[0], k[1], 'value') not in data:
                 del data[(k[0], k[1], 'value')]
                 del data[(k[0], k[1], 'key')]
@@ -146,7 +142,7 @@ def validate_licenseAttributionByText(key, data, errors,context):
         current_indexes = [k[1] for k in data.keys()
                            if len(k) > 1 and k[0] == 'extras']
 
-        new_index = max(current_indexes) + 1 if current_indexes else 0        
+        new_index = max(current_indexes) + 1 if current_indexes else 0
         data[('extras', new_index, 'key')] = 'licenseAttributionByText'
         data[('extras', new_index, 'value')] = ''
 
@@ -225,10 +221,6 @@ def tag_string_convert(key, data, errors, context):
 
     current_index = max([int(k[1]) for k in data.keys()
                          if len(k) == 3 and k[0] == 'tags'] + [-1])
-
-    print('TAGS')
-    print(current_index)
-
 
     for num, tag in zip(count(current_index+1), tags):
         data[('tags', num, 'name')] = tag
