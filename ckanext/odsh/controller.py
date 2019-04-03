@@ -15,6 +15,10 @@ from ckan.common import c, request, config
 import hashlib
 import ckan.plugins.toolkit as toolkit
 from ckanext.dcat.controllers import DCATController
+from ckan.lib.search.common import (
+    make_connection, SearchError, SearchQueryError
+)
+import pysolr
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -163,4 +167,20 @@ class OdshFeedController(FeedController):
 
 class OdshAutocompleteController(ApiController):
     def autocomplete(self):
-        base.response.body_file.write("Hello World")
+        query = {
+            'rows': 1,
+            'q': 'title: Obst',
+            'wt': 'json'}
+
+        conn = make_connection(decode_dates=False)
+        log.debug('Package query: %r' % query)
+        try:
+            solr_response = conn.search(**query)
+        except pysolr.SolrError as e:
+            raise SearchError('SOLR returned an error running query: %r Error: %r' %
+                              (query, e))
+
+        if solr_response.hits == 0:
+            raise SearchError('Dataset not found in the search index')
+        else:
+            return base.response.body_file.write(solr_response.docs[0])
