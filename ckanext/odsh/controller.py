@@ -166,7 +166,6 @@ class OdshFeedController(FeedController):
 
 
 class OdshAutocompleteController(ApiController):
-    @staticmethod
     def autocomplete(self):
         query = {
             'suggest': 'true',
