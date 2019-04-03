@@ -90,6 +90,7 @@ class OdshAutocompletePlugin(plugins.SingletonPlugin):
     def before_map(self, map):
         controller = 'ckanext.odsh.controller:OdshAutocompleteController'
         map.connect('/autocomplete', controller=controller, action='autocomplete')
+        return map
 
 
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
