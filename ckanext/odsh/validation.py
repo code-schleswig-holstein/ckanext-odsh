@@ -121,7 +121,8 @@ def validate_extra_date(key, field, data, optional=False):
 def validate_extra_date_factory(field, optional=False):
     return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
 
-def validate_licenseAttributionByText(key, data, errors,context):
+def validate_licenseAttributionByText(key, data, errors,context):    
+    log.error("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ")
     register = model.Package.get_license_register()
     isByLicense=False
     for k in data:
@@ -141,10 +142,24 @@ def validate_licenseAttributionByText(key, data, errors,context):
                 value = data[(k[0], k[1], 'value')]
                 hasAttribution = value != ''
                 break
+    if not hasAttribution:
+        current_indexes = [k[1] for k in data.keys()
+                           if len(k) > 1 and k[0] == 'extras']
+
+        new_index = max(current_indexes) + 1 if current_indexes else 0        
+        data[('extras', new_index, 'key')] = 'licenseAttributionByText'
+        data[('extras', new_index, 'value')] = ''
+
     if isByLicense and not hasAttribution:
-        errors['licenseAttributionByText'] = 'empty not allowed'
+        raise toolkit.Invalid(
+            'licenseAttributionByText:licenseAttributionByText: empty not allowed')
+
+#        errors['licenseAttributionByText'] = 'empty not allowed'
     if not isByLicense and hasAttribution:
-        errors['licenseAttributionByText'] = 'text not allowed for this license'
+        #errors['licenseAttributionByText'] = 'text not allowed for this license'
+        raise toolkit.Invalid(
+            'licenseAttributionByText: text not allowed for this license')
+
 
 def known_spatial_uri(key, data, errors, context):
     value = _extract_value(data, 'spatial_uri')
@@ -190,7 +205,7 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'value')] = spatial
 
 def tag_name_validator(value, context):
-    tagname_match = re.compile('[\w \-.\:\(\)äöüÄÖÜß\´\`]*$', re.UNICODE)
+    tagname_match = re.compile('[\w \-.\:\(\)\´\`]*$', re.UNICODE)
     if not tagname_match.match(value):
         raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
                                 'characters or symbols: -_.:()') % (value))
