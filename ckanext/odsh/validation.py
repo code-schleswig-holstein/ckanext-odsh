@@ -95,30 +95,6 @@ def validate_extra_date_new(key, field, data, optional, errors):
                 pass
         errors[field] = 'not a valid date'
 
-def validate_extra_date(key, field, data, optional=False):
-    value = _extract_value(data, field)
-
-    if not value:
-        if optional:
-            return 
-        # Statistikamt Nord does not always provide temporal_start/end,
-        # but their datasets have to be accepted as they are.
-        if not ('id',) in data or data[('id',)][:7] != 'StaNord':
-            raise toolkit.Invalid(field+':odsh_'+field+'_error_label')
-    else:
-        if re.match(r'\d\d\d\d-\d\d-\d\d', value):
-            try:
-                dt=parse(value)
-                _set_value(data, field, dt.isoformat())
-                return
-            except ValueError:
-                pass
-        raise toolkit.Invalid(field+':odsh_'+field+'_not_date_error_label')
-
-
-def validate_extra_date_factory(field, optional=False):
-    return lambda key, data, errors, context: validate_extra_date(key, field, data, optional)
-
 def validate_licenseAttributionByText(key, data, errors,context):
     register = model.Package.get_license_register()
     isByLicense=False
@@ -148,11 +124,9 @@ def validate_licenseAttributionByText(key, data, errors,context):
 
     if isByLicense and not hasAttribution:
         raise toolkit.Invalid(
-            'licenseAttributionByText:licenseAttributionByText: empty not allowed')
+            'licenseAttributionByText: empty not allowed')
 
-#        errors['licenseAttributionByText'] = 'empty not allowed'
     if not isByLicense and hasAttribution:
-        #errors['licenseAttributionByText'] = 'text not allowed for this license'
         raise toolkit.Invalid(
             'licenseAttributionByText: text not allowed for this license')
 
@@ -164,7 +138,7 @@ def known_spatial_uri(key, data, errors, context):
         # some harvesters might import a polygon directly...
         poly = _extract_value(data, 'spatial')
         if not poly:
-            raise toolkit.Invalid('spatial_uri:odsh_spatial_uri_error_label')
+            raise toolkit.Invalid('spatial_uri: empty not allowed')
         else:
             return 
                 
@@ -187,7 +161,7 @@ def known_spatial_uri(key, data, errors, context):
             break
     if not_found:
         raise toolkit.Invalid(
-            'spatial_uri:odsh_spatial_uri_unknown_error_label')
+            'spatial_uri: uri unknown')
 
     # Get the current extras index
     current_indexes = [k[1] for k in data.keys()

@@ -59,7 +59,7 @@ is_required=true,placeholder=_('Enter title')) }}
 
 
     <!-- field license -->
-    {% set error_missing_attr = h.odsh_extract_error_new('licenseAttributionByText', errors) %}
+    {% set error_missing_attr = h.odsh_extract_error('licenseAttributionByText', errors) %}
     <label class="control-label" for="field-license">
         {{ _("License") }}:
         <span title="{{ _("This field is required") }}" class="control-required">*</span>

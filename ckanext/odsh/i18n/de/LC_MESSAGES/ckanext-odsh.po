@@ -171,10 +171,10 @@ msgstr "Dateien"
 msgid "Spatial uri"
 msgstr "Raumbezug"
 
-msgid "odsh_spatial_uri_unknown_error_label"
+msgid "spatial_uri: uri unknown"
 msgstr "Der räumliche Bezug is ungültig"
 
-msgid "odsh_spatial_uri_error_label"
+msgid "spatial_uri: empty not allowed"
 msgstr "Bitte geben Sie einen räumlichen Bezug an"
 
 msgid "odsh_temporal_start_error_label"
