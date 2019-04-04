@@ -12,6 +12,11 @@ from ckan.lib.navl.dictization_functions import Missing
 
 from pylons import config
 
+_ = toolkit._
+
+import logging
+log = logging.getLogger(__name__)
+
 def _extract_value(data, field):
     key = None
     for k in data.keys():
@@ -24,25 +29,31 @@ def _extract_value(data, field):
 
 def validate_extra_groups(data, requireAtLeastOne, errors):
     value = _extract_value(data, 'groups')
-    if not value:
-        if requireAtLeastOne:
-            errors['groups']= 'at least one group needed'  
-        data[('groups', 0, 'id')] = '' 
-        return 
+    if value != None:
+        # 'value != None' means the extra key 'groups' was found,
+        # so the dataset came from manual editing via the web-frontend.        
+        if not value:
+            if requireAtLeastOne:
+                errors['groups']= 'at least one group needed'
+            data[('groups', 0, 'id')] = '' 
+            return 
 
-    groups = [g.strip() for g in value.split(',') if value.strip()]
-    for k in data.keys():
-        if len(k) == 3 and k[0] == 'groups':
-            data[k]=''
-            # del data[k]
-    if len(groups)==0:
-        if requireAtLeastOne:
-            errors['groups']= 'at least one group needed'  
-        return 
+        groups = [g.strip() for g in value.split(',') if value.strip()]
+        for k in data.keys():
+            if len(k) == 3 and k[0] == 'groups':
+                data[k]=''
+                # del data[k]
+        if len(groups)==0:
+            if requireAtLeastOne:
+                errors['groups']= 'at least one group needed'  
+            return 
 
-    for num, group in zip(range(len(groups)), groups):
-        data[('groups', num, 'id')] = group
-    
+        for num, group in zip(range(len(groups)), groups):
+            data[('groups', num, 'id')] = group
+    else: # no extra-field 'groups'
+        # dataset might come from a harvest process
+        if not data[('groups', 0, 'id')]:
+            errors['groups']= 'at least one group needed'
 
 def validate_extras(key, data, errors, context):
     extra_errors = {}
@@ -77,8 +88,6 @@ def validate_extra_date_new(key, field, data, optional, errors):
     else:
         if re.match(r'\d\d\d\d-\d\d-\d\d', value):
             try:
-                print('parse')
-                print(value)
                 dt=parse(value)
                 _set_value(data, field, dt.isoformat())
                 return
@@ -121,7 +130,6 @@ def validate_licenseAttributionByText(key, data, errors,context):
     hasAttribution=False
     for k in data:
         if data[k] == 'licenseAttributionByText':
-            print(data[k])
             if isinstance(data[(k[0], k[1], 'value')], Missing) or (k[0], k[1], 'value') not in data:
                 del data[(k[0], k[1], 'value')]
                 del data[(k[0], k[1], 'key')]
@@ -130,10 +138,24 @@ def validate_licenseAttributionByText(key, data, errors,context):
                 value = data[(k[0], k[1], 'value')]
                 hasAttribution = value != ''
                 break
+    if not hasAttribution:
+        current_indexes = [k[1] for k in data.keys()
+                           if len(k) > 1 and k[0] == 'extras']
+
+        new_index = max(current_indexes) + 1 if current_indexes else 0
+        data[('extras', new_index, 'key')] = 'licenseAttributionByText'
+        data[('extras', new_index, 'value')] = ''
+
     if isByLicense and not hasAttribution:
-        errors['licenseAttributionByText'] = 'empty not allowed'
+        raise toolkit.Invalid(
+            'licenseAttributionByText:licenseAttributionByText: empty not allowed')
+
+#        errors['licenseAttributionByText'] = 'empty not allowed'
     if not isByLicense and hasAttribution:
-        errors['licenseAttributionByText'] = 'text not allowed for this license'
+        #errors['licenseAttributionByText'] = 'text not allowed for this license'
+        raise toolkit.Invalid(
+            'licenseAttributionByText: text not allowed for this license')
+
 
 def known_spatial_uri(key, data, errors, context):
     value = _extract_value(data, 'spatial_uri')
@@ -179,7 +201,7 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'value')] = spatial
 
 def tag_name_validator(value, context):
-    tagname_match = re.compile('[\w \-.\:\(\)äöüÄÖÜß\´\`]*$', re.UNICODE)
+    tagname_match = re.compile('[\w \-.\:\(\)\´\`]*$', re.UNICODE)
     if not tagname_match.match(value):
         raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
                                 'characters or symbols: -_.:()') % (value))
@@ -199,10 +221,6 @@ def tag_string_convert(key, data, errors, context):
 
     current_index = max([int(k[1]) for k in data.keys()
                          if len(k) == 3 and k[0] == 'tags'] + [-1])
-
-    print('TAGS')
-    print(current_index)
-
 
     for num, tag in zip(count(current_index+1), tags):
         data[('tags', num, 'name')] = tag
