@@ -46,4 +46,6 @@ Example:
 {{ text_no_query_none }}
 {%- endif -%}
 {%- endif -%}
+{% if type == 'dataset' %}
 <a href={{h.remove_url_param([''], controller='feed', action='custom' )}}> <i class="fa fa-medium fa-rss"></i></a>
+{%- endif -%}
