@@ -1920,3 +1920,25 @@ p.package-info-categorie
 {
     color: #003064;
 }
+
+.error-title
+{
+    color: #003064;
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.error-body
+{
+    color: black;
+    font-size: 18px;
+}
+.error-body h3
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.error-body a{
+    color: #003064;
+}
