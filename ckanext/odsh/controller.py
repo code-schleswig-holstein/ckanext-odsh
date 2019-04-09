@@ -180,4 +180,4 @@ class OdshAutocompleteController(ApiController):
                               (query, e))
 
         suggest = solr_response.raw_response.get('spellcheck')
-        return suggest
+        return base.response.body_file.write(suggest)
