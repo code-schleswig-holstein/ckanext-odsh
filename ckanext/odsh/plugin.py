@@ -19,8 +19,8 @@ from dateutil.parser import parse
 import ckan.plugins as p
 
 import logging
-
 import validation
+import precondition
 
 log = logging.getLogger(__name__)
 
@@ -96,7 +96,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # IActions
 
     def get_actions(self):
-        return {'package_create': action.odsh_package_create,
+        return {'package_create': precondition.not_on_slave(action.odsh_package_create),
                 'user_create': action.odsh_user_create}
 
     # IConfigurer
@@ -332,11 +332,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                     dict_pkg['openness']=OdshPlugin.scores[score-1]
 
 
+    @precondition.not_on_slave
     def before_index(self, dict_pkg):
-        debug = config.get('ckanext.odsh.debug',False)
-        slave = config.get('ckanext.odsh.slave',False)
-        assert not (debug and slave)
-
         # make special date fields solr conform
         fields = ["issued", "temporal_start", "temporal_end"]
         for field in fields:
