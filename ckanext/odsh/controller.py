@@ -46,6 +46,8 @@ class OdshUserController(UserController):
         return super(OdshUserController,self).dashboard_datasets(id)
 
     def read(self, id=None):
+        if not c.user:
+            h.redirect_to(controller='user', action='login')
         return super(OdshUserController,self).read(id)
 
     def follow(self, id):
