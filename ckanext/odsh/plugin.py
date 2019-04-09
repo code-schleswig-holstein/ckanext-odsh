@@ -76,11 +76,22 @@ def remove_route(map,routename):
                 map._routenames.pop(route.name)
                 break
 
+
 class OdshIcapPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IUploader, inherit=True)
 
     def get_resource_uploader(self, data_dict):
         return ODSHResourceUpload(data_dict)
+
+
+class OdshAutocompletePlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IRoutes, inherit=True)
+
+    def before_map(self, map):
+        controller = 'ckanext.odsh.controller:OdshAutocompleteController'
+        map.connect('/autocomplete/{q}', controller=controller, action='autocomplete')
+        return map
+
 
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
