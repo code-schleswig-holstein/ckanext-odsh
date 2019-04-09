@@ -15,9 +15,14 @@ from ckan.common import c, request, config
 import hashlib
 import ckan.plugins.toolkit as toolkit
 from ckanext.dcat.controllers import DCATController
+from ckan.lib.search.common import (
+    make_connection, SearchError, SearchQueryError
+)
+import pysolr
 
 abort = base.abort
 log = logging.getLogger(__name__)
+
 
 class OdshRouteController(HomeController):
     def info_page(self):
@@ -26,6 +31,7 @@ class OdshRouteController(HomeController):
         h.redirect_to('http://www.schleswig-holstein.de/odpstart')
     def not_found(self):
         abort(404)
+
 
 class OdshUserController(UserController):
     def me(self, locale=None):
@@ -63,8 +69,10 @@ class OdshUserController(UserController):
             abort(404)
         return super(OdshUserController,self).activity(id, offset)
 
+
 class OdshPackageController(PackageController):
     pass
+
 
 class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
@@ -90,11 +98,13 @@ class OdshApiController(ApiController):
             log.error(e)
         
         return ApiController.action(self, logic_function, ver)
-    
+
+
 class OdshDCATController(DCATController):
     def read_catalog(self, _format):
         matomo.create_matomo_request()
         return DCATController.read_catalog(self,_format)
+
 
 class OdshFeedController(FeedController):
     def custom(self):
@@ -153,3 +163,21 @@ class OdshFeedController(FeedController):
                                 feed_guid=_create_atom_id(atom_url),
                                 feed_url=feed_url,
                                 navigation_urls=navigation_urls)
+
+
+class OdshAutocompleteController(ApiController):
+    def autocomplete(self, q):
+        query = {
+            'spellcheck.q': q,
+            'wt': 'json'}
+
+        conn = make_connection(decode_dates=False)
+        log.debug('Suggest query: %r' % query)
+        try:
+            solr_response = conn.search('', search_handler='suggest', **query)
+        except pysolr.SolrError as e:
+            raise SearchError('SOLR returned an error running query: %r Error: %r' %
+                              (query, e))
+
+        suggest = solr_response.raw_response.get('spellcheck')
+        return base.response.body_file.write(str(suggest))
