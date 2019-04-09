@@ -9,8 +9,8 @@ $(function () {
     html: true,
     minLength: 2,
     source: function (request, response) {
-      var url = ckan.SITE_ROOT + '/autocomplete';
-      $.getJSON(url, {q: request.term})
+      var url = ckan.SITE_ROOT + '/autocomplete/' + request.term;
+      $.getJSON(url)
         .done(function (data) {
           console.log(data);
           response(data['result']);
