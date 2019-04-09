@@ -167,8 +167,9 @@ class OdshFeedController(FeedController):
 
 class OdshAutocompleteController(ApiController):
     def autocomplete(self):
+        from ckan.common import request
         query = {
-            'spellcheck.q': 'Obs',
+            'spellcheck.q': request.get('q', ''),
             'wt': 'json'}
 
         conn = make_connection(decode_dates=False)
@@ -180,7 +181,4 @@ class OdshAutocompleteController(ApiController):
                               (query, e))
 
         suggest = solr_response.raw_response.get('spellcheck')
-        hits = suggest.get('suggestions')[0].get(query.get('spellcheck.q')).get('numFound')
-        if hits >= 1:
-            return base.response.body_file.write(suggest.get('suggestions')[0].get(query.get('spellcheck.q'))
-                                                 .get('suggestion')[0])
+        return suggest
