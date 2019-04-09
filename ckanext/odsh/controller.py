@@ -168,10 +168,7 @@ class OdshFeedController(FeedController):
 class OdshAutocompleteController(ApiController):
     def autocomplete(self):
         query = {
-            'suggest': 'true',
-            'suggest.build': 'true',
-            'suggest.dictionary': 'ODSHSuggester',
-            'suggest.q': 'Obs',
+            'spellcheck.q': 'Obs',
             'wt': 'json'}
 
         conn = make_connection(decode_dates=False)
@@ -182,8 +179,8 @@ class OdshAutocompleteController(ApiController):
             raise SearchError('SOLR returned an error running query: %r Error: %r' %
                               (query, e))
 
-        suggest = solr_response.raw_response.get('suggest')
-        hits = suggest.get(query.get('suggest.dictionary')).get(query.get('suggest.q')).get('numFound')
+        suggest = solr_response.raw_response.get('spellcheck')
+        hits = suggest.get('suggestions')[0].get(query.get('spellcheck.q')).get('numFound')
         if hits >= 1:
-            return base.response.body_file.write(suggest.get(query.get('suggest.dictionary'))
-                                                 .get(query.get('suggest.q')).get('suggestions')[0].get('term'))
+            return base.response.body_file.write(suggest.get('suggestions')[0].get(query.get('spellcheck.q'))
+                                                 .get('suggestion')[0])
