@@ -104,6 +104,7 @@ def validate_licenseAttributionByText(key, data, errors,context):
             isByLicense = True
             break
     hasAttribution=False
+    print(Missing)
     for k in data:
         if data[k] == 'licenseAttributionByText':
             if isinstance(data[(k[0], k[1], 'value')], Missing) or (k[0], k[1], 'value') not in data:

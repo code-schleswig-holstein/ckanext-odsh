@@ -7,10 +7,13 @@ from mock import MagicMock, Mock, patch
 def mockInvalid(*args, **kwargs):
     return Exception(*args, **kwargs)
 
-
 def mock_(s):
     return s
 
+m = MagicMock()
+class MissingMock:
+    pass
+m.Missing=MissingMock
 
 sys.modules['ckan'] = MagicMock()
 sys.modules['ckan.plugins'] = MagicMock()
@@ -18,14 +21,16 @@ sys.modules['ckan.plugins.toolkit'] = MagicMock()
 sys.modules['ckan.model'] = MagicMock()
 sys.modules['ckan.lib'] = MagicMock()
 sys.modules['ckan.lib.navl'] = MagicMock()
-sys.modules['ckan.lib.navl.dictization_functions'] = MagicMock()
+sys.modules['ckan.lib.navl.dictization_functions'] = m
 sys.modules['pylons'] = MagicMock()
 
+import ckan.model as modelMock
+import pylons
 import ckan.plugins.toolkit as toolkit
+
 toolkit.Invalid = mockInvalid
 toolkit._ = mock_
 
-import pylons
 
 from ckanext.odsh.validation import *
 
@@ -55,7 +60,7 @@ def test_tag_name_validator_valid():
 
 @patch('urllib2.urlopen')
 @patch('pylons.config.get', side_effect='foo')
-@patch('csv.reader', side_effect=[[['uri', 'text', json.dumps({"geometry":0})]]])
+@patch('csv.reader', side_effect=[[['uri', 'text', json.dumps({"geometry": 0})]]])
 def test_known_spatial_uri(url_mock, get_mock, csv_mock):
     # arrange
     data = {('extras', 0, 'key'): 'spatial_uri',
@@ -67,3 +72,14 @@ def test_known_spatial_uri(url_mock, get_mock, csv_mock):
     assert data[('extras', 1, 'value')] == 'text'
     assert data[('extras', 2, 'key')] == 'spatial'
     assert data[('extras', 2, 'value')] == '0'
+
+
+def test_validate_licenseAttributionByText():
+    # arrange
+    def get_licenses():
+        return {}
+    modelMock.Package.get_license_register = get_licenses
+    data = {'license_id': '0',
+            ('extras', 0, 'key'): 'licenseAttributionByText',
+            ('extras', 0, 'value'): ''}
+    validate_licenseAttributionByText('key', data, {}, None)
