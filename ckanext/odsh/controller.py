@@ -166,10 +166,9 @@ class OdshFeedController(FeedController):
 
 
 class OdshAutocompleteController(ApiController):
-    def autocomplete(self):
-        from ckan.common import request
+    def autocomplete(self, q):
         query = {
-            'spellcheck.q': request.get('q', ''),
+            'spellcheck.q': q,
             'wt': 'json'}
 
         conn = make_connection(decode_dates=False)
