@@ -333,6 +333,10 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
 
 
     def before_index(self, dict_pkg):
+        debug = config.get('ckanext.odsh.debug',False)
+        slave = config.get('ckanext.odsh.slave',False)
+        if debug and slave:
+            raise 'indexing on slave not allowed'
         # make special date fields solr conform
         fields = ["issued", "temporal_start", "temporal_end"]
         for field in fields:
