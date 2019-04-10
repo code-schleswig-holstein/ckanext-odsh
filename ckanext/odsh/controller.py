@@ -2,6 +2,7 @@ import ckan.lib.base as base
 from ckan.controllers.home import HomeController
 from ckan.controllers.user import UserController
 from ckan.controllers.api import ApiController
+from ckanext.harvest.controllers.view import ViewController as HarvestController
 from ckan.controllers.feed import FeedController
 from ckan.controllers.package import PackageController
 from ckan.controllers.feed import FeedController, ITEMS_LIMIT, _package_search, _create_atom_id
@@ -34,6 +35,10 @@ class OdshRouteController(HomeController):
 
 
 class OdshUserController(UserController):
+    def index(self):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).index()
     def me(self, locale=None):
         if not c.user:
             h.redirect_to(locale=locale, controller='user', action='login',
@@ -71,9 +76,17 @@ class OdshUserController(UserController):
             abort(404)
         return super(OdshUserController,self).activity(id, offset)
 
+    def register(self, data=None, errors=None, error_summary=None):
+        if not authz.is_sysadmin(c.user):
+            abort(404)
+        return super(OdshUserController,self).register(data, errors, error_summary)
+
 
 class OdshPackageController(PackageController):
-    pass
+    def edit_view(self, id, resource_id, view_id=None):
+        if not authz.is_sysadmin(c.user):
+            abort(403)
+        return super(OdshPackageController,self).edit_view(id, resource_id, view_id)
 
 
 class OdshApiController(ApiController):
@@ -183,3 +196,6 @@ class OdshAutocompleteController(ApiController):
 
         suggest = solr_response.raw_response.get('spellcheck')
         return base.response.body_file.write(str(suggest))
+
+class OdshHarvestController(HarvestController):
+    pass
