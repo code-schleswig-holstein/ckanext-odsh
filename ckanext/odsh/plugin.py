@@ -90,6 +90,7 @@ class OdshAutocompletePlugin(plugins.SingletonPlugin):
     def get_actions(self):
         return {'autocomplete': action.autocomplete}
 
+
 class OdshHarvestPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IConfigurer)
