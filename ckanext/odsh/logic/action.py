@@ -3,6 +3,10 @@ from ckan.logic.action.create import package_create, user_create, group_member_c
 import ckan.model as model
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.search.common import (
+    make_connection, SearchError, SearchQueryError
+)
+import pysolr
 
 log = logging.getLogger(__name__)
 
@@ -33,3 +37,27 @@ def odsh_user_create(context, data_dict):
     for group in groups:
         group_member_create(context, {'id': group, 'username': user.get('name'), 'role': 'member'})
     return model_dictize.user_dictize(model.User.get(user.get('name')), context)
+
+
+@toolkit.side_effect_free
+def autocomplete(context, data_dict):
+    query = {
+        'terms.prefix': data_dict['q'],
+        'terms.limit': 20}
+
+    conn = make_connection(decode_dates=False)
+    log.debug('Suggest query: %r' % query)
+    try:
+        solr_response = conn.search('', search_handler='terms', **query)
+    except pysolr.SolrError as e:
+        raise SearchError('SOLR returned an error running query: %r Error: %r' %
+                          (query, e))
+
+    suggest = solr_response.raw_response.get("terms").get("suggest")
+    suggestions = sorted(suggest, key=suggest.get, reverse=True)
+    filtered_suggestions = []
+    for suggestion in suggestions:
+        suggestion = suggestion.replace("_", "").strip()
+        filtered_suggestions.append(suggestion)
+    final_suggestions = list(sorted(set(filtered_suggestions), key=filtered_suggestions.index))[:5]
+    return final_suggestions
