@@ -42,7 +42,7 @@ def odsh_user_create(context, data_dict):
 @toolkit.side_effect_free
 def autocomplete(context, data_dict):
     query = {
-        'terms.prefix': data_dict['q'],
+        'terms.prefix': data_dict['q'].lower(),
         'terms.limit': 20}
 
     conn = make_connection(decode_dates=False)
