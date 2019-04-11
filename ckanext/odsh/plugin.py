@@ -85,7 +85,7 @@ class OdshIcapPlugin(plugins.SingletonPlugin):
 
 
 class OdshAutocompletePlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IActions)
 
     def get_actions(self):
         return {'autocomplete': action.autocomplete}
