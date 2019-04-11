@@ -39,9 +39,9 @@ def odsh_user_create(context, data_dict):
     return model_dictize.user_dictize(model.User.get(user.get('name')), context)
 
 
-def autocomplete(self, q):
+def autocomplete(context, data_dict):
     query = {
-        'spellcheck.q': q,
+        'spellcheck.q': data_dict['q'],
         'wt': 'json'}
 
     conn = make_connection(decode_dates=False)
