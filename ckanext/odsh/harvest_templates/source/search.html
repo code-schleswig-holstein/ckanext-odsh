@@ -1,0 +1,99 @@
+{# this template checks for sysadmin and shows a 404 if not. This is a hack as the harvest extension has no way for restricting access #}
+{% extends "page.html" %}
+
+{% block subtitle %}
+  {% if c.userobj.sysadmin %}
+    {{ _("Harvest sources") }}
+  {% else %}
+    {{ gettext('Error %(error_code)s', error_code=c.code[0]) }}
+  {% endif %}
+{% endblock %}
+
+
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_('Harvest Sources'), named_route='{0}_search'.format(c.dataset_type)) }}</li>
+{% endblock %}
+
+{% if g.ckan_base_version.startswith('2.0') %}
+  {# CKAN 2.0 #}
+
+  {% block add_action_content %}
+    {{ h.snippet('snippets/add_source_button.html', dataset_type=c.dataset_type) }}
+  {% endblock %}
+{% endif %}
+
+{% block primary_content %}
+  {% if c.userobj.sysadmin %}
+  {% if g.ckan_base_version.startswith('2.0') %}
+    {# CKAN 2.0 #}
+
+    {% include 'source/search_2.0.html' %}
+
+  {% else %}
+    {# > CKAN 2.0 #}
+
+    <section class="module">
+      <div class="module-content">
+      {#
+        {% block page_primary_action %}
+          <div class="page_primary_action">
+            {{ h.snippet('snippets/add_source_button.html', dataset_type=c.dataset_type) }}
+          </div>
+        {% endblock %}
+        {% set facets = {
+          'fields': c.fields_grouped,
+          'search': c.search_facets,
+          'titles': c.facet_titles,
+          'translated_fields': c.translated_fields,
+          'remove_field': c.remove_field }
+        %}
+        {% set sorting = [
+          (_('Relevance'), 'score desc, metadata_modified desc'),
+          (_('Name Ascending'), 'title_string asc'),
+          (_('Name Descending'), 'title_string desc'),
+          (_('Last Modified'), 'metadata_modified desc'),
+          (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+        %}
+        {% snippet 'snippets/search_form.html', type='harvest', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, placeholder=_("Search harvest sources...") %}
+      #}
+
+        {{ h.snippet('snippets/source_list.html', sources=c.page.items, show_organization=true) }}
+
+      </div>
+
+      {{ c.page.pager(q=c.q) }}
+    </section>
+
+  {% endif %}
+  {% else %}
+    <div class="module-content error-page">
+        <div class="error-title">
+            HTTP Status 404 
+                  <div class="error-body"><h2>Seite nicht gefunden</h2>
+                <h3>Wie finde ich die gesuchten Inhalte im Landesportal?</h3>
+
+                <p><a class="" href="http://www.schleswig-holstein.de/odpstart" title="Zur Startseite">Zur Startseite des Open-Data-Portals</a></p>
+
+                <h3>Kontakt</h3>
+                <p>Bei Fragen oder Problemen mit dem Open-Data-Portal schicken Sie bitte eine E-Mail an die Adresse opendata@lr.landsh.de oder verwenden das Kontaktformular:</p>
+                <p><a class="" href="https://www.schleswig-holstein.de/odpkontakt" title="Kontakt">Zum Kontaktformular</a></p>
+            </div>
+        </div>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block secondary %}{% endblock %}
+{#
+{% block secondary_content %}
+  {% if c.userobj.sysadmin %}
+  {% for facet in c.facet_titles %}
+      {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, alternative_url=h.url_for('{0}_search'.format(c.dataset_type))) }}
+  {% endfor %}
+  {% endif %}
+{% endblock %}
+#}
