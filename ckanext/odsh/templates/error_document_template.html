@@ -7,8 +7,12 @@
     <div class="module-content error-page">
         <div class="error-title">
             HTTP Status {{ c.code[0]}}
-            {%if c.code[0]=='404'%}
-            <div class="error-body"><h2>Seite nicht gefunden</h2>
+            {%if c.code[0]=='404' or c.code[0]=='403'%}
+                {%if c.code[0]=='404'%}
+                  <div class="error-body"><h2>Seite nicht gefunden</h2>
+                {%elif c.code[0]=='403'%}
+                  <div class="error-body"><h2>Zugriff nicht erlaubt</h2>
+                {% endif %}
                 <h3>Wie finde ich die gesuchten Inhalte im Landesportal?</h3>
 
                 <p><a class="" href="http://www.schleswig-holstein.de/odpstart" title="Zur Startseite">Zur Startseite des Open-Data-Portals</a></p>
