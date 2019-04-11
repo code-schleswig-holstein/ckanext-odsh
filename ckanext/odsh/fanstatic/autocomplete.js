@@ -9,11 +9,11 @@ $(function () {
     html: true,
     minLength: 2,
     source: function (request, response) {
-      var url = ckan.SITE_ROOT + '/autocomplete/' + request.term;
-      $.getJSON(url)
+      var url = ckan.SITE_ROOT + '/api/action/autocomplete';
+      $.getJSON(url, {q: request.term})
         .done(function (data) {
           console.log(data);
-          response(data['result']);
+          response(data);
         });
       }
   });

@@ -3,6 +3,10 @@ from ckan.logic.action.create import package_create, user_create, group_member_c
 import ckan.model as model
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.search.common import (
+    make_connection, SearchError, SearchQueryError
+)
+import pysolr
 
 log = logging.getLogger(__name__)
 
@@ -33,3 +37,20 @@ def odsh_user_create(context, data_dict):
     for group in groups:
         group_member_create(context, {'id': group, 'username': user.get('name'), 'role': 'member'})
     return model_dictize.user_dictize(model.User.get(user.get('name')), context)
+
+
+def autocomplete(self, q):
+    query = {
+        'spellcheck.q': q,
+        'wt': 'json'}
+
+    conn = make_connection(decode_dates=False)
+    log.debug('Suggest query: %r' % query)
+    try:
+        solr_response = conn.search('', search_handler='suggest', **query)
+    except pysolr.SolrError as e:
+        raise SearchError('SOLR returned an error running query: %r Error: %r' %
+                          (query, e))
+
+    suggest = solr_response.raw_response.get('spellcheck')
+    return suggest

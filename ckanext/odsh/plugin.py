@@ -87,10 +87,8 @@ class OdshIcapPlugin(plugins.SingletonPlugin):
 class OdshAutocompletePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes, inherit=True)
 
-    def before_map(self, map):
-        controller = 'ckanext.odsh.controller:OdshAutocompleteController'
-        map.connect('/autocomplete/{q}', controller=controller, action='autocomplete')
-        return map
+    def get_actions(self):
+        return {'autocomplete': action.autocomplete}
 
 
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
