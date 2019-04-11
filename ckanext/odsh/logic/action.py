@@ -39,6 +39,7 @@ def odsh_user_create(context, data_dict):
     return model_dictize.user_dictize(model.User.get(user.get('name')), context)
 
 
+@toolkit.side_effect_free
 def autocomplete(context, data_dict):
     query = {
         'spellcheck.q': data_dict['q'],
