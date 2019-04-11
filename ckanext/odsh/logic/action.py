@@ -53,5 +53,5 @@ def autocomplete(context, data_dict):
         raise SearchError('SOLR returned an error running query: %r Error: %r' %
                           (query, e))
 
-    suggest = solr_response.raw_response.get('spellcheck')
+    suggest = solr_response.raw_response
     return suggest
