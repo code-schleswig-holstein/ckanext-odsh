@@ -15,8 +15,7 @@ $(function () {
       var url = ckan.SITE_ROOT + '/api/3/action/autocomplete';
       $.getJSON(url, {q: request.term})
         .done(function (data) {
-          console.log(data);
-          response(data);
+          response(data.result);
         });
       }
   });
