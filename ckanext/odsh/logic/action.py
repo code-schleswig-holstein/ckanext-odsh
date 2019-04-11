@@ -42,16 +42,22 @@ def odsh_user_create(context, data_dict):
 @toolkit.side_effect_free
 def autocomplete(context, data_dict):
     query = {
-        'spellcheck.q': data_dict['q'],
-        'wt': 'json'}
+        'terms.prefix': data_dict['q'],
+        'terms.limit': 20}
 
     conn = make_connection(decode_dates=False)
     log.debug('Suggest query: %r' % query)
     try:
-        solr_response = conn.search('', search_handler='suggest', **query)
+        solr_response = conn.search('', search_handler='terms', **query)
     except pysolr.SolrError as e:
         raise SearchError('SOLR returned an error running query: %r Error: %r' %
                           (query, e))
 
-    suggest = solr_response.raw_response
-    return suggest
+    suggest = solr_response.raw_response.get("terms").get("suggest")
+    suggestions = sorted(suggest, key=suggest.get, reverse=True)
+    filtered_suggestions = []
+    for suggestion in suggestions:
+        suggestion = suggestion.replace("_", "").strip()
+        filtered_suggestions.append(suggestion)
+    final_suggestions = list(sorted(set(filtered_suggestions), key=filtered_suggestions.index))[:5]
+    return final_suggestions
