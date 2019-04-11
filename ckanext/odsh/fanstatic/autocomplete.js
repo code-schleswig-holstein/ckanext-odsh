@@ -16,7 +16,7 @@ $(function () {
       $.getJSON(url, {q: request.term})
         .done(function (data) {
           console.log(data);
-          response(data.result.spellcheck.suggestions[1].suggestion);
+          response(data);
         });
       }
   });
