@@ -4,7 +4,7 @@ import decorator
 from ckan.controllers.home import HomeController
 from ckan.controllers.user import UserController
 from ckan.controllers.api import ApiController
-from ckan.controllers.group import GroupController
+from ckan.controllers.organization import OrganizationController
 from ckanext.harvest.controllers.view import ViewController as HarvestController
 from ckan.controllers.feed import FeedController
 from ckan.controllers.package import PackageController
@@ -98,79 +98,24 @@ class OdshPackageController(PackageController):
         return super(OdshPackageController, self).edit_view(id, resource_id, view_id)
 
 
-class OdshGroupController(GroupController):
-    def index(self):
-        group_type = self._guess_group_type()
+class OdshGroupController(OrganizationController):
 
-        page = h.get_page_number(request.params) or 1
-        items_per_page = 21
+    def _action(self, name):
 
-        context = {'model': model, 'session': model.Session,
-                   'user': c.user, 'for_view': True,
-                   'with_private': False}
+        action = super(OdshGroupController, self)._action(name)
 
-        query = c.q = request.params.get('q', '')
-        sort_by = c.sort_by_selected = request.params.get('sort')
-        try:
-            self._check_access('site_read', context)
-            self._check_access('group_list', context)
-        except NotAuthorized:
-            abort(403, _('Not authorized to see this page'))
+        def custom_org_list(context, data_dict):
+            query = data_dict['q']
+            result = action(context, data_dict)
+            for q in query.split(' '):
+                data_dict['q'] = q
+                result += action(context, data_dict)
+            return result 
 
-        # pass user info to context as needed to view private datasets of
-        # orgs correctly
-        if c.userobj:
-            context['user_id'] = c.userobj.id
-            context['user_is_admin'] = c.userobj.sysadmin
-
-        for q in query.split(' '):
-            try:
-                data_dict_global_results = {
-                    'all_fields': False,
-                    'q': q,
-                    'sort': sort_by,
-                    'type': group_type or 'group',
-                }
-                print("QUERY")
-                print(group_type)
-                print(q)
-                global_results = self._action('group_list')(
-                    context, data_dict_global_results)
-            except ValidationError as e:
-                if e.error_dict and e.error_dict.get('message'):
-                    msg = e.error_dict['message']
-                else:
-                    msg = str(e)
-                h.flash_error(msg)
-                c.page = h.Page([], 0)
-                return render(self._index_template(group_type),
-                              extra_vars={'group_type': group_type})
-
-            data_dict_page_results = {
-                'all_fields': True,
-                'q': q,
-                'sort': sort_by,
-                'type': group_type or 'group',
-                'limit': items_per_page,
-                'offset': items_per_page * (page - 1),
-                'include_extras': True
-            }
-            page_results = self._action('group_list')(context,
-                                                      data_dict_page_results)
-
-        print("GROUPS")
-        print(global_results)
-        c.page = h.Page(
-            collection=global_results,
-            page=page,
-            url=h.pager_url,
-            items_per_page=items_per_page,
-        )
-
-        c.page.items = page_results
-        return render(self._index_template(group_type),
-                      extra_vars={'group_type': group_type})
-
+        if name is 'group_list':
+            return custom_org_list
+        else:
+            return super(OdshGroupController, self)._action(name)
 
 class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
@@ -287,16 +232,17 @@ def only_admin(func, *args, **kwargs):
         abort(404)
     return func(*args, **kwargs)
 
+
 class MetaClass(type):
     def __new__(meta, classname, bases, classDict):
         newClassDict = {}
         wdec = decorator.decorator(only_admin)
         for attributeName, attribute in bases[0].__dict__.items():
-             if isinstance(attribute, FunctionType) and not attributeName.startswith('_'):
-                 print(attribute)
-                 attribute = wdec(attribute)
-             newClassDict[attributeName] = attribute
+            if isinstance(attribute, FunctionType) and not attributeName.startswith('_'):
+                attribute = wdec(attribute)
+            newClassDict[attributeName] = attribute
         return type.__new__(meta, classname, bases, newClassDict)
+
 
 class OdshHarvestController(HarvestController):
     __metaclass__ = MetaClass  # wrap all the methods
