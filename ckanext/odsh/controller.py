@@ -13,7 +13,7 @@ import ckan.lib.helpers as h
 import ckan.authz as authz
 from ckan.common import c
 import logging
-import matomo 
+import matomo
 import ckan.logic as logic
 from ckan.common import c, request, config
 import hashlib
@@ -101,17 +101,44 @@ class OdshGroupController(OrganizationController):
         action = super(OdshGroupController, self)._action(name)
 
         def custom_org_list(context, data_dict):
-            query = data_dict['q']
-            result = action(context, data_dict)
+            sort_desc = data_dict['sort'] == u'name desc'
+            d = data_dict.copy()
+            if 'offset' in d:
+                del d['offset']
+                del d['limit']
+            # print(data_dict)
+            if d["type"] is not 'organization':
+                return action(context, d)
+            all = d['all_fields']
+            query = d['q']
+            result = action(context, d)
+            seen = set([(r['id'] if all else r) for r in result])
             for q in query.split(' '):
-                data_dict['q'] = q
-                result += action(context, data_dict)
+                d['q'] = q
+                ret = action(context, d)
+                for r in ret:
+                    id = r['id'] if all else r
+                    if id not in seen:
+                        result.append(r)
+                        seen.add(id)
+
+            if all:
+                result = sorted(
+                    result, key=lambda k: k['name'], reverse=sort_desc)
+            else:
+                result = sorted(result, reverse=sort_desc)
+            
+            if 'offset' in data_dict:
+                off = data_dict['offset']
+                limit = data_dict['limit']
+                return result[off:off+limit]
             return result 
 
         if name is 'group_list':
             return custom_org_list
         else:
             return super(OdshGroupController, self)._action(name)
+
 
 class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
