@@ -13,17 +13,13 @@ import ckan.lib.helpers as h
 import ckan.authz as authz
 from ckan.common import c
 import logging
-import matomo
+import matomo 
 import ckan.logic as logic
 from ckan.common import c, request, config
 import hashlib
 import ckan.plugins.toolkit as toolkit
 from ckanext.dcat.controllers import DCATController
-from ckan.lib.search.common import (
-    make_connection, SearchError, SearchQueryError
-)
 import ckan.model as model
-import pysolr
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -207,24 +203,6 @@ class OdshFeedController(FeedController):
                                 feed_guid=_create_atom_id(atom_url),
                                 feed_url=feed_url,
                                 navigation_urls=navigation_urls)
-
-
-class OdshAutocompleteController(ApiController):
-    def autocomplete(self, q):
-        query = {
-            'spellcheck.q': q,
-            'wt': 'json'}
-
-        conn = make_connection(decode_dates=False)
-        log.debug('Suggest query: %r' % query)
-        try:
-            solr_response = conn.search('', search_handler='suggest', **query)
-        except pysolr.SolrError as e:
-            raise SearchError('SOLR returned an error running query: %r Error: %r' %
-                              (query, e))
-
-        suggest = solr_response.raw_response.get('spellcheck')
-        return base.response.body_file.write(str(suggest))
 
 
 def only_admin(func, *args, **kwargs):
