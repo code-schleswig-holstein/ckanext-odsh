@@ -205,14 +205,11 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         with SubMapper(map, controller='ckanext.odsh.controller:OdshFeedController') as m:
             m.connect('/feeds/custom.atom', action='custom')
 
-        # with SubMapper(map, controller='ckanext.odsh.controller:OdshHarvestController') as m:
-        #     m.connect('/harvest', action='index')
-
         with SubMapper(map, controller='ckanext.odsh.controller:OdshPackageController') as m:
             m.connect('new_view', '/dataset/{id}/resource/{resource_id}/new_view', action='edit_view', ckan_icon='pencil-square-o')
 
-        # with SubMapper(map, controller='ckanext.odsh.controller:OdshGroupController') as m:
-        #     m.connect('organizations_index', '/organization', action='index')
+        with SubMapper(map, controller='ckanext.odsh.controller:OdshGroupController') as m:
+            m.connect('organizations_index', '/organization', action='index')
 
         # redirect all user routes to custom controller
         with SubMapper(map, controller='ckanext.odsh.controller:OdshUserController') as m:
