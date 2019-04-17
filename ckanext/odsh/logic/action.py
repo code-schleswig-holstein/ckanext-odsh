@@ -7,14 +7,13 @@ from ckan.lib.search.common import (
     make_connection, SearchError, SearchQueryError
 )
 import pysolr
-from ckan.logic import get_action
 
 log = logging.getLogger(__name__)
 
 
 def odsh_package_create(context, data_dict):
     munge_increment_name(data_dict)
-    return get_action('package_create')(context, data_dict)
+    return package_create(context, data_dict)
 
 
 def munge_increment_name(data_dict):
