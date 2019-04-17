@@ -7,7 +7,7 @@ $(function () {
 
 
 })
-  $('.site-search input, .search').autocomplete({
+  $('.search').autocomplete({
     delay: 500,
     html: true,
     minLength: 2,
