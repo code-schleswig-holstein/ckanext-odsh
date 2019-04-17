@@ -52,7 +52,7 @@ def validate_extra_groups(data, requireAtLeastOne, errors):
             data[('groups', num, 'id')] = group
     else: # no extra-field 'groups'
         # dataset might come from a harvest process
-        if not data[('groups', 0, 'id')]:
+        if not data.get(('groups', 0, 'id'), False):
             errors['groups']= 'at least one group needed'
 
 def validate_extras(key, data, errors, context):
