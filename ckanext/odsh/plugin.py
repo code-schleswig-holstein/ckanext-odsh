@@ -139,9 +139,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # IActions
 
     def get_actions(self):
-        return {'user_create': action.odsh_user_create}
-        # return {'package_create': precondition.not_on_slave(action.odsh_package_create),
-        #         'user_create': action.odsh_user_create}
+        return {'package_create': action.odsh_package_create,
+                'user_create': action.odsh_user_create}
 
     # IConfigurer
 
