@@ -360,8 +360,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             open_end_query = '((*:* NOT extras_temporal_end:[* TO *]) AND extras_temporal_start:[* TO {end_date}])'.format(
                     end_date=end_date)
 
-        fq = '{fq} ({start_query} OR {end_query} {enclosing_query} OR {open_end_query})'.format(
+        fq = u'{fq} ({start_query} OR {end_query} {enclosing_query} OR {open_end_query})'.format(
             fq=fq, start_query=start_query, end_query=end_query, enclosing_query=enclosing_query, open_end_query=open_end_query)
+        
 
         search_params['fq'] = fq
 
