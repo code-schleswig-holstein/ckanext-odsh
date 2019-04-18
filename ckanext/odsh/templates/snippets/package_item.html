@@ -71,9 +71,12 @@ Example:
     {% endif %}
     {% endblock %}
     {% block notes %}
+
+    {%if start or end %}
     <div class='package-info-pill'>
         {{timerange}}
     </div>
+    {% endif %}
     {% set spatial_text=h.odsh_get_spatial_text(package)%}
     {%if spatial_text %}
     <div class='package-info-pill'>
