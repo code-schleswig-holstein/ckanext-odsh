@@ -74,9 +74,12 @@ Example:
     <div class='package-info-pill'>
         {{timerange}}
     </div>
+    {% set spatial_text=h.odsh_get_spatial_text(package)%}
+    {%if spatial_text %}
     <div class='package-info-pill'>
-        {{h.odsh_get_spatial_text(package) }}
+        {{ spatial_text }}
     </div>
+    {% endif %}
     <p class='package-info-categorie'>{{ _('Kategorie') }}: {{ categories}} </p>
     {% endblock %}
   </div>
