@@ -382,7 +382,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                     dict_pkg['openness']=OdshPlugin.scores[score-1]
 
 
-    @precondition.not_on_slave
+    #@precondition.not_on_slave
     def before_index(self, dict_pkg):
         # make special date fields solr conform
         fields = ["issued", "temporal_start", "temporal_end"]
