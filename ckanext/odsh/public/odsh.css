@@ -464,6 +464,7 @@ a:hover.organization-item ,a:focus.organization-item
 }
 .dataset-heading a{
     text-decoration: none;
+    word-break: break-all;
 }
 
 .dataset-empty {
