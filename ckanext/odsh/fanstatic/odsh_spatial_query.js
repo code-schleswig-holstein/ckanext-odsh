@@ -118,13 +118,15 @@ this.ckan.module('odsh-spatial-query', function ($, _)
           attributionControl: false,
           drawControlTooltips: false,
           // crs: crs
-          zoomControl: false
+          zoomControl: false,
+          minZoom: 6,
+          maxZoom: 18
         }
       );
 
-//       var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
-//     layers: 'ne:ne'
-// }).addTo(map);
+      //       var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
+      //     layers: 'ne:ne'
+      // }).addTo(map);
 
       L.control.zoom({
         zoomInTitle: 'Vergrößern',
