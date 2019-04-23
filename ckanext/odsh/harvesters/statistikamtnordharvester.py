@@ -154,7 +154,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
         self.add_extras(package_dict, values)
         self.map_to_group(package_dict, values)
 
-        source_dataset = get_action('package_show')(context.copy(), {'id': harvest_object.source.id})
+        source_dataset = get_action('package_show')(context, {'id': harvest_object.source.id})
 
         package_dict['owner_org'] = source_dataset.get('owner_org')
 
