@@ -457,11 +457,8 @@ a:hover.organization-item ,a:focus.organization-item
     margin-right: 30px;
     font-weight: normal;
     font-size: 20px;
-    /* For Firefox */
-    white-space: pre-wrap;
-    word-break: break-all;
-    /* For Chrome and IE */
     word-wrap: break-word;
+    max-width: 310px;
 }
 .dataset-content p{
     font-size: 12px;
