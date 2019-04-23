@@ -28,7 +28,8 @@
     "title": "Creative Commons CC Zero License (cc-zero)",
     "url": "http://www.opendefinition.org/licenses/cc-zero",
     "status": "active",
-    "od_conformance": "not reviewed"
+    "od_conformance": "not reviewed",
+    "osd_conformance": "not reviewed"
   },
   {
     "id": "http://dcat-ap.de/def/licenses/cc-by/4.0",
