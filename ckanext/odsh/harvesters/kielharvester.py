@@ -88,6 +88,8 @@ class KielHarvester(ODSHBaseHarvester):
             'model': model,
             'session': model.Session,
             'user': self._get_user_name(),
+            'return_id_only': True,
+            'ignore_auth': True
         }
         if not harvest_object:
             log.error('Kiel-Harvester: No harvest object received')
