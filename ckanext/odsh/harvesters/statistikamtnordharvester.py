@@ -111,6 +111,8 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             'model': model,
             'session': model.Session,
             'user': self._get_user_name(),
+            'return_id_only': True,
+            'ignore_auth': True
         }
         log.debug("Context: " + str(context.viewitems()))
         if not harvest_object:
