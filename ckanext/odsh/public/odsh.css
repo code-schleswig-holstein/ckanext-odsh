@@ -457,6 +457,7 @@ a:hover.organization-item ,a:focus.organization-item
     margin-right: 30px;
     font-weight: normal;
     font-size: 20px;
+    word-break: break-all;
 }
 .dataset-content p{
     font-size: 12px;
@@ -464,7 +465,6 @@ a:hover.organization-item ,a:focus.organization-item
 }
 .dataset-heading a{
     text-decoration: none;
-    word-break: break-all;
 }
 
 .dataset-empty {
