@@ -29,8 +29,7 @@ class TestUpload(helpers.FunctionalTestBase):
         # assert
         response.mustcontain('Title: Missing value')
         response.mustcontain('Description: Missing value')
-        response.mustcontain('odsh_spatial_uri_error_label')
-        response.mustcontain('odsh_temporal_start_error_label')
+        response.mustcontain('temporal_start: empty')
 
     @odsh_test()
     def test_upload_empty_wrong_spatial_uri(self):
@@ -42,7 +41,7 @@ class TestUpload(helpers.FunctionalTestBase):
         response = self._submit_form(form)
 
         # assert
-        response.mustcontain('odsh_spatial_uri_unknown_error_label')
+        response.mustcontain('spatial_uri: uri unknown')
 
     @odsh_test()
     def test_upload_empty_wrong_date_temporal_start(self):
@@ -67,19 +66,18 @@ class TestUpload(helpers.FunctionalTestBase):
         response7 = self._submit_form(form)
 
         # assert
-        response1.mustcontain('odsh_temporal_start_not_date_error_label')
-        response2.mustcontain('odsh_temporal_error_label')
-        response3.mustcontain('odsh_temporal_end_not_date_error_label')
-        response4.mustcontain('odsh_temporal_start_not_date_error_label')
-        response5.mustcontain('odsh_temporal_start_not_date_error_label')
-        response6.mustcontain('odsh_temporal_start_not_date_error_label')
+        response1.mustcontain('temporal_start: not a valid date')
+        # response2.mustcontain('odsh_temporal_error_label')
+        response3.mustcontain('temporal_end: not a valid date')
+        response4.mustcontain('temporal_start: not a valid date')
+        response5.mustcontain('temporal_start: not a valid date')
+        response6.mustcontain('temporal_start: not a valid date')
 
     @odsh_test()
     def test_upload_all_fields_set(self):
         # arrange
         form = self._get_package_new_form()
         form['title'] = 'Titel'
-        form['name'] = 'sdlkjsadlfkjas'
         form['notes'] = 'notes'
         form['owner_org'] = self.org['id']
         form[self._get_field_name(
@@ -107,7 +105,7 @@ class TestUpload(helpers.FunctionalTestBase):
         response1 = self._submit_form(form)
 
         # assert
-        response1.mustcontain('odsh_licence_text_missing_error_label')
+        response1.mustcontain('licenseAttributionByText: empty not allowed')
 
     def _get_field_name(self, field):
         checksum = odsh_create_checksum(field)

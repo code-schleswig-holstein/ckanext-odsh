@@ -23,7 +23,7 @@ ckan.module('odsh_form', function ($)
                         onInitialized: function ()
                         {
                             var mselectc = $('.multiselect-container.dropdown-menu')
-                            mselectc.width(mselectc.parents("div").width()-2)
+                            mselectc.width(mselectc.parents("div").width() - 2)
                         }
                     });
                 }
@@ -52,6 +52,22 @@ ckan.module('odsh_form', function ($)
                 }
                 toggle(id)
                 $(id).change(toggle);
+            }
+
+            if (this.options.validateformat)
+            {
+                $('#form-submit-button').click(function ()
+                {
+                    var format = $('#field-format').val()
+                    if (format && format.length !== 0)
+                    {
+                        $('#resource-edit').submit();
+                    }
+                    else
+                    {
+                        $("label[for='field-format']").parent().find('.inline-error').text('Bitte geben Sie ein Format an')
+                    }
+                })
             }
         }
     };

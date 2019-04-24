@@ -1,4 +1,5 @@
 {% resource 'odsh/odsh_image-upload.js' %}
+{% resource 'odsh/odsh_form.js' %}
 {% import 'macros/form.html' as form %}
 
 {% set data = data or {} %}
@@ -68,6 +69,7 @@
       {% resource 'odsh/odsh_guessformat.js' %}
 
       {% set format_attrs = {'data-module': 'odsh_guessformat', 'data-module-formats':h.odsh_upload_known_formats()} %}
+      {% set format_attrs = {} %}
       {% set error_string = _('odsh_resource_format_error_label') if errors.format %}
 
       {% call form.input('format', id='field-format', label=_('Format'), placeholder=_('eg. CSV, XML or JSON'), value=data.format, error=error_string, is_required=true, classes=['control-full'],attrs=format_attrs) %}
@@ -100,10 +102,11 @@
                 {% endblock %}
                 {% if stage %}
                 {% block save_button %}
-                <button class="btn btn-primary btn-arrow-right" name="save" value="go-metadata" type="submit">{% block
+                <input type='hidden' name='save' value='go-metadata'/>
+                <div id='form-submit-button' data-module="odsh_form" data-module-validateformat='true' class="btn btn-primary btn-arrow-right" name="save" value="go-metadata">{% block
                     save_button_text
                     %}{{
-                    _('Upload dataset') }}{% endblock %}</button>
+                    _('Upload dataset') }}{% endblock %}</div>
                 {% endblock %}
                 {% else %}
                 {% block add_button %}
