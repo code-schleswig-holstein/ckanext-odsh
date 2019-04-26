@@ -1,6 +1,6 @@
 from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, VCARD, dcat_theme_prefix , DCATDE_1_0
 from ckanext.dcat.utils import resource_uri
-from ckanext.dcat.profiles import EuropeanDCATAPProfile, DCT
+from ckanext.dcat.profiles import EuropeanDCATAPProfile, DCT, URIRefOrLiteral
 from ckan.model.license import LicenseRegister
 import rdflib
 import ckanext.dcatde.dataset_utils as ds_utils
@@ -59,7 +59,10 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
                     self.g.set((s, DCT['format'], rdflib.URIRef(resource_formats_export()[o2.decode()])))
         for s,p,o in self.g.triples((None, DCT.language, None)):
             if o.decode() in get_language():
-                 self.g.set((s, p, rdflib.URIRef(get_language()[o.decode()])))
+                 self.g.set((s, p, rdflib.URIRef(get_language()[o.decode()])))                 
+            elif type(o) == rdflib.Literal and type(URIRefOrLiteral(o.decode())) == rdflib.URIRef:
+                self.g.set((s, p, rdflib.URIRef(o.decode()) ))
+
 
 class ODSHDCATdeProfile(DCATdeProfile):
     def parse_dataset(self, dataset_dict, dataset_ref):
