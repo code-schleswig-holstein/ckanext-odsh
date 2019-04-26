@@ -6,7 +6,7 @@ import rdflib
 import ckanext.dcatde.dataset_utils as ds_utils
 import logging
 from ckan.plugins import toolkit
-from ckan.common import config
+from ckan.common import config, json
 
 import sys
 if sys.version_info[0] == 2:
@@ -57,6 +57,9 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
             for s2, p2, o2 in self.g.triples((s, DCT['format'], None)):
                 if o2.decode() in resource_formats_export():
                     self.g.set((s, DCT['format'], rdflib.URIRef(resource_formats_export()[o2.decode()])))
+        for s,p,o in self.g.triples((None, DCT.language, None)):
+            if o.decode() in get_language():
+                 self.g.set((s, DCT.language, rdflib.URIRef(get_language()[o.decode()])))
 
 class ODSHDCATdeProfile(DCATdeProfile):
     def parse_dataset(self, dataset_dict, dataset_ref):
@@ -88,6 +91,7 @@ def resource_formats():
         format_european_url = config.get('ckan.odsh.resource_formats_url')
 
         if not format_european_url:
+            log.warning("Could not find config setting: 'ckan.odsh.resource_formats_url', using fallback instead.")
             format_european_url = "http://publications.europa.eu/resource/authority/file-type"
         if sys.version_info[0] == 2:
             urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
@@ -96,7 +100,6 @@ def resource_formats():
         g.parse(urlresponse)
         # At the moment, there are 143 different file types listed, 
         # if less than 120 are found, something went wrong.
-        log.debug("filetype-count:" + str(len(set([s for s in g.subjects()])) ))
         assert len(set([s for s in g.subjects()])) > 120
         # Save the content as backup
         if sys.version_info[0] == 2:
@@ -131,3 +134,37 @@ def resource_formats_import():
     if not _RESOURCE_FORMATS_IMPORT:
         resource_formats()
     return _RESOURCE_FORMATS_IMPORT
+
+    
+_LANGUAGES = None
+
+def get_language():
+    ''' When datasets are exported in rdf-format, their language-tag 
+    should be given as
+    "<dct:language rdf:resource="http://publications.europa.eu/.../XXX"/>",
+    where XXX represents the language conforming to iso-639-3 standard.
+    However, some imported datasets represent their language as
+    "<dct:language>de</dct:language>", which will be interpreted here as 
+    iso-639-1 values. As we do not display the language setting in the 
+    web frontend, this function only assures the correct export format,
+    by using 'languages.json' as mapping table.
+    '''
+    global _LANGUAGES
+    if not _LANGUAGES:
+        _LANGUAGES = {}
+        languages_file_path = config.get('ckanext.odsh.language.mapping')
+        if not languages_file_path:
+            log.warning("Could not find config setting: 'ckanext.odsh.language.mapping', using fallback instead.")
+            languages_file_path = '/usr/lib/ckan/default/src/ckanext-odsh/languages.json'
+        with open(languages_file_path) as languages_file:
+            try:
+                language_mapping_table = json.loads(languages_file.read())
+            except ValueError, e:
+                # includes simplejson.decoder.JSONDecodeError
+                raise ValueError('Invalid JSON syntax in %s: %s' %
+                                 (languages_file_path, e))
+
+            for language_line in language_mapping_table:
+                _LANGUAGES[language_line[0]] = language_line[1]
+
+    return _LANGUAGES
