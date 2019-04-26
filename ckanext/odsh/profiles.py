@@ -59,7 +59,7 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
                     self.g.set((s, DCT['format'], rdflib.URIRef(resource_formats_export()[o2.decode()])))
         for s,p,o in self.g.triples((None, DCT.language, None)):
             if o.decode() in get_language():
-                 self.g.set((s, DCT.language, rdflib.URIRef(get_language()[o.decode()])))
+                 self.g.set((s, p, rdflib.URIRef(get_language()[o.decode()])))
 
 class ODSHDCATdeProfile(DCATdeProfile):
     def parse_dataset(self, dataset_dict, dataset_ref):
