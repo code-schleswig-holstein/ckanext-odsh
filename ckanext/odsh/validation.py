@@ -82,8 +82,6 @@ def _set_value(data, field, value):
 def validate_extra_date_new(key, field, data, optional, errors):
     value = _extract_value(data, field)
 
-    print("DATE", value)
-
     if not value:
         if not optional:
             errors[field] = 'empty'
@@ -91,15 +89,11 @@ def validate_extra_date_new(key, field, data, optional, errors):
     else:
         if re.match(r'\d\d\d\d-\d\d-\d\d', value):
             try:
-                print ("BEOFRE PARSE", value)
                 dt=parse(value)
-                print("PARSED DATE", dt)
                 _set_value(data, field, dt.isoformat())
                 return
             except ValueError:
-                print('ERROR from Exception')
                 pass
-        print('ERROR')
         errors[field] = 'not a valid date'
 
 def validate_licenseAttributionByText(key, data, errors,context):

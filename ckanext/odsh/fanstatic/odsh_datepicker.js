@@ -30,17 +30,15 @@ this.ckan.module('odsh_datepicker', function ($, _)
             {
                 var dateString = $(ev.target).val()
                 var date = moment(dateString, "DD.MM.YYYY", true)
-                console.log(date)
                 var isValid = date.isValid() && (dateString.length == 10)
                 if (isValid)
                 {
                     var serverDate = date.format(serverFormat);
-                    console.log(serverDate)
                     target.val(serverDate);
                 }
                 else
                 {
-                    target.val('');
+                    target.val(dateString);
                 }
             }
             var onClear = function (ev)
