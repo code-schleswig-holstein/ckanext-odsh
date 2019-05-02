@@ -117,7 +117,7 @@ def extend_search_convert_local_to_utc_timestamp(str_timestamp):
     return dt+"Z"
 
 def odsh_render_datetime(datetime_, fromIso=True):
-    date_format='{0.day:02d}.{0.month:02d}.{0.year:4d}'
+    date_format='{0.day:02d}.{0.month:02d}.{0.year:04d}'
     if not datetime_:
         return ''
     if not re.match(r'\d\d\d\d-\d\d-\d\d', datetime_):
