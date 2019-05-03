@@ -49,7 +49,7 @@ class OdshLogger(MultilineMessagesFormatter):
                 self.multiline_fmt % dict(record.__dict__, message=line)
                 for line in splitted
             )
-            output = output.replace('"','\\\\"')
+            output = output.replace('"','\\"')
             output += endl_marker
         else:
             output = self._fmt % record.__dict__
@@ -66,7 +66,7 @@ class OdshLogger(MultilineMessagesFormatter):
                     self.multiline_fmt % dict(record.__dict__, message=line)
                     for index, line in enumerate(record.exc_text.splitlines())
                 )
-                output = output.replace('"','\\\\"')
+                output = output.replace('"','\\"')
                 output += endl_marker
             except UnicodeError:
                 output += '\n'.join(
@@ -354,11 +354,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # use several daterange queries agains temporal_start and temporal_end field
     # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
-        try:
-            raise BaseException('boom')
-        except:
-            log.exception("got exception")
-
         extras = search_params.get('extras')
         if not extras:
             # There are no extras in the search params, so do nothing.
