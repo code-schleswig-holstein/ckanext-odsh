@@ -3,3 +3,4 @@ ckanext-harvest
 ckanext-spatial
 lxml
 piwikapi
+multiline-log-formatter
