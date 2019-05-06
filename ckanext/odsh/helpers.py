@@ -12,6 +12,7 @@ from ckan.common import config
 import urllib
 import hashlib
 import re
+from ckan.common import request
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -194,3 +195,19 @@ def presorted_license_options(existing_license_id=None):
         (license_id,
          register[license_id].title if license_id in register else license_id)
         for license_id in license_ids]
+
+
+def odsh_has_more_facets(facet, limit=None, exclude_active=False):
+    facets = []
+    for facet_item in c.search_facets.get(facet)['items']:
+        if not len(facet_item['name'].strip()) or facet_item['count']==0:
+            continue
+        if not (facet, facet_item['name']) in request.params.items():
+            facets.append(dict(active=False, **facet_item))
+        elif not exclude_active:
+            facets.append(dict(active=True, **facet_item))
+    if c.search_facets_limits and limit is None:
+        limit = c.search_facets_limits.get(facet)
+    if limit is not None and len(facets) > limit:
+        return True
+    return False
