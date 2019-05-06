@@ -65,8 +65,6 @@
         {% for field in facets.fields %}
         {% set search_facets_items = facets.search.get(field)['items'] %}
         {% for value in facets.fields[field] %}
-        {{facets}}
-        {{c.translated_fields}}
         <span class="filtered pill">
             {% if(field=='openness')%}
                 {{_(value)}}
