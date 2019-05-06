@@ -7,7 +7,7 @@
 
 {% block facet_list_items %}
 {# {% with items = items or h.get_facet_items_dict(name,20) %} #}
-{% with items = items or h.odsh_get_facet_items_dict(name) %}
+{% with items = items or h.odsh_get_facet_items_dict(name)|selectattr('count')|list %}
 {% if items %}
 <nav>
   {% set title = title or h.get_facet_title(name) %}

@@ -21,8 +21,35 @@ import ckan.plugins as p
 import logging
 import validation
 import precondition
+ 
+import sys
 
 log = logging.getLogger(__name__)
+
+# from functools import wraps
+# from flask import Flask, redirect, jsonify
+# app = Flask(__name__)
+
+# def get_http_exception_handler(app):
+#     """Overrides the default http exception handler to return JSON."""
+#     handle_http_exception = app.handle_http_exception
+#     @wraps(handle_http_exception)
+#     def ret_val(exception):
+#         print("HEHREHR")
+#         exc = handle_http_exception(exception)    
+#         return jsonify({'code':exc.code, 'message':exc.description}), exc.code
+#     return ret_val
+
+# # Override the HTTP exception handler.
+# app.handle_http_exception = get_http_exception_handler(app)
+
+
+# def my_except_hook(exctype, value, traceback):
+#     print('GOT excepton')
+#     log.exception(value)
+#     sys.__excepthook__(exctype, value, traceback)
+# print('INSTALL EX')
+# sys.excepthook = my_except_hook
 
 _ = toolkit._
 
@@ -354,6 +381,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     # use several daterange queries agains temporal_start and temporal_end field
     # TODO: use field of type date_range in solr index instead
     def before_search(self, search_params):
+        search_params['facet.mincount']=0
         extras = search_params.get('extras')
         if not extras:
             # There are no extras in the search params, so do nothing.
