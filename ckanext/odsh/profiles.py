@@ -78,6 +78,13 @@ class ODSHDCATdeProfile(DCATdeProfile):
                             ds_utils.insert_new_extras_field(dataset_dict, 'licenseAttributionByText', value)
                             return dataset_dict
         return dataset_dict
+
+    def graph_from_dataset(self, dataset_dict, dataset_ref):
+        super(ODSHDCATdeProfile,self).graph_from_dataset(dataset_dict, dataset_ref)
+        # Enhance Distributions
+        # <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        self.g.add((dataset_ref, DCATDE.contributorID, rdflib.URIRef("http://dcat-ap.de/def/contributors/schleswigHolstein")))
+
         
 _RESOURCE_FORMATS_IMPORT = None
 _RESOURCE_FORMATS_EXPORT = None
