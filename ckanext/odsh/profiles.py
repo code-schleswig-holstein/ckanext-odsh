@@ -100,7 +100,7 @@ def resource_formats():
     # at first try to get the actual file list online:
     try:
         format_european_url = config.get('ckan.odsh.resource_formats_url')
-        err_msg = "Could not get file formats from " + format_european_url
+        err_msg = "Could not get file formats from " + str(format_european_url)
         if not format_european_url:
             log.warning("Could not find config setting: 'ckan.odsh.resource_formats_url', using fallback instead.")
             format_european_url = "http://publications.europa.eu/resource/authority/file-type"
