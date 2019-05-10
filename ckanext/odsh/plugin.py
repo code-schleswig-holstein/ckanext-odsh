@@ -11,6 +11,7 @@ from ckanext.odsh.lib.uploader import ODSHResourceUpload
 import ckan.lib.helpers as helpers
 import helpers as odsh_helpers
 import ckanext.odsh.logic.action as action
+from ckanext.dcat.interfaces import IDCATRDFHarvester
 
 from routes.mapper import SubMapper
 from pylons import config
@@ -202,6 +203,15 @@ class OdshHarvestPlugin(plugins.SingletonPlugin):
         return map
 
 
+class OdshDCATHarvestPlugin(plugins.SingletonPlugin):
+    plugins.implements(IDCATRDFHarvester, inherit=True)
+
+    def before_update(self, harvest_object, dataset_dict, temp_dict):
+        dataset_dict['title']="Title"
+        print("BEFORE update")
+        # self._before(dataset_dict, temp_dict, harvest_object)
+
+
 class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
@@ -384,6 +394,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def before_search(self, search_params):
         search_params['facet.mincount']=0
         extras = search_params.get('extras')
+        print(search_params)
         if not extras:
             # There are no extras in the search params, so do nothing.
             return search_params
@@ -476,3 +487,4 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         self.map_qa_score(dict_pkg)
 
         return dict_pkg
+

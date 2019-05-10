@@ -86,6 +86,7 @@ setup(
         kiel_harvester=ckanext.odsh.harvesters:KielHarvester
         odsh_autocomplete=ckanext.odsh.plugin:OdshAutocompletePlugin
         odsh_harvest=ckanext.odsh.plugin:OdshHarvestPlugin
+        odsh_dcat_harvest=ckanext.odsh.plugin:OdshDCATHarvestPlugin
 
         [paste.paster_command]
         odsh_initialization = ckanext.odsh.commands.initialization:Initialization
