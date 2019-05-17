@@ -37,6 +37,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
 
     def gather_stage(self, harvest_job):
         url = harvest_job.source.url
+        count_known_dataset_ids = 0
 
         try:
             log.info('Stat_Nord_Harvester: Beginning gather stage')
@@ -79,6 +80,8 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
                         used_identifiers.append(identifier)
                         ids.append(obj.id)
                         log.debug('Save identifier %s from Statistik Nord' % identifier)
+                    else:
+                        count_known_dataset_ids += 1
 
                 except Exception, e:
                     log.error('traceback: %s' % traceback.format_exc())
@@ -97,6 +100,10 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
             log.info("finished %s IDs of %s IDs successfully gathered" % (len(used_identifiers), len(documents)))
             log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
             return ids
+        elif count_known_dataset_ids > 0:
+            log.info("Gathered " + str(count_known_dataset_ids) + 
+              " datasets already stored in the database. No new datasets found.")
+            return []
         else:
             log.error("No records received")
             self._save_gather_error("Couldn't find any metadata files", harvest_job)

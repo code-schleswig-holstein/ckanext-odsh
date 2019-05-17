@@ -35,6 +35,7 @@ class KielHarvester(ODSHBaseHarvester):
     def gather_stage(self, harvest_job):
         url = harvest_job.source.url
         datasets = requests.get(url=url).json()
+        count_known_dataset_ids = 0
 
         try:
             used_identifiers = []
@@ -54,6 +55,8 @@ class KielHarvester(ODSHBaseHarvester):
                         str(obj.id), str(obj.guid)))
                     used_identifiers.append(guid)
                     ids.append(obj.id)
+                else:
+                    count_known_dataset_ids += 1
 
         except Exception as e:
             self._save_gather_error(
@@ -69,6 +72,10 @@ class KielHarvester(ODSHBaseHarvester):
             log.debug("List of gathered IDs: %s" % ids)
             log.debug("gather_stage() finished: %s IDs gathered" % len(ids))
             return ids
+        elif count_known_dataset_ids > 0:
+            log.info("Gathered " + str(count_known_dataset_ids) + 
+              " datasets already stored in the database. No new datasets found.")
+            return []
         else:
             log.error("No records received")
             self._save_gather_error(
