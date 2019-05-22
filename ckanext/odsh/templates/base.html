@@ -28,6 +28,6 @@
 </script>
 <!-- End Matomo Code -->
 {% endblock %}
-{% block bodytag %} data-site-root="{{ h.odsh_public_url }}" data-locale-root="{{ h.odsh_public_url }}" {% endblock %}
+{% block bodytag %} data-site-root="{{ h.odsh_public_url() }}" data-locale-root="{{ h.odsh_public_url() }}" {% endblock %}
 {% block page %}
 {% endblock %}
