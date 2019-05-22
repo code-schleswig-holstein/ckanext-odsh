@@ -211,3 +211,7 @@ def odsh_has_more_facets(facet, limit=None, exclude_active=False):
     if limit is not None and len(facets) > limit:
         return True
     return False
+
+
+def odsh_public_url():
+    return config.get('ckanext.odsh.public_url')
