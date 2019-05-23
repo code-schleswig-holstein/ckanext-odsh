@@ -7,12 +7,20 @@ from ckan.lib.search.common import (
     make_connection, SearchError, SearchQueryError
 )
 import pysolr
+import datetime
 
 log = logging.getLogger(__name__)
 
 
 def odsh_package_create(context, data_dict):
     munge_increment_name(data_dict)
+    issued = False
+    for extra in data_dict.get('extras'):
+        if extra['key'] == 'issued':
+            issued = True
+            break
+    if not issued:
+        data_dict['extras'].append({'key': 'issued', 'value': datetime.datetime.utcnow().isoformat()})
     return package_create(context, data_dict)
 
 
