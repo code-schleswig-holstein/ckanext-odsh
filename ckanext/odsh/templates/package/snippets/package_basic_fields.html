@@ -210,6 +210,22 @@ is_required=true,placeholder=_('Enter title')) }}
         </div>
     </div>
 
+    {% set spatial_extends_available = h.odsh_spatial_extends_available() %}
+    <div class="control-group">
+        <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-{{field}}" data-module="autocomplete">
+                        {% for extend in spatial_extends_available%}
+                        <option value="{{ extend }}" {% if selected_extend %} selected="selected" {% endif %}>{{extend}}</option> 
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- field private -->
     <div class="control-group">
         <label for="field-private" class="control-label">{{ _('Visibility') }}:
