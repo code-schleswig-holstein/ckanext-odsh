@@ -7,6 +7,7 @@ import ckanext.dcatde.dataset_utils as ds_utils
 import logging
 from ckan.plugins import toolkit
 from ckan.common import config, json
+from ckanext.dcat.interfaces import IDCATRDFHarvester
 
 import sys
 if sys.version_info[0] == 2:
@@ -62,7 +63,7 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
                  self.g.set((s, p, rdflib.URIRef(get_language()[o.decode()])))                 
             elif type(o) == rdflib.Literal and type(URIRefOrLiteral(o.decode())) == rdflib.URIRef:
                 self.g.set((s, p, rdflib.URIRef(o.decode()) ))
-
+        
 
 class ODSHDCATdeProfile(DCATdeProfile):
     def parse_dataset(self, dataset_dict, dataset_ref):
@@ -95,11 +96,11 @@ def resource_formats():
     _RESOURCE_FORMATS_IMPORT = {}
     _RESOURCE_FORMATS_EXPORT = {}
     g = rdflib.Graph()
-
+    err_msg = ""
     # at first try to get the actual file list online:
     try:
         format_european_url = config.get('ckan.odsh.resource_formats_url')
-
+        err_msg = "Could not get file formats from " + str(format_european_url)
         if not format_european_url:
             log.warning("Could not find config setting: 'ckan.odsh.resource_formats_url', using fallback instead.")
             format_european_url = "http://publications.europa.eu/resource/authority/file-type"
@@ -116,6 +117,7 @@ def resource_formats():
             urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
         elif sys.version_info[0] == 3:  # >=Python3.1
             urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
+        err_msg = "Could not write to /usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/fileformats.rdf"
         f = open('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/fileformats.rdf', 'w')
         f.write(urlresponse.read())
         f.close()
@@ -124,8 +126,9 @@ def resource_formats():
         try:
             g.parse('/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/fileformats.rdf')
             assert len(set([s for s in g.subjects()])) > 120
+            log.warning("Could not get file formats from " + format_european_url + ", using fallback instead.")
         except:
-            raise Exception("Could not get file formats from " + format_european_url)
+            raise Exception(err_msg)
     file_types = [subj.decode() for subj in g.subjects()]
     
     for elem in sorted(set(file_types)):
