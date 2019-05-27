@@ -232,6 +232,5 @@ def spatial_extends_available():
     result = []
     for row in cr:
         spatial_text = row[1]
-        print(spatial_text)
         result.append(spatial_text.decode('UTF-8'))
     return result
