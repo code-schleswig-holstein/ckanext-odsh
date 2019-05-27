@@ -1,0 +1,10 @@
+{% set map_config = h.get_common_map_config() %}
+{% set x=map_config.__setitem__("height", "10px") %}
+<div class="dataset-map" data-module="dataset-map" data-extent="{{ extent }}" data-module-site_url="{{ h.dump_json(h.url('/', locale='default', qualified=true)) }}" data-module-map_config="{{ h.dump_json(map_config) }}">
+  <div id="dataset-map-container"></div>
+  <div id="dataset-map-attribution">
+    {% snippet "spatial/snippets/map_attribution.html", map_config=map_config %}
+  </div>
+</div>
+
+{% resource 'odsh/odsh_dataset_map' %}

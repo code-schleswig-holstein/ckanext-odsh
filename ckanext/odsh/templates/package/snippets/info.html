@@ -74,7 +74,7 @@ Example:
         {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
         {% if dataset_extent %}
         <section class="module module-narrow dataset-map">
-            {% snippet "spatial/snippets/dataset_map_base.html", extent=dataset_extent %}
+            {% snippet "snippets/dataset_map.html", extent=dataset_extent %}
         </section>
         {% endif %}
         {% block spatial_info %}
