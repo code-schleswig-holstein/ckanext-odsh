@@ -38,7 +38,7 @@
             ('search', _('Daten')))}}
             {% if c.userobj %}
             <li >
-              {% link_for _('Datarequest'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='index', class_='text' %}
+                    <a href="{{ h.url_for('/datarequest/') }}" >{{_('Datarequest')}}</a>
             </li>
             {% endif %}
             {{ h.build_nav_main(
