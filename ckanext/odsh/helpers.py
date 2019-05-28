@@ -15,6 +15,7 @@ import re
 import csv
 import urllib2
 from ckan.common import request
+import pdb
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)

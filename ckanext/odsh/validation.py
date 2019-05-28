@@ -158,9 +158,12 @@ def known_spatial_uri(key, data, errors, context):
             if not poly:
                 poly = pkg.extras.get('spatial', None)
         if not poly or has_old_uri:
-            # pdb.set_trace()
             raise toolkit.Invalid('spatial_uri: empty not allowed')
         else:
+            if poly:
+                new_index = next_extra_index(data)
+                data[('extras', new_index+1, 'key')] = 'spatial'
+                data[('extras', new_index+1, 'value')] = poly
             return
 
     mapping_file = config.get('ckanext.odsh.spatial.mapping')

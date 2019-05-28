@@ -97,6 +97,26 @@ class TestUpload(helpers.FunctionalTestBase):
 
         # assert
         response.mustcontain('Manage Dataset')
+        response.mustcontain('module module-narrow dataset-map')
+
+    @odsh_test()
+    def test_edit_valid_dataset(self):
+        # arrange
+        dataset = self._create_dataset()
+
+        form = self._get_package_update_form(dataset['id'])
+
+        # # act
+        # form[self._get_field_name('spatial_uri')] = ''
+        # response = self._submit_form(form)
+
+        # # assert
+        # assert 'spatial_uri: empty not allowed' not in response
+        response = self._submit_and_follow_form(form)
+
+        # assert
+        response.mustcontain('Manage Dataset')
+        response.mustcontain('module module-narrow dataset-map')
 
     @odsh_test()
     def test_upload_empty_wrong_date_temporal_start(self):
@@ -149,6 +169,7 @@ class TestUpload(helpers.FunctionalTestBase):
 
         # assert
         assert_true('resource-edit' in response.forms)
+        # map enabled
 
     @odsh_test()
     def test_upload_license(self):

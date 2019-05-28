@@ -199,7 +199,9 @@ is_required=true,placeholder=_('Enter title')) }}
         <div class="controls">
             <div class="row-fluid">
             {% if not value and not error and data.state == 'active'%}
-                {{h.truncate(h.odsh_extract_value_from_extras(data.extras,'spatial'),22)}}
+                <div class="span6">
+                    <input  type='text' value="{{h.truncate(h.odsh_extract_value_from_extras(data.extras,'spatial'),20)}}" readonly  />
+                </div>
             {% else %}
                 <div class="span6">
                     {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', placeholder=_('Enter spatial uri')) }}
