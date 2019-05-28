@@ -71,7 +71,7 @@ this.ckan.module('dataset-map', function (jQuery, _)
             map = ckan.commonLeafletMap('dataset-map-container', this.options.map_config, {
                 attributionControl: false,
                 minZoom: 6,
-                maxZoom: 13
+                maxZoom: 18
             });
 
             var ckanIcon = L.Icon.extend({ options: this.options.styles.point });
