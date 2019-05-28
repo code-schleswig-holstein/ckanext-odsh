@@ -191,7 +191,6 @@ is_required=true,placeholder=_('Enter title')) }}
 
 
     <!-- field spatial_uri -->
-    {{errors}}
     {% set field = 'spatial_uri' %}
     {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
     {% set error = h.odsh_extract_error(field, errors) %}
@@ -199,6 +198,9 @@ is_required=true,placeholder=_('Enter title')) }}
         <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
         <div class="controls">
             <div class="row-fluid">
+            {% if not value and not error and data.state == 'active'%}
+                {{h.truncate(h.odsh_extract_value_from_extras(data.extras,'spatial'),22)}}
+            {% else %}
                 <div class="span6">
                     {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', placeholder=_('Enter spatial uri')) }}
                 </div>
@@ -207,6 +209,7 @@ is_required=true,placeholder=_('Enter title')) }}
                     {{_(error)}}
                     {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
