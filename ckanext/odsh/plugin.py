@@ -392,6 +392,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         })
         schema.update({'__extras':  [toolkit.get_converter('odsh_validate_extras')] })
 
+        ## only to make sure the spatial field is there for validation
+        # schema.update({'spatial':  [toolkit.get_converter('convert_from_extras')]}) 
+
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()
         self._update_schema(schema)
