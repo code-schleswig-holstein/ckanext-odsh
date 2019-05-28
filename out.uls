@@ -1,0 +1,30 @@
+V;2019-04-25 12:18:36;ckan274;"ULS";"Exception";"traceback";"Text";"
+Traceback (most recent call last):
+File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+raise BaseException('boom')
+BaseException: boom
+";
+V;2019-04-25 12:18:37;ckan274;"ULS";"Exception";"traceback";"Text";"
+Traceback (most recent call last):
+File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+raise BaseException('boom')
+BaseException: boom
+";
+V;2019-04-25 12:18:38;ckan274;"ULS";"Exception";"traceback";"Text";"
+Traceback (most recent call last):
+File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+raise BaseException('boom')
+BaseException: boom
+";
+V;2019-04-25 12:18:40;ckan274;"ULS";"Exception";"traceback";"Text";"
+Traceback (most recent call last):
+File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+raise BaseException('boom')
+BaseException: boom
+";
+V;2019-04-25 12:18:41;ckan274;"ULS";"Exception";"traceback";"Text";"
+Traceback (most recent call last):
+File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+raise BaseException('boom')
+BaseException: boom
+";

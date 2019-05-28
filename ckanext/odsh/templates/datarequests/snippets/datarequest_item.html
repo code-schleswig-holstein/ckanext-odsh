@@ -1,0 +1,33 @@
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = datarequest.get('title', '') %}
+{% set description = h.markdown_extract(datarequest.get('description', ''), extract_length=truncate) %}
+
+<li class="{{ item_class or "dataset-item" }}">
+{{h.odsh_render_datetime(datarequest.open_time)}}|{{datarequest.user.display_name}}
+  {% block package_item_content %}
+    <div class="dataset-content">
+      <h3 class="dataset-heading">
+        {% if datarequest.get('closed', False) %}
+          <span class="uppercase label label-closed">
+            <i class="icon-lock fa fa-lock"></i> {% trans %}Closed{% endtrans %}
+          </span>
+        {% else %}
+          <span class="uppercase label label-open">
+            <i class="icon-unlock fa fa-unlock"></i> {% trans %}Open{% endtrans %}
+          </span>
+        {% endif %}
+        {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='show', id=datarequest.get('id', ''))) }}
+      </h3>
+      {% if description %}
+        <div>{{ description }}</div>
+      {% endif %}
+      <div class="datarequest-properties">
+        {% if h.show_comments_tab() %}
+          <i class="icon-comment fa fa-comment"></i> {{ h.get_comments_number(datarequest.get('id', '')) }}</span>
+         {% link_for _('Add New Comment'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='comment', id=datarequest.get('id',''), class_='btn btn-primary btn-arrow-right'  %}
+        {% endif %}
+      </div>
+    </div>
+  {% endblock %}
+</li>

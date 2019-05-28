@@ -405,3 +405,12 @@ msgid "tech"
 msgstr "Wissenschaft und Technologie"
 msgid "tran"
 msgstr "Verkehr"
+
+msgid "Datarequest"
+msgstr "Datenvorschlag"
+
+msgid "Add Request"
+msgstr "Datensatz vorschlagen"
+
+msgid "Add New Comment"
+msgstr "Kommentieren"

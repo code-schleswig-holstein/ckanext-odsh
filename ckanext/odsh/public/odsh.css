@@ -1944,3 +1944,10 @@ p.package-info-categorie
 .error-body a{
     color: #003064;
 }
+
+.add_request_container
+{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}

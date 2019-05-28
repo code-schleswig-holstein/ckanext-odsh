@@ -1,31 +1,7 @@
+No handlers could be found for logger "ckan.lib.uploader"
 /usr/lib/ckan/default/local/lib/python2.7/site-packages/sqlalchemy/orm/unitofwork.py:79: SAWarning: Usage of the 'related attribute set' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
   sess._flush_warning("related attribute set")
-Trying `CDLL(libgeos_c.so.1)`
-Library path: 'libgeos_c.so.1'
-DLL: <CDLL 'libgeos_c.so.1', handle 55b3322fac40 at 7f38855efa50>
-Trying `CDLL(libc.so.6)`
-Library path: 'libc.so.6'
-DLL: <CDLL 'libc.so.6', handle 7f3890842000 at 7f38855ef850>
-...F.
-======================================================================
-FAIL: ckanext.odsh.tests.test_search.TestSearch.test_query_with_start_date_finds_one_dataset
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/usr/lib/ckan/default/local/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
-    self.test(*self.arg)
-  File "/usr/lib/ckan/default/src/ckan/ckan/tests/helpers.py", line 389, in wrapper
-    return func(*args, **kwargs)
-  File "/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/tests/test_search.py", line 75, in test_query_with_start_date_finds_one_dataset
-    assert datasetC['name'] not in response1
-AssertionError: 
--------------------- >> begin captured stdout << ---------------------
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-http://dcat-ap.de/def/politicalGeocoding/districtKey/01001
-Response: 200 OK
+Actual response (no 'sManage Dataset'):Response: 200 OK
 Cache-Control: private
 Content-Type: text/html; charset=utf-8
 <!DOCTYPE html>
@@ -38,20 +14,33 @@ Content-Type: text/html; charset=utf-8
 <link rel="stylesheet" type="text/css" href="/fanstatic/vendor/:version:2018-08-13T11:35:49.36/select2/select2.css" />
 <link rel="stylesheet" type="text/css" href="/fanstatic/css/:version:2018-08-13T11:35:49.33/main.min.css" />
 <link rel="stylesheet" type="text/css" href="/fanstatic/vendor/:version:2018-08-13T11:35:49.36/font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="/fanstatic/ckanext-spatial/:version:2018-08-13T17:02:43.39/js/vendor/leaflet/leaflet.css" />
-<link rel="stylesheet" type="text/css" href="/fanstatic/ckanext-spatial/:version:2018-08-13T17:02:43.39/js/vendor/leaflet.draw/leaflet.draw.css" />
-<link rel="stylesheet" type="text/css" href="/fanstatic/ckanext-spatial/:version:2018-08-13T17:02:43.39/css/spatial_query.css" />
+<link rel="stylesheet" type="text/css" href="/fanstatic/odsh/:version:2019-05-27T15:47:47.08/:bundle:vendor/jquery-ui-autocomplete/jquery-ui.css;vendor/jquery-ui-autocomplete/jquery-ui.structure.css;vendor/jquery-ui-autocomplete/jquery-ui.theme.css" />
+<link rel="stylesheet" type="text/css" href="/fanstatic/odsh/:version:2019-05-27T15:47:47.08/:bundle:autocomplete.css;datepicker.css" />
     <meta charset="utf-8" />
       <meta name="generator" content="ckan 2.7.4" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datasets - CKAN</title>
     <link rel="shortcut icon" href="/base/images/ckan.ico" />
-<link rel="stylesheet" href="/odsh.css?refresh=3803" />
-<link rel="stylesheet" href="/odsh_header.css?refresh=8864" />
+<link rel="stylesheet" href="/odsh.css?refresh=3503" />
+<link rel="stylesheet" href="/odsh_header.css?refresh=8607" />
 <link rel="stylesheet" href="/bootstrap-multiselect.css" />
       <link rel="stylesheet" href="TEST_TEMPLATE_HEAD_END.css" type="text/css">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    _paq.push(['setTrackerUrl', 'None']);
+    _paq.push(['setSiteId', 'None']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='None'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
   </head>
-  <body data-site-root="http://test.ckan.net/" data-locale-root="http://test.ckan.net/" >
+  <body data-site-root="None" data-locale-root="None" >
 <div class="hide"><a href="#content">Skip to content</a></div>
 <header class="navbar navbar-static-top masthead">
   <div class="container">
@@ -73,17 +62,50 @@ Content-Type: text/html; charset=utf-8
       <div class="nav-collapse collapse">
         <nav class="section navigation">
           <ul class="nav nav-pills">
-            <li><a href="/">Startseite</a></li><li class="active"><a href="/dataset">Daten</a></li><li><a href="/organization">Herausgeber</a></li><li><a href="/info_page">Infos</a></li>
-            <li class="disabled">
-              <a href="#">
-                <span class="text">Upload</span>
-              </a>
-            </li>
+            <li><a href="/">Start</a></li><li><a href="/dataset">Daten</a></li><li><a href="/organization">Herausgeber</a></li><li><a href="/info_page">Infos</a></li>
             <li class=''>
-              <a href="/user/login" title="login">
-                <span class="text">Login</span>
+              <a class="text" href="/dataset/new?group=">Upload</a>
+            </li>
+            <li class=' dropdown navbar-right'>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <svg class='user-icon'  viewBox="0 0 54 54">
+                  <circle class='user-icon' cx="27" cy="17" r="7.5"/>
+                  <path class='user-icon' d="M42.5,44.5h-31v-6.4c0-4.7,3.9-8.6,8.6-8.6h13.9c4.7,0,8.6,3.9,8.6,8.6V44.5z"/>
+                  </svg>
+                 Mr. Test User</a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li>
+                  <svg class='user-icon-small'  viewBox="0 0 54 54">
+                  <circle  cx="27" cy="17" r="7.5"/>
+                  <path  d="M42.5,44.5h-31v-6.4c0-4.7,3.9-8.6,8.6-8.6h13.9c4.7,0,8.6,3.9,8.6,8.6V44.5z"/>
+                  </svg>
+                    <a href="/user/" title="logout">
+                      <span class="text">
+                       Mein Profil einsehen
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/user/edit" title="logout">
+                    <i class='fa fa-edit'></i>
+                      <span class="text">
+                        Mein Profil bearbeiten
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/user/_logout" title="logout">
+                    <i class='fa fa-sign-out'></i>
+                      <span class="text">Logout</span>
+                    </a>
+                  </li>
+                </ul>
               </a>
             </li>
+          </ul>
+        </nav>
+        <nav class="section navigation">
+          <ul class="nav nav-pills">
           </ul>
         </nav>
       </div>
@@ -92,191 +114,290 @@ Content-Type: text/html; charset=utf-8
   </div>
 </header>
 <div role="main">
+<noscript><p><img src="None?idsite=None&rec=1" style="border:0;" alt="" /></p></noscript>
   <div id="content" class="container">
+<div id="testsystem">
+      <p>TESTSYSTEM</p>
+</div>
     <div class="flash-messages">
     </div>
     <div class="toolbar">
       <ol class="breadcrumb">
 <li class="home"><a href="/"><img class='icon-home' src='/base/images/Icon-Home.png' /><span> Home</span></a></li>
-  <li class="active"><a href="/dataset">Datasets</a></li>
+<li class="active"><a class=" active" href="/dataset/edit/title">Edit</a></li>
       </ol>
     </div>
-<div class='search-box-container'>
-    <div class='search-box'>
-        <form id='dataset-search-box-form' class="section site-search simple-input" action="/dataset"
-            method="get">
-            <div class="field">
-                <input id="field-sitewide-search" type="text" name="q" placeholder="Search dataset" />
-                <button class="btn-search" type="submit">
-            </div>
-        </form>
-    </div>
-</div>
     <div class="row wrapper is-table-row">
       <aside class="secondary span3">
-<section id="dataset-map" class="module module-narrow module-shallow">
-  <h2 class="module-heading">
-    <i class="icon-medium icon-globe"></i>
-    Filter by location
-    <a href="/dataset?ext_startdate=&amp;ext_enddate=1990-01-01" class="action">Clear</a>
-  </h2>
-  <div class="dataset-map" data-module="spatial-query" data-default_extent="{ &#34;type&#34;: &#34;Polygon&#34;, &#34;coordinates&#34;: [[[7.6574,53.1632],[11.8322,53.1632],[11.8322,55.1066],
-[7.6574,55.1066],[7.6574,53.1632]]] }" data-module-map_config="{}">
-    <div id="dataset-map-container"></div>
-  </div>
-  <div id="dataset-map-attribution">
-  <div>Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors</div>
-    <div>Tiles by <a href="http://stamen.com">Stamen Design</a> (<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>)</div>
-  </div>
+<section class="module module-narrow">
+    <div class="module context-info">
+        <div class="module-content">
+            <div class="groups-detail info-detail">
+                <div>Kategorie:</div>
+            </div>
+            <div class="license-detail info-detail">
+                <div>License:</div>
+                <a href='https://www.govdata.de/dl-de/by-2-0'>Datenlizenz Deutschland Namensnennung 2.0</a> (text)
+            </div>
+            <div class="timerange-detail info-detail">
+                <div>timerange:</div>
+                <p>27.01.2000 - 27.01.2000</p>
+            </div>
+            <div class="last-change-detail info-detail">
+                <div>issued:</div>
+                27.01.2000
+            </div>
+            <div class="last-change-detail info-detail">
+                <div>modified:</div>
+                27.05.2019
+            </div>
+        </div>
+        <div class="spatial-detail info-detail">
+            <div>Spatial uri:</div>
+            <p>-</p>
+        </div>
+        <div class="info-detail">
+        </div>
 </section>
-<div class="filters">
-  <div class="container-fluid filter-reset">
-    <div class="filter-reset-label"><span>Filter:</span></div>
-    <div class="filter-reset-box"><a href="/dataset?ext_startdate=&amp;ext_enddate=1990-01-01">zurücksetzen</a></button></div>
-  </div>
-  <div>
-        <section class="module module-narrow module-shallow">
-<p class="module-content empty">There are no Herausgeber that match this search</p>
-        </section>
-        <section class="module module-narrow module-shallow">
-<p class="module-content empty">There are no Lizenz that match this search</p>
-        </section>
-        <section class="module module-narrow module-shallow">
-<p class="module-content empty">There are no Kategorie that match this search</p>
-        </section>
-        <section class="module module-narrow module-shallow">
-<p class="module-content empty">There are no Dateiformat that match this search</p>
-        </section>
-  </div>
-  <section class="module module-narrow module-shallow">
-    <nav>
-      <div class="nav-title">timerange</div>
-      <div class="rangesearch-controls">
-        <form id="date-search-form" method="get" action="/dataset">
-          <div class='controls rangesearch'><label for="ext_startdate">From</label>
-            <input id="ext_startdate" name="ext_startdate" type="text" value="" placeholder="Date"
-              onfocus=(this.type=&#39;date&#39;) class='rangesearch' />
-            <label for="ext_enddate">To</label>
-            <input id="ext_enddate" name="ext_enddate" type="date" value="1990-01-01" placeholder="Date"
-              onfocus=(this.type=&#39;date&#39;) class='rangesearch' />
-            <a class='pull-right' href="javascript:{}" onclick="$('#date-search-form').submit();" class="action">submit date search</a>
-          </div>
-        </form>
-      </div>
-    </nav>
-  </section>
-</div>
       </aside>
       <div class="primary span9">
-  <section class="module">
-    <div class="module-content">
-<form id="dataset-search-form" class="search-form"
-    method="get" data-module="select-switch">
-    <div class="form-select control-group control-order-by">
-        <select id="field-order-by" name="sort">
-            <option value="score desc, metadata_modified desc"  selected="selected" >
-                Order by Relevance</option>
-            <option value="title_string asc" >
-                Order by Name Ascending</option>
-            <option value="title_string desc" >
-                Order by Name Descending</option>
-            <option value="metadata_modified desc" >
-                Order by Last Modified</option>
-            <option value="views_recent desc" >
-                Order by Popular</option>
-        </select>
-        <button class="btn js-hide" type="submit">Go</button>
+<div class="odsh-dataset-heading">
+    <div class='title'>Datensatz &quot;title&quot; bearbeiten</div>
+   <a class="btn btn-heading" href="/dataset/title"><i class="fa fa-arrow-left"></i> back</a>
+<span class="clear"></span>
+</div>
+        <article class="module">
+          <header class="module-content page-header">
+            <ul class="nav nav-tabs">
+            </ul>
+          </header>
+          <div class="module-content">
+<form id="dataset-edit" class="dataset-form  dataset-edit-form  " method="post" action="" data-module="basic-form" novalidate>
+    <input type="hidden" name="_ckan_phase" value="dataset_new_1" />
+    <input type="hidden" name="pkg_name" value="a4615d15-24fc-4103-87e2-020049b9e0e1" />
+<!-- field title -->
+        <div class="control-group control-full">
+            <label class="control-label" for="field-title">Title: <span title="This field is required"
+                    class="control-required">*</span> </label>
+            <div class="controls ">
+<div class="row-fluid">
+    <div class="span6">
+        <input id="field-title" type="text" name="title" value="title"
+            placeholder="Enter title"   data-module="slug-preview-target" />
     </div>
-    <h2>
-3 datasets found</h2>
-    <p class="filter-list">
-    </p>
-    <a class="show-filters btn">Filter Results</a>
-    <div id="datesearch-filter">
-        <p class="filter-list">
-            <span class="filtered pill">
-                daterange: to 01.01.1990
-                <a href="/dataset?ext_startdate=" class="remove" title="Remove"><i class="fa fa-times"></i></a>
-            </span>
-        </p>
+    <div class="span6 inline-error">
     </div>
+</div>
+            </div>
+        </div>
+    <!-- field notes -->
+        <div class="control-group control-full">
+            <label class="control-label" for="field-notes">Description: <span title="This field is required"
+                    class="control-required">*</span> </label>
+            <div class="controls editor">
+        <div class="row-fluid">
+            <div class="span6">
+                <textarea id="field-notes" name="notes" cols="20" rows="5" placeholder="Enter description"
+                    >Just another test dataset.</textarea>
+            </div>
+            <div class="span6 inline-error">
+            </div>
+        </div>
+            </div>
+        </div>
+    <div class="control-group field-organization">
+        <label for="field-organizations" class="control-label">Organization
+            <span title="This field is required" class="control-required">*</span>
+        </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-organizations" name="owner_org" data-module="autocomplete">
+                        <option value=""  selected="selected" >No
+                            organization</option>
+                        <option value="66ddbccb-c3ab-416a-9b24-3bdf0d39b716" >Test Organization</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- field license -->
+    <label class="control-label" for="field-license">
+        License:
+        <span title="This field is required" class="control-required">*</span>
+    </label>
+    <div class='row-fluid'>
+        <div class='span3'>
+            <div class="control-group ">
+                <div class="controls">
+                    <select id="field-license" name="license_id">
+                        <option value="" ></option>
+                        <option value="http://dcat-ap.de/def/licenses/dl-zero-de/2.0" >Datenlizenz Deutschland – Zero – Version 2.0</option>
+                        <option value="http://dcat-ap.de/def/licenses/dl-by-de/2.0" selected="selected" >Datenlizenz Deutschland Namensnennung 2.0</option>
+                        <option value="http://dcat-ap.de/def/licenses/officialWork" >Amtliches Werk, lizenzfrei nach §5 Abs. 1 UrhG</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-zero" >Creative Commons CC Zero License (cc-zero)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by/4.0" >Creative Commons Namensnennung – 4.0 International (CC BY 4.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-nd/4.0" >Creative Commons Namensnennung - - Keine Bearbeitung 4.0 International (CC BY-ND 4.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-sa/4.0" >Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International (CC-BY-SA 4.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-nc/4.0" >Creative Commons Namensnennung - Nicht kommerziell 4.0 International (CC BY-NC 4.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/odbl" >Open Data Commons Open Database License (ODbL)</option>
+                        <option value="http://dcat-ap.de/def/licenses/odby" >Open Data Commons Attribution License (ODC-BY 1.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/odcpddl" >Open Data Commons Public Domain Dedication and Licence (ODC PDDL)</option>
+                        <option value="http://dcat-ap.de/def/licenses/apache" >Freie Softwarelizenz der Apache Software Foundation</option>
+                        <option value="http://dcat-ap.de/def/licenses/bsd" >BSD Lizenz</option>
+                        <option value="http://dcat-ap.de/def/licenses/gpl/3.0" >GNU General Public License version 3.0 (GPLv3)</option>
+                        <option value="http://dcat-ap.de/def/licenses/mozilla" >Mozilla Public License 2.0 (MPL)</option>
+                        <option value="http://dcat-ap.de/def/licenses/gfdl" >GNU Free Documentation License (GFDL)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-de/3.0" >Creative Commons Namensnennung 3.0 Deutschland (CC BY 3.0 DE)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-nd/3.0" >Creative Commons Namensnennung -- Keine Bearbeitung 3.0 Unported (CC BY-ND 3.0)</option>
+                        <option value="http://dcat-ap.de/def/licenses/cc-by-nc-de/3.0" >Creative Commons Namensnennung-Nicht kommerziell 3.0 Deutschland (CC BY-NC 3.0 DE)</option>
+                        <option value="http://dcat-ap.de/def/licenses/ccpdm/1.0" >Public Domain Mark 1.0 (PDM)</option>
+                        <option value="http://dcat-ap.de/def/licenses/geonutz/20130319" >Nutzungsbestimmungen für die Bereitstellung von Geodaten des Bundes</option>
+                        <option value="http://dcat-ap.de/def/licenses/dl-by-de/1.0" >Datenlizenz Deutschland Namensnennung 1.0</option>
+                        <option value="http://dcat-ap.de/def/licenses/dl-by-nc-de/1.0" >Datenlizenz Deutschland Namensnennung nicht-kommerziell 1.0</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class='span3'>
+            <!-- field Namensnennung -->
+            <div class="control-group  control-full">
+                <div class="controls">
+                            <input id="field-licenseAttributionByText-key" type="hidden" name="extras__284081762921402022332572750116331529874__key" value="licenseAttributionByText"  />
+<input id="field-licenseAttributionByText-value" type="text" name="extras__284081762921402022332572750116331529874__value" value="text" placeholder="enter name"   disabled="True" data-module="odsh_form" data-module-autofill="true" data-module-licensetoggle="true"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- timerange -->
+    <label for="start-end" class="control-label">timerange:
+        <span title="This field is required" class="control-required">*</span>
+    </label>
+    <div class='row-fluid'>
+        <div id='start-end' class='span3'>
+            <!-- field temporal_start -->
+            <div class="control-group  control-full">
+                <div class="controls">
+                            <input id="field-temporal_start-key" type="hidden" name="extras__84390830285200991579955495071110279599__key" value="temporal_start"  />
+<input id="field-temporal_start-value" type="hidden" name="extras__84390830285200991579955495071110279599__value" value="2000-01-27" placeholder=""  />
+                            <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_start" type="text" 
+                                value="27.01.2000" placeholder="from"
+                                data-module="odsh_datepicker" data-module-target='field-temporal_start-value'/>
+                </div>
+            </div>
+        </div>
+        <div class='span3'>
+            <!-- field temporal_end -->
+            <div class="control-group  control-full">
+                <div class="controls">
+                            <input id="field-temporal_end-key" type="hidden" name="extras__83459222526189432963973502442631756412__key" value="temporal_end"  />
+<input id="field-temporal_end-value" type="hidden" name="extras__83459222526189432963973502442631756412__value" value="2000-01-27" placeholder=""  />
+                            <input pattern="\d{2}\.\d{2}\.\d{4}"  autocomplete="off" id="datepicker_end" type="text" 
+                                value="27.01.2000" placeholder="to"
+                                data-module="odsh_datepicker" data-module-target='field-temporal_end-value'/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- field issued -->
+    <div class="control-group  control-full">
+        <label class="control-label" for="field-issued">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <input id="field-issued-key" type="hidden" name="extras__54348738449566017240470707463421247004__key" value="issued"  />
+<input id="field-issued-value" type="hidden" name="extras__54348738449566017240470707463421247004__value" value="2000-01-27" placeholder=""  />
+                    <input  pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" type="text" 
+                        value="27.01.2000" 
+                        data-module="odsh_datepicker" data-module-target='field-issued-value'/>
+                </div>
+                <div class="span6 inline-error">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- field tags -->
+        <div class="control-group control-full">
+            <label class="control-label" for="field-tags">Tags: </label>
+            <div class="controls ">
+<div class="row-fluid">
+    <div class="span6">
+        <input id="field-tags" type="text" name="tag_string" value=""
+            placeholder="odsh tags placeholder"   data-module-tags data-module="autocomplete" data-module-source="/api/2/util/tag/autocomplete?incomplete=?" />
+    </div>
+    <div class="span6 inline-error">
+    </div>
+</div>
+            </div>
+        </div>
+    <!-- field spatial_uri -->
+    {&#39;extras&#39;: [{&#39;key&#39;: [u&#39;Missing value&#39;]}, {&#39;key&#39;: [u&#39;Missing value&#39;]}, {&#39;key&#39;: [u&#39;Missing value&#39;]}, {&#39;key&#39;: [u&#39;Missing value&#39;]}, {&#39;key&#39;: [u&#39;Missing value&#39;]}, {&#39;key&#39;: [u&#39;Missing value&#39;]}]}
+    <div class="control-group  control-full">
+        <label class="control-label" for="field-spatial_uri">Spatial uri: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <input id="field-spatial_uri-key" type="hidden" name="extras__1425532529343725244003360236122905413__key" value="spatial_uri"  />
+<input id="field-spatial_uri-value" type="text" name="extras__1425532529343725244003360236122905413__value" value="" placeholder="Enter spatial uri"  />
+                </div>
+                <div class="span6 inline-error">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- field private -->
+    <div class="control-group">
+        <label for="field-private" class="control-label">Visibility:
+            <span title="This field is required" class="control-required">*</span>
+        </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-private" name="private">
+                        <option value="True" >Private</option>
+                        <option value="False" selected="selected" >Public</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- field groups -->
+    <div class="control-group ">
+        <label for="field-groups" class="control-label">Kategorien
+            <span title="This field is required" class="control-required">*</span>
+        </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id='field-groups' multiple="multiple" data-module="odsh_form" data-module-multiselect='true'
+                        data-module-nonSelectedText="keine" data-module-allSelectedText="alle"
+                        data-module-nSelectedText="gewählt" data-module-update='True'>
+                    </select>
+                    <div id='selected-groups'>
+                        <input id="field-groups-key" type="hidden" name="extras__27175931625158402285382441920567014164__key" value="groups"  />
+<input id="field-groups-value" type="hidden" name="extras__27175931625158402285382441920567014164__value" value="soci" placeholder=""  />
+                    </div>
+                </div>
+                <div class="span6 inline-error">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <div class="row-fluid">
+            <div class="span6">
+                <a class="btn btn-danger pull-left" href="/dataset/delete/a4615d15-24fc-4103-87e2-020049b9e0e1"
+                    data-module="confirm-action" data-module-content="Are you sure you want to delete this dataset?">Delete</a>
+                        <button class="btn btn-primary btn-arrow-right" type="submit" name="save">
+Update Dataset
+</button>
+            </div>
+        </div>
+    </div>
+    <span class='required-text'>*Pflichtangabe</span>
 </form>
-    <div class="dataset-list unstyled">
-<div class="container-fluid odsh-dataset-item">
-  <div class="dataset-content">
-    <h3 class="dataset-heading">
-      <a href="/dataset/datasetc">My very own dataset</a>
-      </span>
-    </h3>
-    <div>Just another test dataset.</div>
-  </div>
-  <div class="dataset-meta">
-    <div class="dataset-stars">
-<span class="star-rating no-stars"><span class="star-rating-stars"><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span>
-    </span></span>
-    </div>
-    <div class="dataset-info">
-      <p>Kategorie: - </p>
-      <p> Lizenz: -</p>
-      <p> Herausgeber: - </p>
-      <p> Zeitraum: 03.01.2001-30.04.2001</p>
-      <p>issued: 27.01.2000 </p>
-    </div>
-  </div>
-  <div class="module module-narrow module-shallow context-info">
-  </div>
-</div>
-<div class="container-fluid odsh-dataset-item">
-  <div class="dataset-content">
-    <h3 class="dataset-heading">
-      <a href="/dataset/datasetb">My very own dataset</a>
-      </span>
-    </h3>
-    <div>Just another test dataset.</div>
-  </div>
-  <div class="dataset-meta">
-    <div class="dataset-stars">
-<span class="star-rating no-stars"><span class="star-rating-stars"><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span>
-    </span></span>
-    </div>
-    <div class="dataset-info">
-      <p>Kategorie: - </p>
-      <p> Lizenz: -</p>
-      <p> Herausgeber: - </p>
-      <p> Zeitraum: 01.01.1980-30.06.1990</p>
-      <p>issued: 27.01.2000 </p>
-    </div>
-  </div>
-  <div class="module module-narrow module-shallow context-info">
-  </div>
-</div>
-<div class="container-fluid odsh-dataset-item">
-  <div class="dataset-content">
-    <h3 class="dataset-heading">
-      <a href="/dataset/dataseta">My very own dataset</a>
-      </span>
-    </h3>
-    <div>Just another test dataset.</div>
-  </div>
-  <div class="dataset-meta">
-    <div class="dataset-stars">
-<span class="star-rating no-stars"><span class="star-rating-stars"><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span><span class="fa fa-star-o odsh-star"></span>
-    </span></span>
-    </div>
-    <div class="dataset-info">
-      <p>Kategorie: - </p>
-      <p> Lizenz: -</p>
-      <p> Herausgeber: - </p>
-      <p> Zeitraum: 01.01.1960-31.12.1960</p>
-      <p>issued: 27.01.2000 </p>
-    </div>
-  </div>
-  <div class="module module-narrow module-shallow context-info">
-  </div>
-</div>
-    </div>
-    </div>
-  </section>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -286,19 +407,15 @@ Content-Type: text/html; charset=utf-8
         <div class="footer-content">
             <div class='footer-first-row'>
                 <div class="footer-left">
-                    <div class="footer-icon">
-                        <img class='icon-print' src='/base/images/Icon-Print.png' />
-                        Drucken
-                    </div>
                 </div>
             </div>
             <div class='footer-line'></div>
             <div class="footer-left">
                 <div class="footer-icon">&copy; CKAN</div>
                 <div class="footer-right">
-                    <div class='footer-icon'>Kontakt</div>
-                    <div class='footer-icon'>Impressum</div>
-                    <div class='footer-icon last'>Datenschutz</div>
+                    <div class='footer-icon'><a href='http://www.schleswig-holstein.de/odpkontakt'>Kontakt</a></div>
+                    <div class='footer-icon'><a href='http://www.schleswig-holstein.de/odpimpressum'>Impressum</a></div>
+                    <div class='footer-icon last'><a href='http://www.schleswig-holstein.de/odpdatenschutz'>Datenschutz</a></div>
                 </div>
             </div>
         </div>
@@ -310,42 +427,27 @@ Content-Type: text/html; charset=utf-8
 <script type="text/javascript" src="/fanstatic/vendor/:version:2018-08-13T11:35:49.36/:bundle:bootstrap/js/bootstrap.min.js;jed.min.js;moment-with-locales.js;select2/select2.min.js"></script>
 <script type="text/javascript" src="/fanstatic/base/:version:2018-08-13T11:35:49.33/:bundle:plugins/jquery.inherit.min.js;plugins/jquery.proxy-all.min.js;plugins/jquery.url-helpers.min.js;plugins/jquery.date-helpers.min.js;plugins/jquery.slug.min.js;plugins/jquery.slug-preview.min.js;plugins/jquery.truncator.min.js;plugins/jquery.masonry.min.js;plugins/jquery.form-warning.min.js;sandbox.min.js;module.min.js;pubsub.min.js;client.min.js;notify.min.js;i18n.min.js;main.min.js;modules/select-switch.min.js;modules/slug-preview.min.js;modules/basic-form.min.js;modules/confirm-action.min.js;modules/api-info.min.js;modules/autocomplete.min.js;modules/custom-fields.min.js;modules/data-viewer.min.js;modules/table-selectable-rows.min.js;modules/resource-form.min.js;modules/resource-upload-field.min.js;modules/resource-reorder.min.js;modules/resource-view-reorder.min.js;modules/follow.min.js;modules/activity-stream.min.js;modules/dashboard.min.js;modules/resource-view-embed.min.js;view-filters.min.js;modules/resource-view-filters-form.min.js;modules/resource-view-filters.min.js;modules/table-toggle-more.min.js;modules/dataset-visibility.min.js;modules/media-grid.min.js;modules/image-upload.min.js"></script>
 <script type="text/javascript" src="/fanstatic/base/:version:2018-08-13T11:35:49.33/tracking.min.js"></script>
-<script type="text/javascript" src="/fanstatic/ckanext-spatial/:version:2018-08-13T17:02:43.39/:bundle:js/vendor/leaflet/leaflet.js;js/common_map.js;js/vendor/leaflet.draw/leaflet.draw.js;js/spatial_query.js"></script>
-<script type="text/javascript" src="/fanstatic/odsh/:version:2018-12-17T15:41:42.27/odsh.js"></script></body>
-</html>
+<script type="text/javascript" src="/fanstatic/odsh/:version:2019-05-27T15:47:47.08/:bundle:vendor/jquery-ui-autocomplete/jquery-ui.js;autocomplete.js;moment.js;odsh.js;odsh_datepicker.js;odsh_form.js;bootstrap-multiselect.js;bootstrap-datepicker.js"></script></body>
+</html>E
+======================================================================
+ERROR: ckanext.odsh.tests.test_upload.TestUpload.test_upload_empty_spatial_uri_but_spatial
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/ckan/default/local/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/tests/test_helpers.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/tests/test_upload.py", line 86, in test_upload_empty_spatial_uri_but_spatial
+    response.mustcontain('sManage Dataset')
+  File "/usr/lib/ckan/default/local/lib/python2.7/site-packages/webtest/app.py", line 445, in mustcontain
+    "Body does not contain string %r" % s)
+IndexError: Body does not contain string 'sManage Dataset'
+-------------------- >> begin captured stdout << ---------------------
+{'fq': u'owner_org:"66ddbccb-c3ab-416a-9b24-3bdf0d39b716"', 'facet.mincount': 0, 'rows': 0, 'facet': u'false', 'extras': {}, 'include_private': True}
 
 --------------------- >> end captured stdout << ----------------------
--------------------- >> begin captured logging << --------------------
-ckan.model: INFO: Database table data deleted
-ckan.model: INFO: Database initialised
-ckan.model: INFO: Database rebuilt
-ckanext.spatial.plugin: DEBUG: Received: '{"type": "Polygon", "coordinates": [[[9.4228, 54.8232], [9.4376, 54.8089], [9.4286, 54.8], [9.4366, 54.7887], [9.4382, 54.803], [9.4419, 54.8045], [9.4403, 54.8004], [9.4438, 54.8051], [9.4528, 54.8074], [9.4579, 54.8175], [9.4673, 54.8236], [9.4908, 54.8236], [9.492, 54.8148], [9.5054, 54.8102], [9.5038, 54.8041], [9.4996, 54.8036], [9.5054, 54.7995], [9.4989, 54.7986], [9.5065, 54.7921], [9.5021, 54.7793], [9.5058, 54.7731], [9.4934, 54.7692], [9.4747, 54.7723], [9.4722, 54.7669], [9.4602, 54.7603], [9.4609, 54.7542], [9.453, 54.7521], [9.379, 54.7531], [9.3573, 54.7794], [9.4055, 54.7955], [9.4023, 54.8082], [9.4115, 54.8159], [9.4046, 54.8224], [9.4126, 54.8226], [9.4228, 54.8232]]]}'
-ckanext.spatial.lib: DEBUG: Created new extent for package 3aea3bf9-04fe-4a34-ad29-83a9494c8998
-ckanext.spatial.plugin: DEBUG: Received: '{"type": "Polygon", "coordinates": [[[9.4228, 54.8232], [9.4376, 54.8089], [9.4286, 54.8], [9.4366, 54.7887], [9.4382, 54.803], [9.4419, 54.8045], [9.4403, 54.8004], [9.4438, 54.8051], [9.4528, 54.8074], [9.4579, 54.8175], [9.4673, 54.8236], [9.4908, 54.8236], [9.492, 54.8148], [9.5054, 54.8102], [9.5038, 54.8041], [9.4996, 54.8036], [9.5054, 54.7995], [9.4989, 54.7986], [9.5065, 54.7921], [9.5021, 54.7793], [9.5058, 54.7731], [9.4934, 54.7692], [9.4747, 54.7723], [9.4722, 54.7669], [9.4602, 54.7603], [9.4609, 54.7542], [9.453, 54.7521], [9.379, 54.7531], [9.3573, 54.7794], [9.4055, 54.7955], [9.4023, 54.8082], [9.4115, 54.8159], [9.4046, 54.8224], [9.4126, 54.8226], [9.4228, 54.8232]]]}'
-ckanext.spatial.lib: DEBUG: Created new extent for package e99bfb8a-761d-4058-a636-7e261dff683e
-ckanext.spatial.plugin: DEBUG: Received: '{"type": "Polygon", "coordinates": [[[9.4228, 54.8232], [9.4376, 54.8089], [9.4286, 54.8], [9.4366, 54.7887], [9.4382, 54.803], [9.4419, 54.8045], [9.4403, 54.8004], [9.4438, 54.8051], [9.4528, 54.8074], [9.4579, 54.8175], [9.4673, 54.8236], [9.4908, 54.8236], [9.492, 54.8148], [9.5054, 54.8102], [9.5038, 54.8041], [9.4996, 54.8036], [9.5054, 54.7995], [9.4989, 54.7986], [9.5065, 54.7921], [9.5021, 54.7793], [9.5058, 54.7731], [9.4934, 54.7692], [9.4747, 54.7723], [9.4722, 54.7669], [9.4602, 54.7603], [9.4609, 54.7542], [9.453, 54.7521], [9.379, 54.7531], [9.3573, 54.7794], [9.4055, 54.7955], [9.4023, 54.8082], [9.4115, 54.8159], [9.4046, 54.8224], [9.4126, 54.8226], [9.4228, 54.8232]]]}'
-ckanext.spatial.lib: DEBUG: Created new extent for package 04d546b5-1a13-4c1b-98e7-332ac3015466
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckan.lib.base: INFO:  /dataset render time 0.062 seconds
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckanext.odsh.plugin: INFO: []
-ckan.lib.base: INFO:  /dataset render time 0.077 seconds
---------------------- >> end captured logging << ---------------------
 
 ----------------------------------------------------------------------
-Ran 5 tests in 3.871s
+Ran 1 test in 1.775s
 
-FAILED (failures=1)
+FAILED (errors=1)
