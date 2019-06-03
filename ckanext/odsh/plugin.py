@@ -289,7 +289,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_tracking_id': odsh_helpers.odsh_tracking_id,
                 'odsh_tracking_url': odsh_helpers.odsh_tracking_url,
                 'odsh_has_more_facets': odsh_helpers.odsh_has_more_facets,
-                'odsh_public_url': odsh_helpers.odsh_public_url
+                'odsh_public_url': odsh_helpers.odsh_public_url,
+                'odsh_public_resource_url': odsh_helpers.odsh_public_resource_url
                 }
 
     def after_map(self, map):

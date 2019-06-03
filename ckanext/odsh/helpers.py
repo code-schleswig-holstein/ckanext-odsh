@@ -13,6 +13,8 @@ import urllib
 import hashlib
 import re
 from ckan.common import request
+from urlparse import urlsplit, urlunsplit
+
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -215,3 +217,11 @@ def odsh_has_more_facets(facet, limit=None, exclude_active=False):
 
 def odsh_public_url():
     return config.get('ckanext.odsh.public_url')
+
+def odsh_public_resource_url(res):
+    home = config.get('ckanext.odsh.public_url')
+    if res.get('url_type',None) == 'upload' and 'url' in res:
+        f = urlsplit(res['url'])
+        return urlunsplit((0, 0, f[2], f[3], f[4]))
+    else:
+        return res['url']
