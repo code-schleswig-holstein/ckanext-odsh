@@ -288,7 +288,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'presorted_license_options': odsh_helpers.presorted_license_options,
                 'odsh_tracking_id': odsh_helpers.odsh_tracking_id,
                 'odsh_tracking_url': odsh_helpers.odsh_tracking_url,
-                'odsh_has_more_facets': odsh_helpers.odsh_has_more_facets
+                'odsh_has_more_facets': odsh_helpers.odsh_has_more_facets,
+                'odsh_public_url': odsh_helpers.odsh_public_url,
+                'odsh_spatial_extends_available': odsh_helpers.spatial_extends_available
                 }
 
     def after_map(self, map):
@@ -389,6 +391,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             ]
         })
         schema.update({'__extras':  [toolkit.get_converter('odsh_validate_extras')] })
+
+        ## only to make sure the spatial field is there for validation
+        # schema.update({'spatial':  [toolkit.get_converter('convert_from_extras')]}) 
 
     def create_package_schema(self):
         schema = super(OdshPlugin, self).create_package_schema()

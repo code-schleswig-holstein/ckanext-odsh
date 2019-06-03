@@ -198,6 +198,11 @@ is_required=true,placeholder=_('Enter title')) }}
         <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
         <div class="controls">
             <div class="row-fluid">
+            {% if not value and not error and data.state == 'active'%}
+                <div class="span6">
+                    <input  type='text' value="{{h.truncate(h.odsh_extract_value_from_extras(data.extras,'spatial'),20)}}" readonly  />
+                </div>
+            {% else %}
                 <div class="span6">
                     {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', placeholder=_('Enter spatial uri')) }}
                 </div>
@@ -206,9 +211,28 @@ is_required=true,placeholder=_('Enter title')) }}
                     {{_(error)}}
                     {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
+
+    {#
+    {% set spatial_extends_available = h.odsh_spatial_extends_available() %}
+    <div class="control-group">
+        <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+        <div class="controls">
+            <div class="row-fluid">
+                <div class="span6">
+                    <select id="field-{{field}}" data-module="autocomplete" data-module-items="10">
+                        {% for extend in spatial_extends_available%}
+                        <option value="{{ extend }}" {% if selected_extend %} selected="selected" {% endif %}>{{extend}}</option> 
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
 
     <!-- field private -->
     <div class="control-group">

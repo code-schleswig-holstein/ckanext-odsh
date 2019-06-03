@@ -1,0 +1,46 @@
+2019-04-25 12:18:32,933 WARNI [ckan.lib.celery_app] ckan.lib.celery_app is deprecated, use ckan.lib.jobs instead.
+2019-04-25 12:18:33,115 DEBUG [ckanext.harvest.model] Harvest tables defined in memory
+2019-04-25 12:18:33,124 DEBUG [ckanext.harvest.model] Harvest tables already exist
+2019-04-25 12:18:33,154 DEBUG [ckanext.spatial.plugin] Setting up the spatial model
+2019-04-25 12:18:33,159 DEBUG [ckanext.spatial.model.package_extent] Spatial tables defined in memory
+2019-04-25 12:18:33,162 DEBUG [ckanext.spatial.model.package_extent] Spatial tables already exist
+2019-04-25 12:18:36,194 ERROR [ckanext.odsh.plugin] got exception ...
+... : Traceback (most recent call last):
+... :   File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+... :     raise BaseException('boom')
+... : BaseException: boom
+... : ";
+2019-04-25 12:18:36,743 INFO  [ckan.lib.base]  /dataset render time 0.559 seconds
+2019-04-25 12:18:37,307 INFO  [ckan.lib.base]  /api/i18n/de render time 0.007 seconds
+2019-04-25 12:18:37,664 ERROR [ckanext.odsh.plugin] got exception ...
+... : Traceback (most recent call last):
+... :   File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+... :     raise BaseException('boom')
+... : BaseException: boom
+... : ";
+2019-04-25 12:18:37,887 INFO  [ckan.lib.base]  /dataset render time 0.230 seconds
+2019-04-25 12:18:38,320 INFO  [ckan.lib.base]  /api/i18n/de render time 0.002 seconds
+2019-04-25 12:18:38,913 ERROR [ckanext.odsh.plugin] got exception ...
+... : Traceback (most recent call last):
+... :   File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+... :     raise BaseException('boom')
+... : BaseException: boom
+... : ";
+2019-04-25 12:18:39,040 INFO  [ckan.lib.base]  /dataset render time 0.132 seconds
+2019-04-25 12:18:39,518 INFO  [ckan.lib.base]  /api/i18n/de render time 0.002 seconds
+2019-04-25 12:18:40,249 ERROR [ckanext.odsh.plugin] got exception ...
+... : Traceback (most recent call last):
+... :   File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+... :     raise BaseException('boom')
+... : BaseException: boom
+... : ";
+2019-04-25 12:18:40,394 INFO  [ckan.lib.base]  /dataset render time 0.151 seconds
+2019-04-25 12:18:40,865 INFO  [ckan.lib.base]  /api/i18n/de render time 0.003 seconds
+2019-04-25 12:18:41,044 ERROR [ckanext.odsh.plugin] got exception ...
+... : Traceback (most recent call last):
+... :   File \\"/usr/lib/ckan/default/src/ckanext-odsh/ckanext/odsh/plugin.py\\", line 358, in before_search
+... :     raise BaseException('boom')
+... : BaseException: boom
+... : ";
+2019-04-25 12:18:41,194 INFO  [ckan.lib.base]  /dataset render time 0.158 seconds
+2019-04-25 12:18:41,606 INFO  [ckan.lib.base]  /api/i18n/de render time 0.002 seconds

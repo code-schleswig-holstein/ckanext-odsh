@@ -12,7 +12,10 @@ from ckan.common import config
 import urllib
 import hashlib
 import re
+import csv
+import urllib2
 from ckan.common import request
+import pdb
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -211,3 +214,24 @@ def odsh_has_more_facets(facet, limit=None, exclude_active=False):
     if limit is not None and len(facets) > limit:
         return True
     return False
+
+
+def odsh_public_url():
+    return config.get('ckanext.odsh.public_url')
+
+def spatial_extends_available():
+
+    mapping_file = config.get('ckanext.odsh.spatial.mapping')
+    try:
+        mapping_file = urllib2.urlopen(mapping_file)
+    except Exception:
+        raise Exception("Could not load spatial mapping file!")
+
+    spatial_text = str()
+    spatial = str()
+    cr = csv.reader(mapping_file, delimiter="\t")
+    result = []
+    for row in cr:
+        spatial_text = row[1]
+        result.append(spatial_text.decode('UTF-8'))
+    return result

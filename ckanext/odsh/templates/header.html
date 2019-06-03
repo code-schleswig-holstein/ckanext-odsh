@@ -35,7 +35,13 @@
             {% block header_site_navigation_tabs %}
             {{ h.build_nav_main(
             ('home', _('Start')),
-            ('search', _('Daten')),
+            ('search', _('Daten')))}}
+            {% if c.userobj %}
+            <li >
+                    <a href="{{ h.url_for('/datarequest/') }}" >{{_('Datarequest')}}</a>
+            </li>
+            {% endif %}
+            {{ h.build_nav_main(
             ('organizations_index', _('Herausgeber')),
             ('info_page', _('Infos'))
             ) }}
