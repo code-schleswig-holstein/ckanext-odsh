@@ -111,7 +111,7 @@ def resource_formats():
         g.parse(urlresponse)
         # At the moment, there are 143 different file types listed, 
         # if less than 120 are found, something went wrong.       
-        if len(set([s for s in g.subjects()])) > 120:
+        if len(set([s for s in g.subjects()])) < 120:
             raise ValueError("Not enough subjects")
         # Save the content as backup
         if sys.version_info[0] == 2:
