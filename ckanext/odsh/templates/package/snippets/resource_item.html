@@ -1,8 +1,8 @@
 {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
 {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 
-{% set download = res.url or url %}
-{% set res_details = h.odsh_get_resource_details(res.id) %}
+{# hack for correcting slave url if resource was uploaded #}
+{% set download = h.odsh_public_resource_url(res) or ulr%}
 
 <li class="resource-item" data-id="{{ res.id }}">
 

@@ -16,6 +16,7 @@ import csv
 import urllib2
 from ckan.common import request
 import pdb
+from urlparse import urlsplit, urlunsplit
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -235,3 +236,11 @@ def spatial_extends_available():
         spatial_text = row[1]
         result.append(spatial_text.decode('UTF-8'))
     return result
+
+def odsh_public_resource_url(res):
+    home = config.get('ckanext.odsh.public_url')
+    if res.get('url_type',None) == 'upload' and 'url' in res:
+        f = urlsplit(res['url'])
+        return urlunsplit((0, 0, f[2], f[3], f[4]))
+    else:
+        return res['url']

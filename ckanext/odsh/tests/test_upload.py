@@ -184,6 +184,35 @@ class TestUpload(helpers.FunctionalTestBase):
         # assert
         response1.mustcontain('licenseAttributionByText: empty not allowed')
 
+    @odsh_test()
+    def test_read_dataset(self):
+        # arrange
+        dataset = self._create_dataset()
+        resource = factories.Resource(package_id=dataset['id'],name='test_resource')
+
+        # act
+        response = self._get_package_read_page(dataset['id'])
+
+        # assert
+        response.mustcontain('Manage Dataset')
+        response.mustcontain('module module-narrow dataset-map')
+        response.mustcontain('<a href="http://link.to.some.data">')
+
+    @odsh_test()
+    def test_read_dataset_with_uploaded_resource(self):
+        # arrange
+        dataset = self._create_dataset()
+        resource = factories.Resource(
+            package_id=dataset['id'],
+            url='http://server.com/path/download.pdf',
+            url_type='upload')
+
+        # act
+        response = self._get_package_read_page(dataset['id'])
+
+        # assert
+        response.mustcontain('<a href="/dataset/{did}/resource/{rid}/download/download.pdf">'.format(did=dataset['id'], rid=resource['id']))
+
     def _get_field_name(self, field):
         checksum = odsh_create_checksum(field)
         return 'extras__' + str(checksum) + '__value'
@@ -223,6 +252,15 @@ class TestUpload(helpers.FunctionalTestBase):
         )
         return response.forms['dataset-edit']
 
+    def _get_package_read_page(self, id):
+        app = self._get_test_app()
+        # user = factories.User()
+        response = app.get(
+            url=url_for(controller='package', action='read', id=id),
+            extra_environ=self.env,
+        )
+        return response
+
     def _create_dataset(self, name='my-own-dataset', temporal_start='2000-01-27', temporal_end='2000-01-27',title='title', extras=None):
         user = factories.User()
         self.org = factories.Organization(
@@ -239,10 +277,11 @@ class TestUpload(helpers.FunctionalTestBase):
                 {'key': 'groups', 'value': 'soci'},
                 {'key': 'licenseAttributionByText', 'value': 'text'}
             ]
-        return factories.Dataset(user=user,
+        dataset = factories.Dataset(user=user,
                                  name=name,
                                  title=title,
                                  issued='27-01-2000',
                                  extras=extras,
                                  license_id='http://dcat-ap.de/def/licenses/dl-by-de/2.0')
+        return dataset
 
