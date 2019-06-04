@@ -99,6 +99,10 @@ def resource_formats():
     err_msg = ""
     # at first try to get the actual file list online:
     try:
+        fallback_filepath = config.get('ckan.odsh.resource_formats_fallback_filepath')
+        if not fallback_filepath:
+            log.warning("Could not find config setting: 'ckan.odsh.resource_formats_fallback_filepath', using fallback instead.")
+            fallback_filepath = "/tmp/fileformats.rdf"
         format_european_url = config.get('ckan.odsh.resource_formats_url')
         err_msg = "Could not get file formats from " + str(format_european_url)
         if not format_european_url:
@@ -118,10 +122,6 @@ def resource_formats():
             urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
         elif sys.version_info[0] == 3:  # >=Python3.1
             urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
-        fallback_filepath = config.get('ckan.odsh.resource_formats_fallback_filepath')
-        if not fallback_filepath:
-            log.warning("Could not find config setting: 'ckan.odsh.resource_formats_fallback_filepath', using fallback instead.")
-            fallback_filepath = "/tmp/fileformats.rdf"
         err_msg = "Could not write to " + fallback_filepath
         f = open(fallback_filepath, 'w')
         f.write(urlresponse.read())
