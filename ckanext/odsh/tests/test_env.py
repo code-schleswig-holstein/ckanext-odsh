@@ -1,9 +1,9 @@
 from ckan.common import config
-import ckan.tests.helpers as helpers
 import ckan.model as model
 import pdb
 import json
 import ckanext.odsh.profiles as profiles
+import urllib2
 
 # run with nosetests --ckan --nologcapture --with-pylons=<config to test> ckanext/odsh/tests/test_env.py
 
@@ -18,8 +18,7 @@ class TestEnv:
 
         value = config.get('ckan.plugins', [])
         for p in ['odsh_dcat_harvest', 'odsh', 'odsh_icap', 'odsh_harvest']:
-            assert p in value
-
+            assert p in value, 'missing plugin:' + p
 
         # pdb.set_trace()
 
@@ -49,4 +48,18 @@ class TestEnv:
             pass 
 
         profiles.resource_formats()
+        assert len(_RESOURCE_FORMATS_IMPORT)>120
+
+    def test_matomo(self):
+        value = config.get('ckanext.odsh.matomo_id', None)
+        # assert value == '3'
+
+        value = config.get('ckanext.odsh.matomo_url', None)
+        assert value
+
+        req = urllib2.Request(value)
+        response = urllib2.urlopen(req)
+        data = response.read()
+        assert 'This resource is part of Matomo' in data
+
 
