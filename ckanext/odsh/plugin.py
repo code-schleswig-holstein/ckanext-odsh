@@ -290,11 +290,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_tracking_url': odsh_helpers.odsh_tracking_url,
                 'odsh_has_more_facets': odsh_helpers.odsh_has_more_facets,
                 'odsh_public_url': odsh_helpers.odsh_public_url,
-<<<<<<< HEAD
-                'odsh_spatial_extends_available': odsh_helpers.spatial_extends_available
-=======
+                'odsh_spatial_extends_available': odsh_helpers.spatial_extends_available,
                 'odsh_public_resource_url': odsh_helpers.odsh_public_resource_url
->>>>>>> sprint11
                 }
 
     def after_map(self, map):
