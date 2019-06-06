@@ -115,6 +115,8 @@ class TestEnv:
 
         if isMaster():
             checkConfigDir('ckan.storage_path')
+            checkConfig('ckanext-archiver.user_agent_string',
+                        'Open Data Schleswig-Holstein')
 
         if isSlave():
             checkConfig('ckanext.odsh.upload_formats', minLength=2)
