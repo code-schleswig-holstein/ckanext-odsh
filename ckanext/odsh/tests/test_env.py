@@ -45,7 +45,7 @@ def checkConfigFile(key, expectedKey=None, responseContains=None):
 def checkConfigDir(key, expectedKey=None):
     value = checkConfig(key, expected=expectedKey)
     assert os.access(value.replace('file://', ''),
-                     os.W_OK), "expected '{key}={val}' to be writeable".format(key=key,val=value)
+                     os.W_OK), "expected '{key}={val}' to be writeable (user was '{user}')".format(key=key,val=value, user=os.getlogin())
 
 
 def checkJsonFile(key, expectedKey=None, expectedLength=None):
