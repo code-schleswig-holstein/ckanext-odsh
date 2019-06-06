@@ -229,10 +229,15 @@ def odsh_public_resource_url(res):
 
 def odsh_get_version_id():
     try:
-        # return subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
-        return config.get('ckanext.odsh.version', 'unknown')
+        home = config.get('ckanext.odsh.home', None)
+        if home:
+            if home[-1] == '/':
+                home = home[:-1]
+            home += '/.git'
+            return subprocess.check_output(["git", "--git-dir", home, "rev-parse", "HEAD"]).strip()
     except:
         return 'unknown'
+    return 'unknown'
 
 def odsh_show_testbanner():
     return config.get('ckanext.odsh.showtestbanner', 'False') == 'True'
