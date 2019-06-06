@@ -167,5 +167,5 @@ class TestEnv:
         url = checkConfig('ckan.site_url')
         if url[-1] == '/':
             url = url[:-1]
-        version = readUrl(url+'/qv4yAI2rgotamXGk98gJ').strip()
+        version = readUrl(url+'/api/resource_qv4yAI2rgotamXGk98gJ').strip()
         assert version == expected_commit, "wrong version: {was}!={exp}".format(version, expected_commit)
