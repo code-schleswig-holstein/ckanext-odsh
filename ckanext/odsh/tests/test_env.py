@@ -9,6 +9,8 @@ import sys
 import ConfigParser
 from collections import OrderedDict
 
+expected_commit = '5298c6f4b86b1a03fbf177974e3ab4eefb1b1192'
+
 # run with nosetests --ckan --nologcapture --with-pylons=<config to test> ckanext/odsh/tests/test_env.py
 
 
@@ -23,12 +25,16 @@ def checkConfig(key, expected=None, minLength=None):
     return value
 
 
-def checkConfigUrl(key, expectedKey=None, responseContains=None):
-    value = checkConfig(key, expected=expectedKey)
-
+def readUrl(value):
     req = urllib2.Request(value)
     response = urllib2.urlopen(req)
     data = response.read()
+    return data
+
+
+def checkConfigUrl(key, expectedKey=None, responseContains=None):
+    value = checkConfig(key, expected=expectedKey)
+    data = readUrl(value)
     if responseContains:
         assert responseContains in data
 
@@ -45,7 +51,7 @@ def checkConfigFile(key, expectedKey=None, responseContains=None):
 def checkConfigDir(key, expectedKey=None):
     value = checkConfig(key, expected=expectedKey)
     assert os.access(value.replace('file://', ''),
-                     os.W_OK), "expected '{key}={val}' to be writeable (user was '{user}')".format(key=key,val=value, user=os.getlogin())
+                     os.W_OK), "expected '{key}={val}' to be writeable (user was '{user}')".format(key=key, val=value, user=os.getlogin())
 
 
 def checkJsonFile(key, expectedKey=None, expectedLength=None):
@@ -156,3 +162,10 @@ class TestEnv:
         checkConfig('ckanext.odsh.matomo_id', expected='3')
         checkConfigUrl('ckanext.odsh.matomo_url',
                        responseContains='This resource is part of Matomo')
+
+    def test_version(self):
+        url = checkConfig('ckan.site_url')
+        if url[-1] == '/':
+            url = url[:-1]
+        version = readUrl(url+'/qv4yAI2rgotamXGk98gJ').strip()
+        assert version == expected_commit, "wrong version: {was}!={exp}".format(version, expected_commit)

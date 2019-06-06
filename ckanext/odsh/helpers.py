@@ -14,6 +14,7 @@ import hashlib
 import re
 from ckan.common import request
 from urlparse import urlsplit, urlunsplit
+import subprocess
 
 
 get_action = logic.get_action
@@ -225,3 +226,9 @@ def odsh_public_resource_url(res):
         return urlunsplit((0, 0, f[2], f[3], f[4]))
     else:
         return res['url']
+
+def odsh_get_version_id():
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
+    except:
+        return 'unknown'
