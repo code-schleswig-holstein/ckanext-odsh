@@ -20,6 +20,7 @@ import hashlib
 import ckan.plugins.toolkit as toolkit
 from ckanext.dcat.controllers import DCATController
 import ckan.model as model
+import helpers
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -142,6 +143,8 @@ class OdshGroupController(OrganizationController):
 
 class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
+        if logic_function == 'resource_qv4yAI2rgotamXGk98gJ':
+            return helpers.odsh_get_version_id()
         try:
             function = logic.get_action(logic_function)
             side_effect_free = getattr(function, 'side_effect_free', False)
