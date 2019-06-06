@@ -91,7 +91,6 @@ class TestEnv:
     def test_config_set(self):
         checkConfigForDuplicates()
 
-        checkConfig('ckanext.odsh.upload_formats', minLength=2)
         checkConfig('ckanext.dcat.rdf.profiles',
                     'odsheuro_dcat_ap odshdcatap_de')
         checkConfig('ckan.harvest.mq.type', 'redis')
@@ -112,6 +111,7 @@ class TestEnv:
             checkConfigDir('ckan.storage_path')
 
         if isSlave():
+            checkConfig('ckanext.odsh.upload_formats', minLength=2)
             checkConfig('ckanext.spatial.search_backend', 'solr-spatial-field')
             checkConfig('ckanext.spatial.common_map.type', 'wms')
             checkConfig('ckanext.spatial.common_map.wms.url',
@@ -132,7 +132,7 @@ class TestEnv:
             assert p in value, 'missing plugin:' + p
 
         if isMaster():
-            for p in ['odsh_icap', 'odsh_dcat_harvest', 'odsh', 'odsh_harvest']:
+            for p in ['odsh_icap', 'odsh_dcat_harvest', 'odsh_harvest']:
                 assert p in value, 'missing plugin:' + p
 
         # pdb.set_trace()
