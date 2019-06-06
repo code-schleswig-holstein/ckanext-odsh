@@ -108,7 +108,7 @@ class TestEnv:
         # who.log_file = %(cache_dir)s/who_log.ini
 
         checkConfig('ckan.site_url')
-        checkConfig('ckan.site_title', 'Open Data Portal Schleswig-Holstein')
+        checkConfig('ckan.site_title', 'Open Data Schleswig-Holstein')
 
         checkConfig('ckan.site_intro_text',
                     '#Willkommen auf Open Data Portal Schleswig-Holstein.')
@@ -163,9 +163,10 @@ class TestEnv:
         checkConfigUrl('ckanext.odsh.matomo_url',
                        responseContains='This resource is part of Matomo')
 
-    def test_version(self):
-        url = checkConfig('ckan.site_url')
-        if url[-1] == '/':
-            url = url[:-1]
-        version = readUrl(url+'/api/resource_qv4yAI2rgotamXGk98gJ').strip()
-        assert version == expected_commit, "wrong version: {was}!={exp}".format(version, expected_commit)
+    # def test_version(self):
+    #     # url = checkConfig('ckan.site_url')
+    #     # if url[-1] == '/':
+    #     #     url = url[:-1]
+    #     # version = readUrl(url+'/api/resource_qv4yAI2rgotamXGk98gJ').strip()
+    #     version = checkConfig('ckanext.odsh.version')
+    #     assert version == expected_commit, "wrong version: {was}!={exp}".format(version, expected_commit)
