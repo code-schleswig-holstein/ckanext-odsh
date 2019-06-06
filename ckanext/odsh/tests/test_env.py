@@ -128,7 +128,7 @@ class TestEnv:
 
     def test_plugins(self):
         value = config.get('ckan.plugins', [])
-        for p in ['odsh_dcat_harvest', 'odsh', 'odsh_icap', 'odsh_harvest']:
+        for p in ['odsh_dcat_harvest', 'odsh', 'odsh_harvest']:
             assert p in value, 'missing plugin:' + p
 
         if isMaster():
