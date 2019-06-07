@@ -14,6 +14,8 @@ log = logging.getLogger(__name__)
 
 def odsh_package_create(context, data_dict):
     munge_increment_name(data_dict)
+    if data_dict.get('type', None) != 'dataset':
+        return package_create(context, data_dict)
     issued = False
     for extra in data_dict.get('extras'):
         if extra['key'] == 'issued':
