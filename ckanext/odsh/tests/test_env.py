@@ -131,6 +131,9 @@ class TestEnv:
             checkJsonFile(
                 'qa.resource_format_openness_scores_json', expectedLength=60)
 
+        checkConfig('ckanext.odsh.language.mapping',
+                    '/usr/lib/ckan/default/src/ckanext-odsh/languages.json')
+
     def test_non_critical(self):
         checkConfig('who.timeout', '1800')
 
