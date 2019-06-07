@@ -8,6 +8,7 @@ import logging
 from ckan.plugins import toolkit
 from ckan.common import config, json
 from ckanext.dcat.interfaces import IDCATRDFHarvester
+import pdb
 
 import sys
 if sys.version_info[0] == 2:
@@ -63,6 +64,12 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
                  self.g.set((s, p, rdflib.URIRef(get_language()[o.decode()])))                 
             elif type(o) == rdflib.Literal and type(URIRefOrLiteral(o.decode())) == rdflib.URIRef:
                 self.g.set((s, p, rdflib.URIRef(o.decode()) ))
+
+        license = dataset_dict.get('license_id', None)
+        if license:
+            self.g.add((dataset_ref, DCT.license, rdflib.URIRef(license)))
+            for dist in self.g.objects(dataset_ref, DCAT.distribution):
+                self.g.add((dist, DCT.license, rdflib.URIRef(license)))
         
 
 class ODSHDCATdeProfile(DCATdeProfile):

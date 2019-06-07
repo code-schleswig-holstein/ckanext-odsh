@@ -50,13 +50,16 @@ class TestRDFExport:
                                     license_id="http://dcat-ap.de/def/licenses/dl-by-de/2.0")
         factories.Resource(
             package_id=dataset['id'], license=dataset['license_id'])
+        factories.Resource(
+            package_id=dataset['id'])
 
         g = rdflib.Graph()
         response = self._get_app().get('/dataset/'+dataset['name']+'.rdf')
         g.parse(data=response.body)
         lic = self._extract_licenses(g)
 
-        assert len(lic) == 2
+        assert len(lic) == 3
+        assert len(set([str(l) for l in lic])) == 1
 
     def _get_app(self):
         if not hasattr(self, 'app'):
@@ -73,7 +76,8 @@ class TestRDFExport:
         ret = list(g.objects(dataset, DCT.license))
 
         distributions = list(g.objects(dataset, DCAT.distribution))
-        assert len(distributions) == 1
-        ret += list(g.objects(distributions[0], DCT.license))
+        for d in distributions:
+            for l in g.objects(d, DCT.license):
+                ret.append(l)
 
         return ret
