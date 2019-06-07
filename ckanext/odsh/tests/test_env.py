@@ -99,7 +99,6 @@ class TestEnv:
 
         checkConfig('ckanext.dcat.rdf.profiles',
                     'odsheuro_dcat_ap odshdcatap_de')
-        checkConfig('ckan.harvest.mq.type', 'redis')
         checkConfigDir('cache_dir')
         checkConfig('beaker.session.key', expected='ckan')
         checkConfig('beaker.session.secret')
@@ -117,6 +116,7 @@ class TestEnv:
             checkConfigDir('ckan.storage_path')
             checkConfig('ckanext-archiver.user_agent_string',
                         'Open Data Schleswig-Holstein')
+            checkConfig('ckan.harvest.mq.type', 'redis')
 
         if isSlave():
             checkConfig('ckanext.odsh.upload_formats', minLength=2)
