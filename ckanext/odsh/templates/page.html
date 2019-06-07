@@ -7,9 +7,11 @@
 {% set matomo_id = h.odsh_tracking_id()%}
 <noscript><p><img src="{{matomo_url}}?idsite={{matomo_id}}&rec=1" style="border:0;" alt="" /></p></noscript>
   <div id="content" class="container">
+  {% if h.odsh_show_testbanner() %}
 <div id="testsystem">
       <p>TESTSYSTEM</p>
 </div>
+{% endif %}
     {% block main_content %}
 
     {% block flash %}

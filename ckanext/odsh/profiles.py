@@ -96,45 +96,40 @@ def resource_formats():
     _RESOURCE_FORMATS_IMPORT = {}
     _RESOURCE_FORMATS_EXPORT = {}
     g = rdflib.Graph()
-    err_msg = ""
-    # at first try to get the actual file list online:
+        # Something went wrong with trying to get the file formats online, try to use backup instead
     try:
         fallback_filepath = config.get('ckan.odsh.resource_formats_fallback_filepath')
-        if not fallback_filepath:
-            log.warning("Could not find config setting: 'ckan.odsh.resource_formats_fallback_filepath', using fallback instead.")
-            fallback_filepath = "/tmp/fileformats.rdf"
-        format_european_url = config.get('ckan.odsh.resource_formats_url')
-        err_msg = "Could not get file formats from " + str(format_european_url)
-        if not format_european_url:
-            log.warning("Could not find config setting: 'ckan.odsh.resource_formats_url', using fallback instead.")
-            format_european_url = "http://publications.europa.eu/resource/authority/file-type"
-        if sys.version_info[0] == 2:
-            urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
-        elif sys.version_info[0] == 3:  # >=Python3.1
-            urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
-        g.parse(urlresponse)
-        # At the moment, there are 143 different file types listed, 
-        # if less than 120 are found, something went wrong.       
-        if len(set([s for s in g.subjects()])) < 120:
-            raise ValueError("Not enough subjects")
-        # Save the content as backup
-        if sys.version_info[0] == 2:
-            urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
-        elif sys.version_info[0] == 3:  # >=Python3.1
-            urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
-        err_msg = "Could not write to " + fallback_filepath
-        f = open(fallback_filepath, 'w')
-        f.write(urlresponse.read())
-        f.close()
+        # if not fallback_filepath:
+        #     log.warning("Could not find config setting: 'ckan.odsh.resource_formats_fallback_filepath', using fallback instead.")
+        #     fallback_filepath = "/tmp/fileformats.rdf"
+        # format_european_url = config.get('ckan.odsh.resource_formats_url')
+        # err_msg = "Could not get file formats from " + str(format_european_url)
+        # if not format_european_url:
+        #     log.warning("Could not find config setting: 'ckan.odsh.resource_formats_url', using fallback instead.")
+        #     format_european_url = "http://publications.europa.eu/resource/authority/file-type"
+        # if sys.version_info[0] == 2:
+        #     urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
+        # elif sys.version_info[0] == 3:  # >=Python3.1
+        #     urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
+        # g.parse(urlresponse)
+        # # At the moment, there are 143 different file types listed, 
+        # # if less than 120 are found, something went wrong.       
+        # if len(set([s for s in g.subjects()])) < 120:
+        #     raise ValueError("Not enough subjects")
+        # # Save the content as backup
+        # if sys.version_info[0] == 2:
+        #     urlresponse = urllib2.urlopen(urllib2.Request(format_european_url))
+        # elif sys.version_info[0] == 3:  # >=Python3.1
+        #     urlresponse = urllib.request.urlopen(urllib.request.Request(format_european_url))
+        # err_msg = "Could not write to " + fallback_filepath
+        # f = open(fallback_filepath, 'w')
+        # f.write(urlresponse.read())
+        # f.close()
+        g.parse(fallback_filepath)
+        assert len(set([s for s in g.subjects()])) > 120
     except:
         log.exception("failed to process resource_formats")
-        # Something went wrong with trying to get the file formats online, try to use backup instead
-        try:
-            g.parse(fallback_filepath)
-            assert len(set([s for s in g.subjects()])) > 120
-            log.info("Could not get file formats from " + format_european_url + ", using fallback instead.")
-        except:
-            raise Exception(err_msg)
+        raise Exception('failed to load formats')
     file_types = [subj.decode() for subj in g.subjects()]
     
     for elem in sorted(set(file_types)):
