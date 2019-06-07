@@ -99,7 +99,7 @@ class TestEnv:
 
         checkConfig('ckanext.dcat.rdf.profiles',
                     'odsheuro_dcat_ap odshdcatap_de')
-        checkConfigDir('cache_dir')
+        # checkConfigDir('cache_dir')
         checkConfig('beaker.session.key', expected='ckan')
         checkConfig('beaker.session.secret')
 
