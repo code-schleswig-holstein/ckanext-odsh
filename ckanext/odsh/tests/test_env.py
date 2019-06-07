@@ -139,7 +139,7 @@ class TestEnv:
 
     def test_plugins(self):
         value = config.get('ckan.plugins', [])
-        for p in ['odsh']:
+        for p in ['odsh', 'odsh_autocomplete']:
             assert p in value, 'missing plugin:' + p
 
         if isMaster():
