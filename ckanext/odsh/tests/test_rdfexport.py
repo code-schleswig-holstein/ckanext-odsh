@@ -3,15 +3,12 @@ import rdflib
 import ckan.tests.factories as factories
 from ckan.common import config
 import ckan.model as model
-import pdb
 import json
 import ckanext.odsh.profiles as profiles
 import urllib2
 import ckan.tests.helpers as helpers
 from ckan.common import config
 import ckan.config.middleware
-from routes import url_for
-webtest_submit = helpers.webtest_submit
 
 
 # run with nosetests --ckan --nologcapture --with-pylons=<config to test> ckanext/odsh/tests/test_routes.py
