@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:locn="http://www.w3.org/ns/locn#"
+  xmlns:hydra="http://www.w3.org/ns/hydra/core#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dcat="http://www.w3.org/ns/dcat#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:dcatde="http://dcat-ap.de/def/dcatde/1.0.1/"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:schema="http://schema.org/"
+>
+  <dcat:Catalog rdf:about="http://192.168.57.3:5000">
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/232f9ecc-0d05-404e-aa1f-b4493ad75b21">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/232f9ecc-0d05-404e-aa1f-b4493ad75b21/resource/f580f88a-b2ad-40e5-9c21-0bc7a9655bbd"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:22:22.162536</dct:modified>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/232f9ecc-0d05-404e-aa1f-b4493ad75b21/resource/d1ece97b-4e29-4991-be19-f9ea91eb24c1"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N661fe56a12cc408a8bc6605a43b755ba">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>232f9ecc-0d05-404e-aa1f-b4493ad75b21</dct:identifier>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/b971aef7-6c0d-47fc-93ff-bf0480afceaf">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:identifier>b971aef7-6c0d-47fc-93ff-bf0480afceaf</dct:identifier>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:11:05.028842</dct:modified>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N3953a2e54b164ee9aa618ea4f450c127">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/4987ae1a-de01-4f1f-933b-8ffc09c10bae">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/4987ae1a-de01-4f1f-933b-8ffc09c10bae/resource/c33c3823-aeb9-4dc4-aa95-527cf6bb0535"/>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N8dee749f82a242d4b02b61164c5d6566">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>4987ae1a-de01-4f1f-933b-8ffc09c10bae</dct:identifier>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:46:02.412753</dct:modified>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/62fc297c-c92e-44d1-b3f6-bd8248100278">
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:identifier>62fc297c-c92e-44d1-b3f6-bd8248100278</dct:identifier>
+        <dct:title>Test Title</dct:title>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:54:54.322605</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/62fc297c-c92e-44d1-b3f6-bd8248100278/resource/8006c016-50b9-46ab-9d14-68a57ca20558"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Na5df53a2d5c348c48757442a817da997">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/23e28b7c-95a3-4946-9dc6-bdda5d0a8d1b">
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:title>Test Title</dct:title>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nbd9dfd5e57254e5e9fbd82c403d76b93">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:10:54.732389</dct:modified>
+        <dct:identifier>23e28b7c-95a3-4946-9dc6-bdda5d0a8d1b</dct:identifier>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/7643e445-78b5-4a6a-9866-b372d0851b5f">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/7643e445-78b5-4a6a-9866-b372d0851b5f/resource/5418816c-1a52-43b2-893a-b7e18f6ad8ef"/>
+        <dct:identifier>7643e445-78b5-4a6a-9866-b372d0851b5f</dct:identifier>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:19:19.650287</dct:modified>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/7643e445-78b5-4a6a-9866-b372d0851b5f/resource/e9682deb-73b4-4176-8de8-303c2baaaff6"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nd4cf42df3dfa4d14b3531942a559753b">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dct:title>Open Data Schleswig-Holstein</dct:title>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/e69861cc-4dbb-4cef-9f1a-1a594c7bbbdb">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/e69861cc-4dbb-4cef-9f1a-1a594c7bbbdb/resource/295107f6-be63-4453-a961-ebec5a60e54a"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N32b91e801dbb469b8eef7c73b2a0b80f">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:09:04.864959</dct:modified>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:identifier>e69861cc-4dbb-4cef-9f1a-1a594c7bbbdb</dct:identifier>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/760a4348-ebce-4bf2-9585-7d1a231d4b80">
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N8bf1146b703e4b0f8735e0254c3b6ac5">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:identifier>760a4348-ebce-4bf2-9585-7d1a231d4b80</dct:identifier>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/760a4348-ebce-4bf2-9585-7d1a231d4b80/resource/aece3368-41ba-444c-b0ab-86518ed0adc3"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:25:29.412752</dct:modified>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/55ac4ecc-9cd3-49b4-b0c7-02143ff5883e">
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:19:06.012809</dct:modified>
+        <dct:title>Test Title</dct:title>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:identifier>55ac4ecc-9cd3-49b4-b0c7-02143ff5883e</dct:identifier>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/55ac4ecc-9cd3-49b4-b0c7-02143ff5883e/resource/4b45c389-82c0-4ef8-9e8e-0f549f4378d1"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N47952854e9a644ef93001d35edbf8540">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/55ac4ecc-9cd3-49b4-b0c7-02143ff5883e/resource/f93e061c-f0f1-448a-8988-ac70319b41cb"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <foaf:homepage rdf:resource="http://192.168.57.3:5000"/>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/0bf6a084-81ea-427e-9ae5-ddf8e668b5c3">
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:title>Test Title</dct:title>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nd4fd10034ebc4618b61531c1f16315b2">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:identifier>0bf6a084-81ea-427e-9ae5-ddf8e668b5c3</dct:identifier>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:08:47.576429</dct:modified>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/0df4289a-f474-42db-b89e-f32fdfa7173d">
+        <dct:identifier>0df4289a-f474-42db-b89e-f32fdfa7173d</dct:identifier>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nfd5090569b364ce1a8e32700aae7b50b">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:55:09.977376</dct:modified>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/0df4289a-f474-42db-b89e-f32fdfa7173d/resource/867d6c19-3fe2-4651-86ef-ea4bcced4fc1"/>
+        <dct:description>Just another test dataset.</dct:description>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/6495f111-3e01-46e1-bb4b-1113837eab43">
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/6495f111-3e01-46e1-bb4b-1113837eab43/resource/22d18d76-f20a-4a2c-8b3d-6a737e42a9f6"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N2b05001b9d6f4e3f920e2e74af15ff40">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/6495f111-3e01-46e1-bb4b-1113837eab43/resource/ab079eae-20e7-47b0-8860-dd2d19e9a056"/>
+        <dct:identifier>6495f111-3e01-46e1-bb4b-1113837eab43</dct:identifier>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:19:54.028618</dct:modified>
+        <dct:title>Test Title</dct:title>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/a981e2c3-b592-4c0f-8cca-edd9ba145752">
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N093bd92d01cd455da12080bdcf142ac9">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>a981e2c3-b592-4c0f-8cca-edd9ba145752</dct:identifier>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/a981e2c3-b592-4c0f-8cca-edd9ba145752/resource/38638d94-36ea-405a-bf40-340188490010"/>
+        <dct:title>Test Title</dct:title>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/a981e2c3-b592-4c0f-8cca-edd9ba145752/resource/6b54ed4e-5875-4426-bb5f-418f45d1c192"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:20:51.086238</dct:modified>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/b8618a6a-378a-49e9-a2be-8f223bfea755">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:22:39.836488</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/b8618a6a-378a-49e9-a2be-8f223bfea755/resource/d00926a2-430c-4d38-ab20-b11c846b9cd5"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N0aaba25869b741a59f90acc84704b936">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:identifier>b8618a6a-378a-49e9-a2be-8f223bfea755</dct:identifier>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/b8618a6a-378a-49e9-a2be-8f223bfea755/resource/525fa860-ac4e-4df8-b5c1-1af18421d675"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/e240efa8-9213-4a9f-a428-1f67e58a1a9c">
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:identifier>e240efa8-9213-4a9f-a428-1f67e58a1a9c</dct:identifier>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:09:51.747673</dct:modified>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:title>Test Title</dct:title>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nc9874f689d45429f8100f7fd40e1946d">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/7a3d797e-ff37-4e2e-b119-21d478cc142d">
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:51:09.436189</dct:modified>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:identifier>7a3d797e-ff37-4e2e-b119-21d478cc142d</dct:identifier>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/7a3d797e-ff37-4e2e-b119-21d478cc142d/resource/9709b7b3-bf01-4fb5-a1e5-b7883276c261"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Ne889b672392a42279b517f5203785f38">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/e56d4274-dd3d-4ea9-8a17-8b74a1084333">
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T13:06:06.366907</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/e56d4274-dd3d-4ea9-8a17-8b74a1084333/resource/43b302a6-9597-4e2f-b8ec-c2db14e1c065"/>
+        <dct:title>Test Title</dct:title>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:identifier>e56d4274-dd3d-4ea9-8a17-8b74a1084333</dct:identifier>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N34e3b437cd144bae9dd4a75cd8472f24">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/d83f6df1-04cf-4b86-98db-8585d7a6eef8">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:identifier>d83f6df1-04cf-4b86-98db-8585d7a6eef8</dct:identifier>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N71e9b81b9fbd424fadf7156be5a78dca">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:title>Test Title</dct:title>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/d83f6df1-04cf-4b86-98db-8585d7a6eef8/resource/eae59086-a1e4-455e-ae0c-a73de8fbc358"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T13:09:59.196014</dct:modified>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/5e54a38f-ae4a-4bfb-9106-5fe6719cf95d">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/5e54a38f-ae4a-4bfb-9106-5fe6719cf95d/resource/4704fb06-c8e1-41a8-a1d1-c05faa60bc00"/>
+        <dct:identifier>5e54a38f-ae4a-4bfb-9106-5fe6719cf95d</dct:identifier>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nf2ecbe446d0f416d8fd5cb807a07e723">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/5e54a38f-ae4a-4bfb-9106-5fe6719cf95d/resource/20729a62-255c-4e5d-8533-fc0b4abe6e90"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:18:57.554472</dct:modified>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/60827947-3fd3-4e49-a58f-e8e510d5bbeb">
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:09:46.249205</dct:modified>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:identifier>60827947-3fd3-4e49-a58f-e8e510d5bbeb</dct:identifier>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:title>Test Title</dct:title>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nab3be452bb4b43d0b55dcea8486dfa0c">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/8222314f-32ee-4148-9eb6-132cd800010d">
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/8222314f-32ee-4148-9eb6-132cd800010d/resource/4f736f84-2880-4ae6-982f-9708e3fbf8cb"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:title>Test Title</dct:title>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:45:32.945948</dct:modified>
+        <dct:identifier>8222314f-32ee-4148-9eb6-132cd800010d</dct:identifier>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N08a6632d6f6b4d95935a52969302325e">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/157b450d-829c-4865-9a5e-c0a154009d2e">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:22:18.742056</dct:modified>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:identifier>157b450d-829c-4865-9a5e-c0a154009d2e</dct:identifier>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Na664ef6fd6934ea894da79e17cb7055b">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:title>Test Title</dct:title>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/c58ce188-213a-420a-b600-a4f7b05dcabc">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/c58ce188-213a-420a-b600-a4f7b05dcabc/resource/85b969ff-902b-4d6f-9a81-c45f9b3ed846"/>
+        <dct:title>Test Title</dct:title>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T14:37:32.417563</dct:modified>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Ncff05b35e8094abf91684bb8fb707432">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>c58ce188-213a-420a-b600-a4f7b05dcabc</dct:identifier>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/d54e16a0-4c9e-4763-8236-49d7d30f124b">
+        <dct:title>Test Title</dct:title>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N6026595a5e8b47199eba2f738a5ad823">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/d54e16a0-4c9e-4763-8236-49d7d30f124b/resource/15790db8-d38f-49f5-8df7-06e17425f03d"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:identifier>d54e16a0-4c9e-4763-8236-49d7d30f124b</dct:identifier>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T13:09:06.411791</dct:modified>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/d83e96cf-91eb-4131-9bea-2c33e547824c">
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/d83e96cf-91eb-4131-9bea-2c33e547824c/resource/04f187fd-7898-4c3c-8f17-abd68695a8f1"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:identifier>d83e96cf-91eb-4131-9bea-2c33e547824c</dct:identifier>
+        <dct:title>Test Title</dct:title>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:18:21.001829</dct:modified>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/d83e96cf-91eb-4131-9bea-2c33e547824c/resource/413d8fd2-45aa-434c-8ffc-1c6596c5b0aa"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nc140db9118bc412e9028828f564be058">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/730dc759-1c92-47bd-8bce-9588db67cab0">
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:19:40.319958</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/730dc759-1c92-47bd-8bce-9588db67cab0/resource/f30e2ed1-5f9f-4d1c-8516-4933f7d6e235"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/730dc759-1c92-47bd-8bce-9588db67cab0/resource/0147bdc6-1f20-4993-a9ac-11b6e7177e31"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N2d444a4835a145569e4e2ff49ff179a3">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:identifier>730dc759-1c92-47bd-8bce-9588db67cab0</dct:identifier>
+        <dct:description>Just another test dataset.</dct:description>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/82c16fca-d233-4b12-8050-6809f190fbda">
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:identifier>82c16fca-d233-4b12-8050-6809f190fbda</dct:identifier>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:12:32.958596</dct:modified>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nf535e9f32436428c966717c95ac024d0">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/f7686247-87c5-420b-bf54-c99e7b475342">
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:17:21.836938</dct:modified>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nbde2992aca9444e5b2ba0094fb32b178">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:title>Test Title</dct:title>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:identifier>f7686247-87c5-420b-bf54-c99e7b475342</dct:identifier>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/f7686247-87c5-420b-bf54-c99e7b475342/resource/07c5fe78-ddb6-4cb1-8b96-f27806682da1"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/ea0d8c57-7498-4ab7-b4df-a4a8c20451bd">
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/ea0d8c57-7498-4ab7-b4df-a4a8c20451bd/resource/718673c0-887f-4a1f-b858-940dd0d96899"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:23:09.762685</dct:modified>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N3777cb90923641be842d5bab0907379a">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>ea0d8c57-7498-4ab7-b4df-a4a8c20451bd</dct:identifier>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:title>Test Title</dct:title>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/32f2a0ef-ff3e-45a3-af4d-8349dc4eb980">
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:title>Test Title</dct:title>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/32f2a0ef-ff3e-45a3-af4d-8349dc4eb980/resource/804369c5-89e1-4c51-8ec9-64b644279829"/>
+        <dct:identifier>32f2a0ef-ff3e-45a3-af4d-8349dc4eb980</dct:identifier>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:17:36.361073</dct:modified>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nb578a9c02498452db3f1168574e134de">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/62112cf9-93ad-4fa9-850c-905e2c3b6621">
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Na71adad42af4401eb447a032c6174e5e">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:title>Test Title</dct:title>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:08:33.364837</dct:modified>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:identifier>62112cf9-93ad-4fa9-850c-905e2c3b6621</dct:identifier>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/362448a8-8a18-45d2-86a9-05b40963d0bd">
+        <dct:identifier>362448a8-8a18-45d2-86a9-05b40963d0bd</dct:identifier>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:title>Test Title</dct:title>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:21:48.473271</dct:modified>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N6d15d165bed74be1a81f98fe1e243d22">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/07a33216-9d1d-420a-be0a-45667f67ffeb">
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:title>Test Title</dct:title>
+        <dct:identifier>07a33216-9d1d-420a-be0a-45667f67ffeb</dct:identifier>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Ne81fbe4d091841418de9b66cfdf9c2d9">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:45:52.139818</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/07a33216-9d1d-420a-be0a-45667f67ffeb/resource/c579a486-28f2-4fd1-a7aa-4cf94a119af5"/>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a">
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:20:31.610159</dct:modified>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a/resource/f8efcc67-938a-432d-a017-8a144378b234"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N4e7414a58c684a7dbe99ace41694312b">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a/resource/5785a16a-0fa0-4476-8973-32fa388d3927"/>
+        <dct:title>Test Title</dct:title>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:identifier>1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a</dct:identifier>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/592aa9bb-5415-43ca-9e62-1a3e162a15d7">
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T13:08:20.340845</dct:modified>
+        <dct:identifier>592aa9bb-5415-43ca-9e62-1a3e162a15d7</dct:identifier>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/592aa9bb-5415-43ca-9e62-1a3e162a15d7/resource/826ddddc-b210-4476-84e1-d51e0049b747"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N1c3ea4c8b3764b36b37aa63be48c8e76">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/62cee6dd-3cfc-4f4e-9b23-4cabfff74aec">
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:15:33.696048</dct:modified>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:identifier>62cee6dd-3cfc-4f4e-9b23-4cabfff74aec</dct:identifier>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:title>Test Title</dct:title>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N478fefe1c6e74ea8b2a3b8433103e8c8">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:22:39.836488</dct:modified>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/fe349466-1f5b-40de-817f-39a4b0aaa066">
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T15:20:58.617465</dct:modified>
+        <dct:description>Just another test dataset.</dct:description>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/fe349466-1f5b-40de-817f-39a4b0aaa066/resource/ed4df483-d3f6-49c4-8b83-04a9eaa6586d"/>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="Nf4d81b4c90084661ab3d4362a171a635">
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:distribution rdf:resource="http://192.168.57.3:5000/dataset/fe349466-1f5b-40de-817f-39a4b0aaa066/resource/f80260a1-13e5-41c6-8844-f0e8f3d00a84"/>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:identifier>fe349466-1f5b-40de-817f-39a4b0aaa066</dct:identifier>
+        <dct:title>Test Title</dct:title>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://192.168.57.3:5000/dataset/097f50ce-89d0-4e3e-93e1-5c20ae054c80">
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</dct:issued>
+        <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
+        <dct:description>Just another test dataset.</dct:description>
+        <dct:spatial rdf:resource="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001"/>
+        <dct:title>Test Title</dct:title>
+        <dct:publisher rdf:resource="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7"/>
+        <dct:temporal>
+          <dct:PeriodOfTime rdf:nodeID="N70c02d4381e14a9e9d7194407eb1dbff">
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-01-27T00:00:00</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dct:identifier>097f50ce-89d0-4e3e-93e1-5c20ae054c80</dct:identifier>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-07T12:12:59.386254</dct:modified>
+      </dcat:Dataset>
+    </dcat:dataset>
+  </dcat:Catalog>
+  <hydra:PagedCollection rdf:about="http://192.168.57.3:5000/catalog.xml?page=1">
+    <hydra:lastPage>http://192.168.57.3:5000/catalog.xml?page=1</hydra:lastPage>
+    <hydra:totalItems rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">38</hydra:totalItems>
+    <hydra:itemsPerPage rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</hydra:itemsPerPage>
+    <hydra:firstPage>http://192.168.57.3:5000/catalog.xml?page=1</hydra:firstPage>
+  </hydra:PagedCollection>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/62fc297c-c92e-44d1-b3f6-bd8248100278/resource/8006c016-50b9-46ab-9d14-68a57ca20558">
+    <dct:title>test_resource_00</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/4987ae1a-de01-4f1f-933b-8ffc09c10bae/resource/c33c3823-aeb9-4dc4-aa95-527cf6bb0535">
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_00</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/07a33216-9d1d-420a-be0a-45667f67ffeb/resource/c579a486-28f2-4fd1-a7aa-4cf94a119af5">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/32f2a0ef-ff3e-45a3-af4d-8349dc4eb980/resource/804369c5-89e1-4c51-8ec9-64b644279829">
+    <dct:title>test_resource_00</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/b8618a6a-378a-49e9-a2be-8f223bfea755/resource/525fa860-ac4e-4df8-b5c1-1af18421d675">
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/730dc759-1c92-47bd-8bce-9588db67cab0/resource/0147bdc6-1f20-4993-a9ac-11b6e7177e31">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_01</dct:title>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/e69861cc-4dbb-4cef-9f1a-1a594c7bbbdb/resource/295107f6-be63-4453-a961-ebec5a60e54a">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a/resource/f8efcc67-938a-432d-a017-8a144378b234">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_01</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/6495f111-3e01-46e1-bb4b-1113837eab43/resource/22d18d76-f20a-4a2c-8b3d-6a737e42a9f6">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_01</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/5e54a38f-ae4a-4bfb-9106-5fe6719cf95d/resource/4704fb06-c8e1-41a8-a1d1-c05faa60bc00">
+    <dct:title>test_resource_01</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/8222314f-32ee-4148-9eb6-132cd800010d/resource/4f736f84-2880-4ae6-982f-9708e3fbf8cb">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/d83e96cf-91eb-4131-9bea-2c33e547824c/resource/04f187fd-7898-4c3c-8f17-abd68695a8f1">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/b8618a6a-378a-49e9-a2be-8f223bfea755/resource/d00926a2-430c-4d38-ab20-b11c846b9cd5">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_01</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/d83e96cf-91eb-4131-9bea-2c33e547824c/resource/413d8fd2-45aa-434c-8ffc-1c6596c5b0aa">
+    <dct:title>test_resource_01</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/1e7ec9d5-0028-4ff6-b4d9-ded038eccb4a/resource/5785a16a-0fa0-4476-8973-32fa388d3927">
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_00</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/districtKey/01001">
+    <locn:geometry rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">POLYGON ((9.4228 54.8232, 9.4376 54.8089, 9.4286 54.8000, 9.4366 54.7887, 9.4382 54.8030, 9.4419 54.8045, 9.4403 54.8004, 9.4438 54.8051, 9.4528 54.8074, 9.4579 54.8175, 9.4673 54.8236, 9.4908 54.8236, 9.4920 54.8148, 9.5054 54.8102, 9.5038 54.8041, 9.4996 54.8036, 9.5054 54.7995, 9.4989 54.7986, 9.5065 54.7921, 9.5021 54.7793, 9.5058 54.7731, 9.4934 54.7692, 9.4747 54.7723, 9.4722 54.7669, 9.4602 54.7603, 9.4609 54.7542, 9.4530 54.7521, 9.3790 54.7531, 9.3573 54.7794, 9.4055 54.7955, 9.4023 54.8082, 9.4115 54.8159, 9.4046 54.8224, 9.4126 54.8226, 9.4228 54.8232))</locn:geometry>
+    <skos:prefLabel>Stadt Flensburg</skos:prefLabel>
+    <locn:geometry rdf:datatype="https://www.iana.org/assignments/media-types/application/vnd.geo+json">{"type": "Polygon", "coordinates": [[[9.4228, 54.8232], [9.4376, 54.8089], [9.4286, 54.8], [9.4366, 54.7887], [9.4382, 54.803], [9.4419, 54.8045], [9.4403, 54.8004], [9.4438, 54.8051], [9.4528, 54.8074], [9.4579, 54.8175], [9.4673, 54.8236], [9.4908, 54.8236], [9.492, 54.8148], [9.5054, 54.8102], [9.5038, 54.8041], [9.4996, 54.8036], [9.5054, 54.7995], [9.4989, 54.7986], [9.5065, 54.7921], [9.5021, 54.7793], [9.5058, 54.7731], [9.4934, 54.7692], [9.4747, 54.7723], [9.4722, 54.7669], [9.4602, 54.7603], [9.4609, 54.7542], [9.453, 54.7521], [9.379, 54.7531], [9.3573, 54.7794], [9.4055, 54.7955], [9.4023, 54.8082], [9.4115, 54.8159], [9.4046, 54.8224], [9.4126, 54.8226], [9.4228, 54.8232]]]}</locn:geometry>
+  </dct:Location>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/7643e445-78b5-4a6a-9866-b372d0851b5f/resource/5418816c-1a52-43b2-893a-b7e18f6ad8ef">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_01</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/55ac4ecc-9cd3-49b4-b0c7-02143ff5883e/resource/4b45c389-82c0-4ef8-9e8e-0f549f4378d1">
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <foaf:Organization rdf:about="http://192.168.57.3:5000/organization/61263ac6-64cd-4048-90fc-767ddf45f3b7">
+    <foaf:name>test</foaf:name>
+  </foaf:Organization>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/fe349466-1f5b-40de-817f-39a4b0aaa066/resource/f80260a1-13e5-41c6-8844-f0e8f3d00a84">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_01</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/fe349466-1f5b-40de-817f-39a4b0aaa066/resource/ed4df483-d3f6-49c4-8b83-04a9eaa6586d">
+    <dct:title>test_resource_00</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/f7686247-87c5-420b-bf54-c99e7b475342/resource/07c5fe78-ddb6-4cb1-8b96-f27806682da1">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/7643e445-78b5-4a6a-9866-b372d0851b5f/resource/e9682deb-73b4-4176-8de8-303c2baaaff6">
+    <dct:title>test_resource_00</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/55ac4ecc-9cd3-49b4-b0c7-02143ff5883e/resource/f93e061c-f0f1-448a-8988-ac70319b41cb">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_01</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/5e54a38f-ae4a-4bfb-9106-5fe6719cf95d/resource/20729a62-255c-4e5d-8533-fc0b4abe6e90">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/232f9ecc-0d05-404e-aa1f-b4493ad75b21/resource/d1ece97b-4e29-4991-be19-f9ea91eb24c1">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/d83f6df1-04cf-4b86-98db-8585d7a6eef8/resource/eae59086-a1e4-455e-ae0c-a73de8fbc358">
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/0df4289a-f474-42db-b89e-f32fdfa7173d/resource/867d6c19-3fe2-4651-86ef-ea4bcced4fc1">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/ea0d8c57-7498-4ab7-b4df-a4a8c20451bd/resource/718673c0-887f-4a1f-b858-940dd0d96899">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/a981e2c3-b592-4c0f-8cca-edd9ba145752/resource/6b54ed4e-5875-4426-bb5f-418f45d1c192">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_01</dct:title>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/6495f111-3e01-46e1-bb4b-1113837eab43/resource/ab079eae-20e7-47b0-8860-dd2d19e9a056">
+    <dct:format>res_format</dct:format>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/592aa9bb-5415-43ca-9e62-1a3e162a15d7/resource/826ddddc-b210-4476-84e1-d51e0049b747">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/c58ce188-213a-420a-b600-a4f7b05dcabc/resource/85b969ff-902b-4d6f-9a81-c45f9b3ed846">
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/760a4348-ebce-4bf2-9585-7d1a231d4b80/resource/aece3368-41ba-444c-b0ab-86518ed0adc3">
+    <dct:title>test_resource_00</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/232f9ecc-0d05-404e-aa1f-b4493ad75b21/resource/f580f88a-b2ad-40e5-9c21-0bc7a9655bbd">
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+    <dct:title>test_resource_01</dct:title>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/730dc759-1c92-47bd-8bce-9588db67cab0/resource/f30e2ed1-5f9f-4d1c-8516-4933f7d6e235">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/e56d4274-dd3d-4ea9-8a17-8b74a1084333/resource/43b302a6-9597-4e2f-b8ec-c2db14e1c065">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/7a3d797e-ff37-4e2e-b119-21d478cc142d/resource/9709b7b3-bf01-4fb5-a1e5-b7883276c261">
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+    <dct:description>Just another test resource.</dct:description>
+    <dct:title>test_resource_00</dct:title>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/d54e16a0-4c9e-4763-8236-49d7d30f124b/resource/15790db8-d38f-49f5-8df7-06e17425f03d">
+    <dct:format>res_format</dct:format>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:description>Just another test resource.</dct:description>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:title>test_resource_00</dct:title>
+  </dcat:Distribution>
+  <dcat:Distribution rdf:about="http://192.168.57.3:5000/dataset/a981e2c3-b592-4c0f-8cca-edd9ba145752/resource/38638d94-36ea-405a-bf40-340188490010">
+    <dct:description>Just another test resource.</dct:description>
+    <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0"/>
+    <dct:title>test_resource_00</dct:title>
+    <dcat:accessURL rdf:resource="http://link.to.some.data"/>
+    <dct:format>res_format</dct:format>
+  </dcat:Distribution>
+</rdf:RDF>
