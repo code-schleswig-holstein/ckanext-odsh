@@ -181,8 +181,8 @@ class TestEnv:
     #     assert version == expected_commit, "wrong version: {was}!={exp}".format(was=version, exp=expected_commit)
 
     def test_routes(self):
-        # if isMaster():
-        #     return
+        if isMaster():
+            return
 
         expexted_rules = \
             """ ProxyPass /dataset/new http://10.61.47.219/dataset/new
