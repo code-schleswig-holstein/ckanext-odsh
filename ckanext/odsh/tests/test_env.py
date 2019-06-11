@@ -139,11 +139,14 @@ class TestEnv:
 
     def test_plugins(self):
         value = config.get('ckan.plugins', [])
-        for p in ['odsh', 'odsh_autocomplete']:
+        for p in ['odsh']:
             assert p in value, 'missing plugin:' + p
 
         if isMaster():
             for p in ['odsh_icap', 'odsh_dcat_harvest', 'odsh_harvest']:
+                assert p in value, 'missing plugin:' + p
+        if isSlave():
+            for p in ['odsh_autocomplete']:
                 assert p in value, 'missing plugin:' + p
 
         # pdb.set_trace()
