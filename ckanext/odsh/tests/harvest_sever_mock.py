@@ -47,7 +47,7 @@ class HarvestServerMock(threading.Thread):
         self.thread_name = self.__class__
         self.server = HTTPServer((hostName, hostPort), RequestHandler)
         threading.Thread.__init__(self, name=self.thread_name, target=self.server.serve_forever)
-        # self.setDaemon(True)
+        self.setDaemon(True)
 
 
 #     def run(self):

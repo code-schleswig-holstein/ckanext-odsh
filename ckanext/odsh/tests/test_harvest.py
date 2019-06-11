@@ -1,4 +1,5 @@
 from ckanext.odsh.tests.test_helpers import AppProxy
+import ckanext.odsh.tests.test_helpers as testhelpers
 import ckan.tests.factories as factories
 import uuid
 import pdb
@@ -41,7 +42,7 @@ class TestHarvest:
 
     def run_harvest(self, harvester):
         out = subprocess.check_output([
-            "paster", "--plugin=ckanext-harvest", "harvester", "run_test", harvester,   "--config=/etc/ckan/default/development.ini"])
+            "paster", "--plugin=ckanext-harvest", "harvester", "run_test", harvester,   '--config='+testhelpers.getConfigPath()])
 
     def _get_app(self):
         if not hasattr(self, 'app'):
