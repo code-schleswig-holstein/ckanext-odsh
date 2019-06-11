@@ -10,7 +10,7 @@ import subprocess
 
 class TestHarvest:
 
-    def _create_harvester(self):
+    def _create_harvester(self, source_type):
         guid = str(uuid.uuid4())
         # self.org = factories.Organization(
         #     name="test_harvest_org_" + guid,
@@ -22,6 +22,7 @@ class TestHarvest:
         title = 'harvest_test_source_' + guid
         form['title'] = title
         form['url'] = "http://localhost:5002/" + guid 
+        form['source_type'] = source_type 
         final_response = self.app.submit_form(form)
         # submit_response = self.app.submit_form(form)
         # assert 'missing value' in submit_response
@@ -33,7 +34,7 @@ class TestHarvest:
 
     def test_harvest_dcat(self):
         # Arrange
-        harvester = self._create_harvester()
+        harvester = self._create_harvester('dcat_rdf')
         harvest_sever_mock.data = self._load_rdf_catalog()
         server = HarvestServerMock()
         server.start()
