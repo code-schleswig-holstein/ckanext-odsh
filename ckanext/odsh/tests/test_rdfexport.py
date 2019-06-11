@@ -19,7 +19,6 @@ DCAT = Namespace("http://www.w3.org/ns/dcat#")
 DCT = Namespace("http://purl.org/dc/terms/")
 
 
-
 def _get_test_app():
     app = ckan.config.middleware.make_app(config['global_conf'], **config)
     app = helpers.CKANTestApp(app)
@@ -59,7 +58,6 @@ class TestRDFExport:
         lic = self._extract_licenses(g)
         att = self._extract_licenseAttributions(g)
 
-
         assert len(lic) == 3
         assert len(att) == 3
         assert len(set([str(l) for l in lic])) == 1
@@ -75,7 +73,8 @@ class TestRDFExport:
         response = self._get_app().get('/api/3/action/package_search')
         plist = json.loads(response.body)
 
-        assert len(datasets) == plist['result']['count']
+        assert len(datasets) == plist['result']['count'], "{rdf} != {cat}".format(
+            rdf=len(datasets), cat=plist['result']['count'])
 
     def _get_app(self):
         if not hasattr(self, 'app'):
