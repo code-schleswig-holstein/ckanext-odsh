@@ -11,10 +11,10 @@ class TestHarvest:
 
     def _create_harvester(self):
         guid = str(uuid.uuid4())
-        self.org = factories.Organization(
-            name="test_harvest_org_" + guid,
-            users=[{'name': 'ckanuser', 'capacity': 'admin'}]
-        )
+        # self.org = factories.Organization(
+        #     name="test_harvest_org_" + guid,
+        #     users=[{'name': 'ckanuser', 'capacity': 'admin'}]
+        # )
         self._get_app().login()
         response = self.app.get('/harvest/new')
         form = response.forms[0]

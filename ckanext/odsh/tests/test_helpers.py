@@ -43,8 +43,13 @@ class AppProxy:
         app = _get_test_app()
         response = app.get('/user/login')
         login_form = response.forms[0]
-        login_form['login'] = 'ckanuser'
-        login_form['password'] = 'pass'
+
+        user = config.get('ckanext.odsh.testuser', None)
+        assert user 
+        password = config.get('ckanext.odsh.testuserpass', None)
+        assert password 
+        login_form['login'] = user
+        login_form['password'] = password
         submit_response = login_form.submit('save')
         final_response = helpers.webtest_maybe_follow(submit_response)
         self.app = app
