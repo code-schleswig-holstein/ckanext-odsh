@@ -13,6 +13,8 @@
 {{ super() }}
 {% set matomo_url = h.odsh_tracking_url()%}
 {% set matomo_id = h.odsh_tracking_id()%}
+<meta data-name="type" content="{{h.odsh_is_slave()}}">
+
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];

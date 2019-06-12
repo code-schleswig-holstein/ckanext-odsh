@@ -292,7 +292,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'odsh_public_url': odsh_helpers.odsh_public_url,
                 'odsh_public_resource_url': odsh_helpers.odsh_public_resource_url,
                 'odsh_get_version_id': odsh_helpers.odsh_get_version_id,
-                'odsh_show_testbanner': odsh_helpers.odsh_show_testbanner
+                'odsh_show_testbanner': odsh_helpers.odsh_show_testbanner,
+                'odsh_is_slave': odsh_helpers.odsh_is_slave
                 }
 
     def after_map(self, map):
