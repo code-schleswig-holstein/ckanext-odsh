@@ -205,6 +205,8 @@ class TestEnv:
     ProxyPassMatch ^/(dataset/[^/]+/resource/[^/]+/)$ http://10.61.47.219/$1
     ProxyPassMatch ^/(dataset/[^/]+/resource_data/[^/]+)$ http://10.61.47.219/$1
     ProxyPassReverse ^/(dataset/[^/]+/resource_data/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource_edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource_edit/[^/]+)$ http://10.61.47.219/$1
     ProxyPassMatch ^/(dataset/[^/]+/resource/[^/]+/new_view[^/]*)$ http://10.61.47.219/$1
     ProxyPassReverse ^/(dataset/[^/]+/resource/[^/]+/new_view[^/]*)$ http://10.61.47.219/$1
     ProxyPassMatch ^/(harvest.*)$ http://141.91.184.90/$1
