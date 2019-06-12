@@ -244,8 +244,6 @@ def odsh_show_testbanner():
 
 def odsh_is_slave():
     c = config.get('ckanext.odsh.slave', None)
-    print('SLVA')
-    print(c)
     if c is None or (c != 'True' and c != 'False'):
         return -1 
     return 1 if c == 'True' else 0
