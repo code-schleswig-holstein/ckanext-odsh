@@ -18,21 +18,6 @@ class TestSelenium:
         TestSelenium.app = SeleniumCkanApp()
         # TestSelenium.app.login()
 
-    def notest_edit_paths(self):
-        paths = ['/organization/edit/' + test_org,
-                 '/dataset/edit/testtesttest',
-                 '/dataset/testtesttest/resource_edit/afaec407-d033-439d-a699-fe9279b20e6b',
-                 '/dataset/new_resource/testtesttest',
-                 '/dataset/new?group=',
-                 '/harvest',
-                 '/harvest/test2',
-                 '/harvest/admin/test2'
-                 ]
-        for path in paths:
-            TestSelenium.app.got_to_url(path)
-            cont = TestSelenium.app.get_slave_flag()
-            assert cont == u'0'
-
     def test_login(self):
         TestSelenium.app.login()
         assert '/dataset' in TestSelenium.app.currentUrl()
@@ -64,3 +49,19 @@ class TestSelenium:
         TestSelenium.app.findElementById('form-submit-button').click()
 
         assert 'dataset/'+title in TestSelenium.app.currentUrl()
+
+    @depends(after=test_create_dataset)
+    def test_edit_paths(self):
+        paths = ['/organization/edit/' + test_org,
+                 '/dataset/edit/testtesttest',
+                 '/dataset/testtesttest/resource_edit/afaec407-d033-439d-a699-fe9279b20e6b',
+                 '/dataset/new_resource/testtesttest',
+                 '/dataset/new?group=',
+                 '/harvest',
+                 '/harvest/test2',
+                 '/harvest/admin/test2'
+                 ]
+        for path in paths:
+            TestSelenium.app.got_to_url(path)
+            cont = TestSelenium.app.get_slave_flag()
+            assert cont == u'0'

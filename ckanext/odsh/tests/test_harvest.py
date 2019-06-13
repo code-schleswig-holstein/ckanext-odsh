@@ -50,6 +50,7 @@ class TestHarvest:
         return self.app
 
     def _load_rdf_catalog(self):
-        with open('ckanext/odsh/tests/rdf_catalog.xml', 'r') as rdffile:
+        # with open('ckanext/odsh/tests/rdf_catalog.xml', 'r') as rdffile:
+        with open('ckanext/odsh/tests/rdf_catalog_empty.xml', 'r') as rdffile:
             data = rdffile.read()
             return data
