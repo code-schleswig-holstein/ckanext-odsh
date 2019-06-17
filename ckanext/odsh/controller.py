@@ -145,6 +145,12 @@ class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
         if logic_function == 'resource_qv4yAI2rgotamXGk98gJ':
             return helpers.odsh_get_version_id()
+        if logic_function == 'resourcelog_qv4yAI2rgotamXGk98gJ':
+            if config.get('ckanext.odsh.enabletestendpoints', None) == 'True':
+                log.info('This is an info test log')
+                log.warning('This is an warning test log')
+                log.error('This is an error test log')
+                return 'ok'
         try:
             function = logic.get_action(logic_function)
             side_effect_free = getattr(function, 'side_effect_free', False)

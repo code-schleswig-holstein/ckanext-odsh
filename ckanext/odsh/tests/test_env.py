@@ -8,6 +8,7 @@ import os
 import sys
 import ConfigParser
 from collections import OrderedDict
+from urlparse import urlsplit
 
 expected_commit = '8cd9576884cae6abe50a27c891434cb9fe87ced2'
 
@@ -139,11 +140,14 @@ class TestEnv:
 
     def test_plugins(self):
         value = config.get('ckan.plugins', [])
-        for p in ['odsh', 'odsh_autocomplete']:
+        for p in ['odsh']:
             assert p in value, 'missing plugin:' + p
 
         if isMaster():
             for p in ['odsh_icap', 'odsh_dcat_harvest', 'odsh_harvest']:
+                assert p in value, 'missing plugin:' + p
+        if isSlave():
+            for p in ['odsh_autocomplete']:
                 assert p in value, 'missing plugin:' + p
 
         # pdb.set_trace()
@@ -176,3 +180,92 @@ class TestEnv:
     #     # version = checkConfig('ckanext.odsh.version')
     #     assert version == expected_commit, "wrong version: {was}!={exp}".format(was=version, exp=expected_commit)
 
+    def test_routes(self):
+        if isMaster():
+            return
+
+        expexted_rules = \
+            """ ProxyPass /dataset/new http://10.61.47.219/dataset/new
+    ProxyPassReverse /dataset/new http://10.61.47.219/dataset/new
+    ProxyPassMatch ^/(dataset/delete/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/delete/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse /dataset http://141.91.184.90/dataset
+    ProxyPassReverse /dataset http://141.91.184.90/dataset
+    ProxyPass /dataset/new_resource http://10.61.47.219/dataset/new_resource
+    ProxyPassReverse /dataset/new_resource http://141.91.184.90/dataset/new_resource
+    ProxyPassReverse /dataset/new_resource http://141.91.184.90/dataset/new_resource
+    #ProxyPass /api/i18n/de http://141.91.184.90/api/i18n/de
+    ProxyPassReverse ^/uploads/group/(.*)$ http://10.61.47.219/uploads/group/$1
+    ProxyPassMatch ^/uploads/group/(.*)$ http://10.61.47.219/uploads/group/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource/[^/]+/download/[^/]+)$ http://141.91.184.90/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource/[^/]+/download/[^/]+)$ http://141.91.184.90/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource/[^/]+/)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource_data/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource_data/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource_edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource_edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(dataset/[^/]+/resource/[^/]+/new_view[^/]*)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(dataset/[^/]+/resource/[^/]+/new_view[^/]*)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(harvest.*)$ http://141.91.184.90/$1
+    ProxyPassReverse /harvest http://141.91.184.90/harvest
+    ProxyPass /harvest http://141.91.184.90/harvest
+    ProxyPassReverse ^/(harvest.*)$ http://141.91.184.90/$1
+    ProxyPassReverse ^/(api/3/action/package.*)$ http://10.61.47.219/$1
+    ProxyPassMatch ^/(api/3/action/package.*)$ http://10.61.47.219/$1
+    ProxyPass /api/action/package_create http://10.61.47.219/api/action/package_create
+    ProxyPassReverse /api/action/package_create http://10.61.47.219/api/action/package_create
+    ProxyPass /api/action/resource_create http://10.61.47.219/api/action/resource_create
+    ProxyPassReverse /api/action/resource_create http://10.61.47.219/api/action/resource_create
+    ProxyPassMatch ^/(organization/edit/[^/]+)$ http://10.61.47.219/$1
+    ProxyPassReverse ^/(organization/edit/[^/]+)$ http://10.61.47.219/$1 
+    ProxyPass /organization/new http://<interne-IP-Master>/organization/new
+    ProxyPassReverse /organization/new http://<interne-IP-Master>/organization/new
+    ProxyPassReverse /organization http://<interne-IP-Master>/organization
+    ProxyPassReverse ^/(organization/edit/[^/]+)$ http://<interne-IP-Master>/$1
+
+    # ProxyPass /datarequest http://10.61.47.219/datarequest
+    # ProxyPassReverse /datarequest http://10.61.47.219/datarequest
+    """
+
+        expected = self._parse_rules(expexted_rules.splitlines())
+
+        # with open('ckan_default.conf', 'r') as aconfig:
+        with open('/etc/apache2/sites-enabled/ckan_default.conf', 'r') as aconfig:
+            lines = aconfig.readlines()
+            # pdb.set_trace()
+            current = self._parse_rules(lines, check_host=True)
+            if len(expected.symmetric_difference(current)) > 0:
+                diff = expected.difference(current)
+                if len(diff) > 0:
+                    print('WARNING: missing routes:')
+                    for r in sorted(diff, key=lambda tup: tup[1]):
+                        print('{cmd} {source} {target}'.format(
+                            cmd=r[0], source=r[1], target='http://<interne-IP-Master>'+r[2]))
+                diff = current.difference(expected)
+                if len(diff) > 0:
+                    print('WARNING: found unexpected routes:')
+                    for r in sorted(diff, key=lambda tup: tup[1]):
+                        print('{cmd} {source} {target}'.format(
+                            cmd=r[0], source=r[1], target='<target>'+r[2]))
+
+    def _parse_rules(self, lines, check_host=False):
+        rules = set(['ProxyPassMatch', 'ProxyPassReverse', 'ProxyPass'])
+        ret = []
+        hosts = set()
+        for line in lines:
+            tokens = filter(lambda t: t.strip(), line.strip().split(' '))
+            if not tokens or tokens[0] not in rules:
+                continue
+            assert len(tokens) == 3
+            # for token in tokens:
+            # print(token)
+            f = urlsplit(tokens[2])
+            ret.append((tokens[0], tokens[1], f.path))
+            hosts.add(f.netloc)
+        if check_host and len(hosts) > 1:
+            print('WARNING: found multiple target hosts: {hosts}'.format(
+                hosts=', '.join(hosts)))
+        return set(ret)

@@ -4,6 +4,7 @@ import functools
 from ckan.common import config
 import ckan.config.middleware
 import ckan.tests.helpers as helpers
+import sys
 
 
 def odsh_test():
@@ -38,13 +39,27 @@ def _get_test_app():
     return app
 
 
+def getConfigPath():
+    path = None
+    for a in sys.argv:
+        if a.startswith('--with-pylons'):
+            path = a.split('=')[1]
+            break
+    assert path, 'could not find config parameter'
+    return path
+
 class AppProxy:
     def login(self):
         app = _get_test_app()
         response = app.get('/user/login')
         login_form = response.forms[0]
-        login_form['login'] = 'ckanuser'
-        login_form['password'] = 'pass'
+
+        user = config.get('ckanext.odsh.testuser', None)
+        assert user 
+        password = config.get('ckanext.odsh.testuserpass', None)
+        assert password 
+        login_form['login'] = user
+        login_form['password'] = password
         submit_response = login_form.submit('save')
         final_response = helpers.webtest_maybe_follow(submit_response)
         self.app = app

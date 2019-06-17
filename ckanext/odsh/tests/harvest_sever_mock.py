@@ -22,7 +22,9 @@ class RequestHandler(BaseHTTPRequestHandler):
     # GET
     def do_GET(self):
         self.send_response(requests.codes.ok)
-        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        # self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header(
+            'Content-Type', 'application/rdf+xml; charset=utf-8')
         self.end_headers()
         self.wfile.write(data.encode("utf-8"))
 
@@ -46,8 +48,9 @@ class HarvestServerMock(threading.Thread):
         self._stop_event = threading.Event()
         self.thread_name = self.__class__
         self.server = HTTPServer((hostName, hostPort), RequestHandler)
-        threading.Thread.__init__(self, name=self.thread_name, target=self.server.serve_forever)
-        # self.setDaemon(True)
+        threading.Thread.__init__(
+            self, name=self.thread_name, target=self.server.serve_forever)
+        self.setDaemon(True)
 
 
 #     def run(self):
