@@ -1980,3 +1980,11 @@ p.package-info-categorie
 {
     padding-left: 4px;
 }
+
+.new-dataset-label
+{
+    background-color: #d4004b!important;;
+    padding: 3px 3px 1px 3px;
+    font-size: 14px;
+    margin-right: 4px;
+}

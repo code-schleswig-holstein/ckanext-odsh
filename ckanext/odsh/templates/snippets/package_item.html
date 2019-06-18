@@ -43,6 +43,9 @@ Example:
     <p>{{org}}</p>
     <h3 class="dataset-heading">
       {% block heading_private %}
+      {% if package.is_new %}
+        <span class='label new-dataset-label'>{{ _('NEW') }}</span>
+      {% endif %}
       {% if package.private %}
       <span class="dataset-private label label-inverse">
         <i class="fa fa-lock"></i>

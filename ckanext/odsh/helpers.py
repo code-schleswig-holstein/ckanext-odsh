@@ -266,3 +266,30 @@ def odsh_is_slave():
     if c is None or (c != 'True' and c != 'False'):
         return -1 
     return 1 if c == 'True' else 0
+
+
+def is_within_last_month(date, date_ref=None):
+    '''
+    date is a datetime.date object containing the date to be checked
+    date_ref is a datetime.date object containing the reference date
+    if date_ref is not specified, the date of today is used
+    this method is needed by the method OdshPlugin.before_view in plugin.py
+    '''
+    
+    if not date_ref:
+        date_ref = datetime.date.today()
+    
+    [year_ref, month_ref, day_ref] = [date_ref.year, date_ref.month, date_ref.day]
+
+    try:
+        if month_ref > 1:
+            one_month_ago = datetime.date(year_ref, month_ref-1, day_ref)
+        else:
+            one_month_ago = datetime.date(year_ref-1, 12, day_ref)
+    except ValueError:
+        # this happens if month before month_ref has less days than month_ref
+        one_month_ago = datetime.date(year_ref, month_ref, 1) - datetime.timedelta(days=1)
+    
+    if date > one_month_ago:
+        return True
+    return False

@@ -525,4 +525,33 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         self.map_qa_score(dict_pkg)
 
         return dict_pkg
+    
+
+    # IPackageController
+
+    def before_view(self, pkg_dict):
+        '''
+        add a key 'is_new' to pkg_dict
+        the value for this key is True if the dataset has been modified within the last month
+        the value is used in the snippet package_item.html
+        '''
+        is_new = self._is_package_new(pkg_dict)
+        pkg_dict.update({'is_new':is_new})
+        return pkg_dict
+    
+    def _is_package_new(self, pkg_dict):
+        date_last_modified = self._get_date_from_string(pkg_dict['metadata_modified'])
+        is_new = odsh_helpers.date_checker.is_within_last_month(date_last_modified)
+        return is_new
+    
+    def _get_date_from_string(self, date_time_str):
+        # todo: update this function if used in different context
+        date_time_format = '%Y-%m-%dT%H:%M:%S.%f' #e.g. u'2019-06-12T11:56:25.059563'
+        try:
+            date_time = datetime.datetime.strptime(date_time_str, date_time_format)
+        except ValueError:
+            # if date cannot be converted from string fall back to 1.1.2000
+            date = datetime.date(2000, 1, 1)
+        date = date_time.date()
+        return date
 

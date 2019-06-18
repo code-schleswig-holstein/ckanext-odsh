@@ -420,3 +420,6 @@ msgstr "Neuen Datensatz vorschlagen"
 
 msgid "Suggest New Data Request"
 msgstr "Datensatz vorschlagen"
+
+msgid "NEW"
+msgstr "NEU"
