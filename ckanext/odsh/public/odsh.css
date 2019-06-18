@@ -1951,3 +1951,32 @@ p.package-info-categorie
     justify-content: center;
     padding-top: 20px;
 }
+
+
+.label.label-open
+{
+    color: white;
+    background-color: #003064;
+}
+
+.label.label-open
+{
+    color: white;
+    background-color: #003064;
+}
+
+.datarequest-subtitle
+{ 
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+}
+.datarequest-item-open-time
+{
+    padding-right: 4px;
+    border-right: 1px solid;
+}
+.datarequest-item-autor-name
+{
+    padding-left: 4px;
+}

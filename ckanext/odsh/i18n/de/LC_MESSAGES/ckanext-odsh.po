@@ -414,3 +414,9 @@ msgstr "Datensatz vorschlagen"
 
 msgid "Add New Comment"
 msgstr "Kommentieren"
+
+msgid "Create New Data Request"
+msgstr "Neuen Datensatz vorschlagen"
+
+msgid "Suggest New Data Request"
+msgstr "Datensatz vorschlagen"

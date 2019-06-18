@@ -4,11 +4,11 @@
 
 {% block datarequest_search_results_list %}
   {% if datarequests %}
-    <ul class="dataset-list unstyled list-unstyled">
+    <div class="dataset-list unstyled">
       {% for datarequest in datarequests %}
         {{ h.snippet('datarequests/snippets/datarequest_item.html', datarequest=datarequest, facet_titles=facet_titles) }}
       {% endfor %}
-    </ul>
+    </div>
   {% else %}
     <p class="empty">
       {{ _('No Data Requests found with the given criteria') }}.

@@ -147,7 +147,7 @@ class TestEnv:
             for p in ['odsh_icap', 'odsh_dcat_harvest', 'odsh_harvest']:
                 assert p in value, 'missing plugin:' + p
         if isSlave():
-            for p in ['odsh_autocomplete']:
+            for p in ['odsh_autocomplete datarequests']:
                 assert p in value, 'missing plugin:' + p
 
         # pdb.set_trace()

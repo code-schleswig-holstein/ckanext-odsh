@@ -4,7 +4,7 @@
   <section class="module">
     <div class="module-content">
       {% block page_primary_action %}
-        {% snippet 'snippets/custom_search_form.html', query=c.q, fields=(('organization', c.organization), ('state', c.state)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=true, count=c.datarequest_count, no_title=True %}
+        {% snippet 'snippets/custom_search_form.html', query=c.q, fields=(('organization', c.organization), ('state', c.state)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=false, count=c.datarequest_count, no_title=True %}
         {{ h.snippet('datarequests/snippets/datarequest_list.html', datarequest_count=c.datarequest_count, datarequests=c.datarequests, page=c.page, q=c.q)}}
         {% if h.check_access('create_datarequest') %}
           <div class="add_request_container">

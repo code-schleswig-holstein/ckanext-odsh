@@ -1,0 +1,7 @@
+#: ckanext/datarequests/templates/datarequests/new.html:3
+#: ckanext/datarequests/templates/datarequests/new.html:7
+#: ckanext/datarequests/templates/datarequests/new.html:11
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
+#: ckanext/datarequests/templates/datarequests/snippets/new_datarequest_form.html:7
+msgid "Create Data Request"
+msgstr "Datenanfrage "
