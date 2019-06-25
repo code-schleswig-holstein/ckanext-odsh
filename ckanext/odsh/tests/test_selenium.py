@@ -50,6 +50,10 @@ class TestSelenium:
 
         assert 'dataset/'+title in TestSelenium.app.currentUrl()
 
+    # def test_search_order(self):
+        # TestSelenium.app.got_to_url('/dataset/')
+
+
     @depends(after=test_create_dataset)
     def test_edit_paths(self):
         paths = ['/organization/edit/' + test_org,

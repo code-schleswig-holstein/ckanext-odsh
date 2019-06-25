@@ -22,6 +22,15 @@
     {% link_for _('Close'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='close', id=datarequest_id, class_='btn btn-danger', icon='lock' %}
   {% endif %}
 
+<h2 class="page-heading">
+  {% block page_heading %}
+    {{c.datarequest.title}}
+  {% endblock %}
+</h2>
+
+<div class='datarequest-primary'>
+{{ h.render_markdown(h.get_translated(c.datarequest, 'description')) }}
+
   {% snippet "datarequests/snippets/comments.html", comments=c.comments, datarequest=c.datarequest, errors=c.errors, errors_summary=c.errors_summary, updated_comment=c.updated_comment %}
 
   {% if h.check_access('comment_datarequest', {'id':c.datarequest.id }) %}
@@ -37,5 +46,40 @@
       {% snippet "datarequests/snippets/comment_form.html", datarequest=c.datarequest, errors=c.errors, errors_summary=c.errors_summary, offering=c.offering, initial_text=c.updated_comment.comment if create_comment_error, focus=create_comment_error, current_user=c.userobj %}
     </div>
   {% endif %}
+</div>
+
+<section class="additional-info">
+      {% block package_additional_info %}
+          <div>{{ _('Released') }}: {{ h.odsh_render_datetime(c.datarequest.open_time) }}</div>
+          <div>{{ _('Suggester') }}: {{ c.datarequest.user['display_name'] if c.datarequest.user else _('None') }}</div>
+          {#<td class="dataset-details" title="{{ c.datarequest.close_time }}">{{ h.time_ago_from_timestamp(c.datarequest.close_time) if c.datarequest.close_time else _('Not closed yet') }}</td>#}
+          <div >{{ _('Status') }}:
+          <div  class="dataset-details">
+            {% if c.datarequest.get('closed', False) %}
+            <div class="label label-closed">
+                {% trans %}Closed{% endtrans %}
+            </div>
+            {% else %}
+            <div class="label label-open">
+                {% trans %}Open{% endtrans %}
+            </div>
+            {% endif %}
+          </div>
+        {#{% if c.datarequest.closed %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _('Accepted Dataset') }}</th>
+            <td class="dataset-details">
+            {% if c.datarequest.accepted_dataset %}
+              {% link_for c.datarequest.accepted_dataset['title'], controller='package', action='read', id=c.datarequest.accepted_dataset.get('id') %}
+            {% else %}
+              {{ _('None') }}
+            {% endif %}
+            </td>
+          </tr>
+        {% endif %}
+        #}
+        <div class='comment-count-wrapper'><i class="icon-comment fa fa-comment"></i> {{ h.get_comments_number(c.datarequest.get('id', '')) }}</span> </div>
+      {% endblock %}
+</section>
 
 {% endblock %}

@@ -429,3 +429,23 @@ msgstr "Veröffentlicht"
 
 msgid "Suggester"
 msgstr "Vorschlagende"
+
+msgid "Done"
+msgstr "Fertig"
+
+msgid "Data Proposal"
+msgstr "Datenvorschlag"
+
+msgid "No data proposal found"
+msgstr "Kein Datenvorschlag gefunden"
+
+msgid "{number} data proposal found"
+msgid_plural "{number} data proposals found"
+msgstr[0] "{number} Ergebnis"
+msgstr[1] "{number} Ergebnisse"
+
+msgid "Date Descending"
+msgstr "Datum absteigend"
+
+msgid "Date Ascending"
+msgstr "Datum aufsteigend"
