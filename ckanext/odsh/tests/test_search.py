@@ -9,6 +9,7 @@ from nose.tools import assert_true, assert_false, assert_equal, assert_in
 from routes import url_for
 import ckan.plugins
 from test_helpers import odsh_test
+import pdb
 
 
 
@@ -183,6 +184,17 @@ class TestSearch(helpers.FunctionalTestBase):
         self._assert_datasets_in_response([datasetA], response5)
         self._assert_datasets_not_in_response([datasetA], response6)
 
+    @odsh_test()
+    def test_dataset_new_has_label(self):
+        # arrange
+        datasetA = self._create_dataset('dataseta', '1960-01-01', None,'mytitle')
+
+        # act
+        response = self._perform_text_and_date_search('mytitle', None, None)
+
+        # assert
+        response.mustcontain('new-dataset-label')
+
     def _assert_datasets_in_response(self, datasets, response):
         for dataset in datasets:
             assert dataset['name'] in response
@@ -200,6 +212,8 @@ class TestSearch(helpers.FunctionalTestBase):
             {'key': 'temporal_start', 'value': temporal_start},
             {'key': 'temporal_end', 'value': temporal_end},
             {'key': 'issued', 'value': '2000-01-27'},
+            {'key': 'groups', 'value': 'soci'},
+            {'key': 'licenseAttributionByText', 'value': 'text'},
             {'key': 'spatial_uri', 'value': 'http://dcat-ap.de/def/politicalGeocoding/districtKey/01001'}
         ]
         return factories.Dataset(user=user,
@@ -207,7 +221,7 @@ class TestSearch(helpers.FunctionalTestBase):
                                  title=title,
                                  issued='27-01-2000',
                                  extras=extras,
-                                 license_id='id')
+                                 license_id='http://dcat-ap.de/def/licenses/dl-by-de/2.0')
 
     def _perform_search(self, query=None):
         search_form = self._perform_search_for_form('dataset-search-box-form')
