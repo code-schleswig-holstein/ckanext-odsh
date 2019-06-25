@@ -541,7 +541,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     
     def _is_package_new(self, pkg_dict):
         date_last_modified = self._get_date_from_string(pkg_dict['metadata_modified'])
-        is_new = odsh_helpers.date_checker.is_within_last_month(date_last_modified)
+        is_new = odsh_helpers.is_within_last_month(date_last_modified)
         return is_new
     
     def _get_date_from_string(self, date_time_str):
