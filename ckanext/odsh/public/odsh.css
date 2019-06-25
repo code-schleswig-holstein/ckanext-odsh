@@ -1980,3 +1980,54 @@ p.package-info-categorie
 {
     padding-left: 4px;
 }
+
+.comments-heading{
+    color: black;
+    font-weight: normal;
+    border-top: 2px solid #DBDBDB;
+    padding-top:10px;
+}
+
+.odsh-comment-wrapper{
+    padding-left: 0px;
+    max-width: 400px;
+}
+
+.odsh-comment-wrapper .controls{
+    margin-left: 0px;
+}
+
+.comment-author
+{
+    font-size:13px;
+    color: black;
+    text-decoration: underline;
+    padding-right: 4px;
+    border-right: 1px solid;
+}
+
+.comment-header-text .icon-comment{
+    font-size:13px;
+}
+
+.comment-date{
+    font-size:13px;
+    color: black;
+}
+
+.odsh-comment-content
+{
+    font-size:13px;
+}
+
+.datarequest-info.table,
+.datarequest-info.table th,
+.datarequest-info.table td
+{
+    border:none;
+}
+
+.datarequest .additional-info{
+    font-weight: normal;
+    font-size: 13px;
+}

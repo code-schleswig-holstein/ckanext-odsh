@@ -1,0 +1,41 @@
+{% extends "datarequests/show.html" %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+{% endblock %}
+
+{% block content_action %}
+{% endblock %}
+
+{% block content_primary_nav %}
+{% endblock %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block primary_content_inner %}
+  {% if h.check_access('update_datarequest', {'id':datarequest_id }) %}
+    {% link_for _('Manage'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='update', id=datarequest_id, class_='btn btn-default', icon='wrench' %}
+  {% endif %}
+
+  {% if h.check_access('close_datarequest', {'id':datarequest_id }) and not c.datarequest.closed %}
+    {% link_for _('Close'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='close', id=datarequest_id, class_='btn btn-danger', icon='lock' %}
+  {% endif %}
+
+  {% snippet "datarequests/snippets/comments.html", comments=c.comments, datarequest=c.datarequest, errors=c.errors, errors_summary=c.errors_summary, updated_comment=c.updated_comment %}
+
+  {% if h.check_access('comment_datarequest', {'id':c.datarequest.id }) %}
+    <h2 class='comments-heading'>{{_('Add New Comment')}}:</h2>
+    <div >
+
+      {% set create_comment_error = c.updated_comment is defined and c.updated_comment.id == '' %}
+      
+      {% if create_comment_error %}
+        <a name="comment_focus"></a>
+      {% endif %}
+      
+      {% snippet "datarequests/snippets/comment_form.html", datarequest=c.datarequest, errors=c.errors, errors_summary=c.errors_summary, offering=c.offering, initial_text=c.updated_comment.comment if create_comment_error, focus=create_comment_error, current_user=c.userobj %}
+    </div>
+  {% endif %}
+
+{% endblock %}

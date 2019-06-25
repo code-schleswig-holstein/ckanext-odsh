@@ -420,3 +420,12 @@ msgstr "Neuen Datensatz vorschlagen"
 
 msgid "Suggest New Data Request"
 msgstr "Datensatz vorschlagen"
+
+msgid "Add New Comment"
+msgstr "Kommentieren"
+
+msgid "Released"
+msgstr "Veröffentlicht"
+
+msgid "Suggester"
+msgstr "Vorschlagende"
