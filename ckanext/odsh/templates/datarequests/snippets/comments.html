@@ -1,0 +1,19 @@
+<h2 class="page-heading">
+  {% block page_heading %}
+    {{datarequest.title}}
+  {% endblock %}
+</h2>
+
+{{ h.render_markdown(h.get_translated(datarequest, 'description')) }}
+
+<h2 class='comments-heading'>{{_('Comments')}}:</h2>
+
+{% if comments %}
+  {% for comment in comments %}
+    {% snippet "datarequests/snippets/comment_item.html", comment=comment, datarequest=datarequest, errors=errors, errors_summary=errors_summary, updated_comment=updated_comment %}
+  {% endfor %}
+{% else %}
+  <p class="empty">
+    {{ _('This data request has not been commented yet') }}
+  </p>
+{% endif %}

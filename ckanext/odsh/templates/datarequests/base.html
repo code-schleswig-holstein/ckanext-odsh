@@ -1,0 +1,55 @@
+{% extends "page.html" %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="/datarequests.css" />
+{% endblock %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Data Requests'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='index' %}</li>
+{% endblock %}
+
+    {% block main_content %}
+
+    {% block flash %}
+    {{ super() }}
+    {% endblock %}
+
+    {% block toolbar %}
+    {{ super() }}
+    {% endblock %}
+
+    <div class="datarequest row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %} is-table-row">
+      {#
+      The pre_primary block can be used to add content to before the
+      rendering of the main content columns of the page.
+      #}
+      {% block pre_primary %}
+      {% endblock %}
+
+
+      {% block primary %}
+      <div class="primary span9">
+        {% block primary_content %}
+        {{ super() }}
+        {% endblock %}
+      </div>
+      {% endblock %}
+
+      {% block secondary %}
+      <aside class="secondary span3">
+        {% block secondary_content %}
+        {{ super() }}
+        {% endblock %}
+      </aside>
+      {% endblock %}
+
+    </div>
+    {% block pre_wrap %}
+    {% endblock %}
+    {% endblock %}
+  </div>
+</div>
