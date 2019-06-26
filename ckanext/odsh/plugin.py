@@ -553,7 +553,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def before_view(self, pkg_dict):
         '''
         add a key 'is_new' to pkg_dict
-        the value for this key is True if the dataset has been modified within the last month
+        the value for this key is True if the dataset has been created within the last month
         the value is used in the snippet package_item.html
         '''
         is_new = self._is_package_new(pkg_dict)
@@ -561,8 +561,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return pkg_dict
     
     def _is_package_new(self, pkg_dict):
-        date_last_modified = self._get_date_from_string(pkg_dict['metadata_modified'])
-        is_new = odsh_helpers.is_within_last_month(date_last_modified)
+        date_package_created = self._get_date_from_string(pkg_dict['metadata_created'])
+        is_new = odsh_helpers.is_within_last_month(date_package_created)
         return is_new
     
     def _get_date_from_string(self, date_time_str):
