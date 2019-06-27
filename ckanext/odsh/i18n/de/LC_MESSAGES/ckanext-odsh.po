@@ -423,6 +423,7 @@ msgstr "Datensatz vorschlagen"
 
 msgid "NEW"
 msgstr "NEU"
+
 msgid "Add New Comment"
 msgstr "Kommentieren"
 
