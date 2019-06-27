@@ -4,7 +4,8 @@
   <section class="module">
     <div class="module-content">
       {% block page_primary_action %}
-        {% snippet 'snippets/custom_search_form.html', query=c.q, fields=(('organization', c.organization), ('state', c.state)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=false, count=c.datarequest_count, no_title=True %}
+      <form id='datarequest-search-form' method="get" data-module="select-switch">
+        {% snippet 'snippets/custom_search_form.html', form_id='datarequest-search-form', query=c.q, fields=(('organization', c.organization), ('state', c.state)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=false, count=c.datarequest_count, no_title=True, type='datarequest' %}
         {{ h.snippet('datarequests/snippets/datarequest_list.html', datarequest_count=c.datarequest_count, datarequests=c.datarequests, page=c.page, q=c.q)}}
         {% if h.check_access('create_datarequest') %}
           <div class="add_request_container">
@@ -16,9 +17,16 @@
   </section>
 {% endblock %}
 
-{% block secondary_content %}
+{% block secondary%}
+{% endblock %}
+
+{#{% block secondary_content %}
   {{ super() }}
   {% for facet in c.facet_titles %}
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
   {% endfor %}
+{% endblock %}#}
+
+{% block pre_wrap %}
+</form>
 {% endblock %}
