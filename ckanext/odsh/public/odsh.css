@@ -1959,16 +1959,15 @@ p.package-info-categorie
     background-color: #003064;
 }
 
-.label.label-open
-{
-    color: white;
-    background-color: #003064;
-}
-
 .label.label-closed
 {
     color: white;
     background-color: #DBDBDB;
+}
+
+.datarequest .dataset-heading .label
+{
+    vertical-align: top;
 }
 
 .datarequest-subtitle
@@ -2076,4 +2075,11 @@ p.package-info-categorie
 .datarequest .dataset-content .icon-comment
 {
     margin-top: 10px;
+}
+
+.datarequest .dataset-form{
+    width: 715px;
+}
+.datarequest .dataset-form .row-fluid .span6 {
+    width: 715px;
 }

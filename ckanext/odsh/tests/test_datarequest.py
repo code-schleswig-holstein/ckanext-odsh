@@ -38,8 +38,9 @@ class TestDatarequest:
         form['description'] = markdown
         final_response = self.app.submit_form(form)
 
+
         id = re.search(
-            '/datarequest/comment/([a-zA-Z0-9\-]*)">', final_response.body).group(1)
+            '/datarequest/edit/([a-zA-Z0-9\-]*)">', final_response.body).group(1)
         return id
 
     def test_create_datarequest(self):
@@ -49,6 +50,22 @@ class TestDatarequest:
         # Assert
         response = self.app.get('/datarequest')
         assert id in response
+
+    def test_edit_datarequest(self):
+        # Arrange
+        id = self._create_request()
+
+        # Act
+        response = self.app.get('/datarequest/edit/'+id)
+        form = response.forms[0]
+        form['title'] = id+'edit_title'
+        form['description'] = id+'edit_desc'
+        final_response = self.app.submit_form(form)
+
+        # Assert
+        response = self.app.get('/datarequest/'+id)
+        assert id+'edit_title' in response
+        assert id+'edit_desc' in response
 
     def test_comment_datarequest(self):
         # Arrange
@@ -63,6 +80,19 @@ class TestDatarequest:
 
         # Assert
         assert guid in final_response
+
+    def test_close_datarequest(self):
+        # Arrange
+        id = self._create_request()
+
+        # Act
+        response = self.app.get('/datarequest/close/'+id)
+        form = response.forms[0]
+        final_response = self.app.submit_form(form)
+
+        # Assert
+        response = self.app.get('/datarequest/'+id)
+        assert 'label-closed' in response
 
     def _get_app(self):
         if not hasattr(self, 'app'):

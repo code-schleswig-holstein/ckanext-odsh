@@ -4,22 +4,21 @@
 {% set description = data.get('description', '') %}
 {% set organization_id = data.get('organization_id', h.get_request_param('organization')) %}
 {% set organizations_available = h.organizations_available('read') %}
-{% set form_horizontal = 'form-horizontal' if h.ckan_version()[:3] <= '2.7' else '' %}
 
 {# This provides a full page that renders a form for publishing a dataset. It can
 then itself be extended to add/remove blocks of functionality. #}
-<form class="dataset-form {{ form_horizontal }}" method="post" data-module="basic-form" action enctype="multipart/form-data">
+<form class="dataset-form" method="post" data-module="basic-form" action enctype="multipart/form-data">
 
   <input type="hidden" id="id" name="id" value="{{ data.get('id', '') }}" />
 
   {% block errors %}{{ form.errors(errors_summary) }}{% endblock %}
 
   {% block offering_title %}
-    {{ form.input('title', id='field-title', label=_('Title'), placeholder=_('eg. Data Request Name'), value=title, error=errors['Title'], classes=['control-full', 'control-large'], is_required=true) }}
+    {{ form.input('title', id='field-title', label=_('Title'), placeholder=_('eg. Data Request Name'), value=title, error=errors['Title'], classes=['control-full'], is_required=true) }}
   {% endblock %}
 
   {% block offering_description %}
-    {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('eg. Data Request description'), value=description, error=errors['Description']) }}
+    {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('eg. Data Request description'), value=description, error=errors['Description'], is_required=true) }}
   {% endblock %}
 
 
@@ -31,7 +30,7 @@ then itself be extended to add/remove blocks of functionality. #}
           <a class="btn btn-danger pull-left" href="{% url_for controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='delete', id=data.get('id') %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
         {% endif %}
       {% endblock %}
-      <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Create Data Request') }}{% endblock %}</button>
+      <button class="btn btn-primary btn-arrow-right" type="submit" name="save">{% block save_button_text %}{{ _('Create Data Request') }}{% endblock %}</button>
     </div>
   {% endblock %}
 
