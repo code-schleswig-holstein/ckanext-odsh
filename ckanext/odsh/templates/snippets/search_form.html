@@ -4,6 +4,8 @@
 {% set sorting_label_prefix = _('Order by') %}
 {% if type=='organization' %}
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
+{% elif type=='datarequest' %}
+{% set sorting = [(_('Date Ascending'), 'asc'), (_('Date Descending'), 'desc')] %}
 {% else %}
 {% set sorting = [
           (_('Relevance'), 'score desc, metadata_modified desc'),
