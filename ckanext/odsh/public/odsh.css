@@ -207,6 +207,17 @@ input[type=radio], input[type=checkbox] {
     padding-left: 0px;
 }
 
+@media (max-width: 767px){
+.primary{
+    padding-left: 0px;
+    width: 100%;
+    margin-left: 0;
+}
+.primary.span9{
+    width: 100%;
+}
+}
+
 .wrapper {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -468,6 +479,11 @@ a:hover.organization-item ,a:focus.organization-item
     text-decoration: none;
 }
 
+.dataset-spacer{
+    display: table-cell;
+    width: 25px;
+}
+
 .dataset-empty {
     margin-right: 30px;
     color: darkgrey;
@@ -475,10 +491,24 @@ a:hover.organization-item ,a:focus.organization-item
 
 .dataset-meta {
     width: 225px;
-    /* width: 30%; */
     height: 100%;
     display: table-cell;
     position: relative;
+}
+
+@media (max-width: 719px)
+{
+.dataset-content {
+    width: 100%; 
+    display: block;
+}
+.dataset-meta {
+    width: 100%;
+    display: block;
+}
+.dataset-spacer{
+    display: none;
+}
 }
 
 ul.dataset-resources {
@@ -1439,7 +1469,10 @@ element.style {
   display: inherit;
 }
 @media (max-width: 767px){
-aside.secondary.span3{
+#dataset-map {
+display: none;
+}
+#dataset-map {
 display: none;
 }
 }
@@ -1470,6 +1503,31 @@ display: none;
     width:auto;
     padding: 6px;
 }
+
+.site-title{
+    color:black;
+    font-size: 2.5rem; 
+    margin-top: 30px; 
+    color: #333; 
+    text-align: center; 
+    line-height: 1.47; 
+    font-weight: 100; 
+}
+
+@media (max-width: 767px){
+.logo img{
+    height: 25px; 
+    width:auto;
+    padding: 6px;
+}
+.site-title{
+    font-size: 1.5rem; 
+    margin-top: 15px; 
+    color: #333; 
+    line-height: 1.0; 
+}
+}
+
 .filter-list .filtered.pill,
 .filter-list .filtered.pill .fa{
     background-color: #003064;
@@ -1479,18 +1537,6 @@ display: none;
     background-color: #d4004b;
 }
 
-.site-title{
-    color:black;
-    /* text-align:center; */
-    /* margin-top: 40px;
-    margin-left: 400px; */
-    font-size: 2.5rem; 
-margin-top: 30px; 
-color: #333; 
-text-align: center; 
-line-height: 1.47; 
-font-weight: 100; 
-}
 
 .share-links {
     display: flex;
@@ -1681,7 +1727,8 @@ a:hover.tooltips_cls span {
 #testsystem 
 { position:fixed; padding:0 65px 0 65px; top:40px; right:-60px; background-color:#a60000; color:#fff;
     font-size:1em; z-index:100; transform:rotate(+45deg); text-align:center; font-weight:bolder; border:#c14646;
-    border-style:dashed; border-width:1px 
+    border-style:dashed; border-width:1px ;
+    pointer-events: none;
 } 
 #testsystem p { margin:0 }
 
@@ -1781,11 +1828,6 @@ p.package-info-categorie
 {
     margin-top: 15px;
     margin-bottom: 0px;
-}
-
-.dataset-spacer{
-    display: table-cell;
-    width: 25px;
 }
 
 .multiselect-native-select,
@@ -2082,4 +2124,27 @@ p.package-info-categorie
 }
 .datarequest .dataset-form .row-fluid .span6 {
     width: 715px;
+}
+
+@media (max-width: 767px)
+{
+[role=main] .secondary.span3 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+}
+
+@media (max-width: 767px)
+{
+    .masthead .container,
+    body {
+    padding-left: 0px;
+    padding-right: 0px;
+}
 }
