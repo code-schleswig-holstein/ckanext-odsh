@@ -1,10 +1,4 @@
-<h2 class="page-heading">
-  {% block page_heading %}
-    {{datarequest.title}}
-  {% endblock %}
-</h2>
 
-{{ h.render_markdown(h.get_translated(datarequest, 'description')) }}
 
 <h2 class='comments-heading'>{{_('Comments')}}:</h2>
 
@@ -17,3 +11,4 @@
     {{ _('This data request has not been commented yet') }}
   </p>
 {% endif %}
+

@@ -1965,6 +1965,12 @@ p.package-info-categorie
     background-color: #003064;
 }
 
+.label.label-closed
+{
+    color: white;
+    background-color: #DBDBDB;
+}
+
 .datarequest-subtitle
 { 
     font-size: 12px;
@@ -1987,6 +1993,8 @@ p.package-info-categorie
     padding: 3px 3px 1px 3px;
     font-size: 14px;
     margin-right: 4px;
+}
+
 .comments-heading{
     color: black;
     font-weight: normal;
@@ -1996,7 +2004,8 @@ p.package-info-categorie
 
 .odsh-comment-wrapper{
     padding-left: 0px;
-    max-width: 400px;
+    max-width: 470px;
+    margin-bottom: 25px;
 }
 
 .odsh-comment-wrapper .controls{
@@ -2036,4 +2045,35 @@ p.package-info-categorie
 .datarequest .additional-info{
     font-weight: normal;
     font-size: 13px;
+    display: table-cell;
+    width: 220px;
+    padding-left: 25px;
+}
+.datarequest-primary {
+    display: table-cell;
+    width: 715px;
+}
+.datarequest .primary.span9 {
+    width: 960px;
+    padding-left: 0px;
+}
+.datarequest .additional-info .dataset-details{
+    display: inline-block;
+}
+.datarequest .additional-info .label{
+    margin: 8px;
+}
+.datarequest .dataset-meta
+{
+    padding-left: 25px;
+}
+
+.datarequest .dataset-heading
+{
+    max-width: 100%;
+}
+
+.datarequest .dataset-content .icon-comment
+{
+    margin-top: 10px;
 }
