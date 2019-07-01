@@ -10,6 +10,7 @@ log = logging.getLogger(__name__)
 class ODSHResourceUpload(ResourceUpload):
 
     def __init__(self, resource):
+        log.debug("Resource({}) uploaded.".format(resource))
         super(ODSHResourceUpload, self).__init__(resource)
         if self._icap_virus_found():
             raise logic.ValidationError({'upload': ['Virus gefunden']})
