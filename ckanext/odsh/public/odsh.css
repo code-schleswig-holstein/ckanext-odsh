@@ -1,5 +1,11 @@
 /* FONTS */
 
+@media (max-width: 767px){
+.span9 {
+    width: 100%;
+}
+}
+
 @font-face{
     font-family:"MuseoSans";
     src:url("/base/fonts/Fonts/905300/fd479df2-01b0-4e3a-a411-915c477f1352.eot?#iefix");
@@ -180,8 +186,8 @@ input[type=radio], input[type=checkbox] {
     background-color: #f2f2f2;
 }
 
-.secondary.span3 {
-    width: 193px;
+.is-table-row .secondary.span3 {
+    width: 191px;
     max-width: 1970px;
     padding: 20px 16px 0px;
 }
@@ -198,8 +204,9 @@ input[type=radio], input[type=checkbox] {
     padding-left: 0px;
 }
 
-.primary.span9 {
-    width: 725px;
+.is-table-row .primary.span9 {
+    width: 717px;
+    float: right;
 }
 
 .primary.logout {
@@ -208,13 +215,16 @@ input[type=radio], input[type=checkbox] {
 }
 
 @media (max-width: 767px){
-.primary{
+.is-table-row .primary.span9 {
     padding-left: 0px;
     width: 100%;
     margin-left: 0;
 }
 .primary.span9{
     width: 100%;
+}
+.primary{
+    padding: 0px;
 }
 }
 
@@ -318,6 +328,28 @@ input[type=checkbox]:checked + label.mylabel {
     display:inline-block;
     padding: 0 0px 0 0px;
     margin-bottom: 0px;
+}
+
+
+@media (max-width: 768px)
+{
+input[type=checkbox] + label.mylabel,
+input[type=checkbox]:checked + label.mylabel {
+    height: 20px;
+    width: 20px;
+    background-size: 20px 20px;
+    vertical-align: text-bottom;
+}
+.facet_label {
+    font-size: 18px;
+    vertical-align: text-bottom;
+}
+.nav-simple>li{
+    width: 100%;
+}
+.js [role=main] .secondary .filters {
+    background-color: white;
+}
 }
 
 .checklabel input[type="checkbox"]
@@ -1151,6 +1183,15 @@ element.style {
     padding-right: 20px;
     width: 455px;
     float:left;
+}
+
+@media (max-width: 767px)
+{
+.is-table-row .resource-details-left {
+    /* padding-right: 0px; */
+    width: 100%;
+    /* float:none; */
+}
 }
 
 .resource-icons {
@@ -2129,7 +2170,6 @@ p.package-info-categorie
 @media (max-width: 767px)
 {
 [role=main] .secondary.span3 {
-    float: none;
     display: block;
     width: 100%;
     margin-left: 0;
@@ -2137,6 +2177,20 @@ p.package-info-categorie
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0;
+    order: 2;
+}
+#testsystem 
+{
+    display: none;
+}
+.simple-input .field .btn-search
+{
+    display: none;
+}
+#field-sitewide-search {
+    padding: 0px;
+    width: 100%;
+    margin: 0px;
 }
 }
 
@@ -2146,5 +2200,63 @@ p.package-info-categorie
     body {
     padding-left: 0px;
     padding-right: 0px;
+}
+#content
+{
+    margin-left: 0px;
+    padding-right: 0px;
+}
+.dataset-heading {
+    max-width: unset;
+    width: 100%;
+    margin: 0px;
+}
+/* .dataset-heading a {
+    max-width: unset;
+    width: 100%;
+    margin: 0px;
+} */
+.js body.filters-modal .secondary .filters .hide-filters i {
+    font-size: 32px;
+}
+.container-fluid.odsh-dataset-item {
+    width: 100%;
+    padding: 20px 15px 20px 15px;
+    box-sizing: border-box;
+}
+.row.wrapper.is-table-row
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.dataset-info.issued
+{
+    position: relative;
+}
+ul.dataset-resources
+{
+    margin: 5px 0px 5px 0px;
+}
+.stages li .highlight {
+     text-indent: unset; 
+}
+.tag-container
+{
+    width: 100%;
+}
+}
+.module-content.page-header
+{
+    background-color: unset;
+}
+
+@media (max-width: 768px)
+{
+.wrapper {
+    margin: 0;
+}
+.dataset-edit-form .span6 {
+    width: 100%;
 }
 }
