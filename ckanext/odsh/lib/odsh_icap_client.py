@@ -11,8 +11,8 @@ class ODSHICAPRequest(object):
 
     def __init__(self, FILENAME, FILEBUFF):
         config = []
-        self.HOST = config.get("ckanext.odsh.icap.host", "10.61.127.77")   #'10.61.127.77'
-        self.PORT = config.get("ckanext.odsh.icap.port", 1344)
+        self.HOST =  "10.61.127.77"  #'10.61.127.77'
+        self.PORT =  1344
 
         self.CLIENTIP = '127.0.0.1'
         self.FILENAME = FILENAME
@@ -100,6 +100,7 @@ class ODSHICAPRequest(object):
                 sock.send("\r\n".encode())
                 l = f.read(PACK_SIZE)
         #log.info('Done sending.')
+
     
     def _recvall(self, sock):
         #log.info('Receiving response from icap server...')
