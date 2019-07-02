@@ -564,18 +564,32 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         return pkg_dict
     
     def _is_package_new(self, pkg_dict):
-        date_package_created = self._get_date_from_string(pkg_dict['metadata_created'])
-        is_new = odsh_helpers.is_within_last_month(date_package_created)
+        date_package_created_as_str = self._get_date_of_package_creation_from_pkg_dict(pkg_dict)
+        if date_package_created_as_str == None:
+            is_new = False
+        else:
+            date_package_created = self._get_date_from_string(date_package_created_as_str)
+            if date_package_created == None:
+                is_new = False
+            else:
+                is_new = odsh_helpers.is_within_last_month(date_package_created)
         return is_new
     
+    def _get_date_of_package_creation_from_pkg_dict(self, pkg_dict):
+        if 'extras' in pkg_dict:
+            extras = pkg_dict['extras']
+            issued = odsh_helpers.odsh_extract_value_from_extras(extras=extras, key='issued') # is None if issued not in extras
+            return issued
+        else:
+            return None
+    
     def _get_date_from_string(self, date_time_str):
-        # todo: update this function if used in different context
-        date_time_format = '%Y-%m-%dT%H:%M:%S.%f' #e.g. u'2019-06-12T11:56:25.059563'
+        date_time_format = '%Y-%m-%dT%H:%M:%S' #e.g. u'2019-06-12T11:56:25'
         try:
             date_time = datetime.datetime.strptime(date_time_str, date_time_format)
+            date = date_time.date()
         except ValueError:
-            # if date cannot be converted from string fall back to 1.1.2000
-            date = datetime.date(2000, 1, 1)
-        date = date_time.date()
+            # if date cannot be converted from string return None
+            date = None
         return date
 
