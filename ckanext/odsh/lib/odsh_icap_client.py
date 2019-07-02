@@ -2,7 +2,7 @@ import socket
 import sys
 import time
 from ckan.common import config
-import logging
+#import logging
 
 #log = logging.getLogger(__name__)
 
