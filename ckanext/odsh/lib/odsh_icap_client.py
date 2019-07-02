@@ -4,7 +4,7 @@ import time
 from ckan.common import config
 import logging
 
-log = logging.getLogger(__name__)
+#log = logging.getLogger(__name__)
 
 
 class ODSHICAPRequest(object):
@@ -18,19 +18,19 @@ class ODSHICAPRequest(object):
         self.FILEBUFF = FILEBUFF
 
     def send(self):
-        log.info("----- Starting ICAP-Request via RESPMOD -----")
+        #log.info("----- Starting ICAP-Request via RESPMOD -----")
 
         # socket connect
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         except socket.error as msg:
-            log.error(msg[1])
+            #log.error(msg[1])
             sys.exit(1)
 
         try:
             sock.connect((self.HOST, self.PORT))
         except socket.error as msg:
-            log.error(msg[1])
+            #log.error(msg[1])
             sys.exit(2)
 
         # create and send header
@@ -45,7 +45,7 @@ class ODSHICAPRequest(object):
         data_response = self._recvall(sock)
         response_object = self._parse_response(data_response)
 
-        log.info("----- Finished ICAP-Request via RESPMOD -----")
+        #log.info("----- Finished ICAP-Request via RESPMOD -----")
 
         return response_object
 
@@ -73,12 +73,12 @@ class ODSHICAPRequest(object):
         return icapRequest
 
     def _sendfile(self, fileBuffer, sock):
-        log.info('Start sending file.')
+        #log.info('Start sending file.')
         PACK_SIZE = 1024 # in bytes
 
         l = fileBuffer.read(PACK_SIZE)
         while(l):
-            log.info('Sending {} bytes of data...'.format(len(l)))
+            #log.info('Sending {} bytes of data...'.format(len(l)))
             sock.send('{:02X}'.format(len(l)).encode())
             sock.send("\r\n".encode())
             sock.send(l)
@@ -86,22 +86,22 @@ class ODSHICAPRequest(object):
             l = fileBuffer.read(PACK_SIZE)
 
     def _sendfile_old(self, fileName, sock):
-        log.info('OLD: Start sending file.')
+        #log.info('OLD: Start sending file.')
         PACK_SIZE = 1024 # in bytes
     
         with open(fileName) as f:
             l = f.read(PACK_SIZE)
             while(l):
-                log.info('Sending {} bytes of data...'.format(len(l)))
+                #log.info('Sending {} bytes of data...'.format(len(l)))
                 sock.send('{:02X}'.format(len(l)).encode())
                 sock.send("\r\n".encode())
                 sock.send(l)
                 sock.send("\r\n".encode())
                 l = f.read(PACK_SIZE)
-        log.info('Done sending.')
+        #log.info('Done sending.')
     
     def _recvall(self, sock):
-        log.info('Receiving response from icap server...')
+        #log.info('Receiving response from icap server...')
         BUFF_SIZE = 4096 # 4 KiB
         data = b''
         while True:
@@ -113,7 +113,7 @@ class ODSHICAPRequest(object):
         return data
 
     def _parse_response(self, data_response):
-        log.info('Parsing response...')
+        #log.info('Parsing response...')
         lines = data_response.split('\r\n')
         http_status_code = self._parse_response_http_statuscode(lines)
         http_block = self._parse_block(lines, 'HTTP/1.1')
@@ -163,7 +163,7 @@ class ODSHParsedICAPResponse(object):
     def virus_found(self):
         if (self.http_status_code != 200) and (self.http_status_code != 403):
             msg = 'Received an unknown http response code: {}'.format(self.http_status_code)
-            log.warning(msg)
+            #log.warning(msg)
             raise UnknownResponseException(msg)
         return self.http_status_code != 200
 
