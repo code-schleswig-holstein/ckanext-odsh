@@ -10,8 +10,8 @@ log = logging.getLogger(__name__)
 class ODSHICAPRequest(object):
 
     def __init__(self, FILENAME, FILEBUFF, cfg_file='odsh_icap_client.cfg'):
-        self.HOST = config.get("odsh.icap.host", "localhost")   #'10.61.127.77'
-        self.PORT = config.get("odsh.icap.port", 1344)
+        self.HOST = config.get("ckanext.odsh.icap.host", "localhost")   #'10.61.127.77'
+        self.PORT = config.get("ckanext.odsh.icap.port", 1344)
 
         self.CLIENTIP = '127.0.0.1'
         self.FILENAME = FILENAME
