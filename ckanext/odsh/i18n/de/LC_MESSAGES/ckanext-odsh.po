@@ -439,6 +439,15 @@ msgstr "Fertig"
 msgid "Data Proposal"
 msgstr "Datenvorschlag"
 
+msgid "Create Data Proposal"
+msgstr "Datensatz vorschlagen"
+
+msgid "Close Data Proposal"
+msgstr "Datenvorschlag abschließen"
+
+msgid "Edit Data Proposal"
+msgstr "Datenvorschlag bearbeiten"
+
 msgid "No data proposal found"
 msgstr "Kein Datenvorschlag gefunden"
 

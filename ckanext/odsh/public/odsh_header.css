@@ -251,11 +251,33 @@
     float: right;
 }
 
+@media (max-width: 767px)
+{
+.navbar.masthead .navigation .nav-pills li.dropdown
+{
+    float: none;
+}
+.nav-pills li a:hover, .nav-pills li:hover {
+    background-color: rgb(242, 242, 242)!important;
+}
+.dropdown-backdrop
+{
+    display: none;
+}
+.navigation-row {
+    width: 100%;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
 .navbar.masthead .navigation .nav-pills li.dropdown > .dropdown-toggle
 {
     padding-bottom: 12px;
     padding-top: 12px;
 }
+
 
 .user-icon
 {
@@ -285,4 +307,20 @@
 .navbar.masthead .navigation .nav-pills li a:hover .user-icon
 {
     fill:white;
+}
+
+@media (max-width: 767px)
+{
+.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+     margin-left: 0px; 
+     margin-right: 0px; 
+}
+
+.navbar.masthead .nav>li:hover a,
+.navbar.masthead .navigation .nav-pills li.open .user-icon, .navbar.masthead .navigation .nav-pills li a:hover .user-icon,
+.navbar.masthead .navigation .nav-pills li.dropdown.open > a.dropdown-toggle:hover, .navbar .nav li.dropdown.open > .dropdown-toggle 
+{
+    color: #003064;
+    fill: #003064;
+}
 }

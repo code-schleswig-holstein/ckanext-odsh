@@ -367,6 +367,9 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
             m.connect('user_datasets', '/user/{id:.*}', action='read',
                       ckan_icon='sitemap')
 
+        map.connect('comment_datarequest', '/datarequest/new',
+                    controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
+                    action='new', conditions=dict(method=['GET', 'POST']), ckan_icon='comment')
         map.connect('comment_datarequest', '/datarequest/{id}',
                     controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
                     action='comment', conditions=dict(method=['GET', 'POST']), ckan_icon='comment')

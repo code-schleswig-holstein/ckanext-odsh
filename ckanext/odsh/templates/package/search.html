@@ -47,7 +47,6 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
     {% for facet in c.facet_titles %}
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
     {% endfor %}
-  </div>
 
   {% block datereange_search %}
   {% set has_range_filter = request.params.get('ext_startdate') or request.params.get('ext_enddate') %}
@@ -86,6 +85,8 @@ default_extent="{ \"type\": \"Polygon\", \"coordinates\": [[[7.6574,53.1632],[11
       </div>
     </nav>
   </section>
+  </div>
+ <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
   {% endblock %}
 
 </div>

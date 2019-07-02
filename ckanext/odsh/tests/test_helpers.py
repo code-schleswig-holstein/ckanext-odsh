@@ -5,6 +5,7 @@ from ckan.common import config
 import ckan.config.middleware
 import ckan.tests.helpers as helpers
 import sys
+import pdb
 
 
 def odsh_test():

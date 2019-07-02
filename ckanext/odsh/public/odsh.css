@@ -1,5 +1,11 @@
 /* FONTS */
 
+@media (max-width: 767px){
+.span9 {
+    width: 100%;
+}
+}
+
 @font-face{
     font-family:"MuseoSans";
     src:url("/base/fonts/Fonts/905300/fd479df2-01b0-4e3a-a411-915c477f1352.eot?#iefix");
@@ -180,8 +186,8 @@ input[type=radio], input[type=checkbox] {
     background-color: #f2f2f2;
 }
 
-.secondary.span3 {
-    width: 193px;
+.is-table-row .secondary.span3 {
+    width: 191px;
     max-width: 1970px;
     padding: 20px 16px 0px;
 }
@@ -198,13 +204,28 @@ input[type=radio], input[type=checkbox] {
     padding-left: 0px;
 }
 
-.primary.span9 {
-    width: 725px;
+.is-table-row .primary.span9 {
+    width: 717px;
+    float: right;
 }
 
 .primary.logout {
     width: 725px;
     padding-left: 0px;
+}
+
+@media (max-width: 767px){
+.is-table-row .primary.span9 {
+    padding-left: 0px;
+    width: 100%;
+    margin-left: 0;
+}
+.primary.span9{
+    width: 100%;
+}
+.primary{
+    padding: 0px;
+}
 }
 
 .wrapper {
@@ -307,6 +328,28 @@ input[type=checkbox]:checked + label.mylabel {
     display:inline-block;
     padding: 0 0px 0 0px;
     margin-bottom: 0px;
+}
+
+
+@media (max-width: 768px)
+{
+input[type=checkbox] + label.mylabel,
+input[type=checkbox]:checked + label.mylabel {
+    height: 20px;
+    width: 20px;
+    background-size: 20px 20px;
+    vertical-align: text-bottom;
+}
+.facet_label {
+    font-size: 18px;
+    vertical-align: text-bottom;
+}
+.nav-simple>li{
+    width: 100%;
+}
+.js [role=main] .secondary .filters {
+    background-color: white;
+}
 }
 
 .checklabel input[type="checkbox"]
@@ -468,6 +511,11 @@ a:hover.organization-item ,a:focus.organization-item
     text-decoration: none;
 }
 
+.dataset-spacer{
+    display: table-cell;
+    width: 25px;
+}
+
 .dataset-empty {
     margin-right: 30px;
     color: darkgrey;
@@ -475,10 +523,24 @@ a:hover.organization-item ,a:focus.organization-item
 
 .dataset-meta {
     width: 225px;
-    /* width: 30%; */
     height: 100%;
     display: table-cell;
     position: relative;
+}
+
+@media (max-width: 719px)
+{
+.dataset-content {
+    width: 100%; 
+    display: block;
+}
+.dataset-meta {
+    width: 100%;
+    display: block;
+}
+.dataset-spacer{
+    display: none;
+}
 }
 
 ul.dataset-resources {
@@ -1123,6 +1185,15 @@ element.style {
     float:left;
 }
 
+@media (max-width: 767px)
+{
+.is-table-row .resource-details-left {
+    /* padding-right: 0px; */
+    width: 100%;
+    /* float:none; */
+}
+}
+
 .resource-icons {
     font-size: 24px;
     margin-left: 5px;
@@ -1439,7 +1510,10 @@ element.style {
   display: inherit;
 }
 @media (max-width: 767px){
-aside.secondary.span3{
+#dataset-map {
+display: none;
+}
+#dataset-map {
 display: none;
 }
 }
@@ -1470,6 +1544,31 @@ display: none;
     width:auto;
     padding: 6px;
 }
+
+.site-title{
+    color:black;
+    font-size: 2.5rem; 
+    margin-top: 30px; 
+    color: #333; 
+    text-align: center; 
+    line-height: 1.47; 
+    font-weight: 100; 
+}
+
+@media (max-width: 767px){
+.logo img{
+    height: 25px; 
+    width:auto;
+    padding: 6px;
+}
+.site-title{
+    font-size: 1.5rem; 
+    margin-top: 15px; 
+    color: #333; 
+    line-height: 1.0; 
+}
+}
+
 .filter-list .filtered.pill,
 .filter-list .filtered.pill .fa{
     background-color: #003064;
@@ -1479,18 +1578,6 @@ display: none;
     background-color: #d4004b;
 }
 
-.site-title{
-    color:black;
-    /* text-align:center; */
-    /* margin-top: 40px;
-    margin-left: 400px; */
-    font-size: 2.5rem; 
-margin-top: 30px; 
-color: #333; 
-text-align: center; 
-line-height: 1.47; 
-font-weight: 100; 
-}
 
 .share-links {
     display: flex;
@@ -1681,7 +1768,8 @@ a:hover.tooltips_cls span {
 #testsystem 
 { position:fixed; padding:0 65px 0 65px; top:40px; right:-60px; background-color:#a60000; color:#fff;
     font-size:1em; z-index:100; transform:rotate(+45deg); text-align:center; font-weight:bolder; border:#c14646;
-    border-style:dashed; border-width:1px 
+    border-style:dashed; border-width:1px ;
+    pointer-events: none;
 } 
 #testsystem p { margin:0 }
 
@@ -1781,11 +1869,6 @@ p.package-info-categorie
 {
     margin-top: 15px;
     margin-bottom: 0px;
-}
-
-.dataset-spacer{
-    display: table-cell;
-    width: 25px;
 }
 
 .multiselect-native-select,
@@ -1959,16 +2042,15 @@ p.package-info-categorie
     background-color: #003064;
 }
 
-.label.label-open
-{
-    color: white;
-    background-color: #003064;
-}
-
 .label.label-closed
 {
     color: white;
     background-color: #DBDBDB;
+}
+
+.datarequest .dataset-heading .label
+{
+    vertical-align: top;
 }
 
 .datarequest-subtitle
@@ -2076,4 +2158,105 @@ p.package-info-categorie
 .datarequest .dataset-content .icon-comment
 {
     margin-top: 10px;
+}
+
+.datarequest .dataset-form{
+    width: 715px;
+}
+.datarequest .dataset-form .row-fluid .span6 {
+    width: 715px;
+}
+
+@media (max-width: 767px)
+{
+[role=main] .secondary.span3 {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    order: 2;
+}
+#testsystem 
+{
+    display: none;
+}
+.simple-input .field .btn-search
+{
+    display: none;
+}
+#field-sitewide-search {
+    padding: 0px;
+    width: 100%;
+    margin: 0px;
+}
+}
+
+@media (max-width: 767px)
+{
+    .masthead .container,
+    body {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#content
+{
+    margin-left: 0px;
+    padding-right: 0px;
+}
+.dataset-heading {
+    max-width: unset;
+    width: 100%;
+    margin: 0px;
+}
+/* .dataset-heading a {
+    max-width: unset;
+    width: 100%;
+    margin: 0px;
+} */
+.js body.filters-modal .secondary .filters .hide-filters i {
+    font-size: 32px;
+}
+.container-fluid.odsh-dataset-item {
+    width: 100%;
+    padding: 20px 15px 20px 15px;
+    box-sizing: border-box;
+}
+.row.wrapper.is-table-row
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.dataset-info.issued
+{
+    position: relative;
+}
+ul.dataset-resources
+{
+    margin: 5px 0px 5px 0px;
+}
+.stages li .highlight {
+     text-indent: unset; 
+}
+.tag-container
+{
+    width: 100%;
+}
+}
+.module-content.page-header
+{
+    background-color: unset;
+}
+
+@media (max-width: 768px)
+{
+.wrapper {
+    margin: 0;
+}
+.dataset-edit-form .span6 {
+    width: 100%;
+}
 }
