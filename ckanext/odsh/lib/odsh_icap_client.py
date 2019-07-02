@@ -1,7 +1,7 @@
 import socket
 import sys
 import time
-from ckan.common import config
+#from ckan.common import config
 #import logging
 
 #log = logging.getLogger(__name__)
@@ -10,6 +10,7 @@ from ckan.common import config
 class ODSHICAPRequest(object):
 
     def __init__(self, FILENAME, FILEBUFF):
+        config = []
         self.HOST = config.get("ckanext.odsh.icap.host", "10.61.127.77")   #'10.61.127.77'
         self.PORT = config.get("ckanext.odsh.icap.port", 1344)
 
