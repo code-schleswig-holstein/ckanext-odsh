@@ -26,7 +26,7 @@
         <li class="{{ nav_item_class or 'nav-item' }}">
 	  <div class="facet_label">
 	    {# TODO: checkbox-id vereinheitlichen (code-duplikation) und sicher gegen Titel mit Leerzeichen machen! #}
-	    <input type="checkbox" {% if item.active %} checked {% endif %} class="filter-checkbox" id="check-{{ title.lower() }}-{{ loop.index }}"/>
+	    <input type="checkbox" alt="Checkbox" {% if item.active %} checked {% endif %} class="filter-checkbox" id="check-{{ title.lower() }}-{{ loop.index }}"/>
 	    <label class="mylabel" for="check-{{ title.lower() }}-{{ loop.index }}"></label>
 	    <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
                 <span>{{ label}}</span>
