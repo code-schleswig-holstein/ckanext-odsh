@@ -1,20 +1,10 @@
-from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, VCARD, dcat_theme_prefix, DCATDE_1_0
-from ckanext.dcat.utils import resource_uri
-from ckanext.dcat.profiles import EuropeanDCATAPProfile, DCT, URIRefOrLiteral
-from ckan.model.license import LicenseRegister
-import rdflib
-import ckanext.dcatde.dataset_utils as ds_utils
 import logging
-from ckan.plugins import toolkit
-from ckan.common import config, json
-from ckanext.dcat.interfaces import IDCATRDFHarvester
-import pdb
+import rdflib
 
-import sys
-if sys.version_info[0] == 2:
-    import urllib2
-elif sys.version_info[0] == 3:  # >=Python3.1
-    import urllib
+from ckan.common import config, json
+from ckan.model.license import LicenseRegister
+from ckanext.dcat.profiles import EuropeanDCATAPProfile, DCT, URIRefOrLiteral
+from ckanext.dcatde.profiles import DCAT
 
 log = logging.getLogger(__name__)
 DCT = rdflib.namespace.Namespace("http://purl.org/dc/terms/")
@@ -75,50 +65,9 @@ class ODSHEuropeanDCATAPProfile(EuropeanDCATAPProfile):
             for dist in self.g.objects(dataset_ref, DCAT.distribution):
                 self.g.add((dist, DCT.license, rdflib.URIRef(license)))
 
-class ODSHDCATdeProfile(DCATdeProfile):
-    def parse_dataset(self, dataset_dict, dataset_ref):
-        dataset_dict = super(ODSHDCATdeProfile, self).parse_dataset(
-            dataset_dict, dataset_ref)
-        # Enhance Distributions
-        for distribution in self.g.objects(dataset_ref, DCAT.distribution):
-            for resource_dict in dataset_dict.get('resources', []):
-                # Match distribution in graph and distribution in ckan-dict
-                if unicode(distribution) == resource_uri(resource_dict):
-                    for namespace in [DCATDE, DCATDE_1_0]:
-                        value = self._object_value(
-                            distribution, namespace.licenseAttributionByText)
-                        if value:
-                            ds_utils.insert_new_extras_field(
-                                dataset_dict, 'licenseAttributionByText', value)
-                            return dataset_dict
-        return dataset_dict
-
-    def graph_from_dataset(self, dataset_dict, dataset_ref):
-        super(ODSHDCATdeProfile, self).graph_from_dataset(
-            dataset_dict, dataset_ref)
-        # Enhance Distributions
-        # <dcatde:contributorID rdf:resource="http://dcat-ap.de/def/contributors/schleswigHolstein"/>
-        self.g.add((dataset_ref, DCATDE.contributorID, rdflib.URIRef(
-            "http://dcat-ap.de/def/contributors/schleswigHolstein")))
-
-        extras = dataset_dict.get('extras', None)
-        if extras:
-            attr = None
-            for d in extras:
-                if d['key'] == 'licenseAttributionByText':
-                    attr = d['value']
-                    break
-            if attr:
-                self.g.set(
-                    (dataset_ref, DCATDE.licenseAttributionByText, rdflib.Literal(attr)))
-                for dist in self.g.objects(dataset_ref, DCAT.distribution):
-                    self.g.set(
-                        (dist, DCATDE.licenseAttributionByText, rdflib.Literal(attr)))
-
 
 _RESOURCE_FORMATS_IMPORT = None
 _RESOURCE_FORMATS_EXPORT = None
-
 
 def resource_formats():
     global _RESOURCE_FORMATS_IMPORT
@@ -142,13 +91,11 @@ def resource_formats():
             _RESOURCE_FORMATS_EXPORT[elem.split('/')[-1]] = elem
             _RESOURCE_FORMATS_IMPORT[elem] = elem.split('/')[-1]
 
-
 def resource_formats_export():
     global _RESOURCE_FORMATS_EXPORT
     if not _RESOURCE_FORMATS_EXPORT:
         resource_formats()
     return _RESOURCE_FORMATS_EXPORT
-
 
 def resource_formats_import():
     global _RESOURCE_FORMATS_IMPORT
@@ -158,7 +105,6 @@ def resource_formats_import():
 
 
 _LANGUAGES = None
-
 
 def get_language():
     ''' When datasets are exported in rdf-format, their language-tag

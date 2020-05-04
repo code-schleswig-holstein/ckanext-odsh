@@ -11,10 +11,13 @@
 
 {% block head_extras %}
 {{ super() }}
+{% if h.odsh_use_matomo() %}
 {% set matomo_url = h.odsh_tracking_url()%}
 {% set matomo_id = h.odsh_tracking_id()%}
+{% endif %}
 <meta data-name="type" content="{{h.odsh_is_slave()}}">
 
+{% if h.odsh_use_matomo() %}
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -29,6 +32,7 @@
   })();
 </script>
 <!-- End Matomo Code -->
+{% endif %}
 {% endblock %}
 {% block bodytag %} data-site-root="{{ h.odsh_public_url() }}" data-locale-root="{{ h.odsh_public_url() }}" {% endblock %}
 {% block page %}

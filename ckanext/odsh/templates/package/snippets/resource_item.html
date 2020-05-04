@@ -2,44 +2,66 @@
 {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 
 {# hack for correcting slave url if resource was uploaded #}
-{% set download = h.odsh_public_resource_url(res) or ulr%}
+{% set download = h.odsh_public_resource_url(res) or url %}
+
+{% set rtitle=h.resource_display_name(res) if res.name else ' '%}
+{% set resource_size = h.tpsh_get_resource_size(res) %}
 
 <li class="resource-item" data-id="{{ res.id }}">
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="span8 resource-details-left">
-        <div class="row resource-title-container">
-        {% set rtitle=h.resource_display_name(res) if res.name else ' '%}
-          <div class="resource-title" title="{{ rtitle }}">
-        {% if res.name %}
-        <a href="{{ download }}">
-            {{ h.resource_display_name(res) }}
-        </a>
-        {% endif %}
-          </div>
+    <div class="resource-title-container">
+        <div class="resource-title" title="{{ rtitle }}">
+            {% if res.name %}
+            <a href="{{ download }}">
+                {{ h.resource_display_name(res) }}
+            </a>
+            {% endif %}
+            {% if resource_size %}
+            <p>Dateigröße: {{ resource_size }}</p>  
+            {% endif %}
+            {% set number_of_pages = res.get('number_of_pages') %}
+            {% if number_of_pages%}
+            <p>Seitenanzahl: {{ number_of_pages }}</p>   
+            {% endif %}
         </div>
+        <div class="resource-icons">
+            {% block resource_item_explore_links %}
+            <a href="{{ download }}" aria-label="{{ _('download file') }}">
+                <div aria-hidden="true" class="icon icon-download"></div>
+            </a>
+            {% if can_edit %}
+            <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+                <div class="icon icon-edit"></div>
+            </a>
+            {% endif %}
+            {% endblock %}
+        </div>
+            {% if res.format %}
+            <a href="{{ download }}" >
+               <div class="dataformat-label resource-dataformat-label label" style='font-size:{{150/(res.format|length)}}px'>{{res.format}}</div>
+            </a>
+            {% endif %}
+    </div>
+</li>
+    
+        <!-- </div>
         <div class="row resource-description-container">
         </div>
       <div class="resource-icons">
-        {% block resource_item_explore_links %}
-        <a href="{{ download }}">
-          <div class="icon icon-download"></div>
+        <a href="{{ download }}" aria-label="{{ _('download file') }}">
+          <div aria-hidden="true" class="icon icon-download"></div>
         </a>
         {% if can_edit %}
         <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
           <div class="icon icon-edit"></div>
         </a>
         {% endif %}
-        {% endblock %}
+      </div>
+      <div>
+        
+        
       </div>
       </div>
-      {% if(res.format) %}
-        <a href="{{ download }}">
-          <div class="dataformat-label resource-dataformat-label label" style='font-size:{{150/(res.format|length)}}px'>{{res.format}}</div>
-        </a>
-      {% endif %}
     </div>
   </div>
 
-</li>
+</li> -->

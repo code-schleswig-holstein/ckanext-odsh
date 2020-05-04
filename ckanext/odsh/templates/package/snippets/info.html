@@ -8,6 +8,11 @@ Example:
 {% snippet "package/snippets/info.html", pkg=pkg %}
 
 #}
+
+{% set daterange = h.tpsh_get_daterange_prettified(pkg) %}
+{% set language_icon = h.get_language_icon(pkg) %}
+{% set license_attribution_by_text = h.odsh_extract_value_from_extras(pkg.extras, 'licenseAttributionByText') %}
+
 {% block package_info %}
 {% if pkg %}
 <section class="module module-narrow">
@@ -15,40 +20,43 @@ Example:
         <div class="module-content">
             {% block package_info_inner %}
             {% block heading %}
-            {% endblock %}
+            {% endblock heading %}
 
-            {% block groups %}
-            <div class="groups-detail info-detail">
-                <div>{{ _('Kategorie') }}:</div>
-                {{ pkg.groups|map(attribute='display_name')|join('; ') }}
+            {% block groups %} {# aka categories #}
+            {% if pkg.groups|length %}
+            <div class="info-detail groups-detail">
+                <div>
+                    {% trans category_count=pkg.groups|length %}
+                    category:
+                    {% pluralize %}
+                    categories:
+                    {% endtrans %}
+                </div>
+                {% for category in pkg.groups %}
+                <span class='category-with-icon'>
+                    <span class='category-icon-container'>
+                        <img src="/base/images/icon_kat_{{category.name}}.svg" />
+                    </span>
+                    <span class="category-name">
+                        {{ category.display_name }}
+                    </span>
+                </span>
+                {% endfor %}
             </div>
-            {% endblock %}
+            {% endif %}
+            {% endblock groups %}
 
-            {% block nums %}
-            {% endblock %}
-
-
-            {% block license %}
-            <div class="license-detail info-detail">
-                <div>{{ _('License') }}:</div>
-                {%set lic=pkg.license_title if pkg.license_title else '-'%}
-                {%set licenseAttributionByText = h.odsh_extract_value_from_extras(pkg.extras,'licenseAttributionByText') %}
-                {%set name=' (' + licenseAttributionByText +')' if licenseAttributionByText else ''%}
-                <a href='{{pkg.license_url}}'>{{ lic }}</a>{{ name }}
-            </div>
-            {% endblock %}
 
             {% block timerange %}
+            {% if daterange %}
             <div class="timerange-detail info-detail">
                 <div>{{ _('timerange') }}:</div>
-                {% set temporal_start = h.odsh_extract_value_from_extras(pkg.extras,'temporal_start') %}
-                {% set temporal_end = h.odsh_extract_value_from_extras(pkg.extras,'temporal_end') %}
-                {%set start=h.odsh_render_datetime(temporal_start) if temporal_start else ''%}
-                {%set end=h.odsh_render_datetime(temporal_end) if temporal_end else ''%}
-                <p>{{ start }} - {{ end }}</p>
+                <p>{{ daterange }}</p>
             </div>
-            {% endblock %}
+            {% endif %}
+            {% endblock timerange %}
 
+            
             {% block last_change %}
             <div class="last-change-detail info-detail">
                 {% set value = h.odsh_extract_value_from_extras(pkg.extras,'issued')%}
@@ -61,9 +69,19 @@ Example:
                 <div>{{ _('modified') }}:</div>
                 {{modified}}
             </div>
-            {% endblock %}
+            {% endblock last_change %}
 
-            {% endblock %}
+            {% block license %}
+            <div class="license-detail info-detail">
+                <div>{{ _('License') }}:</div>
+                {%set lic=pkg.license_title if pkg.license_title else '-'%}
+                {%set licenseAttributionByText = h.odsh_extract_value_from_extras(pkg.extras,'licenseAttributionByText') %}
+                {%set name=' (' + licenseAttributionByText +')' if licenseAttributionByText else ''%}
+                <a href='{{pkg.license_url}}'>{{ lic }}</a>{{ name }}
+            </div>
+            {% endblock license %}
+
+            {% endblock package_info_inner %}
         </div>
         {% set map_text = h.odsh_get_spatial_text(pkg) %}
         <div class="spatial-detail info-detail">
@@ -95,15 +113,27 @@ Example:
             {% set current_url = h.odsh_encodeurl(h.full_current_url()) %}
             <p>{{ _('share this dataset')}}:</p>
             <div class="share-links">
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank"><img class='' src="/base/images/Icon-linkedin.png"/></a>
-                <a href="https://www.xing.com/app/user?op=share&url={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-xing.png"/></a>
-                <a href="https://www.facebook.com/sharer.php?href={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-facebook.png"/></a>
-                <a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-twitter.png"/></a>
-                <a href="mailto:?body={{ current_url }}" target="_blank"><img class='' src="/base/images/Icon-mail.png"/></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}" target="_blank">
+                    <img class='' src="/base/images/Icon-linkedin.png" alt="Linked In"/>
+                </a>
+                <a href="https://www.xing.com/app/user?op=share&url={{ current_url }}" target="_blank">
+                    <img class='' src="/base/images/Icon-xing.png" alt="XING"/>
+                </a>
+                <a href="https://www.facebook.com/sharer.php?href={{ current_url }}" target="_blank">
+                    <img class='' src="/base/images/Icon-facebook.png" alt="facebook"/>
+                </a>
+                <a href="https://twitter.com/share?url={{ current_url }}" target="_blank">
+                    <img class='' src="/base/images/Icon-twitter.png" alt="twitter"/>
+                </a>
+                <a href="mailto:?body={{ current_url }}" target="_blank">
+                    <img class='' src="/base/images/Icon-mail.png" alt="{{ _('send an email') }}"/>
+                </a>
             </div>
         </div>
-        {% endblock %}
+        {% endblock social_nav %}
         {% endif %}
+
+        
 </section>
 {% endif %}
-{% endblock %}
+{% endblock package_info %}

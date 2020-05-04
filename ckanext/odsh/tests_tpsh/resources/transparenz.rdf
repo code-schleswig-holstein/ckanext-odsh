@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:dcatde="http://dcat-ap.de/def/dcatde/1_0/" xmlns:dcat="http://www.w3.org/ns/dcat#" xmlns:dct="http://purl.org/dc/terms/"
+xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+  <dcat:Catalog rdf:about="https://transparenz.schleswig-holstein.de/catalog">
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/9f9ae60bb0d8985e10e9ab8aa6a7ca34">
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2017)</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/af_blano_fortschritt2017.pdf?__blob=publicationFile&amp;v=5">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/af_blano_fortschritt2017.pdf?__blob=publicationFile&amp;v=5" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2017)</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-05-02</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-05-02</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/ff612d0f165d46f3091f58e1ef56a2ec">
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2016)</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ae_blano_fortschritt2016.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ae_blano_fortschritt2016.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2016)</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-10</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-10</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/3a0d0674120fbf06b5cb8737124e3fd0">
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2015)</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ad_blano_fortschritt2015.pdf?__blob=publicationFile&amp;v=8">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ad_blano_fortschritt2015.pdf?__blob=publicationFile&amp;v=8" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2015)</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-07-10</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-07-10</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/b5cd3f303f594ecde96e1017e953b688">
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2014)</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ad_blano_fortschritt2014.pdf?__blob=publicationFile&amp;v=4">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ad_blano_fortschritt2014.pdf?__blob=publicationFile&amp;v=4" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2014)</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-07-17</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-07-17</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/cd606b042789723a2b6d61cb31c46c39">
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2013)</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ac_blano_fortschritt2013.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/UXO/Berichte/PDF/Berichte/ac_blano_fortschritt2013.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt (Jahr 2013)</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-07-26</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-07-26</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/04640ac19a21450984d2af7c402d6aa0">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2006 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2006.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2006.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2006 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/86fe10eb6578e940d7df8e3d6da6520d">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2007 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2007.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2007.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2007 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/b0024265f96b9de5a590541f5e0aec91">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2008 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2008.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2008.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2008 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/ccb65ee5047e3c9cc67384b513400246">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2009 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2009.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2009.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2009 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/ae2a3cffda84388365bc87711ed4af47">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2010 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2010.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2010.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2010 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/91a479991245f208dd6f8ba82411a570">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2011 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2011.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2011.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2011 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/1ee93d311ae6078dc11655c2ca8865b5">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2012 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2012.pdf?__blob=publicationFile&amp;v=6">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2012.pdf?__blob=publicationFile&amp;v=6" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2012 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f5123967a8d0d80ff135342ce41a09bb">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2013 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2013.pdf?__blob=publicationFile&amp;v=5">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2013.pdf?__blob=publicationFile&amp;v=5" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2013 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-28</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/05199f38b6234e794f79ad3726957a3e">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2014/15 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2015.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2015.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2014/15 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-07-14</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-07-14</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/ffef477b7ebb1447d869b33c79cac8e2">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2016/17 - Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2017.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2017.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2016/17 - Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-08-01</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-08-01</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/a1fea922aa7d9f7a924784615301da83">
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein 2015/16 – Bericht</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2016.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/VIII/Service/Broschueren/Broschueren_VIII/Gesundheit/schuleinguntber2016.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein 2015/16 – Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-11-27</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-11-27</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/423e1ea7e98b492aebc0ca5108c7b36d">
+        <dct:title>Jahresbericht 2017 zur biologischen Vielfalt - Jagd und Artenschutz</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/7ee94f73beb43faf4099208b4e55734b" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/Jahresbericht_Zur_biologischen_Vielfalt_2017.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/Jahresbericht_Zur_biologischen_Vielfalt_2017.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Jahresbericht 2017 zur biologischen Vielfalt - Jagd und Artenschutz</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-01-16</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-01-16</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/6ea87d1f4a92efb288ed53e2bf901880">
+        <dct:title>Jahresbericht 2018 zur biologischen Vielfalt - Jagd und Artenschutz</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/7ee94f73beb43faf4099208b4e55734b" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/Jahresbericht_zur_biologischen_Vielfalt_2018.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/Jahresbericht_zur_biologischen_Vielfalt_2018.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Jahresbericht 2018 zur biologischen Vielfalt - Jagd und Artenschutz</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-12-16</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-12-16</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/7f6ef434153bdbfff9ed42c8d9ee1381">
+        <dct:title>Jahresbericht 2016 zur biologischen Vielfalt – Jagd- und Artenschutz</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/7ee94f73beb43faf4099208b4e55734b" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/biodiversitaetsbericht2016.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Landesregierung/V/Service/Broschueren/Broschueren_V/Umwelt/pdf/biodiversitaetsbericht2016.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Jahresbericht 2016 zur biologischen Vielfalt – Jagd- und Artenschutz</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-21</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-21</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f681f52201dcf1b1ea467aeed683c8a2">
+        <dct:title>Waldzustandsbericht 2018</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2018.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2018.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2018</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-11-29</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-11-29</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/225ebaffe8e7a30483ac43935e91e1f4">
+        <dct:title>Waldzustandsbericht 2017</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht_2017.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht_2017.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2017</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-12-27</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-12-27</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/9f48b6c643a139a0b4e7eac2ab4cfbb0">
+        <dct:title>Waldzustandsbericht 2016</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2016.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2016.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2016</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-15</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-15</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/904ef47daad01d2979ab20dda18b2ae7">
+        <dct:title>Waldzustandsbericht 2015</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2015.pdf?__blob=publicationFile&amp;v=3">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2015.pdf?__blob=publicationFile&amp;v=3" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2015</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/2147dcaa148ff19a89fa99c989dd648e">
+        <dct:title>Waldzustandsbericht 2014</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2014.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2014.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2014</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f201ecaf859f8e713cd030615bd3f5cb">
+        <dct:title>Waldzustandsbericht 2013</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2013.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2013.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2013</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/9bbeaf7b503dbd2c667786db08c4512d">
+        <dct:title>Waldzustandsbericht 2012</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2012.pdf?__blob=publicationFile&amp;v=2">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2012.pdf?__blob=publicationFile&amp;v=2" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2012</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f6de9c145fe28effe99fc163b92d657e">
+        <dct:title>Waldzustandsbericht 2011</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2011.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2011.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2011</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2011-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2011-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/5d794a0f4064ba53b5047dbe36eef3ef">
+        <dct:title>Waldzustandsbericht 2010</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2010.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2010.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2010</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/0ac0c2ceb265a7c0ca18385c95ec6e3a">
+        <dct:title>Waldzustandsbericht 2009</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2009.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2009.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2009</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2009-12-31</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2009-12-31</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/2f21507e1dc4e9106e348a65bb9e5cfa">
+        <dct:title>Waldzustandsbericht 2008</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2008.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2008.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2008</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2009-01-06</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2009-01-06</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/1e4b51fbab78072693617fcc2458824e">
+        <dct:title>Waldzustandsbericht 2006/2007</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2006_2007.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2006_2007.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldzustandsbericht 2006/2007</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2008-02-18</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2008-02-18</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/ac543132dfecddfdaa9ef8385034323f">
+        <dct:title>Waldschadensbericht 2005</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2005.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2005.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldschadensbericht 2005</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-03-22</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-03-22</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+   <dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f9727d9cfb4ad6f923a800e0f116b6e3">
+        <dct:title>Waldschadensbericht 2004</dct:title>
+
+   <dct:isVersionOf rdf:resource="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63" />
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2004.pdf?__blob=publicationFile&amp;v=1">
+            <dct:title></dct:title>
+            <dcat:accessURL rdf:resource="https://www.schleswig-holstein.de/DE/Fachinhalte/W/wald/Downloads/Waldzustandsbericht2004.pdf?__blob=publicationFile&amp;v=1" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+            <dct:format  rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dct:subject rdf:resource="http://d-nb.info/gnd/4128022-2"/>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/GOVE" />
+        <dct:description>Waldschadensbericht 2004</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU"/>
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-11-30</dct:issued>
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/cc-zero" />
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-07-15T14:55:00.00000</dct:modified>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-11-30</schema:startDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+      </dcat:Dataset>
+    </dcat:dataset>
+
+<dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/5768d5cdbc58abd45c8620e44e017f01">
+        <dct:type rdf:resource="http://dcat-ap.de/def/datasetTypes/collection" />
+        <dct:title>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt</dct:title>
+        <dct:description>Munitionsbelastung der deutschen Meeresgewässer – Entwicklungen und Fortschritt</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/b5cd3f303f594ecde96e1017e953b688" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/9f9ae60bb0d8985e10e9ab8aa6a7ca34" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/ff612d0f165d46f3091f58e1ef56a2ec" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/3a0d0674120fbf06b5cb8737124e3fd0" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/cd606b042789723a2b6d61cb31c46c39" />
+
+      </dcat:Dataset>
+    </dcat:dataset>
+<dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/f1f2513c3899ecf6f15691e0e4412822">
+        <dct:type rdf:resource="http://dcat-ap.de/def/datasetTypes/collection" />
+        <dct:title>Schuleingangsuntersuchungen in Schleswig-Holstein – Bericht</dct:title>
+        <dct:description>Schuleingangsuntersuchungen in Schleswig-Holstein – Bericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/ae2a3cffda84388365bc87711ed4af47" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/1ee93d311ae6078dc11655c2ca8865b5" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/91a479991245f208dd6f8ba82411a570" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/b0024265f96b9de5a590541f5e0aec91" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/04640ac19a21450984d2af7c402d6aa0" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/ffef477b7ebb1447d869b33c79cac8e2" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/a1fea922aa7d9f7a924784615301da83" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/86fe10eb6578e940d7df8e3d6da6520d" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/ccb65ee5047e3c9cc67384b513400246" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/f5123967a8d0d80ff135342ce41a09bb" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/05199f38b6234e794f79ad3726957a3e" />
+
+      </dcat:Dataset>
+    </dcat:dataset>
+<dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/5ffd27c528f7ab6936318da90d5cdd63">
+        <dct:type rdf:resource="http://dcat-ap.de/def/datasetTypes/collection" />
+        <dct:title>Waldzustandsbericht</dct:title>
+        <dct:description>Waldzustandsbericht</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/1e4b51fbab78072693617fcc2458824e" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/0ac0c2ceb265a7c0ca18385c95ec6e3a" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/f9727d9cfb4ad6f923a800e0f116b6e3" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/904ef47daad01d2979ab20dda18b2ae7" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/5d794a0f4064ba53b5047dbe36eef3ef" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/2147dcaa148ff19a89fa99c989dd648e" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/f201ecaf859f8e713cd030615bd3f5cb" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/9bbeaf7b503dbd2c667786db08c4512d" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/ac543132dfecddfdaa9ef8385034323f" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/f6de9c145fe28effe99fc163b92d657e" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/f681f52201dcf1b1ea467aeed683c8a2" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/9f48b6c643a139a0b4e7eac2ab4cfbb0" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/225ebaffe8e7a30483ac43935e91e1f4" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/2f21507e1dc4e9106e348a65bb9e5cfa" />
+
+      </dcat:Dataset>
+    </dcat:dataset>
+<dcat:dataset>
+      <dcat:Dataset rdf:about="http://transparenz.schleswig-holstein.de/7ee94f73beb43faf4099208b4e55734b">
+        <dct:type rdf:resource="http://dcat-ap.de/def/datasetTypes/collection" />
+        <dct:title>Jahresbericht zur biologischen Vielfalt</dct:title>
+        <dct:description>Jahresbericht zur biologischen Vielfalt</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/423e1ea7e98b492aebc0ca5108c7b36d" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/6ea87d1f4a92efb288ed53e2bf901880" />
+
+        <dct:hasVersion rdf:resource="http://transparenz.schleswig-holstein.de/7f6ef434153bdbfff9ed42c8d9ee1381" />
+
+      </dcat:Dataset>
+    </dcat:dataset>
+</dcat:Catalog>
+</rdf:RDF>
+

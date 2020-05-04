@@ -112,7 +112,7 @@ class KielHarvester(ODSHBaseHarvester):
                 context.copy(), {'id': harvest_object.source.id})
             package_dict['owner_org'] = source_dataset.get('owner_org')
 
-            if package_dict['type'] == 'datensatz':
+            if package_dict['type'] in ('datensatz', 'dokument', 'document'):
                 package_dict['type'] = 'dataset'
             package_dict['id'] = harvest_object.guid
 

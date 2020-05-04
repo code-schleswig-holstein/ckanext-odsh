@@ -2,7 +2,7 @@ $(document).ready(function ()
 {
     $('.mylabel').click(function ()
     {
-        window.location = $(this).siblings('a').attr('href');
+        window.location = $(this).siblings('label').children('a').attr('href');
     });
 
     let search = function (score)

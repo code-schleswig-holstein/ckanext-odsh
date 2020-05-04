@@ -3,315 +3,320 @@
 {% resource 'odsh/bootstrap-multiselect.js' %}
 {% set dataset_is_draft = data.get('state', 'draft').startswith('draft') or data.get('state', 'none') == 'none' %}
 
-<!-- field title -->
+
+{# field title #}
 {% block package_basic_fields_title %}
 {% set error_string = _(_('Title') + ': '+errors.title[0]) if errors.title %}
-{{ form.input('title', id='field-title', label=_('Title'), value=data.title,
-error=error_string, classes=['control-full'], attrs={'data-module': 'slug-preview-target'},
-is_required=true,placeholder=_('Enter title')) }}
-{% endblock %}
+{{ 
+    form.input(
+        'title', id='field-title', 
+        label=_('Title'), 
+        value=data.title,
+        error=error_string, 
+        classes=['control-full'], 
+        attrs={'data-module': 'slug-preview-target'},
+        is_required=true,
+        placeholder=_('Enter title')
+    ) 
+}}
+{% endblock package_basic_fields_title %}
 
 
-    <!-- field notes -->
-    {% block package_basic_fields_description %}
-    {% set error_string = _(_('Description') + ': '+errors.notes[0]) if errors.notes %}
-    {{ form.markdown('notes', id='field-notes', label=_('Description'), value=data.notes,
-    error=error_string, is_required=true, placeholder=_('Enter description')) }}
-    {% endblock %}
+{# field note #}
+{% block package_basic_fields_description %}
+{% set error_string = _(_('Description') + ': '+errors.notes[0]) if errors.notes %}
+{{ 
+    form.markdown(
+        'notes', 
+        id='field-notes', 
+        label=_('Description'), 
+        value=data.notes,
+        error=error_string, 
+        is_required=false, 
+        placeholder=_('Enter description')
+    ) 
+}}
+{% endblock package_basic_fields_description %}
 
-    {% block package_basic_fields_org %}
-    {% if data.group_id %}
-    <input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
+
+{# field Organization #}
+{% block package_basic_fields_org %}
+{% if data.group_id %}
+<input type="hidden" name="groups__0__id" value="{{ data.group_id }}" />
+{% endif %}
+
+{% set dataset_has_organization = data.owner_org or data.group_id %}
+{% set organizations_available = h.organizations_available('create_dataset') %}
+{% set user_is_sysadmin = h.check_access('sysadmin') %}
+{% set show_organizations_selector = organizations_available %}
+{% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or
+dataset_is_draft)) %}
+{% set existing_org = data.owner_org or data.group_id %}
+
+<div class="control-group field-organization">
+    <label for="field-organizations" class="control-label">
+        {{ _('Organization') }}
+        <span title="{{ _("This field is required") }}" class="control-required">*</span>
+    </label>
+    <div class="controls">
+        <div class="row-fluid">
+            <div class="span6">
+                <select id="field-organizations" name="owner_org" data-module="autocomplete">
+                    {% if h.check_config_permission('create_unowned_dataset') %}
+                    <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No
+                        organization') }}</option>
+                    {% endif %}
+                    {% for organization in organizations_available %}
+                    {# get out first org from users list only if there is not an existing org #}
+                    {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
+                    <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{
+                        organization.display_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock package_basic_fields_org %}
+
+
+{# field license #}
+{% block package_basic_fields_license %}
+
+{% set error_missing_attr = h.odsh_extract_error('licenseAttributionByText', errors) %}
+<label class="control-label" for="field-license">
+    {{ _("License") }}:
+    <span title="{{ _("This field is required") }}" class="control-required">*</span>
+</label>
+<div class='row-fluid'>
+    <div class='span3'>
+            {% set error = errors.license_id %}
+            {% set error_license_id = _(_("License") + ': '+errors.license_id[0] ) if errors.license_id %}
+        <div class="control-group {{ " error" if error_license_id }}">
+            <div class="controls">
+                <select id="field-license" name="license_id">
+                    {% set existing_license_id = data.get('license_id') %}
+                    {% for license_id, license_desc in h.presorted_license_options(existing_license_id) %}
+                    <option value="{{ license_id }}" {% if existing_license_id==license_id %}selected="selected" {%
+                        endif %}>{{ license_desc }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class='span3'>
+        {# field Namensnennung #}
+        {% set field = 'licenseAttributionByText' %}
+        {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
+        <div class="control-group {{ " error" if error_missing_attr }} control-full">
+            <div class="controls">
+                        {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', attrs={'disabled':true,
+        'data-module':"odsh_form", 'data-module-licensetoggle':'true', 'data-module-autofill':'true'}, placeholder=_('enter name')) }}
+            </div>
+        </div>
+    </div>
+    {% if error_license_id %} 
+        <div class="span6 inline-error">
+            {{_(error_license_id)}}
+        </div>
     {% endif %}
+    {% if error_missing_attr%} 
+        <div class="span6 inline-error">
+            {{_(error_missing_attr)}}
+        </div>
+    {% endif %}
+</div>
 
-    {% set dataset_has_organization = data.owner_org or data.group_id %}
-    {% set organizations_available = h.organizations_available('create_dataset') %}
-    {% set user_is_sysadmin = h.check_access('sysadmin') %}
-    {% set show_organizations_selector = organizations_available %}
-    {% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or
-    dataset_is_draft)) %}
-    {% set existing_org = data.owner_org or data.group_id %}
+{% endblock package_basic_fields_license%}
 
-    <div class="control-group field-organization">
-        <label for="field-organizations" class="control-label">{{ _('Organization') }}
-            <span title="{{ _("This field is required") }}" class="control-required">*</span>
-        </label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    <select id="field-organizations" name="owner_org" data-module="autocomplete">
-                        {% if h.check_config_permission('create_unowned_dataset') %}
-                        <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No
-                            organization') }}</option>
-                        {% endif %}
-                        {% for organization in organizations_available %}
-                        {# get out first org from users list only if there is not an existing org #}
-                        {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
-                        <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{
-                            organization.display_name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+
+{# timerange #}
+{% set error_start = h.odsh_extract_error_new('temporal_start', errors) %}
+{% set error_end = h.odsh_extract_error_new('temporal_end', errors) %}
+{% set error_string = 'odsh_temporal_error_label' if error_start and error_end else (error_start if error_start else (error_end if error_end))%}
+<label for="start-end" class="control-label">{{ _('timerange') }}:
+    {# <span title="{{ _("This field is required") }}" class="control-required">*</span> #}
+</label>
+<div class='row-fluid'>
+        {% resource 'odsh/moment.js' %}
+        {% resource 'odsh/datepicker.css' %}
+        {% resource 'odsh/bootstrap-datepicker.js' %}
+        {% resource 'odsh/odsh_datepicker.js' %}
+    <div id='start-end' class='span3'>
+        {# field temporal_start #}
+        {% set field = 'temporal_start' %}
+        {% set data_temporal_start = h.odsh_extract_value_from_extras(data.extras,field) %}
+        {% set value = data_temporal_start.split('T')[0] if data_temporal_start else None %}
+        {% set index = h.odsh_create_checksum(field) %}
+        <div class="control-group {{ " error" if error_start }} control-full">
+            <div class="controls">
+                        {{ form.input_extra(field, value=value, index=index, type='hidden') }}
+                        <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_start" type="text" 
+                            value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('from') }}"
+                            data-module="odsh_datepicker" data-module-target='field-temporal_start-value'/>
             </div>
         </div>
     </div>
-    {% endblock %}
-
-
-    <!-- field license -->
-    {% set error_missing_attr = h.odsh_extract_error('licenseAttributionByText', errors) %}
-    <label class="control-label" for="field-license">
-        {{ _("License") }}:
-        <span title="{{ _("This field is required") }}" class="control-required">*</span>
-    </label>
-    <div class='row-fluid'>
-        <div class='span3'>
-            {% block package_basic_fields_license %}
-                {% set error = errors.license_id %}
-                {% set error_license_id = _(_("License") + ': '+errors.license_id[0] ) if errors.license_id %}
-            <div class="control-group {{ " error" if error_license_id }}">
-                <div class="controls">
-                    <select id="field-license" name="license_id">
-                        {% set existing_license_id = data.get('license_id') %}
-                        {% for license_id, license_desc in h.presorted_license_options(existing_license_id) %}
-                        <option value="{{ license_id }}" {% if existing_license_id==license_id %}selected="selected" {%
-                            endif %}>{{ license_desc }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+    <div class='span3'>
+        {# field temporal_end #}
+        {% set field = 'temporal_end' %}
+        {% set data_temporal_end = h.odsh_extract_value_from_extras(data.extras,field) %}
+        {% set value = data_temporal_end.split('T')[0] if data_temporal_end else None %}
+        <div class="control-group {{ " error" if error_end }} control-full">
+            <div class="controls">
+                        {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='hidden') }}
+                        <input pattern="\d{2}\.\d{2}\.\d{4}"  autocomplete="off" id="datepicker_end" type="text" 
+                            value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('to') }}"
+                            data-module="odsh_datepicker" data-module-target='field-temporal_end-value'/>
             </div>
         </div>
-        <div class='span3'>
-            <!-- field Namensnennung -->
-            {% set field = 'licenseAttributionByText' %}
-            {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
-            <div class="control-group {{ " error" if error_missing_attr }} control-full">
-                <div class="controls">
-                            {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', attrs={'disabled':true,
-            'data-module':"odsh_form", 'data-module-licensetoggle':'true', 'data-module-autofill':'true'}, placeholder=_('enter name')) }}
-                </div>
-            </div>
+    </div>
+    {% if error_string %} 
+        <div class="span6 inline-error">
+            {{_(error_string)}}
         </div>
-        {% if error_license_id %} 
+    {% endif %}
+</div>
+
+
+{# field issued #}
+{% set field = 'issued' %}
+{% set data_issued = h.odsh_extract_value_from_extras(data.extras,field) %}
+{% set error = h.odsh_extract_error_new(field, errors) %}
+{% set value = data_issued.split('T')[0] if data_issued else (h.odsh_now() if not error else '')%}
+<div class="control-group {{ " error" if error }} control-full">
+    <label class="control-label" for="field-{{field}}">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
+    <div class="controls">
+        <div class="row-fluid">
+            <div class="span6">
+                {{ form.input_extra(field, value=value , index=h.odsh_create_checksum(field), type='hidden') }}
+                <input  pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" type="text" 
+                    value="{{h.odsh_render_datetime(value, False)}}" 
+                    data-module="odsh_datepicker" data-module-target='field-issued-value'/>
+            </div>
             <div class="span6 inline-error">
-                {{_(error_license_id)}}
-            </div>
-        {% endif %}
-        {% if error_missing_attr%} 
-            <div class="span6 inline-error">
-                {{_(error_missing_attr)}}
-            </div>
-        {% endif %}
-    </div>
-
-    {% endblock %}
-
-    <!-- timerange -->
-    {% set error_start = h.odsh_extract_error_new('temporal_start', errors) %}
-    {% set error_end = h.odsh_extract_error_new('temporal_end', errors) %}
-    {% set error_string = 'odsh_temporal_error_label' if error_start and error_end else (error_start if error_start else (error_end if error_end))%}
-    <label for="start-end" class="control-label">{{ _('timerange') }}:
-        <span title="{{ _("This field is required") }}" class="control-required">*</span>
-    </label>
-    <div class='row-fluid'>
-          {% resource 'odsh/moment.js' %}
-          {% resource 'odsh/datepicker.css' %}
-          {% resource 'odsh/bootstrap-datepicker.js' %}
-          {% resource 'odsh/odsh_datepicker.js' %}
-        <div id='start-end' class='span3'>
-            <!-- field temporal_start -->
-            {% set field = 'temporal_start' %}
-            {% set data_temporal_start = h.odsh_extract_value_from_extras(data.extras,field) %}
-            {% set value = data_temporal_start.split('T')[0] if data_temporal_start else None %}
-            {% set index = h.odsh_create_checksum(field) %}
-            <div class="control-group {{ " error" if error_start }} control-full">
-                <div class="controls">
-                            {{ form.input_extra(field, value=value, index=index, type='hidden') }}
-                            <input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_start" type="text" 
-                                value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('from') }}"
-                                data-module="odsh_datepicker" data-module-target='field-temporal_start-value'/>
-                </div>
-            </div>
-        </div>
-        <div class='span3'>
-            <!-- field temporal_end -->
-            {% set field = 'temporal_end' %}
-            {% set data_temporal_end = h.odsh_extract_value_from_extras(data.extras,field) %}
-            {% set value = data_temporal_end.split('T')[0] if data_temporal_end else None %}
-            <div class="control-group {{ " error" if error_end }} control-full">
-                <div class="controls">
-                            {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='hidden') }}
-                            <input pattern="\d{2}\.\d{2}\.\d{4}"  autocomplete="off" id="datepicker_end" type="text" 
-                                value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ _('to') }}"
-                                data-module="odsh_datepicker" data-module-target='field-temporal_end-value'/>
-                </div>
-            </div>
-        </div>
-        {% if error_string %} 
-            <div class="span6 inline-error">
-                {{_(error_string)}}
-            </div>
-        {% endif %}
-    </div>
-
-    <!-- field issued -->
-
-    {% set field = 'issued' %}
-    {% set data_issued = h.odsh_extract_value_from_extras(data.extras,field) %}
-    {% set error = h.odsh_extract_error_new(field, errors) %}
-    {% set value = data_issued.split('T')[0] if data_issued else (h.odsh_now() if not error else '')%}
-    <div class="control-group {{ " error" if error }} control-full">
-        <label class="control-label" for="field-{{field}}">Veröffentlichungsdatum: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    {{ form.input_extra(field, value=value , index=h.odsh_create_checksum(field), type='hidden') }}
-                    <input  pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" type="text" 
-                        value="{{h.odsh_render_datetime(value, False)}}" 
-                        data-module="odsh_datepicker" data-module-target='field-issued-value'/>
-                </div>
-                <div class="span6 inline-error">
-                    {% if error %} 
-                    {{_(error)}}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- field tags -->
-    {% block package_basic_fields_tags %}
-    {% set tag_attrs = {'data-module': 'autocomplete', 'data-module-tags': '', 'data-module-source':
-    '/api/2/util/tag/autocomplete?incomplete=?'} %}
-    {{ form.input('tag_string', id='field-tags', label=_('Tags'), value=data.tag_string, error=errors.tag_string,
-    classes=['control-full'], attrs=tag_attrs,
-    is_required=false, placeholder=_('odsh tags placeholder')) }}
-    {% endblock %}
-
-
-    <!-- field spatial_uri -->
-    {% set field = 'spatial_uri' %}
-    {% set value = h.odsh_extract_value_from_extras(data.extras,field) %}
-    {% set error = h.odsh_extract_error(field, errors) %}
-    <div class="control-group {{ " error" if error }} control-full">
-        <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
-        <div class="controls">
-            <div class="row-fluid">
-            {% if not value and not error and data.state == 'active'%}
-                <div class="span6">
-                    <input  type='text' value="{{h.truncate(h.odsh_extract_value_from_extras(data.extras,'spatial'),20)}}" readonly  />
-                </div>
-            {% else %}
-                <div class="span6">
-                    {{ form.input_extra(field, value=value, index=h.odsh_create_checksum(field), type='text', placeholder=_('Enter spatial uri')) }}
-                </div>
-                <div class="span6 inline-error">
-                    {% if error %} 
-                    {{_(error)}}
-                    {% endif %}
-                </div>
+                {% if error %} 
+                {{_(error)}}
                 {% endif %}
             </div>
         </div>
     </div>
+</div>
 
-    {#
-    {% set spatial_extends_available = h.odsh_spatial_extends_available() %}
-    <div class="control-group">
-        <label class="control-label" for="field-{{field}}">{{_('Spatial uri')}}: <span title="Dieses Feld ist erforderlich" class="control-required">*</span> </label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    <select id="field-{{field}}" data-module="autocomplete" data-module-items="10">
-                        {% for extend in spatial_extends_available%}
-                        <option value="{{ extend }}" {% if selected_extend %} selected="selected" {% endif %}>{{extend}}</option> 
-                        {% endfor %}
-                    </select>
-                </div>
+
+{# field tags #}
+{% block package_basic_fields_tags %}
+{% set tag_attrs = {
+    'data-module': 'autocomplete', 
+    'data-module-tags': '', 
+    'data-module-source': '/api/2/util/tag/autocomplete?incomplete=?'
+} %}
+{{ 
+    form.input(
+        'tag_string', 
+        id='field-tags', 
+        label=_('Tags'), 
+        value=data.tag_string, 
+        error=errors.tag_string,
+        classes=['control-full'], 
+        attrs=tag_attrs,
+        is_required=false, 
+        placeholder=_('odsh tags placeholder')
+    ) 
+}}
+{% endblock %}
+
+
+{# field language #}
+{% set before_selected = data.get('language') or h.odsh_extract_value_from_extras(data.extras, 'language') or 'http://publications.europa.eu/resource/authority/language/DEU' %}
+{{ form.tpsh_select('language', label=_('language'), options=h.get_language_for_selection(), selected=before_selected , error=errors.language, is_required=False, classes=['control-full']) }}
+
+
+{# field spatial_uri #}
+{% set spatial_uri_from_extras =  h.odsh_extract_value_from_extras(data.extras, 'spatial_uri') %}
+{% set spatial_uri = data.spatial_uri_temp or spatial_uri_from_extras or '' %}
+{{ form.select_autocomplete('spatial_uri_temp', label=_('Spatial uri'), selected=spatial_uri, options=h.get_spatial_for_selection(), is_required=False, classes=['control-full', 'field-spatial_uri'])}}
+
+
+{# field private #}
+<div class="control-group">
+    <label for="field-private" class="control-label">{{ _('Visibility') }}:
+        <span title="{{ _("This field is required") }}" class="control-required">*</span>
+    </label>
+    <div class="controls">
+        <div class="row-fluid">
+            <div class="span6">
+                <select id="field-private" name="private">
+                    {% for option in [('True', _('Private')), ('False', _('Public'))] %}
+                    <option value="{{ option[0] }}" {% if option[0]==data.private|trim %}selected="selected" {%
+                        endif %}>{{
+                        option[1] }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
     </div>
-    #}
+</div>
 
-    <!-- field private -->
-    <div class="control-group">
-        <label for="field-private" class="control-label">{{ _('Visibility') }}:
-            <span title="{{ _("This field is required") }}" class="control-required">*</span>
-        </label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    <select id="field-private" name="private">
-                        {% for option in [('True', _('Private')), ('False', _('Public'))] %}
-                        <option value="{{ option[0] }}" {% if option[0]==data.private|trim %}selected="selected" {%
-                            endif %}>{{
-                            option[1] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+
+{% if data.id and h.check_access('package_delete', {'id': data.id}) and data.state != 'active' %}
+<div class="control-group">
+    <label for="field-state" class="control-label">{{ _('State') }}</label>
+    <div class="controls">
+        <div class="row-fluid">
+            <div class="span6">
+                <select id="field-state" name="state">
+                    <option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {%
+                        endif %}>{{
+                        _('Active') }}</option>
+                    <option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {%
+                        endif %}>{{
+                        _('Deleted') }}</option>
+                </select>
             </div>
         </div>
     </div>
+</div>
+{% endif %}
 
 
-    {% if data.id and h.check_access('package_delete', {'id': data.id}) and data.state != 'active' %}
-    <div class="control-group">
-        <label for="field-state" class="control-label">{{ _('State') }}</label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    <select id="field-state" name="state">
-                        <option value="active" {% if data.get('state', 'none' )=='active' %} selected="selected" {%
-                            endif %}>{{
-                            _('Active') }}</option>
-                        <option value="deleted" {% if data.get('state', 'none' )=='deleted' %} selected="selected" {%
-                            endif %}>{{
-                            _('Deleted') }}</option>
-                    </select>
+{# field groups #}
+{% set error_groups = h.odsh_extract_error_new('groups', errors) %}
+<div class="control-group {{ " error" if error_groups }}">
+    {% set groups_label='Kategorien'%}
+    {% set multiselect_nonSelectedText='keine' %}
+    {% set multiselect_allSelectedText='alle' %}
+    {% set multiselect_nSelectedText='gewählt' %}
+    <label for="field-groups" class="control-label">
+        {{ groups_label }}
+    </label>
+    <div class="controls">
+        <div class="row-fluid">
+            <div class="span6">
+                {% set existing_groups = data.get('groups') %}
+                {% if existing_groups %}
+                {% set existing_groups_string = existing_groups|map(attribute='id')|join(',') %}
+                {% else %}
+                {% set existing_groups_string = h.odsh_extract_value_from_extras(data.extras,'groups') %}
+                {% endif %}
+                <select id='field-groups' multiple="multiple" data-module="odsh_form" data-module-multiselect='true'
+                    data-module-nonSelectedText="{{multiselect_nonSelectedText}}" data-module-allSelectedText="{{multiselect_allSelectedText}}"
+                    data-module-nSelectedText="{{multiselect_nSelectedText}}" data-module-update='{{data.id != None}}'>
+                    {% for option in h.groups_available()%}
+                    <option value={{option.id}} {% if existing_groups_string!=None and option['id'] in existing_groups_string %}selected="selected"
+                        {% endif %}>
+                        {{ option['display_name'] }}</option>
+                    {% endfor %}
+                </select>
+                <div id='selected-groups'>
+                    {{ form.input_extra('groups', value=existing_groups_string, index=h.odsh_create_checksum('groups'), type='hidden')}}
                 </div>
+            </div>
+            <div class="span6 inline-error">
+                {% if error_groups %} 
+                {{_(error_groups)}}
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endif %}
-
-    <!-- field groups -->
-    {% set error_groups = h.odsh_extract_error_new('groups', errors) %}
-    <div class="control-group {{ " error" if error_groups }}">
-        {% set groups_label='Kategorien'%}
-        {% set multiselect_nonSelectedText='keine' %}
-        {% set multiselect_allSelectedText='alle' %}
-        {% set multiselect_nSelectedText='gewählt' %}
-        <label for="field-groups" class="control-label">{{ groups_label }}
-            <span title="{{ _("This field is required") }}" class="control-required">*</span>
-        </label>
-        <div class="controls">
-            <div class="row-fluid">
-                <div class="span6">
-                    {% set existing_groups = data.get('groups') %}
-                    {% if existing_groups %}
-                    {% set existing_groups_string = existing_groups|map(attribute='id')|join(',') %}
-                    {% else %}
-                    {% set existing_groups_string = h.odsh_extract_value_from_extras(data.extras,'groups') %}
-                    {% endif %}
-                    <select id='field-groups' multiple="multiple" data-module="odsh_form" data-module-multiselect='true'
-                        data-module-nonSelectedText="{{multiselect_nonSelectedText}}" data-module-allSelectedText="{{multiselect_allSelectedText}}"
-                        data-module-nSelectedText="{{multiselect_nSelectedText}}" data-module-update='{{data.id != None}}'>
-                        {% for option in h.groups_available()%}
-                        <option value={{option.id}} {% if existing_groups_string!=None and option['id'] in existing_groups_string %}selected="selected"
-                            {% endif %}>
-                            {{ option['display_name'] }}</option>
-                        {% endfor %}
-                    </select>
-                    <div id='selected-groups'>
-                        {{ form.input_extra('groups', value=existing_groups_string, index=h.odsh_create_checksum('groups'), type='hidden')}}
-                    </div>
-                </div>
-                <div class="span6 inline-error">
-                    {% if error_groups %} 
-                    {{_(error_groups)}}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+</div>

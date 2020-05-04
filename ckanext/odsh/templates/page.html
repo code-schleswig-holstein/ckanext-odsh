@@ -1,11 +1,21 @@
 {% ckan_extends %}
 
+{% block skip %}
+    <a class="skip-link" href="#content">
+        Zum Inhalt springen.
+    </a>
+{% endblock skip %}
 
 {%- block content %}
+<div class="blur-layer"></div>
 {% block maintag %}<div role="main">{% endblock %}
+
+{% if h.odsh_use_matomo() %}
 {% set matomo_url = h.odsh_tracking_url()%}
 {% set matomo_id = h.odsh_tracking_id()%}
 <noscript><p><img src="{{matomo_url}}?idsite={{matomo_id}}&rec=1" style="border:0;" alt="" /></p></noscript>
+{% endif %}
+
   <div id="content" class="container">
   {% if h.odsh_show_testbanner() %}
 <div id="testsystem">

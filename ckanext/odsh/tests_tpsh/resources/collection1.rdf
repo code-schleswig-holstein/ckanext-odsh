@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:dcatde="http://dcat-ap.de/def/dcatde/1_0/" xmlns:dcat="http://www.w3.org/ns/dcat#"
+xmlns:dct="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+  <dcat:Catalog rdf:about="https://data.some.org/catalog">
+
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte">
+        <dct:type rdf:resource="http://dcat-ap.de/def/datasetTypes/collection" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+	<dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201704" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201703" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201702" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201701" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201612" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2017" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2016" />
+        <dct:hasVersion rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2015" />
+      </dcat:Dataset>
+    </dcat:dataset>
+    
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201704">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201704/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201704.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-03-20</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-04-30</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201703">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201703/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201703.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-02-20</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-03-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-03-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201702">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201702/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201702.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-01-16</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-02-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-02-28</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201701">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201701/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201701.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-12-12</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-01-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-01-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201612">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201612/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte_Monat_201612.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-11-21</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2017">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2017/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_Antrag_Jahr_2017.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-12-31</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-01-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-12-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2016">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2016/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_Antrag_Jahr_2016.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-31</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-01-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2016-12-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2015">
+        <dct:isVersionOf rdf:resource="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_anerkannte_Versorgungsberechtigte" />
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2015/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_Antrag_Jahr_2015.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-01-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+    <dcat:dataset>
+      <dcat:Dataset rdf:about="http://opendata.schleswig-holstein.de/dataset/Test_nicht_in_Collection">
+        <dct:title>SER Statistik anerkannte Versorgungsberechtigte</dct:title>
+        <dcat:distribution>
+          <dcat:Distribution rdf:about="http://opendata.schleswig-holstein.de/dataset/LAsDSH_SER_Statistik_Antrag_Jahr_2015/resource">
+            <dcat:accessURL rdf:resource="http://185.223.104.6/data/lasd/LAsDSH_SER_Statistik_Antrag_Jahr_2015.pdf" />
+            <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+            <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+            <dct:format rdf:resource="http://publications.europa.eu/resource/authority/file-type/PDF" />
+            <dcat:mediaType>application/pdf</dcat:mediaType>
+          </dcat:Distribution>
+        </dcat:distribution>
+        <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/SOCI" />
+        <dct:description>Statistik der Versorgung von rentenberechtigten Kriegsopfern und gleichgestellten Personen nach
+        Personenkreis und MdE innerhalb Schleswig-Holsteins</dct:description>
+        <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/DEU" />
+        <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</dct:issued>
+        <dct:license rdf:resource="http://dcat-ap.de/def/licenses/dl-by-de/2.0" />
+        <dcatde:licenseAttributionByText>Landesamt für soziale Dienste Schleswig-Holstein</dcatde:licenseAttributionByText>
+        <dct:publisher>
+          <foaf:Organization rdf:about="http://opendata.schleswig-holstein.de/lasd" />
+        </dct:publisher>
+        <dct:spatial>
+          <dct:Location rdf:about="http://dcat-ap.de/def/politicalGeocoding/stateKey/01" />
+        </dct:spatial>
+        <dct:temporal>
+          <dct:PeriodOfTime>
+            <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-01-01</schema:startDate>
+            <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2015-12-31</schema:endDate>
+          </dct:PeriodOfTime>
+        </dct:temporal>
+        <dcat:keyword>Soziales Entschädigungsrecht</dcat:keyword>
+        <dcat:keyword>Kriegsopfer</dcat:keyword>
+        <dcat:keyword>Beschädigte</dcat:keyword>
+        <dcat:keyword>Witwen</dcat:keyword>
+        <dcat:keyword>Waisen</dcat:keyword>
+        <dcat:keyword>BVG</dcat:keyword>
+        <dcat:keyword>SVG</dcat:keyword>
+        <dcat:keyword>ZDG</dcat:keyword>
+        <dcat:keyword>OEG</dcat:keyword>
+        <dcat:keyword>IfSG</dcat:keyword>
+        <dcat:keyword>HHG</dcat:keyword>
+        <dcat:keyword>SER</dcat:keyword>
+        <dcat:keyword>Statistik</dcat:keyword>
+        <dcat:keyword>Versorgungsberechtigte</dcat:keyword>
+      </dcat:Dataset>
+    </dcat:dataset>
+  </dcat:Catalog>
+</rdf:RDF>

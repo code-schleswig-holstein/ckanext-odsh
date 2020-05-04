@@ -41,3 +41,12 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 .vscode/settings.json
+
+# VS Code
+.vscode/
+
+# symlink to env
+env
+
+# nose
+.noseids

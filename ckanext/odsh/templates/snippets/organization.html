@@ -15,7 +15,6 @@ Example:
 #}
 
 {% set truncate = truncate or 0 %}
-{% set url = h.url_for(controller='organization', action='read', id=organization.name) %}
 
 {% block info %}
 <div class="module module-narrow module-shallow context-info">
@@ -25,17 +24,61 @@ Example:
         [{{ _('Deleted') }}]
         {% endif %}
     </h1>
-    {% endblock %}
-    <section class="module-content">
+    {% endblock heading%}
+    <section id="section-org" class="module-content">
         {% block inner %}
         {% block image %}
         <div class="image">
-            <a href="{{ url }}">
-                <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}"
-                    width="200" alt="{{ organization.name }}" />
-            </a>
+            <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}"
+                width="200" alt="{{ organization.name }}" />
         </div>
-        {% endblock %}
+        
+        <div class="information-organisation">
+            {% set address = h.tpsh_get_address_org(organization) %}
+            {% set street = address.get('street') %}
+            {% set location = address.get('location') %}
+            {% set mail = address.get('mail') %}
+            {% set telephone = address.get('telephone') %}
+            {% set web = address.get('web') %}
+            
+            {% if person %}
+            <p>   
+                {{ person }}  
+            </p>
+            {% endif %} {# person #}
+
+            {% if street and location %}
+            <p>{{ street }}</p>
+            <p>{{ location }}</p>
+            {% endif %} {# street and location #}
+                
+            {% if mail %}
+            {% if package %}
+            {% set package_name = package.get('name') %}
+            {% set betreff = "Transparenzportal Dokument: "+ package_name%}
+            {% set body_mail = h.tpsh_get_body_mail(organization, package)   %}
+            {% else %}
+            {% set betreff = "Transparenzportal" %}
+            {% endif %} {# package #}
+            <p>
+                <a href="mailto:{{ mail }}?subject={{betreff}}&body={{body_mail}}Viele Grüße">{{ mail }}</a>
+            </p>
+            {% endif %} {# mail #}
+
+            {% if telephone %}
+            <p class="phone">
+                {{ telephone }}
+            </p>
+            {% endif %} {# telephone #}
+            
+            {% if web %}
+            <p>
+                <a href="{{address.web}}">{{ address.web }}</a>
+            </p>
+            {% endif %} {# web #}
+        </div>
+        {% endblock image%}
+
         {% if not hide_description %}
         {% block description %}
         {% if organization.description %}
@@ -46,7 +89,7 @@ Example:
         {% else %}
         <p class="empty">{{ _('There is no description for this organization') }}</p>
         {% endif %}
-        {% endblock %}
+        {% endblock description %}
         {% endif %}
         {% if show_nums %}
         {% block nums %}
@@ -56,18 +99,18 @@ Example:
                 <dd>{{ h.SI_number_span(organization.num_followers) }}</dd>
             </dl>
             <dl>
-                <dt>{{ _('Datasets') }}</dt>
+                <dt>{{ _('Documents') }}</dt>
                 <dd>{{ h.SI_number_span(organization.package_count) }}</dd>
             </dl>
         </div>
-        {% endblock %}
+        {% endblock nums%}
         {% block follow %}
         <div class="follow_button">
             {{ h.follow_button('group', organization.id) }}
         </div>
-        {% endblock %}
+        {% endblock follow %}
         {% endif %}
-        {% endblock %}
+        {% endblock inner %}
     </section>
 </div>
 {% endblock %}

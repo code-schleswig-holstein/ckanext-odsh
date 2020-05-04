@@ -27,7 +27,7 @@ msgid "Start"
 msgstr "Start"
 
 msgid "Datasets"
-msgstr "Daten"
+msgstr "Dokumente"
 
 #: ckanext/odsh/templates/header.html:12
 msgid "Organizations"

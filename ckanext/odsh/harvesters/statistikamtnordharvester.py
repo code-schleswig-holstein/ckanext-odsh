@@ -225,7 +225,7 @@ class StatistikamtNordHarvester(ODSHBaseHarvester):
                 resource_file = urllib2.urlopen(resource['url'])
                 resource_dict['file_size'] = resource_file['Content-Length']
             else:
-                file_size = int(round(float(resource['Dateigroesse']) * 1000000000))
+                file_size = int(round(float(resource['Dateigroesse']) * 1048576 ))
                 resource_dict['size'] = file_size
             package_dict['resources'].append(resource_dict)
 

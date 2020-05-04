@@ -1,9 +1,13 @@
+# encoding: utf-8
+
 import logging
 import traceback
 import ast
 import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 import ckan.model as model
+import ckan.logic.action as action
+import ckan.lib.helpers as helpers
 import json
 from ckan.common import c
 import datetime
@@ -18,6 +22,7 @@ from ckan.common import request
 import pdb
 from urlparse import urlsplit, urlunsplit
 import subprocess
+import ckan.lib.helpers as helpers
 
 get_action = logic.get_action
 log = logging.getLogger(__name__)
@@ -116,7 +121,7 @@ def extend_search_convert_local_to_utc_timestamp(str_timestamp):
         return None 
 
     if not re.match(r'\d\d\d\d-\d\d-\d\d', str_timestamp):
-        raise 'wrong format'
+        raise ValueError('wrong format')
     
     dt = parser.parse(str_timestamp, dayfirst=False).isoformat()
 
@@ -268,6 +273,59 @@ def odsh_is_slave():
     return 1 if c == 'True' else 0
 
 
+def odsh_get_facet_items_dict(name, limit=None):
+    '''
+    Gets all facets like 'get_facet_items_dict' but sorted alphabetically
+    instead by count.
+    '''
+    if name == 'groups':
+        limit = 20
+    facets = helpers.get_facet_items_dict(name, limit)
+    facets.sort(key=lambda it: (it['display_name'].lower(), -it['count']))
+    return facets
+
+
+def odsh_main_groups():
+    '''Return a list of the groups to be shown on the start page.'''
+
+    # Get a list of all the site's groups from CKAN, sorted by number of
+    # datasets.
+    groups = toolkit.get_action('group_list')(
+        data_dict={'all_fields': True})
+
+    return groups
+
+
+def odsh_now():
+    return helpers.render_datetime(datetime.datetime.now(), "%Y-%m-%d")
+
+
+def odsh_group_id_selected(selected, group_id):
+    if type(selected) is not list:
+        selected = [selected]
+    for g in selected:
+        if (isinstance(g, basestring) and group_id == g) or (type(g) is dict and group_id == g['id']):
+            return True
+
+    return False
+
+
+def odsh_remove_route(map, routename):
+    route = None
+    for i, r in enumerate(map.matchlist):
+
+        if r.name == routename:
+            route = r
+            break
+    if route is not None:
+        map.matchlist.remove(route)
+        for key in map.maxkeys:
+            if key == route.maxkeys:
+                map.maxkeys.pop(key)
+                map._routenames.pop(route.name)
+                break
+
+
 def is_within_last_month(date, date_ref=None):
     '''
     date is a datetime.date object containing the date to be checked
@@ -293,3 +351,105 @@ def is_within_last_month(date, date_ref=None):
     if date > one_month_ago:
         return True
     return False
+
+def tpsh_get_all_datasets_belonging_to_collection(context, collection_name):
+    rel_collection_dict = dict({"id": collection_name})
+    name_list = list()
+    try:
+        list_rel_collection = get_action('package_relationships_list')(context, rel_collection_dict)
+    except AssertionError:
+        #if there does not exist an relationship, returns an empty list
+        return name_list 
+    for item in list_rel_collection:
+        item_object = item.get('object') 
+        name_list.append(item_object)
+    return name_list
+
+def tpsh_get_all_datasets_belonging_to_collection_by_dataset(context, dataset_name):
+    collection_name = tpsh_get_collection_name_by_dataset(context, dataset_name)
+    if collection_name:
+        name_list = tpsh_get_all_datasets_belonging_to_collection(context, collection_name)
+        return name_list
+    return list()
+
+def tpsh_get_collection_name_by_dataset(context, dataset_name):
+    rel_dataset_dict = dict({"id" : dataset_name})
+    list_rel_dataset = toolkit.get_action('package_relationships_list')(context, rel_dataset_dict)
+    if not len(list_rel_dataset):
+        return None    
+    collection_name = list_rel_dataset[0]['object']
+    return collection_name
+
+def tpsh_get_successor_and_predecessor_dataset(context, pkg_dict):
+    dataset_name = pkg_dict.get('name')
+    siblings_dicts_with_access = _get_siblings_dicts_with_access(context, pkg_dict)
+    if siblings_dicts_with_access:
+        n_siblings = len(siblings_dicts_with_access)
+        siblings_dicts_sorted_by_date_issued = _sort_siblings_by_name_and_date(siblings_dicts_with_access)
+        siblings_names_sorted_by_date_issued = [d['name'] for d in siblings_dicts_sorted_by_date_issued]
+        id_current_dataset = siblings_names_sorted_by_date_issued.index(dataset_name)
+        predecessor_name = (
+            siblings_names_sorted_by_date_issued[id_current_dataset-1] if (id_current_dataset > 0) 
+            else None
+        )
+        successor_name = (
+            siblings_names_sorted_by_date_issued[id_current_dataset+1] if (id_current_dataset < n_siblings-1) 
+            else None
+        )
+    else:
+        predecessor_name, successor_name = None, None
+    return successor_name, predecessor_name
+
+def _get_siblings_dicts_with_access(context, pkg_dict):
+    dataset_name = pkg_dict.get('name')
+    list_of_siblings = tpsh_get_all_datasets_belonging_to_collection_by_dataset(context, dataset_name)
+    n_siblings = len(list_of_siblings)
+    if n_siblings>0:
+        siblings_dicts = [get_package_dict(name) for name in list_of_siblings]
+        user_has_access = lambda pkg_dict:helpers.check_access('package_show', pkg_dict)
+        siblings_dicts_with_access = filter(user_has_access, siblings_dicts)
+        return siblings_dicts_with_access
+    return None
+
+    
+def _sort_siblings_by_name_and_date(siblings_dicts):
+    '''
+    sort by name first and then by date to have a fallback if dates are the same
+    '''
+    _get_name = lambda pkg_dict:pkg_dict.get('name')
+    _get_issued = lambda pkg_dict:odsh_extract_value_from_extras(pkg_dict.get('extras'), 'issued')
+    siblings_dicts_sorted_by_name = sorted(siblings_dicts, key=_get_name)
+    siblings_dicts_sorted_by_date_issued = sorted(siblings_dicts_sorted_by_name, key=_get_issued)
+    return siblings_dicts_sorted_by_date_issued
+
+
+def get_package_dict(name):
+    return model.Package.get(name).as_dict()
+
+def tpsh_get_successor_and_predecessor_urls(context, pkg_dict):
+    successor_name, predecessor_name = tpsh_get_successor_and_predecessor_dataset(context, pkg_dict)
+    successor_url, predecessor_url = (
+        helpers.url_for(controller='package', action='read', id=name)
+        if name is not None
+        else None
+        for name in (successor_name, predecessor_name)
+    )
+    return successor_url, predecessor_url
+
+def short_name_for_category(category_name):
+    translations = {
+        'soci': u'Bevölkerung',
+        'educ': u'Bildung',
+        'ener': u'Energie',
+        'heal': u'Gesundheit',
+        'intr': u'Internationales',
+        'just': u'Justiz',
+        'agri': u'Landwirtschaft',
+        'gove': u'Regierung',
+        'regi': u'Regionales',
+        'envi': u'Umwelt',
+        'tran': u'Verkehr',
+        'econ': u'Wirtschaft',
+        'tech': u'Wissenschaft',
+    }
+    return translations.get(category_name)

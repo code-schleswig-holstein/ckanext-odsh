@@ -24,8 +24,17 @@ msgid "Start typing…"
 msgstr "Bitte Schlagwort eingeben"
 
 
+
+msgid "datasets"
+msgstr "Datenästze"
+
+
+msgid "dataset"
+msgstr "Datensatz"
+
+
 msgid "Search dataset"
-msgstr "Nach Datensatz suchen"
+msgstr "Nach Datensätzen suchen"
 
 msgid "Search organizations"
 msgstr "Nach Herausgeber suchen"
@@ -115,7 +124,7 @@ msgid "to"
 msgstr "bis"
 
 msgid "Data-Upload"
-msgstr "Daten-Upload"
+msgstr "Datensatz-Upload"
 
 msgid "Enter name of the dataset"
 msgstr "Namen der Distribution eingeben"
@@ -339,10 +348,10 @@ msgid "Score"
 msgstr "Open-Data-Eigenschaften"
 
 msgid "Issued Ascending"
-msgstr "Veröffentlichungsdatum aufsteigend"
+msgstr "Veröffentlichungsdatum: Älteste zuerst"
 
 msgid "Issued Descending"
-msgstr "Veröffentlichungsdatum absteigend"
+msgstr "Veröffentlichungsdatum: Neueste zuerst"
 
 msgid "Name Resource"
 msgstr "Name Ressource"
@@ -407,7 +416,7 @@ msgid "tran"
 msgstr "Verkehr"
 
 msgid "Datarequest"
-msgstr "Datenvorschlag"
+msgstr "Datensatz"
 
 msgid "Add Request"
 msgstr "Datensatz vorschlagen"
@@ -461,3 +470,75 @@ msgstr "Datum absteigend"
 
 msgid "Date Ascending"
 msgstr "Datum aufsteigend"
+
+msgid "subject"
+msgstr "Informationsgegenstand"
+
+msgid "Subject must not be empty."
+msgstr "Bitte geben Sie einen Informationsgegenstand ein."
+
+msgid "type subject"
+msgstr "Informationsgegenstand eingeben"
+
+msgid "date start"
+msgstr "Startdatum"
+
+msgid "date end"
+msgstr "Enddatum"
+
+msgid "main nav menu"
+msgstr "Navigations-Hauptmenü"
+
+msgid "Start Date Descending"
+msgstr "Startdatum: Neueste zuerst"
+
+msgid "Start Date Ascending"
+msgstr "Startdatum: Älteste zuerst"
+
+msgid "End Date Descending"
+msgstr "Enddatum: Neueste zuerst"
+
+msgid "End Date Ascending"
+msgstr "Enddatum: Älteste zuerst"
+
+msgid "send an email"
+msgstr "E-Mail senden"
+
+msgid "enter search query for datasets"
+msgstr "Suchanfrage für Datensätze eingeben"
+
+msgid "Remove filters"
+msgstr "Filter deaktivieren"
+
+msgid "successor"
+msgstr "Nachfolger"
+
+msgid "predecessor"
+msgstr "Vorgänger"
+
+msgid "latest collection member"
+msgstr "Neuester Datensatz"
+
+msgid "language"
+msgstr "Sprache"
+
+
+msgid "Subject must be a known URI."
+msgstr "Bitte geben Sie einen Informationsgegenstand an"
+
+msgid "Documents"
+msgstr "Dokumente"
+
+msgid " category: "
+msgid_plural " categories: "
+msgstr[0] "Kategorie:"
+msgstr[1] "Kategorien:"
+
+msgid "Publisher"
+msgstr "Herausgeber"
+
+msgid "Name Ascending"
+msgstr "Name: A – Z"
+
+msgid "Name Descending"
+msgstr "Name: Z – A"

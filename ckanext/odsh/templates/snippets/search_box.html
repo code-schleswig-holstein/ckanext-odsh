@@ -1,8 +1,16 @@
 <div class='search-box-container'>
     <div class='search-box'>
-            <div class="field">
-                <input id="field-sitewide-search" class="search" type="text" value="{{c.q}}" name="q" placeholder="{{ _('Search dataset') }}" />
-                <button class="btn-search" type="submit">
+            <div class="field search-field">
+                <input 
+                    aria-label="{{ _('enter search query for datasets') }}"
+                    id="field-sitewide-search" 
+                    class="search" 
+                    type="text" 
+                    value="{{c.q}}" 
+                    name="q" 
+                    placeholder="{{ _('Search dataset') }}" 
+                />
+                <button class="btn-search" type="submit" aria-label="{{ _('Search dataset') }}"></button>
             </div>
     </div>
 </div>

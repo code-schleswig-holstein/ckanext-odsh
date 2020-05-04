@@ -1,6 +1,17 @@
 
 {% set class = class or '' %}
 {% set placeholder = placeholder or '' %}
+{% set aria_label = aria_label or '' %}
 <input id="{{id}}" name="{{id}}" type="hidden" value="{{value}}" />
-<input pattern="\d{2}\.\d{2}\.\d{4}" autocomplete="off" id="datepicker_{{id}}" type="text" value="{{h.odsh_render_datetime(value, False)}}" placeholder="{{ placeholder }}"
-    class='{{class}}' data-module="odsh_datepicker" data-module-target='{{id}}'/>
+<input
+    aria-label="{{ aria_label }}" 
+    pattern="\d{2}\.\d{2}\.\d{4}" 
+    autocomplete="off" 
+    id="datepicker_{{ id }}" 
+    type="text" 
+    value="{{h.odsh_render_datetime(value, False)}}" 
+    placeholder="{{ placeholder }}"
+    class='{{ class }}' 
+    data-module="odsh_datepicker" 
+    data-module-target='{{ id }}'
+/>

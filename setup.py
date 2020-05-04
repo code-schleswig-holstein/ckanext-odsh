@@ -81,13 +81,14 @@ setup(
     entry_points='''
         [ckan.plugins]
         odsh=ckanext.odsh.plugin:OdshPlugin
-        odsh_icap=ckanext.odsh.plugin:OdshIcapPlugin
+        odsh_icap=ckanext.odsh.plugin_odsh_icap:OdshIcapPlugin
         statistikamtnord_harvester=ckanext.odsh.harvesters:StatistikamtNordHarvester
         kiel_harvester=ckanext.odsh.harvesters:KielHarvester
-        odsh_autocomplete=ckanext.odsh.plugin:OdshAutocompletePlugin
-        odsh_harvest=ckanext.odsh.plugin:OdshHarvestPlugin
-        odsh_dcat_harvest=ckanext.odsh.plugin:OdshDCATHarvestPlugin
-
+        odsh_autocomplete=ckanext.odsh.plugin_odsh_autocomplete:OdshAutocompletePlugin
+        odsh_harvest=ckanext.odsh.plugin_odsh_harvest:OdshHarvestPlugin
+        odsh_dcat_harvest=ckanext.odsh.plugin_odsh_dcat_harvest:OdshDCATHarvestPlugin
+        tpsh_collections=ckanext.odsh.collection.plugin:CollectionsPlugin
+        thumbnail=ckanext.odsh.pdf_to_thumbnail.plugin:ThumbnailPlugin
         [paste.paster_command]
         odsh_initialization = ckanext.odsh.commands.initialization:Initialization
 

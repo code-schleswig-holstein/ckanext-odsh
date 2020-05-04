@@ -12,43 +12,65 @@
 <nav>
   {% set title = title or h.get_facet_title(name) %}
   <div class="nav-title">{{ title }}</div>
-    <ul class="{{ nav_class or 'unstyled nav nav-simple nav-facet' }}">
-        {% for item in items %}
-        {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
-        item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url)
-        %}
-        {% set label = label_function(item) if label_function else item.display_name %}
-        {% if title=='Open-Data-Eigenschaften'%}
-        {% set label = _(label)%}
-        {% endif%}
-        {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-        {% set label_truncated = h.truncate(label, 25) if not label_function else label %}
-        <li class="{{ nav_item_class or 'nav-item' }}">
-	  <div class="facet_label">
-	    {# TODO: checkbox-id vereinheitlichen (code-duplikation) und sicher gegen Titel mit Leerzeichen machen! #}
-	    <input type="checkbox" alt="Checkbox" {% if item.active %} checked {% endif %} class="filter-checkbox" id="check-{{ title.lower() }}-{{ loop.index }}"/>
-	    <label class="mylabel" for="check-{{ title.lower() }}-{{ loop.index }}"></label>
-	    <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-                <span>{{ label}}</span>
+  <ul class="{{ nav_class or 'unstyled nav nav-simple nav-facet' }}">
+    {% for item in items %}
+      {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
+          item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url)
+      %}
+      {% set label = label_function(item) if label_function else item.display_name %}
+      {% if title=='Open-Data-Eigenschaften'%}
+      {% set label = _(label)%}
+      {% endif%}
+      {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+      {% set label_truncated = h.truncate(label, 25) if not label_function else label %}
+      <li class="{{ nav_item_class or 'nav-item' }}">
+        <div class="facet_label">
+          {# TODO: checkbox-id vereinheitlichen (code-duplikation) und sicher gegen Titel mit Leerzeichen machen! #}
+          <input type="checkbox" 
+            {% if item.active %} checked {% endif %} 
+            class="filter-checkbox"
+            id="check-{{ title.lower() }}-{{ loop.index }}"
+            aria-hidden="true"
+          />
+          <span 
+            role="checkbox"
+            class="mylabel" 
+            for="check-{{ title.lower() }}-{{ loop.index }}" 
+            aria-labelledby="description-{{ title.lower() }}-{{ loop.index }}"
+            aria-checked={% if item.active %}"true"{% else %}"false"{% endif %}
+          >
+          </span>
+          {% if name=='groups' %}
+          <span class="group-icon-container" aria-hidden="true">
+            <img src="/base/images/icon_kat_{{item.name}}.svg" alt=""/>
+          </span>
+          {% endif %}
+          
+          <label class="odsh-visible-label" for="check-{{ title.lower() }}-{{ loop.index }}">
+            <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+              <span id="description-{{ title.lower() }}-{{ loop.index }}">{{ label }}</span>
             </a>
-	  </div>
-	  <div class="facet_count">
-            <span class="facet_count">{{ count }}</span>
-	  </div>
-        </li>
-        {% endfor %}
-    </ul>
+          </label>
+        </div>
+        <div class="facet_count">
+          <span class="facet_count">{{ count }}</span>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
 </nav>
 
 <div class="module-footer">
+    {% if not name=='groups' %}
     {% if h.get_param_int('_%s_limit' % name) %}
     {% if h.odsh_has_more_facets(name) %}
     <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}"
-        class="read-more">> {{ _('Show More') }}</a>
+    class="read-more">> {{ _('Show More') }}</a>
     {% endif %}
     {% else %}
     <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">> {{
         _('Show Less')}}</a>
+    {% endif %}
     {% endif %}
 </div>
 

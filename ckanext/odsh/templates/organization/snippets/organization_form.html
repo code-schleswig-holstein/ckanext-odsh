@@ -25,32 +25,23 @@
     {{ form.image_upload(data, errors, is_upload_enabled=h.uploads_enabled(), is_url=is_url, is_upload=is_upload) }}
 
   {% endblock %}
+  
+  
 
-  {% block custom_fields %}
-    {% for extra in data.extras %}
-      {% set prefix = 'extras__%d__' % loop.index0 %}
-      {{ form.custom(
-        names=(prefix ~ 'key', prefix ~ 'value', prefix ~ 'deleted'),
-        id='field-extras-%d' % loop.index,
-        label=_('Custom Field'),
-        values=(extra.key, extra.value, extra.deleted),
-        error=errors[prefix ~ 'key'] or errors[prefix ~ 'value']
-      ) }}
-    {% endfor %}
+ 
+  {% set extras = h.tpsh_get_address_org(data) %}
 
-    {# Add a max if 3 empty columns #}
-    {% for extra in range(data.extras|count, 3) %}
-      {% set index = (loop.index0 + data.extras|count) %}
-      {% set prefix = 'extras__%d__' % index %}
-      {{ form.custom(
-        names=(prefix ~ 'key', prefix ~ 'value', prefix ~ 'deleted'),
-        id='field-extras-%d' % index,
-        label=_('Custom Field'),
-        values=(extra.key, extra.value, extra.deleted),
-        error=errors[prefix ~ 'key'] or errors[prefix ~ 'value']
-      ) }}
-    {% endfor %}
-  {% endblock %}
+  {{ form.input_address('person','Ansprechpartner', value= extras.person , index=0, placeholder='', type='text', attrs={}) }}
+ 
+  {{ form.input_address('street','Straße', value= extras.street, index=1, placeholder='', type='text', attrs={}) }}
+  
+  {{ form.input_address('location','Stadt', value=extras.location, index=2, placeholder='', type='text', attrs={}) }}
+  
+  {{ form.input_address('telephone','Tel.-Nr.:', value=extras.telephone, index=3, placeholder='', type='text', attrs={}) }}
+
+  {{ form.input_address('mail','e-mail', value=extras.mail, index=4, placeholder='', type='text', attrs={}) }}
+ 
+  {{ form.input_address('web','Website', value=extras.web, index=5, placeholder='', type='text', attrs={}) }}
 
   {{ form.required_message() }}
 

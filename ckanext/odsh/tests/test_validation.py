@@ -110,3 +110,25 @@ def test_validate_licenseAttributionByText():
             ('extras', 0, 'key'): 'licenseAttributionByText',
             ('extras', 0, 'value'): ''}
     validate_licenseAttributionByText('key', data, {}, None)
+
+
+def test_convert_subjectID_to_subjectText():
+    # arrange
+    data = {('extras', 0, 'subject'): 'subject',
+            ('extras', 0, 'subject'): 'Test_id'}
+    # act
+    convert_subjectID_to_subjectText('key', data, {}, None):
+    # assert
+    assert data[('extras', 1, 'key')] == 'subject_text'
+    assert data[('extras', 1, 'value')] == 'Test_subject'
+
+
+def test_exception_convert_subjectID_to_subjectText():
+    # arrange
+    data = {('extras', 0, 'subject'): 'subject',
+            ('extras', 0, 'subject'): 'Nicht_Vorhanden'}
+    # act
+    convert_subjectID_to_subjectText('key', data, {}, None):
+    #assert
+    assert data[('extras', 1, 'key')] == 'subject_text'
+    assert data[('extras', 1, 'value')] == ''

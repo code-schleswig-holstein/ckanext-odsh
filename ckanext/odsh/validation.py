@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import logging
-import csv
+import unicodecsv as csv
 import re
 import urllib2
 import json
@@ -33,12 +33,13 @@ def _extract_value(data, field):
 
 def validate_extra_groups(data, requireAtLeastOne, errors):
     value = _extract_value(data, 'groups')
+    error_message_no_group = 'at least one group needed'
     if value != None:
         # 'value != None' means the extra key 'groups' was found,
         # so the dataset came from manual editing via the web-frontend.
         if not value:
             if requireAtLeastOne:
-                errors['groups'] = 'at least one group needed'
+                errors['groups'] = error_message_no_group
             data[('groups', 0, 'id')] = ''
             return
 
@@ -49,7 +50,7 @@ def validate_extra_groups(data, requireAtLeastOne, errors):
                 # del data[k]
         if len(groups) == 0:
             if requireAtLeastOne:
-                errors['groups'] = 'at least one group needed'
+                errors['groups'] = error_message_no_group
             return
 
         for num, group in zip(range(len(groups)), groups):
@@ -58,22 +59,59 @@ def validate_extra_groups(data, requireAtLeastOne, errors):
         # dataset might come from a harvest process
         if not data.get(('groups', 0, 'id'), False) and \
            not data.get(('groups', 0, 'name'), False):
-            errors['groups'] = 'at least one group needed'
+            errors['groups'] = error_message_no_group
 
 
 def validate_extras(key, data, errors, context):
     extra_errors = {}
+    
     isStaNord = ('id',) in data and data[('id',)][:7] == 'StaNord'
+    is_optional_temporal_start = toolkit.asbool(
+        config.get('ckanext.odsh.is_optional_temporal_start', False)
+    ) or isStaNord
 
-    validate_extra_groups(data, True, extra_errors)
-    validate_extra_date_new(key, 'issued', data, isStaNord, extra_errors)
-    validate_extra_date_new(key, 'temporal_start',
-                            data, isStaNord, extra_errors)
-    validate_extra_date_new(key, 'temporal_end', data, True, extra_errors)
+    require_at_least_one_category = toolkit.asbool(
+        config.get('ckanext.odsh.require_at_least_one_category', False)
+    )
+    validate_extra_groups(
+        data=data, 
+        requireAtLeastOne=require_at_least_one_category, 
+        errors=extra_errors
+    )
+    
+    is_date_start_before_date_end(data, extra_errors)
+    
+    validate_extra_date_new(
+        key=key,
+        field='issued',
+        data=data,
+        optional=isStaNord,
+        errors=extra_errors
+    )
+    validate_extra_date_new(
+        key=key,
+        field='temporal_start',
+        data=data,
+        optional=is_optional_temporal_start, 
+        errors=extra_errors
+    )
+    validate_extra_date_new(
+        key=key,
+        field='temporal_end',
+        data=data,
+        optional=True,
+        errors=extra_errors
+    )
 
     if len(extra_errors.values()):
         raise toolkit.Invalid(extra_errors)
 
+def is_date_start_before_date_end(data, extra_errors):
+    start_date = _extract_value(data, 'temporal_start')
+    end_date = _extract_value(data, 'temporal_end')
+    if start_date and end_date:
+        if start_date > end_date:
+            extra_errors['temporal_start'] = extra_errors['temporal_end'] = 'Please enter a valid period of time.'
 
 def _set_value(data, field, value):
     key = None
@@ -141,7 +179,13 @@ def validate_licenseAttributionByText(key, data, errors, context):
 
 
 def known_spatial_uri(key, data, errors, context):
+    if data.get(('__extras',)) and 'spatial_uri_temp' in data.get(('__extras',)):
+        _copy_spatial_uri_temp_to_extras(data)
     value = _extract_value(data, 'spatial_uri')
+    require_spatial_uri = toolkit.asbool(
+        config.get('ckanext.odsh.require_spatial_uri', False)
+    )
+    error_message_spatial_uri_empty = 'spatial_uri: empty not allowed'
 
     if not value:
         poly = None
@@ -157,8 +201,10 @@ def known_spatial_uri(key, data, errors, context):
             has_old_uri = old_uri != None and len(old_uri) > 0
             if not poly:
                 poly = pkg.extras.get('spatial', None)
-        if not poly or has_old_uri:
-            raise toolkit.Invalid('spatial_uri: empty not allowed')
+        if (not poly) and require_spatial_uri:
+            raise toolkit.Invalid(error_message_spatial_uri_empty)
+        if has_old_uri and require_spatial_uri:
+            raise toolkit.Invalid(error_message_spatial_uri_empty)
         else:
             if poly:
                 new_index = next_extra_index(data)
@@ -175,9 +221,9 @@ def known_spatial_uri(key, data, errors, context):
     not_found = True
     spatial_text = str()
     spatial = str()
-    cr = csv.reader(mapping_file, delimiter="\t")
+    cr = csv.reader(mapping_file, delimiter="\t", encoding='utf-8')
     for row in cr:
-        if row[0].encode('UTF-8') == value:
+        if row[0] == value:
             not_found = False
             spatial_text = row[1]
             loaded = json.loads(row[2])
@@ -194,6 +240,21 @@ def known_spatial_uri(key, data, errors, context):
     data[('extras', new_index+1, 'key')] = 'spatial'
     data[('extras', new_index+1, 'value')] = spatial
 
+
+def _copy_spatial_uri_temp_to_extras(data):
+    '''
+    copy the field spatial_uri_temp originating 
+    from the user interface to extras
+    '''
+    spatial_uri = data.get(('__extras',)).get('spatial_uri_temp')
+    is_spatial_uri_in_extras = _extract_value(data, 'spatial_uri') is not None
+    if not is_spatial_uri_in_extras:
+        next_index = next_extra_index(data)
+        data[('extras', next_index, 'key')] = 'spatial_uri'
+        data[('extras', next_index, 'value')] = spatial_uri
+    else:
+        _set_value(data, 'spatial_uri', spatial_uri)
+    
 
 def next_extra_index(data):
     current_indexes = [k[1] for k in data.keys()
@@ -232,10 +293,65 @@ def tag_string_convert(key, data, errors, context):
         tag_name_validator(tag, context)
 
 
+def _convert_subjectID_to_subjectText(subject_id, flattened_data):
+
+    if not subject_id:
+        return flattened_data
+
+    default_subject_mapping_file_path = '/usr/lib/ckan/default/src/ckanext-odsh/subject_mapping.json'
+    subject_mapping_file_path = config.get(
+        'ckanext.odsh.subject_mapping_file_path', default_subject_mapping_file_path)
+    
+    try:
+        with open(subject_mapping_file_path) as mapping_json:
+             subject_mapping = json.loads(mapping_json.read())
+    except IOError as err:
+        log.error(
+            'Could not load subject mapping file from {}'
+            .format(subject_mapping_file_path)
+        )
+        raise
+    except ValueError as err:
+        log.error(
+            'Could not convert subject mapping file from json. \nSubject mapping file: {}'
+            .format(subject_mapping_file_path)
+        )
+        raise
+    
+    try: 
+        subject_text = subject_mapping[subject_id]
+    except:
+        raise toolkit.Invalid(_('Subject must be a known URI.'))
+        log.warning(
+            'Subject_id "{}" not found in subject mapping dictionary.\nSubject mapping file: {}'
+            .format(subject_id, subject_mapping_file_path)
+        )
+        
+
+    new_index = next_extra_index(flattened_data)
+    flattened_data[('extras', new_index, 'key')] = 'subject_text'
+    flattened_data[('extras', new_index, 'value')] = subject_text
+    return flattened_data
+
+
+def validate_subject(key, flattened_data, errors, context):
+    subject_id = flattened_data[key]
+    require_subject = toolkit.asbool(
+        config.get('ckanext.odsh.require_subject', True)
+    )
+    if not require_subject:
+        flattened_data = _convert_subjectID_to_subjectText(subject_id, flattened_data)
+        return
+    if not subject_id:
+        raise toolkit.Invalid(_('Subject must not be empty.'))
+    flattened_data = _convert_subjectID_to_subjectText(subject_id, flattened_data)
+
+
 def get_validators():
     return {
         'known_spatial_uri': known_spatial_uri,
         'odsh_tag_name_validator': tag_name_validator,
         'odsh_validate_extras': validate_extras,
-        'validate_licenseAttributionByText': validate_licenseAttributionByText
+        'validate_licenseAttributionByText': validate_licenseAttributionByText,
+        'tpsh_validate_subject': validate_subject,
     }

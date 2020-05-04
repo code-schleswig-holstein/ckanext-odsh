@@ -4,7 +4,16 @@ from ckan.common import c, request
 from pylons import config
 import logging
 from ckan.plugins.toolkit import enqueue_job
+import ckanext.odsh.helpers_tpsh as helpers_tpsh
 
+def do_if_use_matomo(func):
+    def wrapper(*args, **kwargs):
+        use_matomo = helpers_tpsh.use_matomo()
+        if use_matomo:
+            return func(*args, **kwargs)
+    return wrapper
+
+@do_if_use_matomo
 def create_matomo_request(userId=None):
     headers = {
         'HTTP_USER_AGENT': request.headers.get('User-Agent'),

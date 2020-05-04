@@ -12,7 +12,11 @@
           (_('Name Ascending'), 'title_string asc'),
           (_('Name Descending'), 'title_string desc'),
           (_('Issued Ascending'), 'extras_issued asc'),
-          (_('Issued Descending'), 'extras_issued desc'),
+          (_('Issued Descending'), 'extras_issued desc'),          
+          (_('Start Date Ascending'), 'temporal_start asc'),
+          (_('Start Date Descending'), 'temporal_start desc'),
+          (_('End Date Ascending'), 'temporal_end asc'),
+          (_('End Date Descending'), 'temporal_end desc'),
           (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
         %}
 {% endif %}
@@ -31,10 +35,27 @@
     {%- endif %}
     {% endblock %}
 
+    {% block search_title %}
+    {% if not error %}
+    {% if force_title %}
+    <h2>{{force_title }}</h2>
+    {% else %}
+    <h2>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h2>
+    {% if type == 'dataset' %}
+    <a aria-label="{{ _('rss feeds') }}" href={{h.remove_url_param([''], controller='feed', action='custom') }}> 
+        <i aria-hidden="true" class="fa fa-medium fa-rss"></i>
+    </a>
+    {%- endif -%}
+    {% endif %}
+    {% else %}
+    <h2>Error</h2>
+    {% endif %}
+    {% endblock %}
+
     {% block search_sortby %}
     {% if sorting %}
     <div class="form-select control-group control-order-by">
-        <select id="field-order-by" name="sort">
+        <select id="field-order-by" name="sort" aria-label="{{sorting_label_prefix}}&nbsp;&hellip;">
             {% for label, value in sorting %}
             {% if label and value %}
             <option value="{{ value }}" {% if sorting_selected==value %} selected="selected" {% endif %}>
@@ -46,18 +67,6 @@
         <button class="btn js-hide" type="submit">{{ _('Go') }}</button>
         {% endblock %}
     </div>
-    {% endif %}
-    {% endblock %}
-
-    {% block search_title %}
-    {% if not error %}
-    {% if force_title %}
-    <h2>{{force_title }}</h2>
-    {% else %}
-    <h2>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h2>
-    {% endif %}
-    {% else %}
-    <h2>Error</h2>
     {% endif %}
     {% endblock %}
 
@@ -78,12 +87,19 @@
                 {#{{_(value)}}#}
                 {%- endif %}
              {%- endif %}
-                <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ facets.remove_field(field, value) }}" 
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
         </span>
         {% endfor %}
         {% endfor %}
     </p>
-    <a class="show-filters btn">{{ _('Filter Results') }}</a>
+    <!-- <a class="show-filters btn">{{ _('Filter Results') }}</a> -->
     {% else%}
     {% if always_show_filter_list%}
     <p class="filter-list"></p>
@@ -99,26 +115,54 @@
             {% if start_date and not start_error%}
             <span class="filtered pill">
                 {{_('daterange')}}: {{_('from')}} {{ start_date}}
-                <a href="{{ h.remove_url_param('ext_startdate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ h.remove_url_param('ext_startdate') }}" 
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
             </span>
             {% endif %}
             {% if start_error %}
             <span class="filtered pill error">
                 {{_('daterange')}}: {{_('wrong_start_date_for_search')}}
-                <a href="{{ h.remove_url_param('ext_startdate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ h.remove_url_param('ext_startdate') }}"
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
             </span>
             {% endif %}
 
             {% if end_date and not end_error%}
             <span class="filtered pill">
                 {{_('daterange')}}: {{_('to')}} {{ end_date}}
-                <a href="{{ h.remove_url_param('ext_enddate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ h.remove_url_param('ext_enddate') }}" 
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
             </span>
             {% endif %}
             {% if end_error %}
             <span class="filtered pill error">
                 {{_('daterange')}}: {{_('wrong_end_date_for_search')}}
-                <a href="{{ h.remove_url_param('ext_enddate') }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ h.remove_url_param('ext_enddate') }}" 
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
             </span>
             {% endif %}
         </p>
@@ -132,7 +176,14 @@
         <p class="filter-list">
             <span class="filtered pill">
                 {{_('map search active')}}
-                <a href="{{ h.remove_url_param(['ext_bbox','ext_prev_extent', 'ext_location'])}}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a 
+                    href="{{ h.remove_url_param(['ext_bbox','ext_prev_extent', 'ext_location'])}}" 
+                    class="remove"
+                    aria-label="{{ _('Remove filters') }}" 
+                    title="{{ _('Remove filters') }}"
+                >
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
             </span>
         </p>
         {% endif %}

@@ -4,4 +4,4 @@
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
 #: ckanext/datarequests/templates/datarequests/snippets/new_datarequest_form.html:7
 msgid "Create Data Request"
-msgstr "Datenanfrage "
+msgstr "Dokumentanfrage "

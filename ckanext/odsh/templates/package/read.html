@@ -1,8 +1,10 @@
 {% extends "package/read_base.html" %}
 
 {% set pkg = c.pkg_dict %}
-
-
+{% set collection_title = h.collection_get_title(pkg) %}
+{% set successor_url = h.collection_get_successor(pkg) %}
+{% set predecessor_url = h.collection_get_predecessor(pkg) %}
+{% set latest_collection_member = h.collection_get_latest_member(pkg) %}
 {% set stars = h.odsh_openness_score_dataset_html(pkg) %}
 
 {% block breadcrumb_content %}
@@ -25,7 +27,7 @@
 {% block primary_content_inner %}
 {{ super() }}
 {% block package_description %}
-<div class="odsh-dataset-heading row-fluid">
+<div class="odsh-dataset-heading">
   <h2>
     {% block page_heading %}
     {{ h.dataset_display_name(pkg) }}
@@ -36,7 +38,7 @@
     [{{ _('Deleted') }}]
     {% endif %}
     {% endblock %}
-    <div class="pull-right">
+    <div class="odsh-dataset-edit-button">
       {% if h.check_access('package_update', {'id':pkg.id }) %}
       <div>
         {% link_for _('Manage Dataset'), controller='package', action='edit', id=pkg.name, class_='btn btn-primary btn-add-dataset',
@@ -60,16 +62,19 @@
   {% endif %}
 </div>
 {# {{ pkg.resources }} #}
+
 {% block package_notes %}
+<div class="btn btn-primary btn-lg show-filters" role="button">
+    <img src="/base/images/icon_info.svg" aria-hidden="true"></img>
+    {{ _('Detailinformationen') }}
+</div>
 {% if pkg.notes %}
 <div class="notes embedded-content">
   {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
 </div>
 {% endif %}
-{% endblock %}
-{# FIXME why is this here? seems wrong #}
-<span class="insert-comment-thread"></span>
-{% endblock %}
+{% endblock package_notes %}
+{% endblock package_description %}
 
 {% block package_resources %}
 {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
@@ -80,6 +85,48 @@
   {% endif %}
 {% endblock %}
 
+{% block collection %}
+{% if latest_collection_member %}
+<section id="dataset-collection">
+    {% if collection_title %}
+    <p>
+        Dieser Datensatz ist Bestandteil der Datenreihe "{{ collection_title }}". 
+        Sie können zu älteren und neueren Datensätzen blättern.
+    </p>
+    {% endif %} {# collection_title #}
+    <div class="button-container">
+        <a href="{{ latest_collection_member }}" class="btn btn-primary btn-lg" role="button">
+            <img src="/base/images/icon_latest.svg" aria-hidden="true"></img>
+            <span class="hide-on-mobile">{{ _('latest collection member') }}</span>
+        </a>
+        {% if predecessor_url %} 
+        <a href="{{ predecessor_url }}" class="btn btn-primary btn-lg" role="button">
+            <img src="/base/images/icon_arrow_left.svg" aria-hidden="true"></img>
+            <span class="hide-on-mobile">{{ _('predecessor') }}</span>
+        </a>
+        {% else %}
+        <a href="#" class="btn btn-primary btn-lg disabled" role="button">
+            <img src="/base/images/icon_arrow_left.svg" aria-hidden="true"></img>
+            <span class="hide-on-mobile">{{ _('predecessor') }}</span>
+        </a>
+        {% endif %}  
+        {% if successor_url %}
+        <a href="{{ successor_url }}" class="btn btn-primary btn-lg" role="button">
+            <span class="hide-on-mobile">{{ _('successor') }}</span>
+            <img src="/base/images/icon_arrow_right.svg" aria-hidden="true"></img>
+        </a>
+        {% else %}
+        <a href="#" class="btn btn-primary btn-lg disabled" role="button">
+            <span class="hide-on-mobile">{{ _('successor') }}</span>
+            <img src="/base/images/icon_arrow_right.svg" aria-hidden="true"></img>
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endif %} {# latest_collection_member #}
+{% endblock collection %}
+
+
 <div class='tag-container'>
 {% for tag in pkg.tags %}
     <div class='tag-pill'>
@@ -89,3 +136,4 @@
 </div>
 
 {% endblock %}
+

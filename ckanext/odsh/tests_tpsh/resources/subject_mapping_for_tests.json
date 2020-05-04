@@ -1,0 +1,26 @@
+{
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Verwaltungsvorschrift" : "Verwaltungsvorschrift",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Organisationsplan" : "Organisationsplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Geschaeftsverteilungsplan" : "Geschäftsverteilungsplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Aktenplan" : "Aktenplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Richtlinie" : "Richtlinie und Runderlass",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Statistik" : "amtliche Statistik",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Taetigkeitsbericht" : "Tätigkeitsbericht",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Broschuere" : "Broschüre",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Gutachten" : "Gutachten",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Studie" : "Studie",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Haushaltsplan" : "Haushaltsplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Stellenplan" : "Stellenplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Wirtschaftsplan" : "Wirtschaftsplan",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#ZuwendungAnPerson" : "Übersicht über Zuwendungen an juristische Personen des Privatrechts",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#ZuwendungAnLand" : "Übersicht über Zuwendungen an das Land Schleswig-Holstein",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#IZGAntwort" : "IZG/GvgV-Auskunft",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Gerichtsurteil" : "Gerichtsurteil",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#GesetzvorlageLandtag" : "Gesetzesvorlage an den Landtag",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#MitteilungLandtag" : "Mitteilung an den Landtag",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Unternehmensdaten" : "wesentliche Unternehmensdaten von Beteiligungen des Landes",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#VergütungsOG" : "jährliche Vergütungen nach dem VergütungsOG",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#Vertrag" : "Vertrag",
+    "http://transparenz.schleswig-holstein.de/informationsgegenstand#sonstiges" : "sonstiges"
+}
+    
