@@ -152,7 +152,7 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                             'groups': _('Kategorie'),
                             'res_format': _('Dateiformat'),
                             'license_title': _('Lizenz'),
-                            'tags': _('Tags'),
+#                            'tags': _('Tags'),
                             'openness': _('Open-Data-Eigenschaften')
                             })
 

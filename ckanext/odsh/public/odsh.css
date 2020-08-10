@@ -771,7 +771,8 @@ a:hover.organization-item ,a:focus.organization-item
     margin-bottom: 12px;
 }
 .dataset-content {
-    flex-grow: 1;
+    flex-grow: 0;
+    flex-basis: 73%;
 }
 .dataset-content p{
     font-size: 12px;
@@ -785,7 +786,8 @@ a:hover.organization-item ,a:focus.organization-item
 }
 
 .dataset-spacer{
-    width: 25px;
+    flex-grow: 0;
+    flex-basis: 2%;
 }
 
 .dataset-empty {
@@ -794,7 +796,8 @@ a:hover.organization-item ,a:focus.organization-item
 }
 
 .dataset-meta {
-    position: relative;
+   flex-grow: 0;
+   flex-basis: 25%;
 }
 
 .package-info-pill img {
@@ -896,8 +899,6 @@ a.odsh-star:hover {
 }
 
 .dataset-info.issued {
-    position: absolute;
-    bottom: 0px;
 }
 
 .toolbar .breadcrumb>li a {
