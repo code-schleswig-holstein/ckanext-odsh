@@ -28,6 +28,7 @@
     "title": "Creative Commons CC Zero License (cc-zero)",
     "url": "http://www.opendefinition.org/licenses/cc-zero",
     "status": "active",
+    "is_okd_compliant": true,
     "od_conformance": "not reviewed",
     "osd_conformance": "not reviewed"
   },
