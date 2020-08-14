@@ -22,10 +22,10 @@ Example:
 {% set license_name=' ('+licenseAttributionByText +')' if licenseAttributionByText else ''%}
 {% set license = license_title + license_name %}
 {% set org = package.organization.title or package.organization.name or '-' %}
+{% set stars = h.odsh_openness_score_dataset_html(package) %}
 {% set access_count=(package.tracking_summary.total if package.tracking_summary) or '-' %}
 {% set issued_extra = h.odsh_extract_value_from_extras(package.extras,'issued') %}
 {% set issued = h.odsh_render_datetime(issued_extra) if issued_extra else h.odsh_render_datetime(package.metadata_created)%}
-{% set subject_text = h.odsh_extract_value_from_extras(package.extras,'subject_text') if h.odsh_extract_value_from_extras(package.extras,'subject_text') else '-'  %}
 {% set daterange = h.tpsh_get_daterange_prettified(package) %}
 {% set language_of_package = h.tpsh_get_language_of_package(package) %}
 {% set language_icon = h.get_language_icon(package) %}
@@ -33,18 +33,6 @@ Example:
 
 {% block package_item %}
 <div class="odsh-dataset-item">
-    <div class="preview-image-container">
-            {% if thumbnail %}
-            <a href={{  h.url_for(controller='package', action='read', id=package.name) }}>
-                <img src= "/{{ thumbnail }}" alt= "Vorschau" />
-            </a>
-
-            {% else %}
-            <a href={{  h.url_for(controller='package', action='read', id=package.name) }}>
-                <img src="/base/images/platzhalter.svg" alt= "keine Vorschau verfügbar" />
-            </a>
-            {% endif%}
-    </div>
     {% block content %}
     <div class="dataset-content">
         {% block heading %}
@@ -119,10 +107,40 @@ Example:
             {% endfor %}
         </p>
         {% endif %}
-        <p class='package-info-subject'>{{ _('subject') }}: {{ subject_text }} </p>
-        <p class='package-info-issued'>{{ _('issued') }}: {{issued}} </p>
         {% endblock notes %}
     </div>
+
+    <div class='dataset-spacer'></div>
+
+  <div class="dataset-meta">
+    {% block resources %}
+    {% block resources_outer %}
+    {% if package.resources and not hide_resources %}
+    <ul class="dataset-resources">
+      {% block resources_inner %}
+      {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+      <li>
+        <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label dataformat-label"
+          data-format="{{ resource.lower() }}">{{
+          resource }}</a>
+      </li>
+      {% endfor %}
+      {% endblock %}
+    </ul>
+    {% endif %}
+    <div class="dataset-stars">
+    {% if stars>-1%}
+      {% snippet "qa/stars.html", stars=stars %}
+    {% endif %}
+    </div>
+
+    <div class="dataset-info issued">
+      <p>{{ _('issued') }}: {{issued}} </p>
+    </div>
+    {% endblock %}
+    {% endblock %}
+  </div>
+
     {% endblock content %}
 </div>
 {% endblock package_item %}

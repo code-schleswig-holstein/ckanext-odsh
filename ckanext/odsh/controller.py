@@ -31,10 +31,10 @@ get_action = logic.get_action
 
 class OdshRouteController(HomeController):
     def info_page(self):
-        h.redirect_to('http://www.schleswig-holstein.de/tpinfo')
+        h.redirect_to('http://www.schleswig-holstein.de/odpinfo')
 
     def start(self):
-        h.redirect_to('http://www.schleswig-holstein.de/tpstart')
+        h.redirect_to('http://www.schleswig-holstein.de/odpstart')
 
     def not_found(self):
         abort(404)
