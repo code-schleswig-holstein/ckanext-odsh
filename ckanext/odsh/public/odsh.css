@@ -1468,7 +1468,7 @@ body {
     color: #000000;
 }
 
-+.hint-newer-version {
+.hint-newer-version {
     margin-top: 30px;
     margin-bottom: 30px;
     font-size: 20px;
