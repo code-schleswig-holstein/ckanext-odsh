@@ -4,8 +4,7 @@ import ckan.lib.helpers as helpers
 from ckan.logic.action.update import package_update
 from ckan.logic.action.delete import package_delete
 
-#from thumbnail
-import thumbnail as thumbnail
+import thumbnail
 
 
 def before_package_delete(context, package_id_dict):
@@ -23,7 +22,7 @@ def before_package_update(context, pkg_dict):
         old_filename = package.get('thumbnail')
         if old_filename:
             if str(old_private) != str(new_private):
-                new_filename = thumbnail.change_filepath(old_filename)
+                new_filename = thumbnail.rename_thumbnail_to_random_name(old_filename)
                 pkg_dict['extras'].append({'key': 'thumbnail', 'value': new_filename})
             elif not pkg_dict.get('thumbnail'): 
                 pkg_dict['extras'].append({'key': 'thumbnail', 'value': old_filename})

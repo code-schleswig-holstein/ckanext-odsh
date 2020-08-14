@@ -1,6 +1,5 @@
 import os 
 
-
 #from ckan
 import ckan.plugins as plugins
 
@@ -21,15 +20,16 @@ class ThumbnailPlugin(plugins.SingletonPlugin):
 
 
 #IResourceController
-    def after_create(self, context, resource):        
-        _, filename = thumbnail.create_thumbnail(context, resource)
-        thumbnail.write_thumbnail_into_package(context, resource, filename)
+    def after_create(self, context, resource):
+        resources = thumbnail.resources_of_containing_package(resource)
+        thumbnail.create_thumbnail_if_none_in_package(context, resources)
         
     def after_update(self, context, resource):
-        thumbnail.check_and_create_thumbnail_after_update(context, resource)
+        resources = thumbnail.resources_of_containing_package(resource)
+        thumbnail.create_thumbnail_if_none_in_package(context, resources)
                 
     def after_delete(self, context, resources):
-        thumbnail.create_thumbnail_for_last_resource(context, resources)
+        thumbnail.create_thumbnail_if_none_in_package(context, resources)
             
 #IConfigurer 
 
