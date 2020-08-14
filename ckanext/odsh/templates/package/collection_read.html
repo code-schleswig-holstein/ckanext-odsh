@@ -16,8 +16,8 @@
 
 {% if collection['members'] %}
 <p>
-    Dies ist die Übersichtsseite der Dokumentensammlung {{ collection_title }}. 
-    Sie enthält folgende Dokumente (neuere Dokumente zuerst):
+    Dies ist die Übersichtsseite der Reihe "{{ collection_title }}". 
+    Sie enthält folgende Datensätze (neuere Datensätze zuerst):
 </p>
 {% snippet 'snippets/package_list.html', packages=collection['members'] | reverse() %}
 {% endif %}
