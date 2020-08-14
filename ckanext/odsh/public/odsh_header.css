@@ -242,7 +242,7 @@
 }
 
 @media (min-width: 768px) {
-    .navbar.masthead .navigation .nav-pills li:not(:first-child) {
+    .navbar.masthead .navigation .nav-pills li:not(:nth-child(2)) {
         margin-left: 22px;
     }
 }

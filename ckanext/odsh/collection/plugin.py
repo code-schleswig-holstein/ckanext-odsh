@@ -1,6 +1,7 @@
 
 from ckan.lib.plugins import DefaultTranslation, DefaultDatasetForm
-import ckan.plugins as plugins 
+import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
 import helpers as collection_helpers
 from routes.mapper import SubMapper
 
@@ -16,6 +17,9 @@ class CollectionsPlugin(plugins.SingletonPlugin, DefaultDatasetForm):
     
     def is_fallback(self):
         return False
+    
+    def read_template(self):
+        return 'package/collection_read.html'
 
     
     # IRoutes    
@@ -28,7 +32,7 @@ class CollectionsPlugin(plugins.SingletonPlugin, DefaultDatasetForm):
         )
 
         map.connect(
-            '/collection/{id}/aktuell.{type}',
+            '/collection/{id}/aktuell.{resource_format}',
             controller='ckanext.odsh.collection.controller:LatestRecourcesController',
             action='latest_resource'
         )
@@ -39,7 +43,7 @@ class CollectionsPlugin(plugins.SingletonPlugin, DefaultDatasetForm):
             path_prefix='/collection/'
         ) as m:
             m.connect('latest', '{id}/aktuell', action='latest')
-            m.connect('latest_resource', '{id}/aktuell.{type}', action='latest_resource')  
+            m.connect('latest_resource', '{id}/aktuell.{resource_format}', action='latest_resource')  
         return map
 
     def after_map(self, map):
@@ -53,8 +57,8 @@ class CollectionsPlugin(plugins.SingletonPlugin, DefaultDatasetForm):
         # other extensions.
 
         return {
-            'collection_get_successor': collection_helpers.get_successor,
-            'collection_get_predecessor': collection_helpers.get_predecessor,
-            'collection_get_latest_member':collection_helpers.latest_collection_member_persistent_link,
-            'collection_get_title': collection_helpers.get_collection_title_by_dataset,
+            'get_collection': collection_helpers.get_collection,
+            'get_collection_info': collection_helpers.get_collection_info,
+            'url_from_id': collection_helpers.url_from_id,
         }
+    

@@ -130,6 +130,11 @@ h3{
     }
 }
 
+    .site-collection-summary .odsh-dataset-heading {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
 .search-form, .odsh-dataset-heading {
     display: flex;
     align-items: center;
@@ -402,6 +407,11 @@ input[type=radio], input[type=checkbox] {
     max-width: 300px;
     padding: 40.66px 16px 0px;
 }
+
+.site-collection-summary .secondary.span3 {
+    display: none;
+}
+
 .secondary .module-narrow .module-content{
     padding-left: 0px;
     padding-right: 0px;
@@ -409,6 +419,10 @@ input[type=radio], input[type=checkbox] {
 
 .primary {
     padding-left: 31px;
+}
+
+.site-collection-summary .primary {
+    padding-left: 0;
 }
 
 .primary.organization {
@@ -1270,6 +1284,7 @@ body {
 .footer-icon{
     float: left;
     margin-right: 40px;
+    margin-bottom: 1rem;
 }
 
 .footer-icon.last{
@@ -1314,7 +1329,7 @@ body {
         box-sizing: border-box;
         padding-bottom: 15px;
         background-image: none;
-        height: 139px;
+        height: 150px;
         display: flex;
         flex-direction: column-reverse;
     }
@@ -1451,6 +1466,24 @@ body {
     font-size: 16px;
     letter-spacing: 0.01em;
     color: #000000;
+}
+
++.hint-newer-version {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: white;
+    background-color: #D4004B;
+    padding: 0.5rem 1rem;
+}
+
+.hint-newer-version > a {
+    color: white;
+    text-decoration: underline;
+}
+
+.hint-newer-version > a:hover {
+    color: lightgray;
 }
 
 .resource-list {
@@ -2769,4 +2802,8 @@ body.filters-modal div.row > aside.secondary.span3 {
         height: auto;
         margin-right: 6px;
     }
+}
+
+.tpsh-collection-list {
+    list-style-type: none;
 }

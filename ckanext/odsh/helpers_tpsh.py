@@ -8,6 +8,8 @@ import json
 import re
 import urllib2
 from collections import OrderedDict
+import subprocess
+import os
 
 from ckan.common import config
 import ckan.lib.helpers as helpers
@@ -170,7 +172,11 @@ def get_language_for_selection():
     return dict_for_select_box
 
 def get_package_dict(name):
-    return model.Package.get(name).as_dict()
+    '''
+    raises ckan.logic.NotFound if not found
+    '''
+    package_dict = toolkit.get_action('package_show')(None, {'id': name})
+    return package_dict
 
 def size_of_fmt(num, suffix='B'):
     for unit in ['',' k',' M',' G',' T',' P',' E',' Z']:
@@ -209,3 +215,11 @@ def get_body_mail(organization, package):
     mail_url = "URL: " +  url + "%0D%0A"  +  "%0D%0A" 
     message =  mail_titel + mail_document  +  mail_url + "Mein Kommentar:" +  "%0D%0A"    +  "%0D%0A"  +  "%0D%0A"  +  "%0D%0A" 
     return anrede + message
+
+def git_commit_hash():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        command = 'git log -n 1 --format=%H'
+    except:
+        return 'unknown'
+    return subprocess.check_output([command], shell=True, cwd=current_dir)

@@ -102,18 +102,6 @@ class HelperPgkDict(object):
         return None
     
 
-    def get_collection_id(self):
-        '''
-        construct a collection uri from the id of 
-        the containing collection
-        '''
-        package_name = self.pkg_dict.get('name')
-        collection_name = helpers_collection.get_collection_name_by_dataset(package_name)
-        collection_dict = helpers_collection.get_package_dict(collection_name)
-        collection_id = collection_dict.get('id')
-        return collection_id
-
-    
     def add_uri_to_store(self):
         '''
         store pair of uri and id for subsequent use

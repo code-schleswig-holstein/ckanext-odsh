@@ -1,5 +1,5 @@
 import os
-from ckanext.odsh.pdf_to_thumbnail.thumbnail import get_filepath_to_resource
+from ckanext.odsh.pdf_to_thumbnail.thumbnail import get_resource_path
 from ckanext.odsh.lib.uploader import calculate_hash
 import ckan.plugins.toolkit as toolkit
 import magic
@@ -12,7 +12,7 @@ def add_attributes_resources(context, resource):
     i = 0
     for item in resources:    
         if item.get('id') == resource.get('id'):
-            path = get_filepath_to_resource(resource)
+            path = get_resource_path(resource)
             if os.path.exists(path):
                 with open(path, 'rb') as file:                  
                     

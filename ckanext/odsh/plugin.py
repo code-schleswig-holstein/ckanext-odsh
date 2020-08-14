@@ -51,7 +51,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
     def get_actions(self):
         return {'package_create': action.odsh_package_create,
                 'user_update':action.tpsh_user_update,
-                'user_create': action.odsh_user_create}
+                'user_create': action.odsh_user_create,
+		'resource_create': action.odsh_resource_create,}
 
     
     # IConfigurer
@@ -127,7 +128,14 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_validator('ignore_missing'),
                 toolkit.get_converter('convert_to_extras')
             ],
-
+            'relatedPackage': [
+                toolkit.get_validator('tpsh_validate_relatedPackage'),
+                toolkit.get_converter('convert_to_extras')
+            ],
+            'accessibility': [
+                toolkit.get_validator('ignore_missing'),
+                toolkit.get_converter('convert_to_extras')
+            ]
         })
         return schema
     
@@ -138,6 +146,14 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 toolkit.get_validator('ignore_missing')
             ],
             'thumbnail': [
+                toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')
+            ],
+            'relatedPackage': [
+                toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')
+            ],
+            'accessibility': [
                 toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')
             ],
@@ -320,7 +336,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
         # Template helper function names should begin with the name of the
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
-        return {'odsh_main_groups': odsh_helpers.odsh_main_groups,
+        return {
+	        'odsh_main_groups': odsh_helpers.odsh_main_groups,
                 'odsh_now': odsh_helpers.odsh_now,
                 'odsh_group_id_selected': odsh_helpers.odsh_group_id_selected,
                 'odsh_get_facet_items_dict': odsh_helpers.odsh_get_facet_items_dict,
@@ -357,7 +374,8 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'tpsh_get_resource_size': helpers_tpsh.get_resource_size,
                 'tpsh_get_address_org':helpers_tpsh.get_address_org,
                 'tpsh_get_body_mail':helpers_tpsh.get_body_mail,
-                }
+		'tpsh_git_commit_hash': helpers_tpsh.git_commit_hash,
+         }
 
     
     # IValidators

@@ -6,14 +6,13 @@ import urllib2
 import json
 from itertools import count
 from dateutil.parser import parse
+from pylons import config
 
 import ckan.plugins.toolkit as toolkit
 import ckan.model as model
 from ckan.lib.navl.dictization_functions import Missing
 
-from pylons import config
-
-import pdb
+from ckanext.odsh.helpers_tpsh import get_package_dict
 
 _ = toolkit._
 
@@ -191,7 +190,6 @@ def known_spatial_uri(key, data, errors, context):
         poly = None
 
         # some harvesters might import a polygon directly...
-        # pdb.set_trace()
         poly = _extract_value(data, 'spatial')
 
         has_old_uri = False
@@ -243,10 +241,13 @@ def known_spatial_uri(key, data, errors, context):
 
 def _copy_spatial_uri_temp_to_extras(data):
     '''
-    copy the field spatial_uri_temp originating 
+    copy the field spatial_uri_temp or
+    spatial_url_temp originating 
     from the user interface to extras
     '''
     spatial_uri = data.get(('__extras',)).get('spatial_uri_temp')
+    if spatial_uri is None:
+        spatial_uri = data.get(('__extras',)).get('spatial_url_temp')
     is_spatial_uri_in_extras = _extract_value(data, 'spatial_uri') is not None
     if not is_spatial_uri_in_extras:
         next_index = next_extra_index(data)
@@ -346,6 +347,12 @@ def validate_subject(key, flattened_data, errors, context):
         raise toolkit.Invalid(_('Subject must not be empty.'))
     flattened_data = _convert_subjectID_to_subjectText(subject_id, flattened_data)
 
+def validate_relatedPackage(data):
+    if data:
+        try:
+            get_package_dict(data)
+        except logic.NotFound:
+            raise toolkit.Invalid("relatedPackage: package '{}' not found".format(data))
 
 def get_validators():
     return {
@@ -354,4 +361,5 @@ def get_validators():
         'odsh_validate_extras': validate_extras,
         'validate_licenseAttributionByText': validate_licenseAttributionByText,
         'tpsh_validate_subject': validate_subject,
+	'tpsh_validate_relatedPackage': validate_relatedPackage,
     }
