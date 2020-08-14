@@ -39,7 +39,7 @@
     {% if pkg.state == 'deleted' %}
     [{{ _('Deleted') }}]
     {% endif %}
-    {% endblock page_heading%%}
+    {% endblock page_heading %}
     <div class="odsh-dataset-edit-button">
       {% if h.check_access('package_update', {'id':pkg.id }) %}
       <div>
@@ -73,7 +73,7 @@
 {% if successor_url %}
 <p class="hint-newer-version">
     Hinweis: Es ist eine <a href="{{ latest_collection_member }}">
-    neuere Version</a> dieses Dokuments verfügbar.
+    neuere Version</a> dieses Dokuments verfÃ¼gbar.
 </p>
 {% endif %}
 {% if pkg.notes %}
