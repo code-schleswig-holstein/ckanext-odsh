@@ -6,11 +6,10 @@ import ckan.model as model
 from ckanext.dcat.profiles import DCT
 from ckanext.dcat.utils import resource_uri
 import ckanext.dcatde.dataset_utils as ds_utils
-from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, DCATDE_1_0
+from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, DCATDE_1_0, DCATDE_1_0_1, DCATDE_1_0_2
 
 import ckanext.odsh.helpers_tpsh as helpers_tpsh
 import ckanext.odsh.collection.helpers as helpers_collection
-from ckanext.odsh.helper_pkg_dict import HelperPgkDict
 
 
 DCT = rdflib.namespace.Namespace("http://purl.org/dc/terms/")
@@ -36,7 +35,7 @@ class ODSHDCATdeProfile(DCATdeProfile):
             for resource_dict in dataset_dict.get('resources', []):
                 # Match distribution in graph and distribution in ckan-dict
                 if unicode(distribution) == resource_uri(resource_dict):
-                    for namespace in [DCATDE, DCATDE_1_0]:
+                    for namespace in [DCATDE, DCATDE_1_0, DCATDE_1_0_1, DCATDE_1_0_2]:
                         value = self._object_value(
                             distribution, namespace.licenseAttributionByText)
                         if value:
@@ -134,10 +133,8 @@ class ODSHDCATdeProfile(DCATdeProfile):
         return is_collection
     
     def _get_dataset_refs_belonging_to_collection(self, dataset_dict):
-        dataset_names = helpers_collection.get_all_datasets_belonging_to_collection(
-            collection_name = dataset_dict.get('id')
-        )
-        dataset_dicts = [model.Package.get(name).as_dict() for name in dataset_names]
+        dataset_names = helpers_collection.get_dataset_names(dataset_dict)
+	dataset_dicts = [model.Package.get(name).as_dict() for name in dataset_names]
         dataset_ids = [dataset_dict.get('id') for dataset_dict in dataset_dicts]
         dataset_refs = [self._construct_refs(id) for id in dataset_ids]
         return dataset_refs
@@ -155,12 +152,11 @@ class ODSHDCATdeProfile(DCATdeProfile):
         '''
         if dataset_dict.get('type')=='collection':
             return False
-        id_dataset = dataset_dict.get('id')
-        collection_name = helpers_collection.get_collection_name_by_dataset(id_dataset)
-        return collection_name is not None
+        collection_name = helpers_collection.get_collection_id(dataset_dict)
+	return collection_name is not None
 
     def _add_collection(self, dataset_dict, dataset_ref):
-        collection_id = HelperPgkDict(dataset_dict).get_collection_id()
+        collection_id = helpers_collection.get_collection_id(dataset_dict)
         collection_uri = self._construct_refs(collection_id)
         self.g.set(
             (dataset_ref, DCT.isVersionOf, 

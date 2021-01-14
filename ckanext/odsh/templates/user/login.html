@@ -1,6 +1,15 @@
 {% extends "page.html" %}
 
+{% set commit_hash = h.tpsh_git_commit_hash() %}
+
 {% block subtitle %} {{ _('Login') }} {% endblock %}
+
+{% block skip %}
+<p hidden>
+    version={{ commit_hash }}
+</p>
+{{ super() }}
+{% endblock skip %}
 
 {% block breadcrumb_content %}
 <li class="active">{{ h.nav_link(_('Login'), controller='user', action='login') }}</li>

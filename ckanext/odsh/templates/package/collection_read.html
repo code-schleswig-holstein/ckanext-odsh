@@ -1,0 +1,25 @@
+{% extends "package/read.html" %}
+
+{% block bodytag %} {{ super() }} class="site-collection-summary" {% endblock %}
+
+{% block package_resources %}
+{% endblock package_resources %}
+
+{% block secondary_content %}
+{% endblock secondary_content %}
+
+{% block collection %}
+
+{% set collection_id = pkg.get('id') %}
+{% set collection = h.get_collection_info(collection_id) %}
+{% set collection_title = collection['title'] if collection else None %}
+
+{% if collection['members'] %}
+<p>
+    Dies ist die Übersichtsseite der Reihe "{{ collection_title }}". 
+    Sie enthält folgende Datensätze (neuere Datensätze zuerst):
+</p>
+{% snippet 'snippets/package_list.html', packages=collection['members'] | reverse() %}
+{% endif %}
+
+{% endblock collection %}

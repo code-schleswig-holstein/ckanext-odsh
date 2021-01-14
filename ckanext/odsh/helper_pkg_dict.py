@@ -62,15 +62,16 @@ class HelperPgkDict(object):
         uris_collection_members_as_string = helpers_odsh.odsh_extract_value_from_extras(
             extras, 'has_version'
         )
-        uris_collection_members_as_string_cleaned = re.sub(
-            r'[\"\[\] ]',
-            '',
-            uris_collection_members_as_string,
-            0, 0,
-        )
-        uris_collection_members = uris_collection_members_as_string_cleaned.split(',')
-        return uris_collection_members
-
+        if uris_collection_members_as_string:
+            uris_collection_members_as_string_cleaned = re.sub(
+                r'[\"\[\] ]',
+                '',
+                uris_collection_members_as_string,
+                0, 0,
+            )
+            uris_collection_members = uris_collection_members_as_string_cleaned.split(',')
+            return uris_collection_members
+        return []
     
     def update_relation_to_collection(self):
         '''
@@ -102,18 +103,6 @@ class HelperPgkDict(object):
         return None
     
 
-    def get_collection_id(self):
-        '''
-        construct a collection uri from the id of 
-        the containing collection
-        '''
-        package_name = self.pkg_dict.get('name')
-        collection_name = helpers_collection.get_collection_name_by_dataset(package_name)
-        collection_dict = helpers_collection.get_package_dict(collection_name)
-        collection_id = collection_dict.get('id')
-        return collection_id
-
-    
     def add_uri_to_store(self):
         '''
         store pair of uri and id for subsequent use
@@ -150,9 +139,11 @@ class HelperPgkDict(object):
         
     @staticmethod
     def _get_date_from_string(date_time_str):
-        date_time_format = '%Y-%m-%dT%H:%M:%S' #e.g. u'2019-06-12T11:56:25'
         try:
-            date_time = datetime.datetime.strptime(date_time_str, date_time_format)
+            try:
+               date_time = datetime.datetime.strptime(date_time_str, '%Y-%m-%dT%H:%M:%S.%f')  #e.g. u'2019-06-12T11:56:25.7'
+            except:
+               date_time = datetime.datetime.strptime(date_time_str, '%Y-%m-%dT%H:%M:%S')  #e.g. u'2019-06-12T11:56:25'
             date = date_time.date()
         except (ValueError, TypeError):
             # if date cannot be converted from string return None

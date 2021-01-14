@@ -1,161 +1,166 @@
 from string import lower
+from operator import itemgetter
 
 import ckan.lib.helpers as helpers
 import ckan.model as model
 import ckan.plugins.toolkit as toolkit
 
 
+def get_collection(dataset_dict):
+    collection_id = get_collection_id(dataset_dict)
+    if collection_id:
+        return get_collection_info(collection_id, dataset_dict)
+    
+    return None
 
-#routine functions
+
+def get_collection_info(collection_id, dataset_dict=None):
+    collection_dict = get_package_dict(collection_id)
+    dataset_names = get_dataset_names(collection_dict)
+    datasets_in_collection = get_datasets_from_solr(dataset_names)
+    collection_info = gather_collection_info(collection_dict, datasets_in_collection, dataset_dict)
+    return collection_info
+
+
+def get_collection_id(dataset_dict):
+    relationships_dataset = dataset_dict.get('relationships_as_subject')
+    if relationships_dataset and len(relationships_dataset):        
+        return relationships_dataset[0]['__extras']['object_package_id']
+    relationships_dataset = dataset_dict.get('relationships')
+    if relationships_dataset and len(relationships_dataset):
+        return relationships_dataset[0].get('object')
+    return None
+
 
 def get_package_dict(name):
-    return model.Package.get(name).as_dict()
+    package = model.Package.get(name)
+    if package:
+        return package.as_dict()
+    else:
+        return None
 
-def get_relationships(name):
-    collection_dict = get_package_dict(name)
-    return collection_dict.get('relationships')
 
-def get_all_datasets_belonging_to_collection(collection_name):
-    list_rel_collection = get_relationships(collection_name)
-    name_list = list()
-    for item in list_rel_collection:
-        item_object = item.get('object') 
-        name_list.append(item_object)
-    return name_list
+def get_dataset_names(collection_dict):
+    collection_dict = get_package_dict(collection_dict.get('id')) # needed to get full package_dict
+    if collection_dict:
+       relationships_collection = collection_dict.get('relationships')
+       names_collection_members = [relationship.get('object') for relationship in relationships_collection]
+       return names_collection_members
+    else:
+       return []
 
-#for mapping latest resources and latest dataset
+
+def get_datasets_from_solr(dataset_names):
+    context = None
+
+    name_expression = ' OR '.join(dataset_names)
+    fq = 'name:({})'.format(name_expression)
+    
+    sort = 'extras_issued asc'
+    
+    # maximum possible number of results is 1000, 
+    # see https://docs.ckan.org/en/ckan-2.7.3/api/index.html#ckan.logic.action.get.package_search
+    query_result = toolkit.get_action('package_search')(context, {
+        'fq': fq,
+        'sort': sort,
+        'rows': 1000, 
+    })
+
+    results = query_result.get('results')
+    datasets_found = results if results else []
+
+    return datasets_found
+
+
+def gather_collection_info(collection_dict, datasets_in_collection, dataset_dict=None):
+    name_first_dataset = datasets_in_collection[0].get('name')
+    url_first_dataset = url_from_id(name_first_dataset)
+    
+    name_last_dataset = datasets_in_collection[-1].get('name')
+    url_last_dataset = url_from_id(name_last_dataset)
+
+    name_collection = collection_dict.get('name')
+    persistent_link_last_member = url_last_member(name_collection)
+
+    url_collection = url_from_id(collection_dict.get('name'))
+
+    if dataset_dict:
+        name_current_dataset = dataset_dict.get('name')
+        dataset_names = [d.get('name') for d in datasets_in_collection]
+        
+        def get_predecessor():
+            try:
+                id_current = dataset_names.index(name_current_dataset)
+            except ValueError:
+                return None
+            if id_current > 0:
+                return dataset_names[id_current - 1]
+            return None
+        
+        def get_successor():
+            try:
+                id_current = dataset_names.index(name_current_dataset)
+            except ValueError:
+                return None
+            if id_current < len(dataset_names) - 1:
+                return dataset_names[id_current + 1]
+            return None
+        
+        name_predecessor = get_predecessor()
+        url_predecessor = url_from_id(name_predecessor) if name_predecessor else None
+        
+        name_successor = get_successor()
+        url_successor = url_from_id(name_successor) if name_successor else None
+    else:
+        url_predecessor = url_successor = None
+    
+    return {
+        'title': collection_dict.get('title'),
+        'url': url_collection,
+        'members': datasets_in_collection,
+        'first_member': {
+            'name': name_first_dataset,
+            'url': url_first_dataset,
+        },
+        'last_member': {
+            'name': name_last_dataset,
+            'url': url_last_dataset,
+        },
+        'predecessor': {
+            'url': url_predecessor,
+        },
+        'successor': {
+            'url': url_successor,
+        },
+        'persistent_link_last_member': persistent_link_last_member,
+    }
+
+def url_from_id(package_id):
+    return helpers.url_for(controller='package', action='read', id=package_id)
+
+def url_last_member(name_collection):
+    return helpers.url_for(
+        controller='ckanext.odsh.collection.controller:LatestDatasetController', 
+        action='latest',
+        id=name_collection
+    )
+
 
 def get_latest_dataset(collection_name):
-    collection_list_relationships = get_all_datasets_belonging_to_collection(collection_name)
-    latest_issued = latest_name = None
-    for item in collection_list_relationships:
-        item_pkt_dict =  get_package_dict(item)
-        if helpers.check_access('package_show', item_pkt_dict):
-            item_issued = item_pkt_dict.get('extras').get('issued')
-            if latest_issued < item_issued or (latest_issued == item_issued and latest_name < item):
-                latest_name=item
-                latest_issued=item_issued
+    collection_info = get_collection_info(collection_name)
+    latest_name = collection_info['last_member']['name']
     return latest_name
 
 
-def is_latest_resources(resource_format, type, resource_created,latest_created, resource_id, latest_id):
-    if lower(resource_format) == lower(type):
-        return (resource_created > latest_created or (resource_created == latest_created and resource_id > latest_id))
-    else:
-        return False
-
-def get_latest_resources_for_type(collection_name, type):
-    latest_dataset_name = get_latest_dataset(collection_name)
-    latest_dataset = get_package_dict(latest_dataset_name)
-    resource_list = latest_dataset.get('resources')
-    latest_resource = latest_created = latest_id = None
-    for resource in resource_list:
-        resource_format = resource.get('format')
-        resource_created = resource.get('created')
-        resource_id = resource.get('id')
-        if is_latest_resources(resource_format, type, resource_created, latest_created, resource_id, latest_id):
-            latest_id=resource_id
-            latest_created=resource_created
-            latest_resource=resource
-    return latest_resource
-
-#for predecessor and successor
-
-
-
-def get_collection_name_by_dataset(dataset_name):
-    list_rel_dataset = get_relationships(dataset_name)
-    if len(list_rel_dataset):        
-        return list_rel_dataset[0]['object']
-
-def get_collection_title_by_dataset(pkg_dict_dataset):
-    dataset_name = pkg_dict_dataset.get('name')
-    collection_name = get_collection_name_by_dataset(dataset_name)
-    if not collection_name:
+def get_latest_resources_for_format(collection_name, resource_format):
+    collection_info = get_collection_info(collection_name)
+    members = collection_info.get('members')
+    if not members:
         return None
-    context = None
-    pkg_dict_collection = toolkit.get_action('package_show')(context, {'id': collection_name})
-    if not pkg_dict_collection:
+    latest_dataset = members[-1]
+    resources = latest_dataset.get('resources')
+    if not resources:
         return None
-    title_collection = pkg_dict_collection.get('title')
-    return title_collection
-
-def get_all_datasets_belonging_to_collection_by_dataset(dataset_name):
-    collection_name = get_collection_name_by_dataset(dataset_name)
-    if collection_name: 
-        return get_all_datasets_belonging_to_collection(collection_name)
-    return []
-
-def _get_siblings_dicts_with_access(pkg_dict):
-    dataset_name = pkg_dict.get('name')
-    list_of_siblings = get_all_datasets_belonging_to_collection_by_dataset(dataset_name)
-    n_siblings = len(list_of_siblings)
-    if n_siblings>0:
-        siblings_dicts = [get_package_dict(name) for name in list_of_siblings]
-        user_has_access = lambda pkg_dict:helpers.check_access('package_show', pkg_dict)
-        siblings_dicts_with_access = filter(user_has_access, siblings_dicts)
-        return siblings_dicts_with_access
-    return None
-
-def _sort_siblings_by_name_and_date(siblings_dicts):
-    '''
-    sort by name first and then by date to have a fallback if dates are the same
-    '''
-    _get_name = lambda pkg_dict:pkg_dict.get('name')
-    _get_issued = lambda pkg_dict:pkg_dict.get('extras').get('issued')
-    siblings_dicts_sorted_by_name = sorted(siblings_dicts, key=_get_name)
-    siblings_dicts_sorted_by_date_issued = sorted(siblings_dicts_sorted_by_name, key=_get_issued)
-    return siblings_dicts_sorted_by_date_issued
-
-def get_successor_and_predecessor_dataset(pkg_dict):
-    dataset_name = pkg_dict.get('name')
-    siblings_dicts_with_access = _get_siblings_dicts_with_access(pkg_dict)
-    if siblings_dicts_with_access:
-        n_siblings = len(siblings_dicts_with_access)
-        siblings_dicts_sorted_by_date_issued = _sort_siblings_by_name_and_date(siblings_dicts_with_access)
-        siblings_names_sorted_by_date_issued = [d['name'] for d in siblings_dicts_sorted_by_date_issued]
-        id_current_dataset = siblings_names_sorted_by_date_issued.index(dataset_name)
-        predecessor_name = (
-            siblings_names_sorted_by_date_issued[id_current_dataset-1] if (id_current_dataset > 0) 
-            else None
-        )
-        successor_name = (
-            siblings_names_sorted_by_date_issued[id_current_dataset+1] if (id_current_dataset < n_siblings-1) 
-            else None
-        )
-    else:
-        predecessor_name, successor_name = None, None
-    return successor_name, predecessor_name
-
-def get_successor_and_predecessor_urls(pkg_dict):
-    successor_name, predecessor_name = get_successor_and_predecessor_dataset(pkg_dict)
-    successor_url, predecessor_url = (
-        helpers.url_for(controller='package', action='read', id=name)
-        if name is not None
-        else None
-        for name in (successor_name, predecessor_name)
-    )
-    return successor_url, predecessor_url
-
-def get_successor(pkg_dict):
-    successor_and_predecessor = get_successor_and_predecessor_urls(pkg_dict)
-    return successor_and_predecessor[0]
-    
-def get_predecessor(pkg_dict):
-    successor_and_predecessor = get_successor_and_predecessor_urls(pkg_dict)
-    return successor_and_predecessor[1]
-
-#link to latest collection member
-def latest_collection_member_persistent_link(pkg_dict):
-    dataset_name = pkg_dict.get('name')
-    collection_name = get_collection_name_by_dataset(
-        dataset_name=dataset_name
-    )
-    if not collection_name:
-        return None
-    url = helpers.url_for(
-        controller='ckanext.odsh.collection.controller:LatestDatasetController', 
-        action='latest',
-        id=collection_name
-    )
-    return url
+    resources_with_asked_type = [r for r in resources if r.get('format').upper() == resource_format.upper()]
+    resources_sorted = sorted(resources_with_asked_type, key=itemgetter('id','created'), reverse=True)
+    return resources_sorted[-1]

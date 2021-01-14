@@ -55,7 +55,7 @@ Example:
             {% if mail %}
             {% if package %}
             {% set package_name = package.get('name') %}
-            {% set betreff = "Transparenzportal Dokument: "+ package_name%}
+            {% set betreff = "Open-Data-Portal Datensatz: "+ package_name%}
             {% set body_mail = h.tpsh_get_body_mail(organization, package)   %}
             {% else %}
             {% set betreff = "Transparenzportal" %}

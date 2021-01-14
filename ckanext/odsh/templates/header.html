@@ -54,6 +54,9 @@
                     {% set clazz='active' if c.action=='login' else ''%}
                     {% if h.check_access('package_create') %}
                     <li class='{{clazz}}'>
+                        <a href="/harvest">Harvester</a>
+                    </li>
+                    <li class='{{clazz}}'>
                         {% link_for _('Upload'), controller='package', action='new', group=c.group_dict.id, class_='text' %}
                     </li>
                     {% endif %}

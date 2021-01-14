@@ -11,7 +11,6 @@ from ckan.controllers.package import PackageController
 from ckan.controllers.feed import FeedController, ITEMS_LIMIT, _package_search, _create_atom_id
 import ckan.lib.helpers as h
 import ckan.authz as authz
-from ckan.common import c
 import logging
 import matomo
 import ckan.logic as logic
@@ -21,6 +20,8 @@ import ckan.plugins.toolkit as toolkit
 from ckanext.dcat.controllers import DCATController
 import ckan.model as model
 import helpers
+import json
+
 
 abort = base.abort
 log = logging.getLogger(__name__)
@@ -30,10 +31,10 @@ get_action = logic.get_action
 
 class OdshRouteController(HomeController):
     def info_page(self):
-        h.redirect_to('http://www.schleswig-holstein.de/odpinfo')
+        h.redirect_to('https://www.schleswig-holstein.de/odpinfo')
 
     def start(self):
-        h.redirect_to('http://www.schleswig-holstein.de/odpstart')
+        h.redirect_to('https://opendata-stage.schleswig-holstein.de/dataset')
 
     def not_found(self):
         abort(404)
@@ -143,6 +144,12 @@ class OdshGroupController(OrganizationController):
 
 class OdshApiController(ApiController):
     def action(self, logic_function, ver=None):
+        if toolkit.asbool(config.get('ckanext.odsh.log_api_requests', 'false')):
+            try:
+                request_data = self._get_request_data(try_url_params=False)
+                log.info('POST request body: {}'.format(request_data))
+            except Exception, e:
+                log.error(e)
         if logic_function == 'resource_qv4yAI2rgotamXGk98gJ':
             return helpers.odsh_get_version_id()
         if logic_function == 'resourcelog_qv4yAI2rgotamXGk98gJ':

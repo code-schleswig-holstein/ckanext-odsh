@@ -1,7 +1,7 @@
 from ckan.lib.helpers import is_url, url_for
 import ckan.plugins.toolkit as toolkit
 from ckan.controllers.package import PackageController
-from helpers import get_latest_resources_for_type, get_latest_dataset
+from helpers import get_latest_resources_for_format, get_latest_dataset
 
 
 
@@ -13,10 +13,10 @@ class LatestDatasetController(PackageController):
 
 class LatestRecourcesController(PackageController):
     
-    def latest_resource(self, id, type):
-        latest_resources = get_latest_resources_for_type(id, type)
+    def latest_resource(self, id, resource_format):
+        latest_resources = get_latest_resources_for_format(id, resource_format)
         if latest_resources is None:
-            abort(404)
+            toolkit.abort(404)
         url_type = latest_resources.get('url_type')
         if url_type is None:
             resource_url = latest_resources.get('url')
@@ -35,4 +35,4 @@ class LatestRecourcesController(PackageController):
                                     filename=pre_resource_url,
                                     qualified = True)
             toolkit.redirect_to(url_resource)
-        abort(404)
+        toolkit.abort(404)

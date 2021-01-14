@@ -1,10 +1,12 @@
 {% extends "package/read_base.html" %}
 
 {% set pkg = c.pkg_dict %}
-{% set collection_title = h.collection_get_title(pkg) %}
-{% set successor_url = h.collection_get_successor(pkg) %}
-{% set predecessor_url = h.collection_get_predecessor(pkg) %}
-{% set latest_collection_member = h.collection_get_latest_member(pkg) %}
+{% set collection = h.get_collection(pkg) %}
+{% set collection_title = collection['title'] if collection else None %}
+{% set collection_url = collection['url'] if collection else None %}
+{% set successor_url = collection['successor']['url'] if collection else None %}
+{% set predecessor_url = collection['predecessor']['url'] if collection else None %}
+{% set latest_collection_member = collection['persistent_link_last_member'] if collection else None %}
 {% set stars = h.odsh_openness_score_dataset_html(pkg) %}
 
 {% block breadcrumb_content %}
@@ -22,7 +24,7 @@
 <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
 <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
 {% endif %}
-{% endblock %}
+{% endblock breadcrumb_content %}
 
 {% block primary_content_inner %}
 {{ super() }}
@@ -37,7 +39,7 @@
     {% if pkg.state == 'deleted' %}
     [{{ _('Deleted') }}]
     {% endif %}
-    {% endblock %}
+    {% endblock page_heading %}
     <div class="odsh-dataset-edit-button">
       {% if h.check_access('package_update', {'id':pkg.id }) %}
       <div>
@@ -68,6 +70,12 @@
     <img src="/base/images/icon_info.svg" aria-hidden="true"></img>
     {{ _('Detailinformationen') }}
 </div>
+{% if successor_url %}
+<p class="hint-newer-version">
+    Hinweis: Es ist eine <a href="{{ latest_collection_member }}">
+    neuere Version</a> dieses Datensatzes verfügbar.
+</p>
+{% endif %}
 {% if pkg.notes %}
 <div class="notes embedded-content">
   {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
@@ -83,14 +91,14 @@
         {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary', icon='plus' %}
       </div>
   {% endif %}
-{% endblock %}
+{% endblock package_resources %}
 
 {% block collection %}
 {% if latest_collection_member %}
 <section id="dataset-collection">
     {% if collection_title %}
     <p>
-        Dieser Datensatz ist Bestandteil der Datenreihe "{{ collection_title }}". 
+        Dieser Datensatz ist Bestandteil der <a href={{ collection_url }}>Reihe "{{ collection_title }}"</a>.
         Sie können zu älteren und neueren Datensätzen blättern.
     </p>
     {% endif %} {# collection_title #}
@@ -135,5 +143,5 @@
 {% endfor %}
 </div>
 
-{% endblock %}
+{% endblock primary_content_inner %}
 
