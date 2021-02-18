@@ -49,7 +49,8 @@ def add_pkg_to_collection(id_pkg, id_collection):
             'object': id_collection,
             'type': 'child_of',
         }
-        toolkit.get_action('package_relationship_create')(None, relationship_dict)
+        if toolkit.check_access('package_relationship_create',relationship_dict):
+           toolkit.get_action('package_relationship_create')(None, relationship_dict)
 
 def use_matomo():
     '''Return the value of the use_matomo config setting.
