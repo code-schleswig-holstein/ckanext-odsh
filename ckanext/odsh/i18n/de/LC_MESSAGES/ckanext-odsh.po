@@ -67,7 +67,7 @@ msgid "Log out"
 msgstr "Logout"
 
 msgid "Logged Out"
-msgstr "Logout"
+msgstr "Abgemeldet"
 
 msgid "You are now logged out."
 msgstr "Sie haben sich erfolgreich abgemeldet."
@@ -293,9 +293,6 @@ msgid_plural "{number} datasets found for \"{query}\""
 msgstr[0] "{number} Ergebnis für \"{query}\""
 msgstr[1] "{number} Ergebnisse für \"{query}\""
 
-msgid "Logged Out"
-msgstr "Logout"
-
 msgid "Filter by location"
 msgstr "mit Karte suchen"
 
@@ -432,9 +429,6 @@ msgstr "Datensatz vorschlagen"
 
 msgid "NEW"
 msgstr "NEU"
-
-msgid "Add New Comment"
-msgstr "Kommentieren"
 
 msgid "Released"
 msgstr "Veröffentlicht"
