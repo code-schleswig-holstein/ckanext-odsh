@@ -6,7 +6,7 @@ import ckan.model as model
 from ckanext.dcat.profiles import DCT
 from ckanext.dcat.utils import resource_uri
 import ckanext.dcatde.dataset_utils as ds_utils
-from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, DCATDE_1_0
+from ckanext.dcatde.profiles import DCATdeProfile, DCATDE, DCAT, DCATDE_1_0, DCATDE_1_0_1, DCATDE_1_0_2
 
 import ckanext.odsh.helpers_tpsh as helpers_tpsh
 import ckanext.odsh.collection.helpers as helpers_collection
@@ -35,7 +35,7 @@ class ODSHDCATdeProfile(DCATdeProfile):
             for resource_dict in dataset_dict.get('resources', []):
                 # Match distribution in graph and distribution in ckan-dict
                 if unicode(distribution) == resource_uri(resource_dict):
-                    for namespace in [DCATDE, DCATDE_1_0]:
+                    for namespace in [DCATDE, DCATDE_1_0, DCATDE_1_0_1, DCATDE_1_0_2]:
                         value = self._object_value(
                             distribution, namespace.licenseAttributionByText)
                         if value:
