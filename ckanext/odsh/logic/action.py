@@ -5,6 +5,7 @@ import ckan.model as model
 import ckan.lib.dictization.model_dictize as model_dictize
 from ckan.lib.munge import munge_title_to_name
 import ckan.plugins.toolkit as toolkit
+from pylons import config
 from ckan.lib.search.common import make_connection, SearchError
 import pysolr
 import datetime
@@ -147,10 +148,14 @@ def autocomplete(context, data_dict):
 
 
 def odsh_resource_create(context, data_dict):
-    is_linked_resource = not isinstance(data_dict['upload'], cgi.FieldStorage)
-    if is_linked_resource:
-        _download_linked_resource_to_tmp(data_dict['url'])
-        _emulate_file_upload(data_dict)
+    copy_remote_resources = toolkit.asbool(
+        config.get('ckanext.odsh.copy_remote_resources', 'False')
+    )
+    if copy_remote_resources:
+      is_linked_resource = ( not 'upload' in data_dict ) or ( not isinstance(data_dict['upload'], cgi.FieldStorage))
+      if is_linked_resource:
+          _download_linked_resource_to_tmp(data_dict['url'])
+          _emulate_file_upload(data_dict)
     return resource_create(context, data_dict)
 
 TMP_FILE_PATH = '/tmp/temp_file_upload'
