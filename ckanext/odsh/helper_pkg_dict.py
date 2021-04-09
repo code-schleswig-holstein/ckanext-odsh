@@ -62,15 +62,16 @@ class HelperPgkDict(object):
         uris_collection_members_as_string = helpers_odsh.odsh_extract_value_from_extras(
             extras, 'has_version'
         )
-        uris_collection_members_as_string_cleaned = re.sub(
-            r'[\"\[\] ]',
-            '',
-            uris_collection_members_as_string,
-            0, 0,
-        )
-        uris_collection_members = uris_collection_members_as_string_cleaned.split(',')
-        return uris_collection_members
-
+        if uris_collection_members_as_string:
+            uris_collection_members_as_string_cleaned = re.sub(
+                r'[\"\[\] ]',
+                '',
+                uris_collection_members_as_string,
+                0, 0,
+            )
+            uris_collection_members = uris_collection_members_as_string_cleaned.split(',')
+            return uris_collection_members
+        return []
     
     def update_relation_to_collection(self):
         '''
@@ -138,9 +139,11 @@ class HelperPgkDict(object):
         
     @staticmethod
     def _get_date_from_string(date_time_str):
-        date_time_format = '%Y-%m-%dT%H:%M:%S' #e.g. u'2019-06-12T11:56:25'
         try:
-            date_time = datetime.datetime.strptime(date_time_str, date_time_format)
+            try:
+               date_time = datetime.datetime.strptime(date_time_str, '%Y-%m-%dT%H:%M:%S.%f')  #e.g. u'2019-06-12T11:56:25.7'
+            except:
+               date_time = datetime.datetime.strptime(date_time_str, '%Y-%m-%dT%H:%M:%S')  #e.g. u'2019-06-12T11:56:25'
             date = date_time.date()
         except (ValueError, TypeError):
             # if date cannot be converted from string return None
