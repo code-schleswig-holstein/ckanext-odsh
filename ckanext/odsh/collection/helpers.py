@@ -33,14 +33,21 @@ def get_collection_id(dataset_dict):
 
 
 def get_package_dict(name):
-    return model.Package.get(name).as_dict()
+    package = model.Package.get(name)
+    if package:
+        return package.as_dict()
+    else:
+        return None
 
 
 def get_dataset_names(collection_dict):
     collection_dict = get_package_dict(collection_dict.get('id')) # needed to get full package_dict
-    relationships_collection = collection_dict.get('relationships')
-    names_collection_members = [relationship.get('object') for relationship in relationships_collection]
-    return names_collection_members
+    if collection_dict:
+       relationships_collection = collection_dict.get('relationships')
+       names_collection_members = [relationship.get('object') for relationship in relationships_collection]
+       return names_collection_members
+    else:
+       return []
 
 
 def get_datasets_from_solr(dataset_names):
@@ -49,7 +56,7 @@ def get_datasets_from_solr(dataset_names):
     name_expression = ' OR '.join(dataset_names)
     fq = 'name:({})'.format(name_expression)
     
-    sort = 'name asc,extras_issued asc'
+    sort = 'extras_issued asc'
     
     # maximum possible number of results is 1000, 
     # see https://docs.ckan.org/en/ckan-2.7.3/api/index.html#ckan.logic.action.get.package_search
@@ -75,7 +82,7 @@ def gather_collection_info(collection_dict, datasets_in_collection, dataset_dict
     name_collection = collection_dict.get('name')
     persistent_link_last_member = url_last_member(name_collection)
 
-    url_collection = url_from_id(collection_dict.get('id'))
+    url_collection = url_from_id(collection_dict.get('name'))
 
     if dataset_dict:
         name_current_dataset = dataset_dict.get('name')
