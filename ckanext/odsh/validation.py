@@ -201,8 +201,8 @@ def known_spatial_uri(key, data, errors, context):
                 poly = pkg.extras.get('spatial', None)
         if (not poly) and require_spatial_uri:
             raise toolkit.Invalid(error_message_spatial_uri_empty)
-        if has_old_uri and require_spatial_uri:
-            raise toolkit.Invalid(error_message_spatial_uri_empty)
+        #if has_old_uri and require_spatial_uri:
+        #    raise toolkit.Invalid(error_message_spatial_uri_empty)
         else:
             if poly:
                 new_index = next_extra_index(data)
