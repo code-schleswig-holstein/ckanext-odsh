@@ -30,4 +30,4 @@ def create_matomo_request(userId=None):
     piwiktracker.set_api_url(config.get('ckanext.odsh.matomo_url'))
     if userId:
         piwiktracker.set_visitor_id(userId)
-    enqueue_job(piwiktracker.do_track_page_view,[request.path_qs], queue='tracking')
+    # enqueue_job(piwiktracker.do_track_page_view,[request.path_qs], queue='tracking')
