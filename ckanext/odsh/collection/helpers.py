@@ -53,6 +53,9 @@ def get_dataset_names(collection_dict):
 def get_datasets_from_solr(dataset_names):
     context = None
 
+    if not dataset_names:
+        return []
+
     name_expression = ' OR '.join(dataset_names)
     fq = 'name:({})'.format(name_expression)
     
@@ -73,6 +76,15 @@ def get_datasets_from_solr(dataset_names):
 
 
 def gather_collection_info(collection_dict, datasets_in_collection, dataset_dict=None):
+    url_collection = url_from_id(collection_dict.get('name'))
+
+    if not datasets_in_collection:
+        return {
+            'title': collection_dict.get('title'),
+            'url': url_collection,
+            'members': []
+        }
+
     name_first_dataset = datasets_in_collection[0].get('name')
     url_first_dataset = url_from_id(name_first_dataset)
     
@@ -82,7 +94,6 @@ def gather_collection_info(collection_dict, datasets_in_collection, dataset_dict
     name_collection = collection_dict.get('name')
     persistent_link_last_member = url_last_member(name_collection)
 
-    url_collection = url_from_id(collection_dict.get('name'))
 
     if dataset_dict:
         name_current_dataset = dataset_dict.get('name')
