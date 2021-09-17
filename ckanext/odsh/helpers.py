@@ -92,6 +92,9 @@ def compute_bounding_box(coords):
     if len(coords) == 0:
         return None
 
+    if type(coords[0]) != list:
+        return [coords[0], coords[0], coords[1], coords[1]]
+
     coords = [c for sublist in coords for c in sublist]
     if type(coords[0][0]) == list:
         # multipolygon
