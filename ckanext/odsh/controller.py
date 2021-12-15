@@ -34,7 +34,7 @@ class OdshRouteController(HomeController):
         h.redirect_to('http://www.schleswig-holstein.de/odpinfo')
 
     def start(self):
-        h.redirect_to('http://www.schleswig-holstein.de/odpstart')
+        h.redirect_to('/dataset')
 
     def not_found(self):
         abort(404)
