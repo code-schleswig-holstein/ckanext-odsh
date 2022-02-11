@@ -1,5 +1,13 @@
 [
   {
+    "id": "http://dcat-ap.de/def/licenses/ccpdm/1.0",
+    "is_okd_compliant": true,
+    "is_osi_compliant": false,
+    "status": "active",
+    "title": "gemeinfrei",
+    "url": "http://creativecommons.org/publicdomain/mark/1.0/"
+  },
+  {
     "id": "http://dcat-ap.de/def/licenses/dl-zero-de/2.0",
     "is_okd_compliant": true,
     "is_osi_compliant": true,
@@ -154,20 +162,20 @@
     "url": "https://creativecommons.org/licenses/by-nc/3.0/de/"
   },
   {
-    "id": "http://dcat-ap.de/def/licenses/ccpdm/1.0",
-    "is_okd_compliant": true,
-    "is_osi_compliant": false,
-    "status": "active",
-    "title": "Public Domain Mark 1.0 (PDM)",
-    "url": "http://creativecommons.org/publicdomain/mark/1.0/"
-  },
-  {
     "id": "http://dcat-ap.de/def/licenses/geonutz/20130319",
     "is_okd_compliant": true,
     "is_osi_compliant": false,
     "status": "active",
     "title": "Nutzungsbestimmungen für die Bereitstellung von Geodaten des Bundes",
     "url": "http://www.geodatenzentrum.de/docpdf/geonutzv.pdf"
+  },
+  {
+    "id": "http://dcat-ap.de/def/licenses/other-closed",
+    "is_okd_compliant": false,
+    "is_osi_compliant": false,
+    "status": "active",
+    "title": "Andere geschlossene Lizenz",
+    "url": ""
   },
   {
     "id": "http://dcat-ap.de/def/licenses/dl-by-de/1.0",
