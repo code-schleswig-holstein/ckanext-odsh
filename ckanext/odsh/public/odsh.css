@@ -824,6 +824,9 @@ a:hover.organization-item ,a:focus.organization-item
 
 @media (max-width: 719px)
 {
+.odsh-dataset-item {
+    flex-direction: column;
+}
 .dataset-content {
     width: 100%; 
     display: block;
@@ -831,6 +834,7 @@ a:hover.organization-item ,a:focus.organization-item
 .dataset-meta {
     width: 100%;
     display: block;
+    margin-top: 25px;
 }
 .dataset-spacer{
     display: none;
@@ -1329,7 +1333,6 @@ body {
         box-sizing: border-box;
         padding-bottom: 15px;
         background-image: none;
-        height: 150px;
         display: flex;
         flex-direction: column-reverse;
     }
@@ -1340,6 +1343,7 @@ body {
     .footer-right{
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
         padding-bottom: 15px;
     }
     .footer-icon a{
