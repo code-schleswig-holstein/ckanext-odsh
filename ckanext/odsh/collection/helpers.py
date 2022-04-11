@@ -10,13 +10,16 @@ def get_collection(dataset_dict):
     collection_id = get_collection_id(dataset_dict)
     if collection_id:
         return get_collection_info(collection_id, dataset_dict)
-    
     return None
 
 
 def get_collection_info(collection_id, dataset_dict=None):
     collection_dict = get_package_dict(collection_id)
+    if not collection_dict:
+        return None
     dataset_names = get_dataset_names(collection_dict)
+    if not dataset_names:
+        return None
     datasets_in_collection = get_datasets_from_solr(dataset_names)
     collection_info = gather_collection_info(collection_dict, datasets_in_collection, dataset_dict)
     return collection_info
@@ -41,13 +44,15 @@ def get_package_dict(name):
 
 
 def get_dataset_names(collection_dict):
+    if not collection_dict:
+        return []
     collection_dict = get_package_dict(collection_dict.get('id')) # needed to get full package_dict
     if collection_dict:
-       relationships_collection = collection_dict.get('relationships')
-       names_collection_members = [relationship.get('object') for relationship in relationships_collection]
-       return names_collection_members
+        relationships_collection = collection_dict.get('relationships')
+        names_collection_members = [relationship.get('object') for relationship in relationships_collection]
+        return names_collection_members
     else:
-       return []
+        return []
 
 
 def get_datasets_from_solr(dataset_names):
@@ -159,6 +164,8 @@ def url_last_member(name_collection):
 
 def get_latest_dataset(collection_name):
     collection_info = get_collection_info(collection_name)
+    if not collection_info:
+        return None
     latest_name = collection_info['last_member']['name']
     return latest_name
 

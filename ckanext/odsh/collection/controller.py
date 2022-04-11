@@ -9,6 +9,8 @@ class LatestDatasetController(PackageController):
     
     def latest_dataset(self, id):
         latest_dataset= get_latest_dataset(id)
+        if latest_dataset is None:
+            toolkit.abort(404)
         toolkit.redirect_to(controller='package', action='read', id=latest_dataset)
 
 class LatestRecourcesController(PackageController):
