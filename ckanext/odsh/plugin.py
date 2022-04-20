@@ -374,7 +374,6 @@ class OdshPlugin(plugins.SingletonPlugin, DefaultTranslation, DefaultDatasetForm
                 'tpsh_get_resource_size': helpers_tpsh.get_resource_size,
                 'tpsh_get_address_org':helpers_tpsh.get_address_org,
                 'tpsh_get_body_mail':helpers_tpsh.get_body_mail,
-		'tpsh_git_commit_hash': helpers_tpsh.git_commit_hash,
          }
 
     
