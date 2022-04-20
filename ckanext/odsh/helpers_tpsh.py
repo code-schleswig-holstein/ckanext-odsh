@@ -215,11 +215,3 @@ def get_body_mail(organization, package):
     mail_url = "URL: " +  url + "%0D%0A"  +  "%0D%0A" 
     message =  mail_titel + mail_document  +  mail_url + "Mein Kommentar:" +  "%0D%0A"    +  "%0D%0A"  +  "%0D%0A"  +  "%0D%0A" 
     return anrede + message
-
-def git_commit_hash():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    try:
-        command = 'git log -n 1 --format=%H'
-    except:
-        return 'unknown'
-    return subprocess.check_output([command], shell=True, cwd=current_dir)
