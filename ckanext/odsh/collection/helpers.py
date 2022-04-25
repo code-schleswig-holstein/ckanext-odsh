@@ -181,4 +181,6 @@ def get_latest_resources_for_format(collection_name, resource_format):
         return None
     resources_with_asked_type = [r for r in resources if r.get('format').upper() == resource_format.upper()]
     resources_sorted = sorted(resources_with_asked_type, key=itemgetter('id','created'), reverse=True)
+    if len(resources_sorted) < 2:
+        return None
     return resources_sorted[-1]
