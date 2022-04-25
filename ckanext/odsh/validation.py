@@ -265,7 +265,7 @@ def next_extra_index(data):
 
 
 def tag_name_validator(value, context):
-    tagname_match = re.compile('[\w \-.\:\(\)\´\`]*$', re.UNICODE)
+    tagname_match = re.compile(r'[\w \-.\:\(\)\´\`\§]*$', re.UNICODE)
     if not tagname_match.match(value):
         raise toolkit.Invalid(_('Tag "%s" must be alphanumeric '
                                 'characters or symbols: -_.:()') % (value))
